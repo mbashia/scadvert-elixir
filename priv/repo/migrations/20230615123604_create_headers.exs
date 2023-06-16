@@ -9,7 +9,6 @@ defmodule Scadvert.Repo.Migrations.CreateHeaders do
       add :status, :string
       add :picture, :string
 
-
       timestamps()
     end
   end

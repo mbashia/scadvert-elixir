@@ -4,7 +4,11 @@ defmodule ScadvertWeb.CodeControllerTest do
   import Scadvert.CodesFixtures
 
   @create_attrs %{active: "some active", description: "some description", name: 42}
-  @update_attrs %{active: "some updated active", description: "some updated description", name: 43}
+  @update_attrs %{
+    active: "some updated active",
+    description: "some updated description",
+    name: 43
+  }
   @invalid_attrs %{active: nil, description: nil, name: nil}
 
   describe "index" do

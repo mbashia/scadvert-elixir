@@ -9,14 +9,13 @@ defmodule Scadvert.Leaderships.Leadership do
     field :status, :string
     field :picture, Scadvert.LeadershipImage.Type
 
-
     timestamps()
   end
 
   @doc false
   def changeset(leadership, attrs) do
     leadership
-    |> cast(attrs, [:name, :description, :code, :status,:picture])
+    |> cast(attrs, [:name, :description, :code, :status, :picture])
     |> validate_required([:name, :description, :code, :status, :picture])
   end
 end

@@ -28,9 +28,6 @@ defmodule ScadvertWeb.Router do
     resources "/images", ImageController
     resources "/videos", VideoController
 
-
-
-
     get "/", PageController, :index
   end
 

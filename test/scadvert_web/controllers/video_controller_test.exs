@@ -3,8 +3,18 @@ defmodule ScadvertWeb.VideoControllerTest do
 
   import Scadvert.VideosFixtures
 
-  @create_attrs %{code: 42, description: "some description", name: "some name", status: "some status"}
-  @update_attrs %{code: 43, description: "some updated description", name: "some updated name", status: "some updated status"}
+  @create_attrs %{
+    code: 42,
+    description: "some description",
+    name: "some name",
+    status: "some status"
+  }
+  @update_attrs %{
+    code: 43,
+    description: "some updated description",
+    name: "some updated name",
+    status: "some updated status"
+  }
   @invalid_attrs %{code: nil, description: nil, name: nil, status: nil}
 
   describe "index" do

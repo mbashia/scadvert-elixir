@@ -9,14 +9,13 @@ defmodule Scadvert.Facilitys.Facility do
     field :name, :string
     field :picture, Scadvert.FacilityImage.Type
 
-
     timestamps()
   end
 
   @doc false
   def changeset(facility, attrs) do
     facility
-    |> cast(attrs, [:code, :name, :description, :active,:picture])
-    |> validate_required([:code, :name, :description, :active,:picture])
+    |> cast(attrs, [:code, :name, :description, :active, :picture])
+    |> validate_required([:code, :name, :description, :active, :picture])
   end
 end

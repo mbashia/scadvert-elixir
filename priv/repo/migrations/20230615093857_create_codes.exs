@@ -9,7 +9,6 @@ defmodule Scadvert.Repo.Migrations.CreateCodes do
       add :picture, :string
       add :type, :string
 
-
       timestamps()
     end
   end

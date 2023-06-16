@@ -9,14 +9,13 @@ defmodule Scadvert.Images.Image do
     field :status, :string
     field :picture, Scadvert.ImageImage.Type
 
-
     timestamps()
   end
 
   @doc false
   def changeset(image, attrs) do
     image
-    |> cast(attrs, [:name, :description, :code, :status,:picture])
-    |> validate_required([:name, :description, :code, :status,:picture])
+    |> cast(attrs, [:name, :description, :code, :status, :picture])
+    |> validate_required([:name, :description, :code, :status, :picture])
   end
 end

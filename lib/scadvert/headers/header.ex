@@ -1,6 +1,6 @@
 defmodule Scadvert.Headers.Header do
   use Ecto.Schema
-  use  Waffle.Ecto.Schema
+  use Waffle.Ecto.Schema
 
   import Ecto.Changeset
 
@@ -11,14 +11,13 @@ defmodule Scadvert.Headers.Header do
     field :status, :string
     field :picture, Scadvert.HeaderImage.Type
 
-
     timestamps()
   end
 
   @doc false
   def changeset(header, attrs) do
     header
-    |> cast(attrs, [:name, :description, :code, :status,:picture])
-    |> validate_required([:name, :description, :code, :status,:picture])
+    |> cast(attrs, [:name, :description, :code, :status, :picture])
+    |> validate_required([:name, :description, :code, :status, :picture])
   end
 end

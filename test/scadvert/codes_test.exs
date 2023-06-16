@@ -35,7 +35,12 @@ defmodule Scadvert.CodesTest do
 
     test "update_code/2 with valid data updates the code" do
       code = code_fixture()
-      update_attrs = %{active: "some updated active", description: "some updated description", name: 43}
+
+      update_attrs = %{
+        active: "some updated active",
+        description: "some updated description",
+        name: 43
+      }
 
       assert {:ok, %Code{} = code} = Codes.update_code(code, update_attrs)
       assert code.active == "some updated active"

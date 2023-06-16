@@ -21,7 +21,12 @@ defmodule Scadvert.FeaturesTest do
     end
 
     test "create_feature/1 with valid data creates a feature" do
-      valid_attrs = %{code: 42, description: "some description", name: "some name", status: "some status"}
+      valid_attrs = %{
+        code: 42,
+        description: "some description",
+        name: "some name",
+        status: "some status"
+      }
 
       assert {:ok, %Feature{} = feature} = Features.create_feature(valid_attrs)
       assert feature.code == 42
@@ -36,7 +41,13 @@ defmodule Scadvert.FeaturesTest do
 
     test "update_feature/2 with valid data updates the feature" do
       feature = feature_fixture()
-      update_attrs = %{code: 43, description: "some updated description", name: "some updated name", status: "some updated status"}
+
+      update_attrs = %{
+        code: 43,
+        description: "some updated description",
+        name: "some updated name",
+        status: "some updated status"
+      }
 
       assert {:ok, %Feature{} = feature} = Features.update_feature(feature, update_attrs)
       assert feature.code == 43

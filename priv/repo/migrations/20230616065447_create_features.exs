@@ -9,7 +9,6 @@ defmodule Scadvert.Repo.Migrations.CreateFeatures do
       add :status, :string
       add :picture, :string
 
-
       timestamps()
     end
   end

@@ -21,7 +21,12 @@ defmodule Scadvert.VideosTest do
     end
 
     test "create_video/1 with valid data creates a video" do
-      valid_attrs = %{code: 42, description: "some description", name: "some name", status: "some status"}
+      valid_attrs = %{
+        code: 42,
+        description: "some description",
+        name: "some name",
+        status: "some status"
+      }
 
       assert {:ok, %Video{} = video} = Videos.create_video(valid_attrs)
       assert video.code == 42
@@ -36,7 +41,13 @@ defmodule Scadvert.VideosTest do
 
     test "update_video/2 with valid data updates the video" do
       video = video_fixture()
-      update_attrs = %{code: 43, description: "some updated description", name: "some updated name", status: "some updated status"}
+
+      update_attrs = %{
+        code: 43,
+        description: "some updated description",
+        name: "some updated name",
+        status: "some updated status"
+      }
 
       assert {:ok, %Video{} = video} = Videos.update_video(video, update_attrs)
       assert video.code == 43

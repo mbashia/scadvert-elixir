@@ -3,8 +3,18 @@ defmodule ScadvertWeb.FacilityControllerTest do
 
   import Scadvert.FacilitysFixtures
 
-  @create_attrs %{active: "some active", code: 42, description: "some description", name: "some name"}
-  @update_attrs %{active: "some updated active", code: 43, description: "some updated description", name: "some updated name"}
+  @create_attrs %{
+    active: "some active",
+    code: 42,
+    description: "some description",
+    name: "some name"
+  }
+  @update_attrs %{
+    active: "some updated active",
+    code: 43,
+    description: "some updated description",
+    name: "some updated name"
+  }
   @invalid_attrs %{active: nil, code: nil, description: nil, name: nil}
 
   describe "index" do

@@ -21,7 +21,12 @@ defmodule Scadvert.ImagesTest do
     end
 
     test "create_image/1 with valid data creates a image" do
-      valid_attrs = %{code: 42, description: "some description", name: "some name", status: "some status"}
+      valid_attrs = %{
+        code: 42,
+        description: "some description",
+        name: "some name",
+        status: "some status"
+      }
 
       assert {:ok, %Image{} = image} = Images.create_image(valid_attrs)
       assert image.code == 42
@@ -36,7 +41,13 @@ defmodule Scadvert.ImagesTest do
 
     test "update_image/2 with valid data updates the image" do
       image = image_fixture()
-      update_attrs = %{code: 43, description: "some updated description", name: "some updated name", status: "some updated status"}
+
+      update_attrs = %{
+        code: 43,
+        description: "some updated description",
+        name: "some updated name",
+        status: "some updated status"
+      }
 
       assert {:ok, %Image{} = image} = Images.update_image(image, update_attrs)
       assert image.code == 43

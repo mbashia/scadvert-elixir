@@ -21,7 +21,12 @@ defmodule Scadvert.LeadershipsTest do
     end
 
     test "create_leadership/1 with valid data creates a leadership" do
-      valid_attrs = %{code: 42, description: "some description", name: "some name", status: "some status"}
+      valid_attrs = %{
+        code: 42,
+        description: "some description",
+        name: "some name",
+        status: "some status"
+      }
 
       assert {:ok, %Leadership{} = leadership} = Leaderships.create_leadership(valid_attrs)
       assert leadership.code == 42
@@ -36,9 +41,17 @@ defmodule Scadvert.LeadershipsTest do
 
     test "update_leadership/2 with valid data updates the leadership" do
       leadership = leadership_fixture()
-      update_attrs = %{code: 43, description: "some updated description", name: "some updated name", status: "some updated status"}
 
-      assert {:ok, %Leadership{} = leadership} = Leaderships.update_leadership(leadership, update_attrs)
+      update_attrs = %{
+        code: 43,
+        description: "some updated description",
+        name: "some updated name",
+        status: "some updated status"
+      }
+
+      assert {:ok, %Leadership{} = leadership} =
+               Leaderships.update_leadership(leadership, update_attrs)
+
       assert leadership.code == 43
       assert leadership.description == "some updated description"
       assert leadership.name == "some updated name"
@@ -47,7 +60,10 @@ defmodule Scadvert.LeadershipsTest do
 
     test "update_leadership/2 with invalid data returns error changeset" do
       leadership = leadership_fixture()
-      assert {:error, %Ecto.Changeset{}} = Leaderships.update_leadership(leadership, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Leaderships.update_leadership(leadership, @invalid_attrs)
+
       assert leadership == Leaderships.get_leadership!(leadership.id)
     end
 

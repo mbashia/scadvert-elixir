@@ -21,7 +21,12 @@ defmodule Scadvert.FacilitysTest do
     end
 
     test "create_facility/1 with valid data creates a facility" do
-      valid_attrs = %{active: "some active", code: 42, description: "some description", name: "some name"}
+      valid_attrs = %{
+        active: "some active",
+        code: 42,
+        description: "some description",
+        name: "some name"
+      }
 
       assert {:ok, %Facility{} = facility} = Facilitys.create_facility(valid_attrs)
       assert facility.active == "some active"
@@ -36,7 +41,13 @@ defmodule Scadvert.FacilitysTest do
 
     test "update_facility/2 with valid data updates the facility" do
       facility = facility_fixture()
-      update_attrs = %{active: "some updated active", code: 43, description: "some updated description", name: "some updated name"}
+
+      update_attrs = %{
+        active: "some updated active",
+        code: 43,
+        description: "some updated description",
+        name: "some updated name"
+      }
 
       assert {:ok, %Facility{} = facility} = Facilitys.update_facility(facility, update_attrs)
       assert facility.active == "some updated active"

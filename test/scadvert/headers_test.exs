@@ -21,7 +21,12 @@ defmodule Scadvert.HeadersTest do
     end
 
     test "create_header/1 with valid data creates a header" do
-      valid_attrs = %{code: 42, description: "some description", name: "some name", status: "some status"}
+      valid_attrs = %{
+        code: 42,
+        description: "some description",
+        name: "some name",
+        status: "some status"
+      }
 
       assert {:ok, %Header{} = header} = Headers.create_header(valid_attrs)
       assert header.code == 42
@@ -36,7 +41,13 @@ defmodule Scadvert.HeadersTest do
 
     test "update_header/2 with valid data updates the header" do
       header = header_fixture()
-      update_attrs = %{code: 43, description: "some updated description", name: "some updated name", status: "some updated status"}
+
+      update_attrs = %{
+        code: 43,
+        description: "some updated description",
+        name: "some updated name",
+        status: "some updated status"
+      }
 
       assert {:ok, %Header{} = header} = Headers.update_header(header, update_attrs)
       assert header.code == 43

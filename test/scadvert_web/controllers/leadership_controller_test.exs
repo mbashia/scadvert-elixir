@@ -3,8 +3,18 @@ defmodule ScadvertWeb.LeadershipControllerTest do
 
   import Scadvert.LeadershipsFixtures
 
-  @create_attrs %{code: 42, description: "some description", name: "some name", status: "some status"}
-  @update_attrs %{code: 43, description: "some updated description", name: "some updated name", status: "some updated status"}
+  @create_attrs %{
+    code: 42,
+    description: "some description",
+    name: "some name",
+    status: "some status"
+  }
+  @update_attrs %{
+    code: 43,
+    description: "some updated description",
+    name: "some updated name",
+    status: "some updated status"
+  }
   @invalid_attrs %{code: nil, description: nil, name: nil, status: nil}
 
   describe "index" do
@@ -51,7 +61,9 @@ defmodule ScadvertWeb.LeadershipControllerTest do
     setup [:create_leadership]
 
     test "redirects when data is valid", %{conn: conn, leadership: leadership} do
-      conn = put(conn, Routes.leadership_path(conn, :update, leadership), leadership: @update_attrs)
+      conn =
+        put(conn, Routes.leadership_path(conn, :update, leadership), leadership: @update_attrs)
+
       assert redirected_to(conn) == Routes.leadership_path(conn, :show, leadership)
 
       conn = get(conn, Routes.leadership_path(conn, :show, leadership))
@@ -59,7 +71,9 @@ defmodule ScadvertWeb.LeadershipControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, leadership: leadership} do
-      conn = put(conn, Routes.leadership_path(conn, :update, leadership), leadership: @invalid_attrs)
+      conn =
+        put(conn, Routes.leadership_path(conn, :update, leadership), leadership: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Leadership"
     end
   end

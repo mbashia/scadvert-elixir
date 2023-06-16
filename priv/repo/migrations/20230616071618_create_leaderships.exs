@@ -9,7 +9,6 @@ defmodule Scadvert.Repo.Migrations.CreateLeaderships do
       add :status, :string
       add :picture, :string
 
-
       timestamps()
     end
   end
