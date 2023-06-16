@@ -1,0 +1,35 @@
+<h1>Listing Headers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Code</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for header <- @headers do %>
+    <tr>
+      <td><%= header.name %></td>
+      <td><%= header.description %></td>
+      <td><%= header.code %></td>
+      <td><%= header.status %></td>
+      <td>  <%= img_tag Scadvert.HeaderImage.url({header.picture, header}, signed: true)
+  %></td>
+
+
+      <td>
+        <span><%= link "Show", to: Routes.header_path(@conn, :show, header) %></span>
+        <span><%= link "Edit", to: Routes.header_path(@conn, :edit, header) %></span>
+        <span><%= link "Delete", to: Routes.header_path(@conn, :delete, header), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Header", to: Routes.header_path(@conn, :new) %></span>

@@ -1,0 +1,31 @@
+<h1>Show Code</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @code.name %>
+  </li>
+  <li>
+    <strong>type:</strong>
+    <%= @code.type %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @code.description %>
+  </li>
+
+  <li>
+    <strong>Active:</strong>
+    <%= @code.active %>
+  </li>
+   <li>
+    <strong>image:</strong>
+<%= img_tag Scadvert.CodeImage.url({@code.picture, @code}, signed: true)
+  %>  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.code_path(@conn, :edit, @code) %></span> |
+<span><%= link "Back", to: Routes.code_path(@conn, :index) %></span>

@@ -1,0 +1,5 @@
+<h1>Edit Header</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.header_path(@conn, :update, @header)) %>
+
+<span><%= link "Back", to: Routes.header_path(@conn, :index) %></span>

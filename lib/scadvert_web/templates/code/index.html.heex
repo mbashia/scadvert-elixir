@@ -1,0 +1,36 @@
+<h1>Listing Codes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th>type</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for code <- @codes do %>
+    <tr>
+      <td><%= code.name %></td>
+      <td><%= code.description %></td>
+      <td><%= code.active %></td>
+      <td><%= code.type %></td>
+
+      <td><%= img_tag Scadvert.CodeImage.url({code.picture, code}, signed: true)
+  %></td>
+
+
+      <td>
+        <span><%= link "Show", to: Routes.code_path(@conn, :show, code) %></span>
+        <span><%= link "Edit", to: Routes.code_path(@conn, :edit, code) %></span>
+        <span><%= link "Delete", to: Routes.code_path(@conn, :delete, code), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Code", to: Routes.code_path(@conn, :new) %></span>

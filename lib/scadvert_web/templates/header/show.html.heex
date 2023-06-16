@@ -1,0 +1,32 @@
+<h1>Show Header</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @header.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @header.description %>
+  </li>
+
+  <li>
+    <strong>Code:</strong>
+    <%= @header.code %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @header.status %>
+  </li>
+  <li>
+  <strong>    <td>  <%= img_tag Scadvert.HeaderImage.url({@header.picture, @header}, signed: true)%></td>
+  </strong>
+</li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.header_path(@conn, :edit, @header) %></span> |
+<span><%= link "Back", to: Routes.header_path(@conn, :index) %></span>
