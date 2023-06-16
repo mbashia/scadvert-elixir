@@ -18,6 +18,8 @@
       <td><%= image.description %></td>
       <td><%= image.code %></td>
       <td><%= image.status %></td>
+         <td>  <%= img_tag Scadvert.ImageImage.url({image.picture, image}, signed: true)
+  %></td>
 
       <td>
         <span><%= link "Show", to: Routes.image_path(@conn, :show, image) %></span>

@@ -21,6 +21,10 @@
     <strong>Status:</strong>
     <%= @image.status %>
   </li>
+  <li>
+  <strong>    <td>  <%= img_tag Scadvert.ImageImage.url({@image.picture, @image}, signed: true)%></td>
+  </strong>
+</li>
 
 </ul>
 

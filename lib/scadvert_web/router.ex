@@ -26,6 +26,8 @@ defmodule ScadvertWeb.Router do
     resources "/features", FeatureController
     resources "/leaderships", LeadershipController
     resources "/images", ImageController
+    resources "/videos", VideoController
+
 
 
 

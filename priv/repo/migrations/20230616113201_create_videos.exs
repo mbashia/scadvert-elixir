@@ -1,14 +1,12 @@
-defmodule Scadvert.Repo.Migrations.CreateImages do
+defmodule Scadvert.Repo.Migrations.CreateVideos do
   use Ecto.Migration
 
   def change do
-    create table(:images) do
+    create table(:videos) do
       add :name, :string
       add :description, :text
       add :code, :integer
       add :status, :string
-      add :picture, :string
-
 
       timestamps()
     end
