@@ -1,12 +1,12 @@
-defmodule Scadvert.Repo.Migrations.CreateFacilitys do
+defmodule Scadvert.Repo.Migrations.CreateLeaderships do
   use Ecto.Migration
 
   def change do
-    create table(:facilitys) do
-      add :code, :integer
+    create table(:leaderships) do
       add :name, :string
       add :description, :text
-      add :active, :string
+      add :code, :integer
+      add :status, :string
       add :picture, :string
 
 

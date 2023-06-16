@@ -1,0 +1,5 @@
+<h1>Edit Leadership</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.leadership_path(@conn, :update, @leadership)) %>
+
+<span><%= link "Back", to: Routes.leadership_path(@conn, :index) %></span>

@@ -7,6 +7,8 @@ defmodule Scadvert.Repo.Migrations.CreateFeatures do
       add :description, :text
       add :code, :integer
       add :status, :string
+      add :picture, :string
+
 
       timestamps()
     end

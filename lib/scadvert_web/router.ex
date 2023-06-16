@@ -24,6 +24,9 @@ defmodule ScadvertWeb.Router do
     resources "/headers", HeaderController
     resources "/facilitys", FacilityController
     resources "/features", FeatureController
+    resources "/leaderships", LeadershipController
+
+
 
 
 

@@ -22,6 +22,12 @@
     <%= @feature.status %>
   </li>
 
+  <li>
+  <strong>    <td>  <%= img_tag Scadvert.FeatureImage.url({@feature.picture, @feature}, signed: true)%></td>
+  </strong>
+</li>
+
+
 </ul>
 
 <span><%= link "Edit", to: Routes.feature_path(@conn, :edit, @feature) %></span> |

@@ -1,0 +1,32 @@
+<h1>Listing Leaderships</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Code</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for leadership <- @leaderships do %>
+    <tr>
+      <td><%= leadership.name %></td>
+      <td><%= leadership.description %></td>
+      <td><%= leadership.code %></td>
+      <td><%= leadership.status %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.leadership_path(@conn, :show, leadership) %></span>
+        <span><%= link "Edit", to: Routes.leadership_path(@conn, :edit, leadership) %></span>
+        <span><%= link "Delete", to: Routes.leadership_path(@conn, :delete, leadership), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Leadership", to: Routes.leadership_path(@conn, :new) %></span>

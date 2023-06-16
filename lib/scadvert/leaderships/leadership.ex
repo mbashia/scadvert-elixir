@@ -1,22 +1,22 @@
-defmodule Scadvert.Features.Feature do
+defmodule Scadvert.Leaderships.Leadership do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "features" do
+  schema "leaderships" do
     field :code, :integer
     field :description, :string
     field :name, :string
     field :status, :string
-    field :picture, Scadvert.FeatureImage.Type
+    field :picture, Scadvert.LeadershipImage.Type
 
 
     timestamps()
   end
 
   @doc false
-  def changeset(feature, attrs) do
-    feature
+  def changeset(leadership, attrs) do
+    leadership
     |> cast(attrs, [:name, :description, :code, :status,:picture])
-    |> validate_required([:name, :description, :code, :status,:picture])
+    |> validate_required([:name, :description, :code, :status, :picture])
   end
 end

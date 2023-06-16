@@ -1,0 +1,28 @@
+<h1>Show Leadership</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @leadership.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @leadership.description %>
+  </li>
+
+  <li>
+    <strong>Code:</strong>
+    <%= @leadership.code %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @leadership.status %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.leadership_path(@conn, :edit, @leadership) %></span> |
+<span><%= link "Back", to: Routes.leadership_path(@conn, :index) %></span>

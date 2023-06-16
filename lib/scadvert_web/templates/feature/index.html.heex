@@ -18,6 +18,8 @@
       <td><%= feature.description %></td>
       <td><%= feature.code %></td>
       <td><%= feature.status %></td>
+         <td>  <%= img_tag Scadvert.FeatureImage.url({feature.picture, feature}, signed: true)
+  %></td>
 
       <td>
         <span><%= link "Show", to: Routes.feature_path(@conn, :show, feature) %></span>
