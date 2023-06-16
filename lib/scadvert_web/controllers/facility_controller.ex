@@ -4,6 +4,7 @@ defmodule ScadvertWeb.FacilityController do
   alias Scadvert.Facilitys
   alias Scadvert.Facilitys.Facility
 
+
   def index(conn, _params) do
     facilitys = Facilitys.list_facilitys()
     render(conn, "index.html", facilitys: facilitys)
