@@ -21,6 +21,10 @@
     <strong>Status:</strong>
     <%= @leadership.status %>
   </li>
+    <li>
+  <strong>    <td>  <%= img_tag Scadvert.LeadershipImage.url({@leadership.picture, @leadership}, signed: true)%></td>
+  </strong>
+</li>
 
 </ul>
 

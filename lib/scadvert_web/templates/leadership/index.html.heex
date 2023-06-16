@@ -18,6 +18,8 @@
       <td><%= leadership.description %></td>
       <td><%= leadership.code %></td>
       <td><%= leadership.status %></td>
+       <td>  <%= img_tag Scadvert.LeadershipImage.url({leadership.picture, leadership}, signed: true)
+  %></td>
 
       <td>
         <span><%= link "Show", to: Routes.leadership_path(@conn, :show, leadership) %></span>
