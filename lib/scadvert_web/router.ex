@@ -22,6 +22,11 @@ defmodule ScadvertWeb.Router do
 
     resources "/codes", CodeController
     resources "/headers", HeaderController
+    resources "/facilitys", FacilityController
+    resources "/features", FeatureController
+
+
+
 
     get "/", PageController, :index
   end

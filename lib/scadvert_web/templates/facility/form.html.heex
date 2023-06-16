@@ -5,6 +5,10 @@
     </div>
   <% end %>
 
+  <%= label f, :code %>
+  <%= number_input f, :code %>
+  <%= error_tag f, :code %>
+
   <%= label f, :name %>
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
@@ -13,17 +17,16 @@
   <%= textarea f, :description %>
   <%= error_tag f, :description %>
 
-  <%= label f, :code %>
-  <%= number_input f, :code %>
-  <%= error_tag f, :code %>
+  <%= label f, :active %>
+  <%= text_input f, :active %>
+  <%= error_tag f, :active %>
 
-  <%= label f, :status %>
-  <%= text_input f, :status %>
-  <%= error_tag f, :status %>
-
-  <%= label f, :picture %>
+    <%= label f, :picture %>
 <%= file_input f, :picture %>
   <%= error_tag f, :picture %>
+
+
+
 
   <div>
     <%= submit "Save" %>

@@ -1,0 +1,28 @@
+<h1>Show Feature</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @feature.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @feature.description %>
+  </li>
+
+  <li>
+    <strong>Code:</strong>
+    <%= @feature.code %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @feature.status %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.feature_path(@conn, :edit, @feature) %></span> |
+<span><%= link "Back", to: Routes.feature_path(@conn, :index) %></span>

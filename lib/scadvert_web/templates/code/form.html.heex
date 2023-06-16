@@ -23,11 +23,11 @@
 <%= select f, :active, ["Active",  "Inactive"] %>
   <%= error_tag f, :active %>
 
-  <%= label f, :image %>
+  <%= label f, :picture %>
 <%= file_input f, :picture %>
-  <%= error_tag f, :image %>
+  <%= error_tag f, :picture %>
 
   <div>
     <%= submit "Save" %>
   </div>
-<%end %>>
+<%end %>

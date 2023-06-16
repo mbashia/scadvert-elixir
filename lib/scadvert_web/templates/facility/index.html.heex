@@ -1,0 +1,34 @@
+<h1>Listing Facilitys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for facility <- @facilitys do %>
+    <tr>
+      <td><%= facility.code %></td>
+      <td><%= facility.name %></td>
+      <td><%= facility.description %></td>
+      <td><%= facility.active %></td>
+      <td><%= img_tag Scadvert.Facilitymage.url({facility.picture, facility}, signed: true)%></td>
+
+
+      <td>
+        <span><%= link "Show", to: Routes.facility_path(@conn, :show, facility) %></span>
+        <span><%= link "Edit", to: Routes.facility_path(@conn, :edit, facility) %></span>
+        <span><%= link "Delete", to: Routes.facility_path(@conn, :delete, facility), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Facility", to: Routes.facility_path(@conn, :new) %></span>
