@@ -15,6 +15,8 @@ defmodule ScadvertWeb.HeaderController do
   end
 
   def create(conn, %{"header" => header_params}) do
+    header_params = Map.put(header_params, "user_id", conn.assigns.current_user.id)
+
     case Headers.create_header(header_params) do
       {:ok, header} ->
         conn

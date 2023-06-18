@@ -3,6 +3,9 @@ defmodule Scadvert.Accounts.User do
   import Ecto.Changeset
   alias Scadvert.Codes.Code
   alias Scadvert.Facilitys.Facility
+  alias Scadvert.Features.Feature
+  alias Scadvert.Headers.Header
+
 
 
   schema "users" do
@@ -12,6 +15,10 @@ defmodule Scadvert.Accounts.User do
     field :confirmed_at, :naive_datetime
     has_many :codes, Code
     has_many :facilitys, Facility
+    has_many :features, Feature
+    has_many :headers, Header
+
+
 
 
     timestamps()

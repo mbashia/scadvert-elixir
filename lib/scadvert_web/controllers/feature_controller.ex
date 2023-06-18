@@ -15,6 +15,8 @@ defmodule ScadvertWeb.FeatureController do
   end
 
   def create(conn, %{"feature" => feature_params}) do
+    feature_params = Map.put(feature_params, "user_id", conn.assigns.current_user.id)
+
     case Features.create_feature(feature_params) do
       {:ok, feature} ->
         conn
