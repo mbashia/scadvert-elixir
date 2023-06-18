@@ -15,6 +15,8 @@ defmodule ScadvertWeb.FacilityController do
   end
 
   def create(conn, %{"facility" => facility_params}) do
+    facility_params = Map.put(facility_params, "user_id", conn.assigns.current_user.id)
+
     case Facilitys.create_facility(facility_params) do
       {:ok, facility} ->
         conn

@@ -18,8 +18,8 @@ defmodule ScadvertWeb.Router do
   end
 
   scope "/", ScadvertWeb do
-    pipe_through :browser
-
+    pipe_through [:browser, :require_authenticated_user]
+    
     resources "/codes", CodeController
     resources "/headers", HeaderController
     resources "/facilitys", FacilityController

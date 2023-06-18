@@ -15,6 +15,8 @@ defmodule ScadvertWeb.CodeController do
   end
 
   def create(conn, %{"code" => code_params}) do
+    code_params = Map.put(code_params, "user_id", conn.assigns.current_user.id)
+
     case Codes.create_code(code_params) do
       {:ok, code} ->
         conn

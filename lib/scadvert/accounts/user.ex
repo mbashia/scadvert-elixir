@@ -1,12 +1,18 @@
 defmodule Scadvert.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Scadvert.Codes.Code
+  alias Scadvert.Facilitys.Facility
+
 
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    has_many :codes, Code
+    has_many :facilitys, Facility
+
 
     timestamps()
   end

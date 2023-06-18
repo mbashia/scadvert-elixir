@@ -2,6 +2,7 @@ defmodule Scadvert.Codes.Code do
   use Ecto.Schema
   use Waffle.Ecto.Schema
   import Ecto.Changeset
+  alias Scadvert.Accounts.User
 
   schema "codes" do
     field :active, :string
@@ -9,6 +10,8 @@ defmodule Scadvert.Codes.Code do
     field :name, :integer
     field :picture, Scadvert.CodeImage.Type
     field :type, :string
+    belongs_to :user, User
+
 
     timestamps()
   end
@@ -16,9 +19,9 @@ defmodule Scadvert.Codes.Code do
   @doc false
   def changeset(code, attrs) do
     code
-    |> cast(attrs, [:active, :description, :name, :picture, :type])
+    |> cast(attrs, [:active, :description, :name, :picture, :type, :user_id])
     # |> cast(attrs, [:name, :description, :active])
 
-    |> validate_required([:name, :description, :active, :picture, :type])
+    |> validate_required([:name, :description, :active, :picture, :type, :user_id])
   end
 end
