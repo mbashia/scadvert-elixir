@@ -11,7 +11,8 @@ defmodule ScadvertWeb.FacilityController do
 
   def new(conn, _params) do
     changeset = Facilitys.change_facility(%Facility{})
-    render(conn, "new.html", changeset: changeset)
+
+    render(conn, "new.html", changeset: changeset )
   end
 
   def create(conn, %{"facility" => facility_params}) do
