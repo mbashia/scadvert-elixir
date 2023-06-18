@@ -3,6 +3,7 @@ defmodule ScadvertWeb.FacilityController do
 
   alias Scadvert.Facilitys
   alias Scadvert.Facilitys.Facility
+  alias Scadvert.Functions
 
   def index(conn, _params) do
     facilitys = Facilitys.list_facilitys()
@@ -11,8 +12,9 @@ defmodule ScadvertWeb.FacilityController do
 
   def new(conn, _params) do
     changeset = Facilitys.change_facility(%Facility{})
+    codes = Functions.list_codes(conn, _params)
 
-    render(conn, "new.html", changeset: changeset )
+    render(conn, "new.html", changeset: changeset, codes: codes)
   end
 
   def create(conn, %{"facility" => facility_params}) do

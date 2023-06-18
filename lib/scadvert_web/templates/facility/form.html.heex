@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :code %>
-  <%= number_input f, :code %>
+<%= select f, :code,Enum.map(@codes, &(&1.name)), prompt: "Select a code"%>
   <%= error_tag f, :code %>
 
   <%= label f, :name %>
@@ -17,9 +17,9 @@
   <%= textarea f, :description %>
   <%= error_tag f, :description %>
 
-  <%= label f, :active %>
-<%= select f, :active, ["Active",  "Inactive"] %>
-  <%= error_tag f, :active %>
+  <%= label f, :status %>
+<%= select f, :status,["Active",  "Inactive"] %>
+  <%= error_tag f, :status %>
 
     <%= label f, :picture %>
 <%= file_input f, :picture %>
