@@ -15,6 +15,8 @@ defmodule ScadvertWeb.LeadershipController do
   end
 
   def create(conn, %{"leadership" => leadership_params}) do
+    leadership_params = Map.put(leadership_params, "user_id", conn.assigns.current_user.id)
+
     case Leaderships.create_leadership(leadership_params) do
       {:ok, leadership} ->
         conn

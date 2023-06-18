@@ -15,6 +15,8 @@ defmodule ScadvertWeb.ImageController do
   end
 
   def create(conn, %{"image" => image_params}) do
+    image_params = Map.put(image_params, "user_id", conn.assigns.current_user.id)
+
     case Images.create_image(image_params) do
       {:ok, image} ->
         conn

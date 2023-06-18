@@ -1,6 +1,8 @@
 defmodule Scadvert.Features.Feature do
   use Ecto.Schema
   import Ecto.Changeset
+  use Waffle.Ecto.Schema
+
   alias Scadvert.Accounts.User
 
 

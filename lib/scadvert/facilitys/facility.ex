@@ -1,10 +1,12 @@
 defmodule Scadvert.Facilitys.Facility do
   use Ecto.Schema
   import Ecto.Changeset
+  use Waffle.Ecto.Schema
+
   alias Scadvert.Accounts.User
 
   schema "facilitys" do
-    field :active, :string
+    field :status, :string
     field :code, :integer
     field :description, :string
     field :name, :string
@@ -18,7 +20,7 @@ defmodule Scadvert.Facilitys.Facility do
   @doc false
   def changeset(facility, attrs) do
     facility
-    |> cast(attrs, [:code, :name, :description, :active, :picture, :user_id])
-    |> validate_required([:code, :name, :description, :active, :picture, :user_id])
+    |> cast(attrs, [:code, :name, :description,:status, :picture, :user_id])
+    |> validate_required([:code, :name, :description, :status, :picture, :user_id])
   end
 end

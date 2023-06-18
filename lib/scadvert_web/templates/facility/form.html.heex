@@ -18,7 +18,7 @@
   <%= error_tag f, :description %>
 
   <%= label f, :active %>
-  <%= text_input f, :active %>
+<%= select f, :active, ["Active",  "Inactive"] %>
   <%= error_tag f, :active %>
 
     <%= label f, :picture %>

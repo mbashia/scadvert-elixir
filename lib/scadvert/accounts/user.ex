@@ -5,7 +5,9 @@ defmodule Scadvert.Accounts.User do
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Features.Feature
   alias Scadvert.Headers.Header
-
+  alias Scadvert.Images.Image
+  alias Scadvert.Leaderships.Leadership
+  alias Scadvert.Videos.Video
 
 
   schema "users" do
@@ -17,6 +19,12 @@ defmodule Scadvert.Accounts.User do
     has_many :facilitys, Facility
     has_many :features, Feature
     has_many :headers, Header
+    has_many :images, Image
+    has_many :leaderships, Leadership
+    has_many :videos, Video
+
+
+
 
 
 
@@ -60,7 +68,7 @@ defmodule Scadvert.Accounts.User do
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
-    |> validate_length(:password, min: 12, max: 72)
+    |> validate_length(:password, min: 6, max: 72)
     # |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
     # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
     # |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")

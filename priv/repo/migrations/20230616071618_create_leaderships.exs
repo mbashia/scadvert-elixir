@@ -8,8 +8,12 @@ defmodule Scadvert.Repo.Migrations.CreateLeaderships do
       add :code, :integer
       add :status, :string
       add :picture, :string
+      add :user_id, references(:users, on_delete: :nothing)
+
 
       timestamps()
     end
+    create index(:leaderships, [:user_id])
+
   end
 end

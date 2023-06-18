@@ -1,6 +1,9 @@
 defmodule Scadvert.Images.Image do
   use Ecto.Schema
   import Ecto.Changeset
+  use Waffle.Ecto.Schema
+
+  alias Scadvert.Accounts.User
 
   schema "images" do
     field :code, :integer
@@ -8,6 +11,8 @@ defmodule Scadvert.Images.Image do
     field :name, :string
     field :status, :string
     field :picture, Scadvert.ImageImage.Type
+    belongs_to :user, User
+
 
     timestamps()
   end
@@ -15,7 +20,7 @@ defmodule Scadvert.Images.Image do
   @doc false
   def changeset(image, attrs) do
     image
-    |> cast(attrs, [:name, :description, :code, :status, :picture])
-    |> validate_required([:name, :description, :code, :status, :picture])
+    |> cast(attrs, [:name, :description, :code, :status, :picture, :user_id])
+    |> validate_required([:name, :description, :code, :status, :picture, :user_id])
   end
 end

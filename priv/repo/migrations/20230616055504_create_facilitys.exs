@@ -6,7 +6,7 @@ defmodule Scadvert.Repo.Migrations.CreateFacilitys do
       add :code, :integer
       add :name, :string
       add :description, :text
-      add :active, :string
+      add :status, :string
       add :picture, :string
       add :user_id, references(:users, on_delete: :nothing)
 

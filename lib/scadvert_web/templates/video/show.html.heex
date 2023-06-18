@@ -21,7 +21,17 @@
     <strong>Status:</strong>
     <%= @video.status %>
   </li>
+ <li>
+     <strong>video:</strong>
 
+      <video width="320" height="240" controls>
+  <source src="{video_tag Images.FileVideo.url({video.video, video}, signed: true)}
+"
+  type="video/mp4">
+
+</video>
+
+</li>
 </ul>
 
 <span><%= link "Edit", to: Routes.video_path(@conn, :edit, @video) %></span> |
