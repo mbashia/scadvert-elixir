@@ -18,10 +18,11 @@
       <td><%= facility.name %></td>
       <td><%= facility.description %></td>
       <td><%= facility.status %></td>
-      <td><%= img_tag Scadvert.Facilitymage.url({facility.picture, facility}, signed: true)%></td>
+      <td><%= img_tag Scadvert.FacilityImage.url({facility.picture, facility}, signed: true)%></td>
 
 
       <td>
+
         <span><%= link "Show", to: Routes.facility_path(@conn, :show, facility) %></span>
         <span><%= link "Edit", to: Routes.facility_path(@conn, :edit, facility) %></span>
         <span><%= link "Delete", to: Routes.facility_path(@conn, :delete, facility), method: :delete, data: [confirm: "Are you sure?"] %></span>

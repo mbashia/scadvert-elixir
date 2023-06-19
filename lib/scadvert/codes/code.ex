@@ -3,6 +3,8 @@ defmodule Scadvert.Codes.Code do
   use Waffle.Ecto.Schema
   import Ecto.Changeset
   alias Scadvert.Accounts.User
+  alias Scadvert.Facilitys.Facility
+
 
   schema "codes" do
     field :active, :string
@@ -11,6 +13,8 @@ defmodule Scadvert.Codes.Code do
     field :picture, Scadvert.CodeImage.Type
     field :type, :string
     belongs_to :user, User
+    has_many :facilitys, Facility
+
 
 
     timestamps()
