@@ -14,7 +14,7 @@
   <tbody>
 <%= for facility <- @facilitys do %>
     <tr>
-      <td><%= facility.code %></td>
+      <td><%= facility.codes.name %></td>
       <td><%= facility.name %></td>
       <td><%= facility.description %></td>
       <td><%= facility.status %></td>

@@ -10,6 +10,10 @@ import Config
 config :scadvert,
   ecto_repos: [Scadvert.Repo]
 
+config :logger,
+  level: :info,
+  otp_app: :scadvert
+
 # Configures the endpoint
 config :scadvert, ScadvertWeb.Endpoint,
   url: [host: "localhost"],

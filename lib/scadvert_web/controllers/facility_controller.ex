@@ -1,5 +1,10 @@
 defmodule ScadvertWeb.FacilityController do
   use ScadvertWeb, :controller
+  # use Ecto.Repo
+  require Ecto.Query
+  require Ecto
+  use Ecto.Schema
+  alias Scadvert.Repo
 
   alias Scadvert.Facilitys
   alias Scadvert.Facilitys.Facility
@@ -7,6 +12,9 @@ defmodule ScadvertWeb.FacilityController do
 
   def index(conn, _params) do
     facilitys = Facilitys.list_facilitys()
+    facilitys
+    |> Repo.preload(:codes)
+
     render(conn, "index.html", facilitys: facilitys)
   end
 
@@ -33,6 +41,11 @@ defmodule ScadvertWeb.FacilityController do
 
   def show(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
+    facility
+    # |> Ecto.Query.preload([:code])
+
+
+
     render(conn, "show.html", facility: facility)
   end
 
