@@ -5,7 +5,7 @@ defmodule Scadvert.Repo.Migrations.CreateVideos do
     create table(:videos) do
       add :name, :string
       add :description, :text
-      add :code, :integer
+      add :code_id, :integer
       add :status, :string
       add :user_id, references(:users, on_delete: :nothing)
       add :video, :string

@@ -14,7 +14,7 @@ defmodule Scadvert.Videos.Video do
     field :status, :string
     belongs_to :user, User
     field :video, Scadvert.FileVideo.Type
-    belongs_to :codes, Code, foreign_key: :code
+    belongs_to :codes, Code, foreign_key: :code_id
 
 
 
@@ -24,7 +24,7 @@ defmodule Scadvert.Videos.Video do
   @doc false
   def changeset(video, attrs) do
     video
-    |> cast(attrs, [:name, :description, :code, :status,:video, :user_id])
-    |> validate_required([:name, :description, :code, :status,:video, :user_id])
+    |> cast(attrs, [:name, :description, :code_id, :status,:video, :user_id])
+    |> validate_required([:name, :description, :code_id, :status,:video, :user_id])
   end
 end

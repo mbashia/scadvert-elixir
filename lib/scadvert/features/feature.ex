@@ -14,7 +14,7 @@ defmodule Scadvert.Features.Feature do
     field :status, :string
     field :picture, Scadvert.FeatureImage.Type
     belongs_to :user, User
-    belongs_to :codes, Code, foreign_key: :code
+    belongs_to :codes, Code, foreign_key: :code_id
 
 
     timestamps()
@@ -23,7 +23,7 @@ defmodule Scadvert.Features.Feature do
   @doc false
   def changeset(feature, attrs) do
     feature
-    |> cast(attrs, [:name, :description, :code, :status, :picture, :user_id])
-    |> validate_required([:name, :description, :code, :status, :picture, :user_id])
+    |> cast(attrs, [:name, :description, :code_id, :status, :picture, :user_id])
+    |> validate_required([:name, :description, :code_id, :status, :picture, :user_id])
   end
 end

@@ -21,6 +21,7 @@ defmodule ScadvertWeb.HeaderController do
 
   def create(conn, %{"header" => header_params}) do
     header_params = Map.put(header_params, "user_id", conn.assigns.current_user.id)
+    codes = Functions.list_codes(conn)
 
     case Headers.create_header(header_params) do
       {:ok, header} ->
@@ -29,7 +30,7 @@ defmodule ScadvertWeb.HeaderController do
         |> redirect(to: Routes.header_path(conn, :show, header))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, codes: codes)
     end
   end
 

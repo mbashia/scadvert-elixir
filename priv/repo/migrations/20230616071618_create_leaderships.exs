@@ -5,7 +5,7 @@ defmodule Scadvert.Repo.Migrations.CreateLeaderships do
     create table(:leaderships) do
       add :name, :string
       add :description, :text
-      add :code, :integer
+      add :code_id, :integer
       add :status, :string
       add :picture, :string
       add :user_id, references(:users, on_delete: :nothing)

@@ -14,7 +14,7 @@ defmodule Scadvert.Leaderships.Leadership do
     field :status, :string
     field :picture, Scadvert.LeadershipImage.Type
     belongs_to :user, User
-    belongs_to :codes, Code, foreign_key: :code
+    belongs_to :codes, Code, foreign_key: :code_id
 
 
 
@@ -24,7 +24,7 @@ defmodule Scadvert.Leaderships.Leadership do
   @doc false
   def changeset(leadership, attrs) do
     leadership
-    |> cast(attrs, [:name, :description, :code, :status, :picture, :user_id])
-    |> validate_required([:name, :description, :code, :status, :picture, :user_id])
+    |> cast(attrs, [:name, :description, :code_id, :status, :picture, :user_id])
+    |> validate_required([:name, :description, :code_id, :status, :picture, :user_id])
   end
 end

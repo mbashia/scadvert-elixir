@@ -3,7 +3,7 @@ defmodule Scadvert.Repo.Migrations.CreateFacilitys do
 
   def change do
     create table(:facilitys) do
-      add :code, :integer
+      add :code_id, :integer
       add :name, :string
       add :description, :text
       add :status, :string

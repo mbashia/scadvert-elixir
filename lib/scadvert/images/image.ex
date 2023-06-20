@@ -13,7 +13,7 @@ defmodule Scadvert.Images.Image do
     field :status, :string
     field :picture, Scadvert.ImageImage.Type
     belongs_to :user, User
-    belongs_to :codes, Code, foreign_key: :code
+    belongs_to :codes, Code, foreign_key: :code_id
 
 
     timestamps()
@@ -22,7 +22,7 @@ defmodule Scadvert.Images.Image do
   @doc false
   def changeset(image, attrs) do
     image
-    |> cast(attrs, [:name, :description, :code, :status, :picture, :user_id])
-    |> validate_required([:name, :description, :code, :status, :picture, :user_id])
+    |> cast(attrs, [:name, :description, :code_id, :status, :picture, :user_id])
+    |> validate_required([:name, :description, :code_id, :status, :picture, :user_id])
   end
 end

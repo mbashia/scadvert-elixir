@@ -6,8 +6,8 @@
   <% end %>
 
   <%= label f, :code %>
-<%= select f, :code, @codes, prompt: "Select a code"%>
-  <%= error_tag f, :code %>
+<%= select f, :code_id, @codes, prompt: "Select a code"%>
+  <%= error_tag f, :code_id %>
 
   <%= label f, :name %>
   <%= text_input f, :name %>
@@ -18,7 +18,8 @@
   <%= error_tag f, :description %>
 
   <%= label f, :status %>
-<%= select f, :status,["Active",  "Inactive"] %>
+<%= select f, :status,["Active",  "Inactive"], prompt: "type" %>
+
   <%= error_tag f, :status %>
 
     <%= label f, :picture %>

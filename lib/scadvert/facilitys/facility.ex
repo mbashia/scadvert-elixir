@@ -15,7 +15,7 @@ defmodule Scadvert.Facilitys.Facility do
     field :picture, Scadvert.FacilityImage.Type
     belongs_to :user, User
     # belongs_to :codes, Code
-    belongs_to :codes, Code, foreign_key: :code
+    belongs_to :codes, Code, foreign_key: :code_id
 
 
     timestamps()
@@ -24,7 +24,7 @@ defmodule Scadvert.Facilitys.Facility do
   @doc false
   def changeset(facility, attrs) do
     facility
-    |> cast(attrs, [:code, :name, :description,:status, :picture, :user_id])
-    |> validate_required([:code, :name, :description, :status, :picture, :user_id])
+    |> cast(attrs, [:code_id, :name, :description,:status, :picture, :user_id])
+    |> validate_required([:code_id, :name, :description, :status, :picture, :user_id])
   end
 end

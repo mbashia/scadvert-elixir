@@ -14,9 +14,9 @@
   <%= error_tag f, :description %>
 
   <%= label f, :code %>
-  <%= select f, :code, @codes, prompt: "select code" %>
+  <%= select f, :code_id, @codes, prompt: "select code" %>
 
-  <%= error_tag f, :code %>
+  <%= error_tag f, :code_id%>
 
   <%= label f, :status %>
   <%= text_input f, :status %>

@@ -7,7 +7,7 @@
 
 
   <%= label f, :type %>
-  <%= text_input f, :type %>
+<%= select f, :type, ["scadvert",  "scadverl"], prompt: "select type" %>
   <%= error_tag f, :type %>
 
 
@@ -20,7 +20,7 @@
   <%= error_tag f, :description %>
 
   <%= label f, :active %>
-<%= select f, :active, ["Active",  "Inactive"] %>
+<%= select f, :active, ["Active",  "Inactive"]  %>
   <%= error_tag f, :active %>
 
   <%= label f, :picture %>
