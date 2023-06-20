@@ -7,7 +7,7 @@ defmodule ScadvertWeb.FeatureController do
 
 
   def index(conn, _params) do
-    features = Features.list_features()
+    features = Features.list_features_by_user_id(conn)
     render(conn, "index.html", features: features)
   end
 

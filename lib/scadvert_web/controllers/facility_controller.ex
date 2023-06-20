@@ -4,14 +4,15 @@ defmodule ScadvertWeb.FacilityController do
   require Ecto.Query
   require Ecto
   use Ecto.Schema
-  alias Scadvert.Repo
-
+  # alias Scadvert.Repo
   alias Scadvert.Facilitys
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Functions
 
+
+
   def index(conn, _params) do
-    facilitys = Facilitys.list_facilitys()
+    facilitys = Facilitys.list_facilitys_by_user_id(conn)
 
     render(conn, "index.html", facilitys: facilitys)
   end

@@ -104,4 +104,10 @@ defmodule Scadvert.Videos do
   def change_video(%Video{} = video, attrs \\ %{}) do
     Video.changeset(video, attrs)
   end
+  def list_videos_by_user_id(conn) do
+
+    user_id = conn.assigns.current_user.id
+    Repo.all(from v in Video, where: v.user_id == ^user_id)
+    |>Repo.preload(:codes)
+  end
 end

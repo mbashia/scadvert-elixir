@@ -6,7 +6,7 @@ defmodule ScadvertWeb.VideoController do
   alias Scadvert.Functions
 
   def index(conn, _params) do
-    videos = Videos.list_videos()
+    videos = Videos.list_videos_by_user_id(conn)
     render(conn, "index.html", videos: videos)
   end
 

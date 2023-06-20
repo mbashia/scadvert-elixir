@@ -20,7 +20,7 @@ defmodule Scadvert.Facilitys do
   def list_facilitys do
     Repo.all(Facility)
     |>Repo.preload(:codes)
-    
+
   end
 
   @doc """
@@ -104,5 +104,11 @@ defmodule Scadvert.Facilitys do
   """
   def change_facility(%Facility{} = facility, attrs \\ %{}) do
     Facility.changeset(facility, attrs)
+  end
+  def list_facilitys_by_user_id(conn) do
+
+    user_id = conn.assigns.current_user.id
+    Repo.all(from f in Facility, where: f.user_id == ^user_id)
+    |>Repo.preload(:codes)
   end
 end

@@ -5,7 +5,8 @@ defmodule ScadvertWeb.CodeController do
   alias Scadvert.Codes.Code
 
   def index(conn, _params) do
-    codes = Codes.list_codes()
+    codes = Codes.list_codes_by_user_id(conn)
+
     render(conn, "index.html", codes: codes)
   end
 

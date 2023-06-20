@@ -7,7 +7,7 @@ defmodule ScadvertWeb.ImageController do
 
 
   def index(conn, _params) do
-    images = Images.list_images()
+    images = Images.list_images_by_user_id(conn) 
     render(conn, "index.html", images: images)
   end
 

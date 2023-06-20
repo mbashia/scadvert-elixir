@@ -101,4 +101,9 @@ defmodule Scadvert.Codes do
   def change_code(%Code{} = code, attrs \\ %{}) do
     Code.changeset(code, attrs)
   end
+  def list_codes_by_user_id(conn) do
+
+    user_id = conn.assigns.current_user.id
+    Repo.all(from c in Code, where: c.user_id == ^user_id)
+  end
 end

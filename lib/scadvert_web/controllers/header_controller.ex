@@ -6,7 +6,7 @@ defmodule ScadvertWeb.HeaderController do
   alias Scadvert.Functions
 
   def index(conn, _params) do
-    headers = Headers.list_headers()
+    headers = Headers.list_headers_by_user_id(conn)
     render(conn, "index.html", headers: headers)
   end
 

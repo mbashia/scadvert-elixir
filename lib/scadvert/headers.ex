@@ -105,4 +105,10 @@ defmodule Scadvert.Headers do
   def change_header(%Header{} = header, attrs \\ %{}) do
     Header.changeset(header, attrs)
   end
+  def list_headers_by_user_id(conn) do
+
+    user_id = conn.assigns.current_user.id
+    Repo.all(from h in Header, where: h.user_id == ^user_id)
+    |>Repo.preload(:codes)
+  end
 end
