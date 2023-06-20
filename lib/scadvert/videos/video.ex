@@ -4,15 +4,17 @@ defmodule Scadvert.Videos.Video do
   use Waffle.Ecto.Schema
 
   alias Scadvert.Accounts.User
+  alias Scadvert.Codes.Code
 
 
   schema "videos" do
-    field :code, :integer
+    # field :code, :integer
     field :description, :string
     field :name, :string
     field :status, :string
     belongs_to :user, User
     field :video, Scadvert.FileVideo.Type
+    belongs_to :codes, Code, foreign_key: :code
 
 
 

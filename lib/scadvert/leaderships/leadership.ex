@@ -4,15 +4,18 @@ defmodule Scadvert.Leaderships.Leadership do
   use Waffle.Ecto.Schema
 
   alias Scadvert.Accounts.User
+  alias Scadvert.Codes.Code
 
 
   schema "leaderships" do
-    field :code, :integer
+    # field :code, :integer
     field :description, :string
     field :name, :string
     field :status, :string
     field :picture, Scadvert.LeadershipImage.Type
     belongs_to :user, User
+    belongs_to :codes, Code, foreign_key: :code
+
 
 
     timestamps()

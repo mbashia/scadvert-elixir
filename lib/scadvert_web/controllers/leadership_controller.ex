@@ -3,6 +3,7 @@ defmodule ScadvertWeb.LeadershipController do
 
   alias Scadvert.Leaderships
   alias Scadvert.Leaderships.Leadership
+  alias Scadvert.Functions
 
   def index(conn, _params) do
     leaderships = Leaderships.list_leaderships()
@@ -11,7 +12,10 @@ defmodule ScadvertWeb.LeadershipController do
 
   def new(conn, _params) do
     changeset = Leaderships.change_leadership(%Leadership{})
-    render(conn, "new.html", changeset: changeset)
+
+    codes = Functions.list_codes(conn)
+
+    render(conn, "new.html", changeset: changeset, codes: codes)
   end
 
   def create(conn, %{"leadership" => leadership_params}) do

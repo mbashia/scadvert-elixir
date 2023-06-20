@@ -7,6 +7,8 @@ defmodule Scadvert.Codes.Code do
   alias Scadvert.Features.Feature
   alias Scadvert.Headers.Header
   alias Scadvert.Images.Image
+  alias Scadvert.Leaderships.Leadership
+  alias Scadvert.Videos.Video
 
 
   schema "codes" do
@@ -20,7 +22,8 @@ defmodule Scadvert.Codes.Code do
     has_many :features, Feature
     has_many :headers, Header
     has_many :images, Image
-
+    has_many :leaderships, Leadership
+    has_many :videos, Video
 
 
     timestamps()
