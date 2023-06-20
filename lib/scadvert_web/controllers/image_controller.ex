@@ -3,6 +3,8 @@ defmodule ScadvertWeb.ImageController do
 
   alias Scadvert.Images
   alias Scadvert.Images.Image
+  alias Scadvert.Functions
+
 
   def index(conn, _params) do
     images = Images.list_images()
@@ -11,11 +13,18 @@ defmodule ScadvertWeb.ImageController do
 
   def new(conn, _params) do
     changeset = Images.change_image(%Image{})
-    render(conn, "new.html", changeset: changeset)
+
+    codes = Functions.list_codes(conn)
+
+    render(conn, "new.html", changeset: changeset, codes: codes)
+
+
   end
 
   def create(conn, %{"image" => image_params}) do
     image_params = Map.put(image_params, "user_id", conn.assigns.current_user.id)
+
+    # codes = Functions.list_codes(conn)
 
     case Images.create_image(image_params) do
       {:ok, image} ->

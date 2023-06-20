@@ -6,6 +6,7 @@ defmodule Scadvert.Codes.Code do
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Features.Feature
   alias Scadvert.Headers.Header
+  alias Scadvert.Images.Image
 
 
   schema "codes" do
@@ -18,6 +19,7 @@ defmodule Scadvert.Codes.Code do
     has_many :facilitys, Facility
     has_many :features, Feature
     has_many :headers, Header
+    has_many :images, Image
 
 
 

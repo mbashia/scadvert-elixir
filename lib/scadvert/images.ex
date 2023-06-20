@@ -19,6 +19,7 @@ defmodule Scadvert.Images do
   """
   def list_images do
     Repo.all(Image)
+    |> Repo.preload(:codes)
   end
 
   @doc """
@@ -36,6 +37,8 @@ defmodule Scadvert.Images do
 
   """
   def get_image!(id), do: Repo.get!(Image, id)
+  |> Repo.preload(:codes)
+
 
   @doc """
   Creates a image.

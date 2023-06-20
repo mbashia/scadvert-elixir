@@ -4,14 +4,16 @@ defmodule Scadvert.Images.Image do
   use Waffle.Ecto.Schema
 
   alias Scadvert.Accounts.User
+  alias Scadvert.Codes.Code
 
   schema "images" do
-    field :code, :integer
+    # field :code, :integer
     field :description, :string
     field :name, :string
     field :status, :string
     field :picture, Scadvert.ImageImage.Type
     belongs_to :user, User
+    belongs_to :codes, Code, foreign_key: :code
 
 
     timestamps()
