@@ -3,6 +3,7 @@ defmodule ScadvertWeb.HeaderController do
 
   alias Scadvert.Headers
   alias Scadvert.Headers.Header
+  alias Scadvert.Functions
 
   def index(conn, _params) do
     headers = Headers.list_headers()
@@ -11,7 +12,11 @@ defmodule ScadvertWeb.HeaderController do
 
   def new(conn, _params) do
     changeset = Headers.change_header(%Header{})
-    render(conn, "new.html", changeset: changeset)
+    codes = Functions.list_codes(conn)
+
+    render(conn, "new.html", changeset: changeset, codes: codes)
+
+
   end
 
   def create(conn, %{"header" => header_params}) do

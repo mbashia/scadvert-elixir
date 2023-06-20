@@ -19,6 +19,8 @@ defmodule Scadvert.Headers do
   """
   def list_headers do
     Repo.all(Header)
+    |>Repo.preload(:codes)
+
   end
 
   @doc """
@@ -36,6 +38,8 @@ defmodule Scadvert.Headers do
 
   """
   def get_header!(id), do: Repo.get!(Header, id)
+  |>Repo.preload(:codes)
+
 
   @doc """
   Creates a header.

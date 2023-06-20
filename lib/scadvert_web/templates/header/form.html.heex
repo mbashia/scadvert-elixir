@@ -14,11 +14,11 @@
   <%= error_tag f, :description %>
 
   <%= label f, :code %>
-  <%= number_input f, :code %>
+<%= select f, :code, @codes, prompt: "Select a code"%>
   <%= error_tag f, :code %>
 
   <%= label f, :status %>
-<%= select f, :active, ["Active",  "Inactive"] %>
+<%= select f, :status, ["Active",  "Inactive"] %>
   <%= error_tag f, :status %>
 
   <%= label f, :picture %>

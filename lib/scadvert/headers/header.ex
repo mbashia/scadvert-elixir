@@ -4,15 +4,17 @@ defmodule Scadvert.Headers.Header do
 
   import Ecto.Changeset
   alias Scadvert.Accounts.User
+  alias Scadvert.Codes.Code
 
 
   schema "headers" do
-    field :code, :integer
+    # field :code, :integer
     field :description, :string
     field :name, :string
     field :status, :string
     field :picture, Scadvert.HeaderImage.Type
     belongs_to :user, User
+    belongs_to :codes, Code, foreign_key: :code
 
 
     timestamps()

@@ -5,6 +5,7 @@ defmodule Scadvert.Codes.Code do
   alias Scadvert.Accounts.User
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Features.Feature
+  alias Scadvert.Headers.Header
 
 
   schema "codes" do
@@ -16,6 +17,7 @@ defmodule Scadvert.Codes.Code do
     belongs_to :user, User
     has_many :facilitys, Facility
     has_many :features, Feature
+    has_many :headers, Header
 
 
 
