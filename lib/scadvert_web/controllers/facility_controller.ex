@@ -40,9 +40,6 @@ defmodule ScadvertWeb.FacilityController do
   def show(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
 
-
-
-
     render(conn, "show.html", facility: facility)
   end
 
