@@ -21,11 +21,14 @@
     <strong>Active:</strong>
     <%= @facility.status %>
   </li>
+<div style = "height:100px; width:100px">
 
-   <li>
-  <strong>    <td>  <%= img_tag Scadvert.FacilityImage.url({@facility.picture, @facility}, signed: true)%></td>
+   <li s>
+  <strong>    <td>  <%=  img_tag Scadvert.FacilityImage.url({@facility.picture, @facility}, signed: true, style: "height:200px; width:20px;") %></td>
   </strong>
 </li>
+
+</div>
 
 </ul>
 

@@ -3,6 +3,8 @@ defmodule ScadvertWeb.FeatureController do
 
   alias Scadvert.Features
   alias Scadvert.Features.Feature
+  alias Scadvert.Functions
+
 
   def index(conn, _params) do
     features = Features.list_features()
@@ -11,11 +13,14 @@ defmodule ScadvertWeb.FeatureController do
 
   def new(conn, _params) do
     changeset = Features.change_feature(%Feature{})
-    render(conn, "new.html", changeset: changeset)
+    codes = Functions.list_codes(conn)
+
+    render(conn, "new.html", changeset: changeset, codes: codes)
   end
 
   def create(conn, %{"feature" => feature_params}) do
     feature_params = Map.put(feature_params, "user_id", conn.assigns.current_user.id)
+    # codes = Functions.list_codes(conn)
 
     case Features.create_feature(feature_params) do
       {:ok, feature} ->

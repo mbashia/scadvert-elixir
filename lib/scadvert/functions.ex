@@ -5,9 +5,9 @@ defmodule Scadvert.Functions do
 
 
   alias Scadvert.Codes.Code
-  def list_codes(conn, _params)do
+  def list_codes(conn)do
     user_id = conn.assigns.current_user.id
-    codes = Repo.all(from p in Code, where: p.user_id == ^user_id)
+    Repo.all(from p in Code, where: p.user_id == ^user_id, select: {p.name, p.id})
 
     end
 end

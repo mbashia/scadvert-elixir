@@ -12,15 +12,13 @@ defmodule ScadvertWeb.FacilityController do
 
   def index(conn, _params) do
     facilitys = Facilitys.list_facilitys()
-    facilitys
-    |> Repo.preload(:codes)
 
     render(conn, "index.html", facilitys: facilitys)
   end
 
   def new(conn, _params) do
     changeset = Facilitys.change_facility(%Facility{})
-    codes = Functions.list_codes(conn, _params)
+    codes = Functions.list_codes(conn)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
   end
@@ -41,8 +39,7 @@ defmodule ScadvertWeb.FacilityController do
 
   def show(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
-    facility
-    # |> Ecto.Query.preload([:code])
+
 
 
 

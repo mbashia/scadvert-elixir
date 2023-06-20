@@ -19,6 +19,8 @@ defmodule Scadvert.Features do
   """
   def list_features do
     Repo.all(Feature)
+    |>Repo.preload(:codes)
+
   end
 
   @doc """
@@ -36,6 +38,8 @@ defmodule Scadvert.Features do
 
   """
   def get_feature!(id), do: Repo.get!(Feature, id)
+  |>Repo.preload(:codes)
+
 
   @doc """
   Creates a feature.

@@ -4,6 +4,7 @@ defmodule Scadvert.Codes.Code do
   import Ecto.Changeset
   alias Scadvert.Accounts.User
   alias Scadvert.Facilitys.Facility
+  alias Scadvert.Features.Feature
 
 
   schema "codes" do
@@ -14,6 +15,7 @@ defmodule Scadvert.Codes.Code do
     field :type, :string
     belongs_to :user, User
     has_many :facilitys, Facility
+    has_many :features, Feature
 
 
 

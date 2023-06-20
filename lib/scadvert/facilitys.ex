@@ -19,8 +19,8 @@ defmodule Scadvert.Facilitys do
   """
   def list_facilitys do
     Repo.all(Facility)
-
     |>Repo.preload(:codes)
+    
   end
 
   @doc """

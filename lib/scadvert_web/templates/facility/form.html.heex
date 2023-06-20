@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :code %>
-<%= select f, :code,Enum.map(@codes, &{&1.name, &1.id}), prompt: "Select a code"%>
+<%= select f, :code, @codes, prompt: "Select a code"%>
   <%= error_tag f, :code %>
 
   <%= label f, :name %>
