@@ -6,7 +6,7 @@ defmodule ScadvertWeb.CodeController do
 
   def index(conn, _params) do
     codes = Codes.list_codes_by_user_id(conn)
-
+    IO.inspect(codes)
     render(conn, "index.html", codes: codes)
   end
 

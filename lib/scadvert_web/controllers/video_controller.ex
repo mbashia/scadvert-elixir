@@ -19,7 +19,7 @@ defmodule ScadvertWeb.VideoController do
 
   def create(conn, %{"video" => video_params}) do
     video_params = Map.put(video_params, "user_id", conn.assigns.current_user.id)
-    # codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(conn)
     case Videos.create_video(video_params) do
 
       {:ok, video} ->
@@ -28,7 +28,7 @@ defmodule ScadvertWeb.VideoController do
         |> redirect(to: Routes.video_path(conn, :show, video))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, codes: codes)
     end
   end
 

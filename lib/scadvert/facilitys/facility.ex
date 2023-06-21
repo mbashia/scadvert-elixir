@@ -14,7 +14,6 @@ defmodule Scadvert.Facilitys.Facility do
     field :name, :string
     field :picture, Scadvert.FacilityImage.Type
     belongs_to :user, User
-    # belongs_to :codes, Code
     belongs_to :codes, Code, foreign_key: :code_id
 
 
