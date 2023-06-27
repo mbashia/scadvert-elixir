@@ -4,9 +4,12 @@ defmodule ScadvertWeb.CodeController do
   alias Scadvert.Codes
   alias Scadvert.Codes.Code
 
+
+  plug :put_layout, "newlayout.html"
+
   def index(conn, _params) do
     codes = Codes.list_codes_by_user_id(conn)
-    IO.inspect(codes)
+    # IO.inspect(codes)
     render(conn, "index.html", codes: codes)
   end
 

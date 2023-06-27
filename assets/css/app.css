@@ -1,5 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* This file is for your main application CSS */
-@import "./phoenix.css";
 
 /* Alerts and form errors used by phx.new */
 .alert {
@@ -86,4 +89,11 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+.for_tables {
+  @apply py-2 px-4 bg-gray-100 text-left text-blue-400;
+}
+
+.table_data{
+  @apply py-2 px-4 border-b text-left;
 }

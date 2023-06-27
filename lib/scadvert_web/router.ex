@@ -7,7 +7,7 @@ defmodule ScadvertWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {ScadvertWeb.LayoutView, :root}
+    # plug :put_root_layout, {ScadvertWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
@@ -19,7 +19,7 @@ defmodule ScadvertWeb.Router do
 
   scope "/", ScadvertWeb do
     pipe_through [:browser, :require_authenticated_user]
-    
+
     resources "/codes", CodeController
     resources "/headers", HeaderController
     resources "/facilitys", FacilityController

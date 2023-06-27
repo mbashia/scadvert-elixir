@@ -22,11 +22,10 @@
       <td><%= video.status %></td>
        <td>
       <video width="320" height="240" controls>
-  <source src={video.video}
+  <source src={Scadvert.FileVideo.url({video.video, video}, signed: true)}
   alt = "video"
 
-
-  type="video/mp4">
+  type="video/mp4"/>
 
 </video>
 
