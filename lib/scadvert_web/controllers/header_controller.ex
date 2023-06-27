@@ -15,8 +15,6 @@ defmodule ScadvertWeb.HeaderController do
     codes = Functions.list_codes(conn)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
-
-
   end
 
   def create(conn, %{"header" => header_params}) do

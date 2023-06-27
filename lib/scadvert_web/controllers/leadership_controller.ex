@@ -6,7 +6,7 @@ defmodule ScadvertWeb.LeadershipController do
   alias Scadvert.Functions
 
   def index(conn, _params) do
-    leaderships = Leaderships.list_leaderships_by_user_id(conn) 
+    leaderships = Leaderships.list_leaderships_by_user_id(conn)
     render(conn, "index.html", leaderships: leaderships)
   end
 

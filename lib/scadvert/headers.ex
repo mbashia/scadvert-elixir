@@ -19,8 +19,7 @@ defmodule Scadvert.Headers do
   """
   def list_headers do
     Repo.all(Header)
-    |>Repo.preload(:codes)
-
+    |> Repo.preload(:codes)
   end
 
   @doc """
@@ -37,9 +36,10 @@ defmodule Scadvert.Headers do
       ** (Ecto.NoResultsError)
 
   """
-  def get_header!(id), do: Repo.get!(Header, id)
-  |>Repo.preload(:codes)
-
+  def get_header!(id),
+    do:
+      Repo.get!(Header, id)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a header.
@@ -105,10 +105,11 @@ defmodule Scadvert.Headers do
   def change_header(%Header{} = header, attrs \\ %{}) do
     Header.changeset(header, attrs)
   end
-  def list_headers_by_user_id(conn) do
 
+  def list_headers_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
+
     Repo.all(from h in Header, where: h.user_id == ^user_id)
-    |>Repo.preload(:codes)
+    |> Repo.preload(:codes)
   end
 end

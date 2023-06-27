@@ -36,9 +36,10 @@ defmodule Scadvert.Images do
       ** (Ecto.NoResultsError)
 
   """
-  def get_image!(id), do: Repo.get!(Image, id)
-  |> Repo.preload(:codes)
-
+  def get_image!(id),
+    do:
+      Repo.get!(Image, id)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a image.
@@ -104,10 +105,11 @@ defmodule Scadvert.Images do
   def change_image(%Image{} = image, attrs \\ %{}) do
     Image.changeset(image, attrs)
   end
-  def list_images_by_user_id(conn) do
 
+  def list_images_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
+
     Repo.all(from i in Image, where: i.user_id == ^user_id)
-    |>Repo.preload(:codes)
+    |> Repo.preload(:codes)
   end
 end

@@ -10,10 +10,9 @@ defmodule Scadvert.Repo.Migrations.CreateVideos do
       add :user_id, references(:users, on_delete: :nothing)
       add :video, :string
 
-
       timestamps()
     end
-    create index(:videos, [:user_id])
 
+    create index(:videos, [:user_id])
   end
 end

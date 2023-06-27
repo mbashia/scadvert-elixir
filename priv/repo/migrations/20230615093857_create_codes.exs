@@ -10,10 +10,9 @@ defmodule Scadvert.Repo.Migrations.CreateCodes do
       add :type, :string
       add :user_id, references(:users, on_delete: :nothing)
 
-
       timestamps()
     end
-    create index(:codes, [:user_id])
 
+    create index(:codes, [:user_id])
   end
 end

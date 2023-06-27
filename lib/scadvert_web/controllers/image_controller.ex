@@ -5,9 +5,8 @@ defmodule ScadvertWeb.ImageController do
   alias Scadvert.Images.Image
   alias Scadvert.Functions
 
-
   def index(conn, _params) do
-    images = Images.list_images_by_user_id(conn) 
+    images = Images.list_images_by_user_id(conn)
     render(conn, "index.html", images: images)
   end
 
@@ -17,8 +16,6 @@ defmodule ScadvertWeb.ImageController do
     codes = Functions.list_codes(conn)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
-
-
   end
 
   def create(conn, %{"image" => image_params}) do

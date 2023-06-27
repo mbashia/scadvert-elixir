@@ -10,10 +10,9 @@ defmodule Scadvert.Repo.Migrations.CreateHeaders do
       add :picture, :string
       add :user_id, references(:users, on_delete: :nothing)
 
-
       timestamps()
     end
-    create index(:headers, [:user_id])
 
+    create index(:headers, [:user_id])
   end
 end

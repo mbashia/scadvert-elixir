@@ -15,7 +15,6 @@ defmodule Scadvert.Images.Image do
     belongs_to :user, User
     belongs_to :codes, Code, foreign_key: :code_id
 
-
     timestamps()
   end
 

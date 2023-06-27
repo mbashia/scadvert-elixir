@@ -9,7 +9,6 @@ defmodule Scadvert.Accounts.User do
   alias Scadvert.Leaderships.Leadership
   alias Scadvert.Videos.Video
 
-
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
@@ -22,12 +21,6 @@ defmodule Scadvert.Accounts.User do
     has_many :images, Image
     has_many :leaderships, Leadership
     has_many :videos, Video
-
-
-
-
-
-
 
     timestamps()
   end

@@ -6,7 +6,6 @@ defmodule Scadvert.Leaderships.Leadership do
   alias Scadvert.Accounts.User
   alias Scadvert.Codes.Code
 
-
   schema "leaderships" do
     # field :code, :integer
     field :description, :string
@@ -15,8 +14,6 @@ defmodule Scadvert.Leaderships.Leadership do
     field :picture, Scadvert.LeadershipImage.Type
     belongs_to :user, User
     belongs_to :codes, Code, foreign_key: :code_id
-
-
 
     timestamps()
   end

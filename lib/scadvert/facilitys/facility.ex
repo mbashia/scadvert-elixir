@@ -6,7 +6,6 @@ defmodule Scadvert.Facilitys.Facility do
   alias Scadvert.Accounts.User
   alias Scadvert.Codes.Code
 
-
   schema "facilitys" do
     field :status, :string
     # field :code, :integer
@@ -16,14 +15,13 @@ defmodule Scadvert.Facilitys.Facility do
     belongs_to :user, User
     belongs_to :codes, Code, foreign_key: :code_id
 
-
     timestamps()
   end
 
   @doc false
   def changeset(facility, attrs) do
     facility
-    |> cast(attrs, [:code_id, :name, :description,:status, :picture, :user_id])
+    |> cast(attrs, [:code_id, :name, :description, :status, :picture, :user_id])
     |> validate_required([:code_id, :name, :description, :status, :picture, :user_id])
   end
 end

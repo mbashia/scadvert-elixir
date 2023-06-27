@@ -10,10 +10,9 @@ defmodule Scadvert.Repo.Migrations.CreateImages do
       add :picture, :string
       add :user_id, references(:users, on_delete: :nothing)
 
-
       timestamps()
     end
-    create index(:images, [:user_id])
 
+    create index(:images, [:user_id])
   end
 end

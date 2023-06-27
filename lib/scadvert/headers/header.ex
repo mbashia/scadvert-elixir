@@ -6,7 +6,6 @@ defmodule Scadvert.Headers.Header do
   alias Scadvert.Accounts.User
   alias Scadvert.Codes.Code
 
-
   schema "headers" do
     # field :code, :integer
     field :description, :string
@@ -15,7 +14,6 @@ defmodule Scadvert.Headers.Header do
     field :picture, Scadvert.HeaderImage.Type
     belongs_to :user, User
     belongs_to :codes, Code, foreign_key: :code_id
-
 
     timestamps()
   end

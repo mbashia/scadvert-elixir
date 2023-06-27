@@ -10,7 +10,6 @@ defmodule Scadvert.Codes.Code do
   alias Scadvert.Leaderships.Leadership
   alias Scadvert.Videos.Video
 
-
   schema "codes" do
     field :active, :string
     field :description, :string
@@ -24,7 +23,6 @@ defmodule Scadvert.Codes.Code do
     has_many :images, Image
     has_many :leaderships, Leadership
     has_many :videos, Video
-
 
     timestamps()
   end

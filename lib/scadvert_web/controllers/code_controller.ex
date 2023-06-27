@@ -4,7 +4,6 @@ defmodule ScadvertWeb.CodeController do
   alias Scadvert.Codes
   alias Scadvert.Codes.Code
 
-
   plug :put_layout, "newlayout.html"
 
   def index(conn, _params) do

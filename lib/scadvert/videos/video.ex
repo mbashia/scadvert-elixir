@@ -6,7 +6,6 @@ defmodule Scadvert.Videos.Video do
   alias Scadvert.Accounts.User
   alias Scadvert.Codes.Code
 
-
   schema "videos" do
     # field :code, :integer
     field :description, :string
@@ -16,15 +15,13 @@ defmodule Scadvert.Videos.Video do
     field :video, Scadvert.FileVideo.Type
     belongs_to :codes, Code, foreign_key: :code_id
 
-
-
     timestamps()
   end
 
   @doc false
   def changeset(video, attrs) do
     video
-    |> cast(attrs, [:name, :description, :code_id, :status,:video, :user_id])
-    |> validate_required([:name, :description, :code_id, :status,:video, :user_id])
+    |> cast(attrs, [:name, :description, :code_id, :status, :video, :user_id])
+    |> validate_required([:name, :description, :code_id, :status, :video, :user_id])
   end
 end

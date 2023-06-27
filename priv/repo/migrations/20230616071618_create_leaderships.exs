@@ -10,10 +10,9 @@ defmodule Scadvert.Repo.Migrations.CreateLeaderships do
       add :picture, :string
       add :user_id, references(:users, on_delete: :nothing)
 
-
       timestamps()
     end
-    create index(:leaderships, [:user_id])
 
+    create index(:leaderships, [:user_id])
   end
 end

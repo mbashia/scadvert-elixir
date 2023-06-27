@@ -11,9 +11,9 @@ defmodule Scadvert.Repo.Migrations.CreateFacilitys do
       add :user_id, references(:users, on_delete: :nothing)
       # add :codes_id, references(:codes, on_delete: :nothing)
 
-
       timestamps()
     end
+
     create index(:facilitys, [:user_id])
     # create index(:facilitys, [:codes_id])
   end

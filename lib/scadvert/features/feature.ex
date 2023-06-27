@@ -6,7 +6,6 @@ defmodule Scadvert.Features.Feature do
   alias Scadvert.Accounts.User
   alias Scadvert.Codes.Code
 
-
   schema "features" do
     # field :code, :integer
     field :description, :string
@@ -15,7 +14,6 @@ defmodule Scadvert.Features.Feature do
     field :picture, Scadvert.FeatureImage.Type
     belongs_to :user, User
     belongs_to :codes, Code, foreign_key: :code_id
-
 
     timestamps()
   end

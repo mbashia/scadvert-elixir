@@ -36,8 +36,10 @@ defmodule Scadvert.Leaderships do
       ** (Ecto.NoResultsError)
 
   """
-  def get_leadership!(id), do: Repo.get!(Leadership, id)
-  |>Repo.preload(:codes)
+  def get_leadership!(id),
+    do:
+      Repo.get!(Leadership, id)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a leadership.
@@ -103,10 +105,11 @@ defmodule Scadvert.Leaderships do
   def change_leadership(%Leadership{} = leadership, attrs \\ %{}) do
     Leadership.changeset(leadership, attrs)
   end
-  def list_leaderships_by_user_id(conn) do
 
+  def list_leaderships_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
+
     Repo.all(from l in Leadership, where: l.user_id == ^user_id)
-    |>Repo.preload(:codes)
+    |> Repo.preload(:codes)
   end
 end

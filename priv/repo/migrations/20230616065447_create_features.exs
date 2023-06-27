@@ -10,10 +10,9 @@ defmodule Scadvert.Repo.Migrations.CreateFeatures do
       add :picture, :string
       add :user_id, references(:users, on_delete: :nothing)
 
-
       timestamps()
     end
-    create index(:features, [:user_id])
 
+    create index(:features, [:user_id])
   end
 end

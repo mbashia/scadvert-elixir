@@ -19,7 +19,7 @@ defmodule Scadvert.Videos do
   """
   def list_videos do
     Repo.all(Video)
-    |>Repo.preload(:codes)
+    |> Repo.preload(:codes)
   end
 
   @doc """
@@ -36,9 +36,10 @@ defmodule Scadvert.Videos do
       ** (Ecto.NoResultsError)
 
   """
-  def get_video!(id), do: Repo.get!(Video, id)
-  |>Repo.preload(:codes)
-
+  def get_video!(id),
+    do:
+      Repo.get!(Video, id)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a video.
@@ -104,10 +105,11 @@ defmodule Scadvert.Videos do
   def change_video(%Video{} = video, attrs \\ %{}) do
     Video.changeset(video, attrs)
   end
-  def list_videos_by_user_id(conn) do
 
+  def list_videos_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
+
     Repo.all(from v in Video, where: v.user_id == ^user_id)
-    |>Repo.preload(:codes)
+    |> Repo.preload(:codes)
   end
 end
