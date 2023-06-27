@@ -1,4 +1,8 @@
-<h1>Listing codes</h1>
+<h1 class = "text-3xl uppercase text-blue-400 mt-2  m-6" >Listing codes</h1>
+
+<div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
+<span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
+</div>
 
 <table  style="width:100%">
   <thead>
@@ -56,6 +60,4 @@
   </tbody>
 </table>
 
-<div class  = "m-14 flex justify-around bg-green-400 rounded-lg p-2">  
-<span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
-</div>
+

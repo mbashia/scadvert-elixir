@@ -17,7 +17,7 @@
                         <div class="lg:col-span-2">
                           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                             <div class="md:col-span-3">
-                               <%= label f, :type %>
+                               <%= label f, :type, class: "text-lg text-semibold text-blue-500" %>
                                 <%= select f, :type, ["scadvert",  "scadverl"], prompt: "select type" , class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50"%>
                                 <%= error_tag f, :type %>
 
@@ -25,26 +25,26 @@
 
                             </div>
                              <div class="md:col-span-3">
-                             <%= label f, :name%>
+                             <%= label f, :name, class: "text-lg text-semibold text-blue-500" %>
                               <%= number_input f, :name, class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50" %>
                               <%= error_tag f, :name %>
                               </div>
 
                               <div class="md:col-span-3">
-                            <%= label f, :description %>
+                            <%= label f, :description, class: "text-lg text-semibold text-blue-500" %> 
                             <%= textarea f, :description, class: "h-32 w-full border mt-1 rounded px-4 w-full bg-gray-50" %>
                             <%= error_tag f, :description %>
 
                             </div>
 
                           <div class="md:col-span-3">
-                            <%= label f, :active %>
+                            <%= label f, :active, class: "text-lg text-semibold text-blue-500" %> 
                             <%= select f, :active, ["Active",  "Inactive"], class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50"  %>
                               <%= error_tag f, :active %>
                           </div>
 
                           <div class = "md:col-span-3">
-                          <%= label f, :picture %>
+                          <%= label f, :picture, class: "text-lg text-semibold text-blue-500" %> 
                             <%= file_input f, :picture, class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50"%>
                               <%= error_tag f, :picture %>
                           

@@ -1,5 +1,5 @@
-<h1>New Code</h1>
+<h1 class = "text-3xl uppercase text-blue-400 mt-2  ml-10" >New Code</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.code_path(@conn, :create)) %>
 
-<span><%= link "Back", to: Routes.code_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.code_path(@conn, :index),class: "bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-10" %></span>
