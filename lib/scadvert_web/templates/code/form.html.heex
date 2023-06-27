@@ -1,33 +1,69 @@
+
 <%= form_for @changeset, @action, [multipart: true], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
-  <% end %>
+                <% end %>
+                
+              <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+                <div class="container max-w-screen-lg mx-auto ">
+                  <div>
+                    
+                    <div class="bg-white rounded shadow-lg  p-4 px-2 md:p-8 mb-6">
+                      <div class="grid gap-4  text-sm grid-cols-1 lg:grid-cols-3 w-full">
+                      
 
+                        <div class="lg:col-span-2">
+                          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                            <div class="md:col-span-3">
+                               <%= label f, :type %>
+                                <%= select f, :type, ["scadvert",  "scadverl"], prompt: "select type" , class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50"%>
+                                <%= error_tag f, :type %>
 
-  <%= label f, :type %>
-<%= select f, :type, ["scadvert",  "scadverl"], prompt: "select type" %>
-  <%= error_tag f, :type %>
+                             
 
+                            </div>
+                             <div class="md:col-span-3">
+                             <%= label f, :name%>
+                              <%= number_input f, :name, class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50" %>
+                              <%= error_tag f, :name %>
+                              </div>
 
-  <%= label f, :name %>
-  <%= number_input f, :name %>
-  <%= error_tag f, :name %>
+                              <div class="md:col-span-3">
+                            <%= label f, :description %>
+                            <%= textarea f, :description, class: "h-32 w-full border mt-1 rounded px-4 w-full bg-gray-50" %>
+                            <%= error_tag f, :description %>
 
-  <%= label f, :description %>
-  <%= textarea f, :description %>
-  <%= error_tag f, :description %>
+                            </div>
 
-  <%= label f, :active %>
-<%= select f, :active, ["Active",  "Inactive"]  %>
-  <%= error_tag f, :active %>
+                          <div class="md:col-span-3">
+                            <%= label f, :active %>
+                            <%= select f, :active, ["Active",  "Inactive"], class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50"  %>
+                              <%= error_tag f, :active %>
+                          </div>
 
-  <%= label f, :picture %>
-<%= file_input f, :picture %>
-  <%= error_tag f, :picturem %>
+                          <div class = "md:col-span-3">
+                          <%= label f, :picture %>
+                            <%= file_input f, :picture, class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50"%>
+                              <%= error_tag f, :picture %>
+                          
+                          </div>
+                      
+                        
+                            <div class="md:col-span-3 text-right">
+                              <div class="inline-flex items-end">
+                              <%= submit "Save",class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>       
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-  <div>
-    <%= submit "Save" %>
-  </div>
+                  
+                </div>
+              </div>
 <%end %>
+
