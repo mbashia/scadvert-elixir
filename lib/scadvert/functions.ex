@@ -18,8 +18,8 @@ defmodule Scadvert.Functions do
     Repo.all(from p in Code, where: p.user_id == ^user_id, select: {p.name, p.id})
   end
   def facilitys_count(current_user)do
-    Repo.one(from(f in Facility, where: f.user_id == ^current_user.id , select: sum(d.qty) ))
+    Repo.one(from(f in Facility, where: f.user_id == ^current_user.id , select: count(f.id) ))
 
   end
-  
+
 end
