@@ -1,12 +1,30 @@
-<h1>Confirm account</h1>
 
 <.form let={_f} for={:user} action={Routes.user_confirmation_path(@conn, :update, @token)}>
-  <div>
-    <%= submit "Confirm my account" %>
-  </div>
+  
+      <section class="min-h-screen flex flex-col">
+          
+            <div class="flex flex-1 items-center justify-center">
+                <div class=" bg-gray-100 rounded-lg sm:border-2 px-4 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center shadow-2xl">
+                    <form class="text-center">
+                        <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-600 uppercase">
+                            confirm account
+                        </h1>
+                     
+                        <div class="py-2">
+                           
+                            <%= submit "confirm account", class: "border-2 border-gray-100 focus:outline-none bg-purple-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-purple-700" %>
+                        </div>
+                    </form>
+            
+                    <div class="text-center mt-12">
+                        
+                          <%= link "sign in", to: Routes.user_session_path(@conn, :new), class: "font-light text-md text-indigo-600 underline font-semibold hover:text-indigo-800" %> |
+                          <%= link "sign up", to: Routes.user_registration_path(@conn, :new), class: "font-light text-md text-indigo-600 underline font-semibold hover:text-indigo-800" %> |
+                    </div>
+                </div>
+            </div>
+        </section>
+
 </.form>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+   

@@ -1,4 +1,4 @@
-<h1>Log in</h1>
+
 
 <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
   <%= if @error_message do %>
@@ -7,21 +7,52 @@
     </div>
   <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+  
+      <section class="min-h-screen flex flex-col">
+          
+            <div class="flex flex-1 items-center justify-center">
+                <div class=" bg-gray-100 rounded-lg sm:border-2 px-4 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center shadow-2xl">
+                    <form class="text-center">
+                        <h1 class=" uppercase font-bold tracking-wider text-3xl mb-8 w-full text-gray-600 uppercase">
+                            Sign in
+                        </h1>
+                        <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= email_input f, :email, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: "email" %>
+                        </div>
+                        <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= password_input f, :password, required: true , class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
+                        <%= error_tag f, :password %>
+                        </div>
+                        <div class="flex items-center w-1/2 m-2">
+                        <%= checkbox f, :remember_me, class: "bg-white shadow border-none" %>
+                        <%= label f, :remember_me, "Remember me", class: "text-sm text-gray-700 ml-2" %>
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
+                  
+                        
+                        </div>
+                        <div class="py-2">
+                           
+                            <%= submit "sign in", class: "border-2 border-gray-100 focus:outline-none bg-purple-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-purple-700" %>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <%= link "Forgot password?", to: Routes.user_reset_password_path(@conn, :new), class: "hover:underline" %>
 
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
+                    </div>
+                    <div class="text-center mt-12">
+                        <span>
+                         don't have an account?
+                        </span>
+                          <%= link "sign up", to: Routes.user_registration_path(@conn, :new), class: "font-light text-md text-indigo-600 underline font-semibold hover:text-indigo-800" %> 
 
-  <div>
-    <%= submit "Log in" %>
-  </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 </.form>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+   
+
