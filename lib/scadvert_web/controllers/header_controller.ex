@@ -5,6 +5,8 @@ defmodule ScadvertWeb.HeaderController do
   alias Scadvert.Headers.Header
   alias Scadvert.Functions
 
+  plug :put_layout, "newlayout.html"
+
   def index(conn, _params) do
     headers = Headers.list_headers_by_user_id(conn)
     render(conn, "index.html", headers: headers)

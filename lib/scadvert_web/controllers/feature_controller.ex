@@ -5,6 +5,9 @@ defmodule ScadvertWeb.FeatureController do
   alias Scadvert.Features.Feature
   alias Scadvert.Functions
 
+  
+  plug :put_layout, "newlayout.html"
+
   def index(conn, _params) do
     features = Features.list_features_by_user_id(conn)
     render(conn, "index.html", features: features)

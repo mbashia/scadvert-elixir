@@ -5,6 +5,8 @@ defmodule ScadvertWeb.VideoController do
   alias Scadvert.Videos.Video
   alias Scadvert.Functions
 
+  plug :put_layout, "newlayout.html"
+
   def index(conn, _params) do
     videos = Videos.list_videos_by_user_id(conn)
     render(conn, "index.html", videos: videos)

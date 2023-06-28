@@ -4,6 +4,7 @@ defmodule ScadvertWeb.LeadershipController do
   alias Scadvert.Leaderships
   alias Scadvert.Leaderships.Leadership
   alias Scadvert.Functions
+  plug :put_layout, "newlayout.html"
 
   def index(conn, _params) do
     leaderships = Leaderships.list_leaderships_by_user_id(conn)

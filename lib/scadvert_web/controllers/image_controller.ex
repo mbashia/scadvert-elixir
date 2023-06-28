@@ -4,6 +4,9 @@ defmodule ScadvertWeb.ImageController do
   alias Scadvert.Images
   alias Scadvert.Images.Image
   alias Scadvert.Functions
+  
+  plug :put_layout, "newlayout.html"
+
 
   def index(conn, _params) do
     images = Images.list_images_by_user_id(conn)

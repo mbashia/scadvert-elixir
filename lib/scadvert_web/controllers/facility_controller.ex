@@ -9,6 +9,8 @@ defmodule ScadvertWeb.FacilityController do
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Functions
 
+  plug :put_layout, "newlayout.html"
+
   def index(conn, _params) do
     facilitys = Facilitys.list_facilitys_by_user_id(conn)
 
