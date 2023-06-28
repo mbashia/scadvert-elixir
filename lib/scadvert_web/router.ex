@@ -20,6 +20,7 @@ defmodule ScadvertWeb.Router do
   scope "/", ScadvertWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    get "/", DashboardController, :index
     resources "/codes", CodeController
     resources "/headers", HeaderController
     resources "/facilitys", FacilityController
@@ -28,7 +29,7 @@ defmodule ScadvertWeb.Router do
     resources "/images", ImageController
     resources "/videos", VideoController
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
