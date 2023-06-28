@@ -4,6 +4,9 @@ defmodule ScadvertWeb.UserSessionController do
   alias Scadvert.Accounts
   alias ScadvertWeb.UserAuth
 
+  plug :put_layout, "login_registration.html"
+
+
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)
   end

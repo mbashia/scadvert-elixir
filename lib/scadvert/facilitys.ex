@@ -110,6 +110,6 @@ defmodule Scadvert.Facilitys do
     user_id = conn.assigns.current_user.id
 
     Repo.all(from f in Facility, where: f.user_id == ^user_id)
-    |> Repo.preload(:codes)
+     |> Repo.preload(:codes)
   end
 end

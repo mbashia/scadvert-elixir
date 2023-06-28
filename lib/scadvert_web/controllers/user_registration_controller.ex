@@ -5,6 +5,8 @@ defmodule ScadvertWeb.UserRegistrationController do
   alias Scadvert.Accounts.User
   alias ScadvertWeb.UserAuth
 
+  plug :put_layout, "login_registration.html"
+
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})
     render(conn, "new.html", changeset: changeset)

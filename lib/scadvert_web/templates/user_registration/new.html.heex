@@ -1,4 +1,3 @@
-<h1>Register</h1>
 
 <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
   <%= if @changeset.action do %>
@@ -7,20 +6,45 @@
     </div>
   <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
+  
+<section class="min-h-screen flex flex-col">
+          
+            <div class="flex flex-1 items-center justify-center">
+                <div class=" bg-gray-100 rounded-lg sm:border-2 px-4 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center shadow-2xl">
+                    <form class="text-center">
+                        <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-600 uppercase">
+                            Sign up
+                        </h1>
+                        <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= email_input f, :email, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: "email" %>
+                        <%= error_tag f, :email %>
+                        </div>
+                        <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= password_input f, :password, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
+                        <%= error_tag f, :password %>
+                        </div>
+                        <div class="py-2">
+                           
+                            <%= submit "sign up", class: "border-2 border-gray-100 focus:outline-none bg-purple-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-purple-700" %>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <%= link "Forgot password?", to: Routes.user_reset_password_path(@conn, :new), class: "hover:underline" %>
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
+                    </div>
+                    <div class="text-center mt-12">
+                        <span>
+                           already have an account?
+                        </span>
+                          <%= link "sign in", to: Routes.user_session_path(@conn, :new), class: "font-light text-md text-indigo-600 underline font-semibold hover:text-indigo-800" %> 
 
-  <div>
-    <%= submit "Register" %>
-  </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 </.form>
 
-<p>
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+   

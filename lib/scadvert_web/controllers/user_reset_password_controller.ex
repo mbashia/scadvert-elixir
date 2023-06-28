@@ -4,6 +4,8 @@ defmodule ScadvertWeb.UserResetPasswordController do
   alias Scadvert.Accounts
 
   plug :get_user_by_reset_password_token when action in [:edit, :update]
+  
+  plug :put_layout, "login_registration.html"
 
   def new(conn, _params) do
     render(conn, "new.html")

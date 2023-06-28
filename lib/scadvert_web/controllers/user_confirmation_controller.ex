@@ -2,6 +2,8 @@ defmodule ScadvertWeb.UserConfirmationController do
   use ScadvertWeb, :controller
 
   alias Scadvert.Accounts
+  
+  plug :put_layout, "login_registration.html"
 
   def new(conn, _params) do
     render(conn, "new.html")
