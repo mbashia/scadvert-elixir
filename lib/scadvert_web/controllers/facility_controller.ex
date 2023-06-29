@@ -26,7 +26,7 @@ defmodule ScadvertWeb.FacilityController do
 
   def create(conn, %{"facility" => facility_params}) do
     facility_params = Map.put(facility_params, "user_id", conn.assigns.current_user.id)
-
+    codes = Functions.list_codes(conn)
     case Facilitys.create_facility(facility_params) do
       {:ok, facility} ->
         conn
@@ -34,7 +34,7 @@ defmodule ScadvertWeb.FacilityController do
         |> redirect(to: Routes.facility_path(conn, :show, facility))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, codes: codes)
     end
   end
 
@@ -47,7 +47,9 @@ defmodule ScadvertWeb.FacilityController do
   def edit(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
     changeset = Facilitys.change_facility(facility)
-    render(conn, "edit.html", facility: facility, changeset: changeset)
+    codes = Functions.list_codes(conn)
+
+    render(conn, "edit.html", facility: facility, changeset: changeset, codes: codes)
   end
 
   def update(conn, %{"id" => id, "facility" => facility_params}) do

@@ -1,36 +1,32 @@
-<h1>Show Facility</h1>
 
-<ul>
 
-  <li>
-    <strong>Code:</strong>
-    <%= @facility.codes.name %>
-  </li>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @facility.name %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @facility.description %>
-  </li>
-
-  <li>
-    <strong>Active:</strong>
-    <%= @facility.status %>
-  </li>
-<div style = "height:100px; width:100px">
-
-   <li s>
-  <strong>    <td>  <%=  img_tag Scadvert.FacilityImage.url({@facility.picture, @facility}, signed: true, style: "height:200px; width:20px;") %></td>
-  </strong>
-</li>
-
+<div class = "block mb-6">
+      <div class = "mt-8 inline-block z-40 ml-6">
+           <span><%= link "Edit", to: Routes.facility_path(@conn, :edit, @facility),class: "form_btn " %></span> |
+      </div>
+      <div class = " inline-block">
+          <span><%= link "Back", to: Routes.facility_path(@conn, :index),class: "form_back_btn" %></span>
+      </div>
 </div>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.facility_path(@conn, :edit, @facility) %></span> |
-<span><%= link "Back", to: Routes.facility_path(@conn, :index) %></span>
+<div class = " mt-6 absolute top-[200px] left-[400px]">
+    <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+          <div class = "h-44 overflow-hidden">
+              <div style = "height:100%; width:385px ">
+                  <%= img_tag Scadvert.FacilityImage.url({@facility.picture, @facility}, signed: true)%>
+              </div>   
+     </div>
+     <div class="p-2">
+        <ul>
+        <li class  = "text-lg text-white font-sans tracking-tight m-2">CODE: <%= @facility.codes.name%>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">NAME: <%= @facility.name %>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">STATUS:<%=  @facility.status  %>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">DESCRIPTION:</li>
+        </ul>
+        <p class="m-2 font-normal text-gray-700 dark:text-gray-400"> <%= @facility.description %></p>
+     </div>
+    </div>
+</div>

@@ -100,3 +100,21 @@
 .img{
   @apply h-10 w-10 overflow-hidden;
 }
+.headings{
+  @apply text-3xl uppercase text-blue-400 mt-2  m-6;
+}
+.label_item{
+  @apply text-lg  text-blue-500;
+}
+.input_item{
+  @apply h-10 border mt-1 rounded px-4 w-full bg-gray-50;
+}
+.submit_btn{
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+.form_btn{
+  @apply bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-10 ;
+}
+.form_back_btn{
+  @apply  bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ;
+}

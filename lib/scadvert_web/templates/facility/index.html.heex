@@ -1,12 +1,17 @@
-<h1>Listing Facilitys</h1>
+<h1 class = "text-3xl uppercase text-blue-400 mt-2  m-6" >Listing facilities</h1>
+<div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
+<span><%= link "New Facility", to: Routes.facility_path(@conn, :new) %></span>
+</div>
 
-<table>
+<table style="width:100%">
   <thead>
     <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Active</th>
+      <th class = "for_tables">Code</th>
+      <th class = "for_tables">Name</th>
+      <th class = "for_tables">Description</th>
+      <th class = "for_tables">Active</th>
+      <th class = "for_tables">picture </th>    
+       <th class = "for_tables">Actions</th>
 
       <th></th>
     </tr>
@@ -14,22 +19,31 @@
   <tbody>
 <%= for facility <- @facilitys do %>
     <tr>
-      <td><%= facility.codes.name %></td>
-      <td><%= facility.name %></td>
-      <td><%= facility.description %></td>
-      <td><%= facility.status %></td>
-      <td><%= img_tag Scadvert.FacilityImage.url({facility.picture, facility}, signed: true)%></td>
+      <td  class = "table_data"><%= facility.codes.name %></td>
+      <td  class = "table_data"><%= facility.name %></td>
+      <td  class = "table_data"><%= facility.description %></td>
+      <td  class = "table_data"><%= facility.status %></td>
 
+      
 
-      <td>
+      <td  ><%= img_tag Scadvert.FacilityImage.url({facility.picture, facility}, signed: true), class: "h-[42px] w-[60px]"%></td>
 
+      <td class = "table_data">
+         <div class = "p-2 inline-block bg-sky-500 rounded"> 
         <span><%= link "Show", to: Routes.facility_path(@conn, :show, facility) %></span>
+        </div>
+        <div class = "p-2 inline-block bg-sky-700 rounded">       
         <span><%= link "Edit", to: Routes.facility_path(@conn, :edit, facility) %></span>
-        <span><%= link "Delete", to: Routes.facility_path(@conn, :delete, facility), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        </div>
+         <div class = "p-2 inline-block bg-red-600 rounded">       
+       <span><%= link "Delete", to:  Routes.facility_path(@conn, :delete, facility), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </div>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Facility", to: Routes.facility_path(@conn, :new) %></span>
+
+
+

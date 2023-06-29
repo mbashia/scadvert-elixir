@@ -1,5 +1,4 @@
-<h1>Edit Facility</h1>
+<h1 class = "headings ml-6">Edit Facility</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.facility_path(@conn, :update, @facility)) %>
 
-<span><%= link "Back", to: Routes.facility_path(@conn, :index) %></span>

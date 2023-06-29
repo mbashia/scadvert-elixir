@@ -6,7 +6,7 @@ defmodule Scadvert.Functions do
   alias Scadvert.Codes.Code
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Headers.Header
-  alias Scadvert.Features.Features
+  alias Scadvert.Features.Feature
   alias Scadvert.Images.Image
   alias Scadvert.Leaderships.Leadership
   alias Scadvert.Videos.Video
@@ -21,5 +21,25 @@ defmodule Scadvert.Functions do
     Repo.one(from(f in Facility, where: f.user_id == ^current_user.id , select: count(f.id) ))
 
   end
+  def codes_count(current_user)do
+    Repo.one(from(c in Code, where: c.user_id == ^current_user.id , select: count(c.id) ))
+
+  end
+  def headers_count(current_user)do
+    Repo.one(from(h in Header, where: h.user_id == ^current_user.id, select: count(h.id) ))
+  end
+  def features_count(current_user)do
+    Repo.one(from(f in Feature, where: f.user_id == ^current_user.id, select: count(f.id) ))
+  end
+  def images_count(current_user)do
+    Repo.one(from(i in Image, where: i.user_id == ^current_user.id, select: count(i.id) ))
+  end
+  def leaderships_count(current_user)do
+    Repo.one(from(l in Leadership, where: l.user_id == ^current_user.id, select: count(l.id) ))
+  end
+  def videos_count(current_user)do
+    Repo.one(from(v in Video, where: v.user_id == ^current_user.id, select: count(v.id) ))
+  end
+  
 
 end
