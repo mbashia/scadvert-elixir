@@ -4,7 +4,7 @@ defmodule ScadvertWeb.ImageController do
   alias Scadvert.Images
   alias Scadvert.Images.Image
   alias Scadvert.Functions
-  
+
   plug :put_layout, "newlayout.html"
 
 
@@ -24,7 +24,7 @@ defmodule ScadvertWeb.ImageController do
   def create(conn, %{"image" => image_params}) do
     image_params = Map.put(image_params, "user_id", conn.assigns.current_user.id)
 
-    # codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(conn)
 
     case Images.create_image(image_params) do
       {:ok, image} ->
@@ -33,7 +33,7 @@ defmodule ScadvertWeb.ImageController do
         |> redirect(to: Routes.image_path(conn, :show, image))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, codes: codes)
     end
   end
 
@@ -45,7 +45,9 @@ defmodule ScadvertWeb.ImageController do
   def edit(conn, %{"id" => id}) do
     image = Images.get_image!(id)
     changeset = Images.change_image(image)
-    render(conn, "edit.html", image: image, changeset: changeset)
+    codes = Functions.list_codes(conn)
+
+    render(conn, "edit.html", image: image, changeset: changeset, codes: codes)
   end
 
   def update(conn, %{"id" => id, "image" => image_params}) do
