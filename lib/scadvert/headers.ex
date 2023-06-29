@@ -19,7 +19,9 @@ defmodule Scadvert.Headers do
   """
   def list_headers do
     Repo.all(Header)
-    |> Repo.preload(:codes)
+    |> Enum.count()
+
+    # |> Repo.preload(:codes)
   end
 
   @doc """
@@ -39,7 +41,7 @@ defmodule Scadvert.Headers do
   def get_header!(id),
     do:
       Repo.get!(Header, id)
-      |> Repo.preload(:codes)
+      # |> Repo.preload(:codes)
 
   @doc """
   Creates a header.

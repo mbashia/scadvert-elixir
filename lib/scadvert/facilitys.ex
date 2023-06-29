@@ -19,9 +19,12 @@ defmodule Scadvert.Facilitys do
   """
   def list_facilitys do
     Repo.all(Facility)
-    |> Repo.preload(:codes)
+    |> Enum.count()
+
+    # |> Repo.preload(:codes)
   end
 
+  @spec get_facility!(any) :: nil | [%{optional(atom) => any}] | %{optional(atom) => any}
   @doc """
   Gets a single facility.
 
@@ -39,7 +42,7 @@ defmodule Scadvert.Facilitys do
   def get_facility!(id),
     do:
       Repo.get!(Facility, id)
-      |> Repo.preload(:codes)
+      # |> Repo.preload(:codes)
 
   @doc """
   Creates a facility.

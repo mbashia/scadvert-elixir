@@ -19,6 +19,8 @@ defmodule Scadvert.Codes do
   """
   def list_codes do
     Repo.all(Code)
+    |> Enum.count()
+
   end
 
   @doc """

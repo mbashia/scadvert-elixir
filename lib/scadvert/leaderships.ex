@@ -19,7 +19,9 @@ defmodule Scadvert.Leaderships do
   """
   def list_leaderships do
     Repo.all(Leadership)
-    |> Repo.preload(:codes)
+    |> Enum.count()
+
+    # |> Repo.preload(:codes)
   end
 
   @doc """
@@ -39,7 +41,7 @@ defmodule Scadvert.Leaderships do
   def get_leadership!(id),
     do:
       Repo.get!(Leadership, id)
-      |> Repo.preload(:codes)
+      # |> Repo.preload(:codes)
 
   @doc """
   Creates a leadership.

@@ -10,7 +10,7 @@ defmodule Scadvert.Functions do
   alias Scadvert.Images.Image
   alias Scadvert.Leaderships.Leadership
   alias Scadvert.Videos.Video
-  alias Scadvert.Users.User
+  alias Scadvert.Accounts.User
 
 
   def list_codes(conn) do
@@ -40,6 +40,11 @@ defmodule Scadvert.Functions do
   def videos_count(current_user)do
     Repo.one(from(v in Video, where: v.user_id == ^current_user.id, select: count(v.id) ))
   end
-  
+  def users_count()do
+    Repo.one(from(u in User, select: count(u.id)))
+  end
+
+
+
 
 end
