@@ -12,8 +12,12 @@ defmodule Scadvert.Accounts.User do
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
+    field :firstname, :string
+    field :lastname, :string
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :phone_number, :integer
+
     has_many :codes, Code
     has_many :facilitys, Facility
     has_many :features, Feature
@@ -44,9 +48,10 @@ defmodule Scadvert.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :firstname, :lastname,:phone_number])
     |> validate_email()
     |> validate_password(opts)
+    |>validate_required([:firstname, :lastname, :phone_number])
   end
 
   defp validate_email(changeset) do

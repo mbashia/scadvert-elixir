@@ -5,6 +5,9 @@ defmodule Scadvert.Repo.Migrations.CreateUsersAuthTables do
     create table(:users) do
       add :email, :string, null: false, size: 160
       add :hashed_password, :string, null: false
+      add :firstname, :string
+      add :lastname, :string
+      add :phone_number, :integer
       add :confirmed_at, :naive_datetime
       timestamps()
     end

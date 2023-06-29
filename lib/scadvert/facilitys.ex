@@ -42,7 +42,7 @@ defmodule Scadvert.Facilitys do
   def get_facility!(id),
     do:
       Repo.get!(Facility, id)
-      # |> Repo.preload(:codes)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a facility.

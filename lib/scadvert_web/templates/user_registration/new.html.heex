@@ -15,6 +15,21 @@
                         <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-600 uppercase">
                             Sign up
                         </h1>
+                           <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= text_input f, :firstname, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " firstname" %>
+                        <%= error_tag f, :firstname %>
+                        </div>
+                         <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= text_input f, :lastname, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " lastname" %>
+                        <%= error_tag f, :lastname %>
+                        </div>
+                         <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= number_input f, :phone_number, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " enter phone number" %>
+                        <%= error_tag f, :phone_number %>
+                        </div>
                         <div class="py-2 text-left">
                         <%= label f, :"" %>
                         <%= email_input f, :email, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: "email" %>
@@ -25,6 +40,7 @@
                         <%= password_input f, :password, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
                         <%= error_tag f, :password %>
                         </div>
+                      
                         <div class="py-2">
                            
                             <%= submit "sign up", class: "border-2 border-gray-100 focus:outline-none bg-purple-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-purple-700" %>

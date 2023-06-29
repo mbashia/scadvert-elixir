@@ -14,9 +14,8 @@ defmodule ScadvertWeb.ClientController do
 
 
 def index(conn,_params)do
-     users = Functions.users_count(conn.params)
 
-  render(conn, "client.html", users: users)
+  render(conn, "client.html")
 
 end
 

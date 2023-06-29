@@ -40,8 +40,10 @@ defmodule ScadvertWeb.FacilityController do
 
   def show(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
+    codes = Functions.list_codes(conn)
 
-    render(conn, "show.html", facility: facility)
+
+    render(conn, "show.html", facility: facility, codes: codes)
   end
 
   def edit(conn, %{"id" => id}) do
