@@ -109,6 +109,10 @@
 .input_item{
   @apply h-10 border mt-1 rounded px-4 w-full bg-gray-50;
 }
+.description_item{
+  @apply h-32 border mt-1 rounded px-4 w-full bg-gray-50;
+  
+}
 .submit_btn{
   @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
 }

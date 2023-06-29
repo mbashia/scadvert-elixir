@@ -1,34 +1,31 @@
-<h1>Show Feature</h1>
-
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @feature.name %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @feature.description %>
-  </li>
-
-  <li>
-    <strong>Code:</strong>
-    <%= @feature.codes.name %>
-  </li>
-
-  <li>
-    <strong>Status:</strong>
-    <%= @feature.status %>
-  </li>
-
-  <li>
-  <strong>    <td>  <%= img_tag Scadvert.FeatureImage.url({@feature.picture, @feature}, signed: true)%></td>
-  </strong>
-</li>
 
 
-</ul>
-
-<span><%= link "Edit", to: Routes.feature_path(@conn, :edit, @feature) %></span> |
-<span><%= link "Back", to: Routes.feature_path(@conn, :index) %></span>
+<div class = "block mb-6">
+      <div class = "mt-8 inline-block z-40 ml-6">
+           <span><%= link "Edit", to: Routes.feature_path(@conn, :edit, @feature),class: "form_btn " %></span> |
+      </div>
+      <div class = " inline-block">
+          <span><%= link "Back", to: Routes.feature_path(@conn, :index),class: "form_back_btn" %></span>
+      </div>
+</div>
+<div class = " mt-6 absolute top-[200px] left-[400px]">
+    <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+          <div class = "h-44 overflow-hidden">
+              <div style = "height:100%; width:385px ">
+                  <%= img_tag Scadvert.FeatureImage.url({@feature.picture, @feature}, signed: true)%>
+              </div>   
+     </div>
+     <div class="p-2">
+        <ul>
+        <li class  = "text-lg text-white font-sans tracking-tight m-2">CODE: <%= @feature.codes.name%>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">NAME: <%= @feature.name %>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">STATUS:<%=  @feature.status  %>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">DESCRIPTION:</li>
+        </ul>
+        <p class="m-2 font-normal text-gray-700 dark:text-gray-400"> <%= @feature.description %></p>
+     </div>
+    </div>
+</div>

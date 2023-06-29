@@ -5,7 +5,7 @@ defmodule ScadvertWeb.FeatureController do
   alias Scadvert.Features.Feature
   alias Scadvert.Functions
 
-  
+
   plug :put_layout, "newlayout.html"
 
   def index(conn, _params) do
@@ -22,7 +22,7 @@ defmodule ScadvertWeb.FeatureController do
 
   def create(conn, %{"feature" => feature_params}) do
     feature_params = Map.put(feature_params, "user_id", conn.assigns.current_user.id)
-    # codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(conn)
 
     case Features.create_feature(feature_params) do
       {:ok, feature} ->
@@ -31,7 +31,7 @@ defmodule ScadvertWeb.FeatureController do
         |> redirect(to: Routes.feature_path(conn, :show, feature))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset,codes: codes)
     end
   end
 
@@ -42,8 +42,10 @@ defmodule ScadvertWeb.FeatureController do
 
   def edit(conn, %{"id" => id}) do
     feature = Features.get_feature!(id)
+    codes = Functions.list_codes(conn)
+
     changeset = Features.change_feature(feature)
-    render(conn, "edit.html", feature: feature, changeset: changeset)
+    render(conn, "edit.html", feature: feature, changeset: changeset, codes: codes)
   end
 
   def update(conn, %{"id" => id, "feature" => feature_params}) do

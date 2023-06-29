@@ -1,5 +1,4 @@
-<h1>Edit Feature</h1>
+<h1 class = "headings ml-6">Edit Feature</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.feature_path(@conn, :update, @feature)) %>
 
-<span><%= link "Back", to: Routes.feature_path(@conn, :index) %></span>

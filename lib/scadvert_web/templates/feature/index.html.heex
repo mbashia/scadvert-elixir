@@ -1,12 +1,19 @@
-<h1>Listing Features</h1>
 
-<table>
+
+<h1 class = "text-3xl uppercase text-blue-400 mt-2  m-6" >Listing Features</h1>
+<div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
+<span><%= link "New Feature", to: Routes.feature_path(@conn, :new) %></span>
+</div>
+
+<table style="width:100%">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Code</th>
-      <th>Status</th>
+      <th class = "for_tables">Code</th>
+      <th class = "for_tables">Name</th>
+      <th class = "for_tables">Description</th>
+      <th class = "for_tables">Active</th>
+      <th class = "for_tables">picture </th>    
+       <th class = "for_tables">Actions</th>
 
       <th></th>
     </tr>
@@ -14,21 +21,32 @@
   <tbody>
 <%= for feature <- @features do %>
     <tr>
-      <td><%= feature.name %></td>
-      <td><%= feature.description %></td>
-      <td><%= feature.codes.name %></td>
-      <td><%= feature.status %></td>
-         <td>  <%= img_tag Scadvert.FeatureImage.url({feature.picture, feature}, signed: true)
-  %></td>
+      <td  class = "table_data"><%= feature.codes.name %></td>
+      <td  class = "table_data"><%= feature.name %></td>
+      <td  class = "table_data"><%= feature.description %></td>
+      <td  class = "table_data"><%= feature.status %></td>
 
-      <td>
+      
+
+      <td  ><%= img_tag Scadvert.FeatureImage.url({feature.picture, feature}, signed: true), class: "h-[42px] w-[60px]"%></td>
+
+      <td class = "table_data">
+         <div class = "p-2 inline-block bg-sky-500 rounded"> 
         <span><%= link "Show", to: Routes.feature_path(@conn, :show, feature) %></span>
+        </div>
+        <div class = "p-2 inline-block bg-sky-700 rounded">       
         <span><%= link "Edit", to: Routes.feature_path(@conn, :edit, feature) %></span>
-        <span><%= link "Delete", to: Routes.feature_path(@conn, :delete, feature), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        </div>
+         <div class = "p-2 inline-block bg-red-600 rounded">       
+       <span><%= link "Delete", to:  Routes.feature_path(@conn, :delete, feature), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </div>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Feature", to: Routes.feature_path(@conn, :new) %></span>
+
+
+
+
