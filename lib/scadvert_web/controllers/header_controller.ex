@@ -42,7 +42,8 @@ defmodule ScadvertWeb.HeaderController do
   def edit(conn, %{"id" => id}) do
     header = Headers.get_header!(id)
     changeset = Headers.change_header(header)
-    render(conn, "edit.html", header: header, changeset: changeset)
+    codes = Functions.list_codes(conn)
+    render(conn, "edit.html", header: header, changeset: changeset, codes: codes)
   end
 
   def update(conn, %{"id" => id, "header" => header_params}) do
