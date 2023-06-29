@@ -21,6 +21,7 @@ defmodule ScadvertWeb.LeadershipController do
 
   def create(conn, %{"leadership" => leadership_params}) do
     leadership_params = Map.put(leadership_params, "user_id", conn.assigns.current_user.id)
+    codes = Functions.list_codes(conn)
 
     case Leaderships.create_leadership(leadership_params) do
       {:ok, leadership} ->
@@ -29,7 +30,7 @@ defmodule ScadvertWeb.LeadershipController do
         |> redirect(to: Routes.leadership_path(conn, :show, leadership))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, codes: codes)
     end
   end
 
@@ -40,8 +41,9 @@ defmodule ScadvertWeb.LeadershipController do
 
   def edit(conn, %{"id" => id}) do
     leadership = Leaderships.get_leadership!(id)
+    codes = Functions.list_codes(conn)
     changeset = Leaderships.change_leadership(leadership)
-    render(conn, "edit.html", leadership: leadership, changeset: changeset)
+    render(conn, "edit.html", leadership: leadership, changeset: changeset, codes: codes)
   end
 
   def update(conn, %{"id" => id, "leadership" => leadership_params}) do
