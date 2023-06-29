@@ -1,31 +1,78 @@
+
+
 <%= form_for @changeset, @action, [multipart: true], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
+              <div class = "mt-4">
+                  <span class = "mt-4">
+                  <%= link "Back", to: Routes.video_path(@conn, :index), class: "form_btn" %>
+                  </span>
+            </div>
 
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
+              <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+                <div class="container max-w-screen-lg mx-auto ">
+                  <div>
+                    
+                    <div class="bg-white rounded shadow-lg  p-4 px-2 md:p-8 mb-6">
+                      <div class="grid gap-4  text-sm grid-cols-1 lg:grid-cols-3 w-full">
+                      
 
-  <%= label f, :description %>
-  <%= textarea f, :description %>
-  <%= error_tag f, :description %>
+                        <div class="lg:col-span-2">
+                          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                            <div class="md:col-span-3">
+                                <%= label f, :code, class: "label_item" %>
+                                <%= select f, :code_id, @codes, prompt: "Select a code", class: "input_item"%>
+                                  <%= error_tag f, :code_id %>
 
-  <%= label f, :code %>
-  <%= select f, :code_id, @codes, prompt: "select code" %>
-  <%= error_tag f, :code_id %>
+                            </div>
+                             <div class="md:col-span-3">
+                          <%= label f, :name, class: "label_item" %>
+                          <%= text_input f, :name, class: "input_item" %>
+                          <%= error_tag f, :name %>
 
-  <%= label f, :status %>
-<%= select f, :status,["Active",  "Inactive"], prompt: "type" %>
-  <%= error_tag f, :status %>
+                              </div>
 
-   <%= label f, :video %>
-<%= file_input f, :video %>
-  <%= error_tag f, :video %>
+                              <div class="md:col-span-3">
+                            <%= label f, :description , class: "label_item"%>
+                            <%= textarea f, :description, class: " description_item " %>
+                            <%= error_tag f, :description %>
+                            </div>
 
-  <div>
-    <%= submit "Save" %>
-  </div>
+                          <div class="md:col-span-3">
+                            <%= label f, :status, class: "label_item" %>
+                            <%= select f, :status,["Active",  "Inactive"], prompt: "type", class: "input_item" %>
+                              <%= error_tag f, :status %>
+                          </div>
+
+                          <div class = "md:col-span-3">
+                          <%= label f, :video, class: "label_item" %>
+                          <%= file_input f, :video, class: "input_item"%>
+                           <%= error_tag f, :video %>                         
+                          
+                          </div>
+                      
+                        
+                            <div class="md:col-span-3 text-right">
+                              <div class="inline-flex items-end">
+                              <%= submit "Save",class: "submit_btn" %>       
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                </div>
+              </div>
 <%end %>
+
+
+
+
+
+

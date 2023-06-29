@@ -1,38 +1,40 @@
-<h1>Show Video</h1>
 
-<ul>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @video.name %>
-  </li>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @video.description %>
-  </li>
 
-  <li>
-    <strong>Code:</strong>
-    <%= @video.codes.name %>
-  </li>
 
-  <li>
-    <strong>Status:</strong>
-    <%= @video.status %>
-  </li>
- <li>
-     <strong>video:</strong>
+<div class = "block mb-6">
+      <div class = "mt-8 inline-block z-40 ml-6">
+           <span><%= link "Edit", to: Routes.video_path(@conn, :edit, @video),class: "form_btn " %></span> |
+      </div>
+      <div class = " inline-block">
+          <span><%= link "Back", to: Routes.video_path(@conn, :index),class: "form_back_btn" %></span>
+      </div>
+</div>
+<div class = " mt-6 absolute top-[200px] left-[400px]">
+    <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+          <div class = "h-44 overflow-hidden">
+              <div style = "height:100%; width:385px ">
+                <video controls>
+                  <source src={Scadvert.FileVideo.url({@video.video, @video}, signed: true)}
+                  alt = "video"
 
-      <video width="320" height="240" controls>
-  <source src="{video_tag Images.FileVideo.url({video.video, video}, signed: true)}
-"
-  type="video/mp4">
+                  type="video/mp4"/>
 
-</video>
-
-</li>
-</ul>
-
-<span><%= link "Edit", to: Routes.video_path(@conn, :edit, @video) %></span> |
-<span><%= link "Back", to: Routes.video_path(@conn, :index) %></span>
+                </video>              
+            </div>   
+          </div>
+     <div class="p-2">
+        <ul>
+        <li class  = "text-lg text-white font-sans tracking-tight m-2">CODE: <%= @video.codes.name%>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">NAME: <%= @video.name %>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">STATUS:<%=  @video.status  %>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">DESCRIPTION:</li>
+        </ul>
+        <p class="m-2 font-normal text-gray-700 dark:text-gray-400"> <%= @video.description %></p>
+     </div>
+    </div>
+</div>

@@ -1,5 +1,4 @@
-<h1>New Video</h1>
+<h1 class = " text-3xl uppercase text-blue-400 mt-2  ml-10">New Video</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.video_path(@conn, :create)) %>
 
-<span><%= link "Back", to: Routes.video_path(@conn, :index) %></span>

@@ -41,8 +41,10 @@ defmodule ScadvertWeb.VideoController do
 
   def edit(conn, %{"id" => id}) do
     video = Videos.get_video!(id)
+    codes = Functions.list_codes(conn)
+
     changeset = Videos.change_video(video)
-    render(conn, "edit.html", video: video, changeset: changeset)
+    render(conn, "edit.html", video: video, changeset: changeset, codes: codes)
   end
 
   def update(conn, %{"id" => id, "video" => video_params}) do
