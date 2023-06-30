@@ -8,6 +8,7 @@ defmodule Scadvert.Accounts do
 
   alias Scadvert.Accounts.{User, UserToken, UserNotifier}
 
+
   ## Database getters
 
   @doc """
@@ -61,7 +62,14 @@ defmodule Scadvert.Accounts do
   def get_user!(id), do: Repo.get!(User, id)
 
   ## User registration
-
+  def list_users do
+    Repo.all(User)
+  end
+  def update_user(%User{}= user,attrs)do
+    user
+    |>User.registration_changeset(attrs)
+    |>Repo.update()
+  end
   @doc """
   Registers a user.
 

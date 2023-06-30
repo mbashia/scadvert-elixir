@@ -1,0 +1,29 @@
+
+<div class = "block mb-6">
+      <div class = "mt-8 inline-block z-40 ml-6">
+           <span><%= link "Edit", to: Routes.client_path(@conn, :edit, @user),class: "form_btn " %></span> |
+      </div>
+      <div class = " inline-block">
+          <span><%= link "Back", to: Routes.client_path(@conn, :index),class: "form_back_btn" %></span>
+      </div>
+</div>
+<div class = " mt-6 absolute top-[200px] left-[400px]">
+    <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+          <div class = "h-44 overflow-hidden">
+              <div style = "height:100%; width:385px ">
+                <img src="" alt="User image" class="img-class">
+
+              </div>   
+     </div>
+     <div class="p-2">
+        <ul>
+        <li class  = "text-lg text-white font-sans tracking-tight m-2">FIRSTNAME: <%= @user.firstname%>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">SECOND NAME: <%= @user.lastname %>
+        </li>
+        <li class  = "text-lg text-white font-sans m-2">PHONENUMBER:<%=  @user.phone_number  %>
+        </li>
+        </ul>
+     </div>
+    </div>
+</div>
