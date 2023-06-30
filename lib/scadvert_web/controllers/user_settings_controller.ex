@@ -3,7 +3,7 @@ defmodule ScadvertWeb.UserSettingsController do
 
   alias Scadvert.Accounts
   alias ScadvertWeb.UserAuth
-  
+
   plug :put_layout, "login_registration.html"
 
   plug :assign_email_and_password_changesets

@@ -41,7 +41,7 @@ defmodule Scadvert.Videos do
   def get_video!(id),
     do:
       Repo.get!(Video, id)
-      # |> Repo.preload(:codes)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a video.

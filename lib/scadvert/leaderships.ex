@@ -41,7 +41,7 @@ defmodule Scadvert.Leaderships do
   def get_leadership!(id),
     do:
       Repo.get!(Leadership, id)
-      # |> Repo.preload(:codes)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a leadership.

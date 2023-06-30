@@ -41,7 +41,7 @@ defmodule Scadvert.Headers do
   def get_header!(id),
     do:
       Repo.get!(Header, id)
-      # |> Repo.preload(:codes)
+      |> Repo.preload(:codes)
 
   @doc """
   Creates a header.
