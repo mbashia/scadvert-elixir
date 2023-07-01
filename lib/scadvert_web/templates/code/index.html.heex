@@ -4,7 +4,8 @@
 <span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
 </div>
 
-<table  style="width:100%">
+  <div class = "overflow-x-auto">
+<table  class  = "w-full sm:w-auto">
   <thead>
     <tr>
       <th class = "for_tables">Name</th>
@@ -59,5 +60,6 @@
 <% end %>
   </tbody>
 </table>
+</div>
 
 
