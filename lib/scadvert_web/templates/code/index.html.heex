@@ -45,14 +45,17 @@
 
       
       <td class = "table_data">
-      <div class = "p-2 inline-block bg-sky-500 rounded"> 
+            <div class = "flex flex-row   ">
+
+      <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
             <span><%= link "Show", to: Routes.code_path(@conn, :show, code) %></span>
     </div>
-       <div class = "p-2 inline-block bg-sky-700 rounded">       
+       <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
         <span><%= link "Edit", to: Routes.code_path(@conn, :edit, code) %></span>
         </div>
-      <div class = "p-2 inline-block bg-red-600 rounded">       
+      <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
        <span><%= link "Delete", to:  Routes.code_path(@conn, :delete, code), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </div>
       </div>
 
       </td>
