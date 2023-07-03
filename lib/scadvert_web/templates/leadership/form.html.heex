@@ -43,7 +43,10 @@
 
                           <div class="md:col-span-3">
                             <%= label f, :status, class: "label_item" %>
-                            <%= select f, :status,["Active",  "Inactive"], prompt: "type", class: "input_item" %>
+                              <div class = "mt-1">
+                            <%= checkbox f, :status, class: "checkbox_item" %>
+                            <span class = "ml-2">Active</span>
+                              </div> 
                               <%= error_tag f, :status %>
                           </div>
 

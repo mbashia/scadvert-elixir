@@ -128,3 +128,6 @@
 .input_settings_item{
   @apply h-10 border mt-1 rounded px-4 w-1/2 bg-gray-50;
 }
+.checkbox_item{
+  @apply h-5 w-5 text-blue-500
+}
