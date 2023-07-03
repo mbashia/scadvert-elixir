@@ -8,6 +8,8 @@ defmodule Scadvert.Repo.Migrations.CreateUsersAuthTables do
       add :firstname, :string
       add :lastname, :string
       add :phone_number, :integer
+      add :gender, :string
+      add :status, :string
       add :confirmed_at, :naive_datetime
       timestamps()
     end
