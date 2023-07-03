@@ -30,12 +30,12 @@
                         </div>
                          <div class="md:col-span-3">
                         <%= label f, :phonenumber, class: "label_item" %>
-                        <%= number_input f, :phone_number, required: true, class: "input_item" %>
+                        <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" , readonly: true%>
                         <%= error_tag f, :phone_number %>
                         </div>
                         <div class="md:col-span-3">
                         <%= label f, :email, class: "label_item" %>
-                        <%= email_input f, :email, required: true, class: "input_item"%>
+                        <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed ", readonly: true%>
                         <%= error_tag f, :email %>
                         </div>
                         

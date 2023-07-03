@@ -33,7 +33,8 @@ defmodule ScadvertWeb.CodeController do
 
   def show(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
-    render(conn, "show.html", code: code)
+    default_image = "/images/default_image.jpg"
+    render(conn, "show.html", code: code, default_image: default_image)
   end
 
   def edit(conn, %{"id" => id}) do

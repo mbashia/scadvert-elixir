@@ -22,6 +22,6 @@ defmodule Scadvert.Facilitys.Facility do
   def changeset(facility, attrs) do
     facility
     |> cast(attrs, [:code_id, :name, :description, :status, :picture, :user_id])
-    |> validate_required([:code_id, :name, :description, :status, :picture, :user_id])
+    |> validate_required([:code_id, :name, :description, :status,  :user_id])
   end
 end

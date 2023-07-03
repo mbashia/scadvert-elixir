@@ -41,7 +41,7 @@ defmodule Scadvert.Accounts.UserNotifier do
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-    deliver(user.email, "Reset password instructions", """
+    IO.inspect(deliver(user.email, "Reset password instructions", """
 
     ==============================
 
@@ -54,7 +54,7 @@ defmodule Scadvert.Accounts.UserNotifier do
     If you didn't request this change, please ignore this.
 
     ==============================
-    """)
+    """))
   end
 
   @doc """

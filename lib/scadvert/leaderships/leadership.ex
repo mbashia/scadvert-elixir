@@ -22,6 +22,6 @@ defmodule Scadvert.Leaderships.Leadership do
   def changeset(leadership, attrs) do
     leadership
     |> cast(attrs, [:name, :description, :code_id, :status, :picture, :user_id])
-    |> validate_required([:name, :description, :code_id, :status, :picture, :user_id])
+    |> validate_required([:name, :description, :code_id, :status,  :user_id])
   end
 end

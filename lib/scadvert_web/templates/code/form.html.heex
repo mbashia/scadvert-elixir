@@ -29,7 +29,7 @@
 
                             </div>
                              <div class="md:col-span-3">
-                             <%= label f, :name, class: "text-lg text-semibold text-blue-500" %>
+                             <%= label f, :Barcode, class: "text-lg text-semibold text-blue-500" %>
                               <%= number_input f, :name, class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50" %>
                               <%= error_tag f, :name %>
                               </div>
@@ -42,9 +42,19 @@
                             </div>
 
                           <div class="md:col-span-3">
-                            <%= label f, :active, class: "text-lg text-semibold text-blue-500" %> 
-                            <%= select f, :active, ["Active",  "Inactive"], class: "h-10 border mt-1 rounded px-4 w-full bg-gray-50"  %>
-                              <%= error_tag f, :active %>
+                          <%= label f, :Status, class: "text-lg text-semibold text-blue-500" %>
+                          <div class = "flex flex-row ">
+                          
+                           <div class="mt-1">
+                                <%= checkbox f, :active, class: "form-checkbox h-5 w-5 text-blue-500" %>
+                                <span class="ml-2">Active</span>
+                            </div>
+                            <div class="mt-1"> <input type="checkbox" name="active" class = " ml-1  h-5 w-5">
+                             <span class="ml-2">Inactive</span>
+                            </div>
+                          </div>
+                           
+                            <%= error_tag f, :active %>
                           </div>
 
                           <div class = "md:col-span-3">

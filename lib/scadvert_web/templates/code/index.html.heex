@@ -1,5 +1,8 @@
-<h1 class = "headings" >Listing codes</h1>
-
+<div class="bg-gray-800 pt-3">
+                        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+                            <h3 class="font-bold pl-2">LISTING CODES</h3>
+                        </div>
+                    </div>
 <div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
 </div>
@@ -27,8 +30,15 @@
     <tr>
       <td class = "table_data"><%= code.name %></td>
       <td class = "table_data"><%= code.description %></td>
-      <td class = "table_data"><%= code.active %></td>
-      <td class = "table_data"><%= code.type  %></td>
+      <td class = "table_data"> <%= if code.active == "true" do %>
+          <div class = "bg-green-400 p-1 rounded">Active</div>
+      <%else %>
+      <div class = "bg-red-600 p-1 rounded ">Inactive</div> 
+      <%end %>     
+      
+      
+      </td>
+      <td class = "table_data"> <%= code.type  %></td>
 
 
       <td  class = "table_data">
