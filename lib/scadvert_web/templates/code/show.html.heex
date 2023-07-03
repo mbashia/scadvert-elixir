@@ -14,7 +14,7 @@
            <%= if @code.picture do %>
               <div style = "height:100%; width:385px ">
              
-                  <%= img_tag Scadvert.CodeImage.url({@code.picture, @code}, signed: true) %>
+                  <%= img_tag Scadvert.CodeImage.url({@code.picture, @code}, signed: true), class: "h-full w-full object-cover" %>
               </div> 
               <%=else%>
                 <div class = "h-44 overflow-hidden">
