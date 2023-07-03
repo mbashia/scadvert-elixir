@@ -5,11 +5,13 @@ defmodule ScadvertWeb.CodeController do
   alias Scadvert.Codes.Code
 
   plug :put_layout, "newlayout.html"
+  @default_image :"/images/phoenix.png"
+
 
   def index(conn, _params) do
     codes = Codes.list_codes_by_user_id(conn)
     # IO.inspect(codes)
-    render(conn, "index.html", codes: codes)
+    render(conn, "index.html", codes: codes, default_image: @default_image)
   end
 
   def new(conn, _params) do
@@ -33,8 +35,7 @@ defmodule ScadvertWeb.CodeController do
 
   def show(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
-    default_image = "/images/default_image.jpg"
-    render(conn, "show.html", code: code, default_image: default_image)
+    render(conn, "show.html", code: code, default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do

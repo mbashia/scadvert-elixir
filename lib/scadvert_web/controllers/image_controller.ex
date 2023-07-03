@@ -6,11 +6,11 @@ defmodule ScadvertWeb.ImageController do
   alias Scadvert.Functions
 
   plug :put_layout, "newlayout.html"
-
+  @default_image :"/images/phoenix.png"
 
   def index(conn, _params) do
     images = Images.list_images_by_user_id(conn)
-    render(conn, "index.html", images: images)
+    render(conn, "index.html", images: images, default_image: @default_image)
   end
 
   def new(conn, _params) do
@@ -39,7 +39,7 @@ defmodule ScadvertWeb.ImageController do
 
   def show(conn, %{"id" => id}) do
     image = Images.get_image!(id)
-    render(conn, "show.html", image: image)
+    render(conn, "show.html", image: image, default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do

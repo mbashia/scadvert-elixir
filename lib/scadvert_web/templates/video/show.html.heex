@@ -15,13 +15,22 @@
     <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
           <div class = "h-44 overflow-hidden">
               <div style = "height:100%; width:385px ">
+              <%= if @video.video do %>
                 <video controls>
                   <source src={Scadvert.FileVideo.url({@video.video, @video}, signed: true)}
                   alt = "video"
 
                   type="video/mp4"/>
 
-                </video>              
+                </video> 
+                <%=else %> 
+                <div class = "h-44 overflow-hidden">
+                <img src={@default_image} alt="image_description">
+
+                
+                </div>
+                <%end %>
+                            
             </div>   
           </div>
      <div class="p-2">

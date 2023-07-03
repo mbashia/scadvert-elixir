@@ -1,5 +1,8 @@
-<h1 class = "text-3xl uppercase text-blue-400 mt-2  m-6" >Listing facilities</h1>
-<div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
+<div class="bg-gray-800 pt-3 ">
+      <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">LISTING FACILIITIES</h3>
+      </div>
+  </div><div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "New Facility", to: Routes.facility_path(@conn, :new) %></span>
 </div>
 
@@ -34,9 +37,13 @@
       </td>
 
       
-
-      <td  ><%= img_tag Scadvert.FacilityImage.url({facility.picture, facility}, signed: true), class: "h-[42px] w-[60px]"%></td>
-
+     
+      <td  >
+       <%= if facility.picture do %><%= img_tag Scadvert.FacilityImage.url({facility.picture, facility}, signed: true), class: "h-[42px] w-[60px]"%>
+    <%else %>
+      <img src={@default_image} class = "h-[42px] w-[60px] object-scale-down"  alt="image_description">
+      <%end %>
+      </td>
       <td class = "table_data">
             <div class = "flex flex-row   ">
 

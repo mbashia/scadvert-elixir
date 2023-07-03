@@ -1,6 +1,9 @@
 
-<h1 class = "text-3xl uppercase text-blue-400 mt-2  m-6" >Listing Videos</h1>
-<div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
+<div class="bg-gray-800 pt-3">
+      <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">LISTING VIDEOS</h3>
+      </div>
+  </div><div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "New Video", to: Routes.video_path(@conn, :new) %></span>
 </div>
 <div class = "overflow-x-auto">
@@ -35,13 +38,17 @@
 
 
       <td >
+      <%=if video.video do %>
       <video width="60" height="60" >
-  <source src={Scadvert.FileVideo.url({video.video, video}, signed: true)}
-  alt = "video"
+            <source src={Scadvert.FileVideo.url({video.video, video}, signed: true)}
+            alt = "video"
 
-  type="video/mp4"/>
+            type="video/mp4"/>
 
-</video>
+          </video>
+          <%= else %>
+       <img src={@default_image} class = "h-[42px] w-[60px] object-scale-down"  alt="image_description">
+      <%end %>
 </td>
 
       <td class = "table_data">

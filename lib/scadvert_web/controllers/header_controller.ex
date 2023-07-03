@@ -7,16 +7,19 @@ defmodule ScadvertWeb.HeaderController do
 
   plug :put_layout, "newlayout.html"
 
+  @default_image :"/images/phoenix.png"
+
   def index(conn, _params) do
     headers = Headers.list_headers_by_user_id(conn)
-    render(conn, "index.html", headers: headers)
+    default_image = "/images/phoenix.png"
+    render(conn, "index.html", headers: headers, default_image: default_image)
   end
 
   def new(conn, _params) do
     changeset = Headers.change_header(%Header{})
     codes = Functions.list_codes(conn)
 
-    render(conn, "new.html", changeset: changeset, codes: codes)
+    render(conn, "new.html", changeset: changeset, codes: codes, default_image: @default_image)
   end
 
   def create(conn, %{"header" => header_params}) do
@@ -36,7 +39,7 @@ defmodule ScadvertWeb.HeaderController do
 
   def show(conn, %{"id" => id}) do
     header = Headers.get_header!(id)
-    render(conn, "show.html", header: header)
+    render(conn, "show.html", header: header, default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do

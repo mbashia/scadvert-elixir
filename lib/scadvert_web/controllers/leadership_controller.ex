@@ -6,9 +6,10 @@ defmodule ScadvertWeb.LeadershipController do
   alias Scadvert.Functions
   plug :put_layout, "newlayout.html"
 
+  @default_image :"/images/phoenix.png"
   def index(conn, _params) do
     leaderships = Leaderships.list_leaderships_by_user_id(conn)
-    render(conn, "index.html", leaderships: leaderships)
+    render(conn, "index.html", leaderships: leaderships, default_image: @default_image)
   end
 
   def new(conn, _params) do
@@ -36,7 +37,7 @@ defmodule ScadvertWeb.LeadershipController do
 
   def show(conn, %{"id" => id}) do
     leadership = Leaderships.get_leadership!(id)
-    render(conn, "show.html", leadership: leadership)
+    render(conn, "show.html", leadership: leadership, default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do

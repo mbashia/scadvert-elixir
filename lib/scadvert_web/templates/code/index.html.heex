@@ -1,8 +1,8 @@
 <div class="bg-gray-800 pt-3">
-                        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-                            <h3 class="font-bold pl-2">LISTING CODES</h3>
-                        </div>
-                    </div>
+      <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white " >
+          <h3 class="font-bold pl-2">LISTING CODES</h3>
+      </div>
+  </div>
 <div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
 </div>
@@ -44,9 +44,11 @@
       <td  class = "table_data">
       
       <div style ="width: 42px; height: 42px;">
+      <%= if code.picture do %>
       <%= img_tag Scadvert.CodeImage.url({code.picture, code}, signed: true)%>
-
-
+      <%=else %>
+      <img src={@default_image} alt="image_description">
+      <%end %>
       </div>
 
       </td>

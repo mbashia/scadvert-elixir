@@ -9,12 +9,14 @@ defmodule ScadvertWeb.FacilityController do
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Functions
 
+  @default_image :"/images/phoenix.png"
+
   plug :put_layout, "newlayout.html"
 
   def index(conn, _params) do
     facilitys = Facilitys.list_facilitys_by_user_id(conn)
 
-    render(conn, "index.html", facilitys: facilitys)
+    render(conn, "index.html", facilitys: facilitys, default_image: @default_image)
   end
 
   def new(conn, _params) do
@@ -41,9 +43,7 @@ defmodule ScadvertWeb.FacilityController do
   def show(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
     codes = Functions.list_codes(conn)
-
-
-    render(conn, "show.html", facility: facility, codes: codes)
+    render(conn, "show.html", facility: facility, codes: codes, default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do

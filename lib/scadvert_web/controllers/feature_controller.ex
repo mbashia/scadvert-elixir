@@ -4,13 +4,14 @@ defmodule ScadvertWeb.FeatureController do
   alias Scadvert.Features
   alias Scadvert.Features.Feature
   alias Scadvert.Functions
+  @default_image  :"/images/phoenix.png"
 
 
   plug :put_layout, "newlayout.html"
 
   def index(conn, _params) do
     features = Features.list_features_by_user_id(conn)
-    render(conn, "index.html", features: features)
+    render(conn, "index.html", features: features, default_image: @default_image )
   end
 
   def new(conn, _params) do
@@ -37,7 +38,7 @@ defmodule ScadvertWeb.FeatureController do
 
   def show(conn, %{"id" => id}) do
     feature = Features.get_feature!(id)
-    render(conn, "show.html", feature: feature)
+    render(conn, "show.html", feature: feature, default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do

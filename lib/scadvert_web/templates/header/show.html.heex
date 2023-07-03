@@ -10,9 +10,18 @@
 <div class = " mt-6 absolute top-[200px] left-[400px]">
     <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
           <div class = "h-44 overflow-hidden">
+                   <%= if @header.picture do %>
               <div style = "height:100%; width:385px ">
-                  <%= img_tag Scadvert.HeaderImage.url({@header.picture, @header}, signed: true)%>
-              </div>   
+             
+                  <%= img_tag Scadvert.HeaderImage.url({@header.picture, @code}, signed: true) %>
+              </div> 
+              <%=else%>
+                <div class = "h-44 overflow-hidden">
+                <img src={@default_image} alt="image_description">
+
+                
+                </div>
+                <%end %>   
      </div>
      <div class="p-2">
         <ul>

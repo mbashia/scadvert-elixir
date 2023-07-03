@@ -6,10 +6,11 @@ defmodule ScadvertWeb.VideoController do
   alias Scadvert.Functions
 
   plug :put_layout, "newlayout.html"
+  @default_image :"/images/phoenix.png"
 
   def index(conn, _params) do
     videos = Videos.list_videos_by_user_id(conn)
-    render(conn, "index.html", videos: videos)
+    render(conn, "index.html", videos: videos, default_image: @default_image)
   end
 
   def new(conn, _params) do
@@ -36,7 +37,7 @@ defmodule ScadvertWeb.VideoController do
 
   def show(conn, %{"id" => id}) do
     video = Videos.get_video!(id)
-    render(conn, "show.html", video: video)
+    render(conn, "show.html", video: video, default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do

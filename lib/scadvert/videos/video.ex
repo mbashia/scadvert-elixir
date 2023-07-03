@@ -22,6 +22,6 @@ defmodule Scadvert.Videos.Video do
   def changeset(video, attrs) do
     video
     |> cast(attrs, [:name, :description, :code_id, :status, :video, :user_id])
-    |> validate_required([:name, :description, :code_id, :status, :video, :user_id])
+    |> validate_required([:name, :description, :code_id, :status,  :user_id])
   end
 end
