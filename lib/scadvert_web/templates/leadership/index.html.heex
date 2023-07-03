@@ -25,7 +25,15 @@
       <td  class = "table_data"><%= leadership.codes.name %></td>
       <td  class = "table_data"><%= leadership.name %></td>
       <td  class = "table_data"><%= leadership.description %></td>
-      <td  class = "table_data"><%= leadership.status %></td>
+      <td class = "table_data"> <%= if leadership.status == "true" do %>
+          <div class = "bg-green-400 p-1 rounded">Active</div>
+      <%else %>
+      <div class = "bg-red-600 p-1 rounded ">Inactive</div> 
+      <%end %>     
+      
+      
+      </td>
+
 
       <td ><%= img_tag Scadvert.LeadershipImage.url({leadership.picture, leadership}, signed: true), class: "h-[42px] w-[60px]"%></td>
 

@@ -24,7 +24,15 @@
       <td  class = "table_data"><%= video.codes.name %></td>
       <td  class = "table_data"><%= video.name %></td>
       <td  class = "table_data"><%= video.description %></td>
-      <td  class = "table_data"><%= video.status %></td>
+      <td class = "table_data"> <%= if video.status == "true" do %>
+          <div class = "bg-green-400 p-1 rounded">Active</div>
+      <%else %>
+      <div class = "bg-red-600 p-1 rounded ">Inactive</div> 
+      <%end %>     
+      
+      
+      </td>
+
 
       <td >
       <video width="60" height="60" >
