@@ -73,4 +73,6 @@ defmodule ScadvertWeb.UserSettingsController do
     |> assign(:email_changeset, Accounts.change_user_email(user))
     |> assign(:password_changeset, Accounts.change_user_password(user))
   end
+
+ 
 end

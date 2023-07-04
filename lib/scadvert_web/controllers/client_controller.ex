@@ -2,6 +2,8 @@ defmodule ScadvertWeb.ClientController do
   use ScadvertWeb, :controller
   alias Scadvert.Functions
   alias Scadvert.Accounts
+  alias Scadvert.Accounts.User
+  alias Scadvert.Users
   plug :put_layout, "newlayout.html"
 
 
@@ -50,6 +52,16 @@ def profile(conn,_params) do
   IO.inspect(user)
   render(conn, "profile.html", user: user)
 end
+
+def update_profile(conn,_params)do
+  user = Functions.get_user_by_id(conn)
+  changeset = Users.change_user(user)
+
+  render(conn, "profile.html", user: user, changeset: changeset)
+
+end
+
+
 
 # def delete(conn, %{"id" => id}) do
 #   user = Accounts.get_user!(id)

@@ -41,6 +41,7 @@ defmodule ScadvertWeb.LeadershipController do
   end
 
   def edit(conn, %{"id" => id}) do
+
     leadership = Leaderships.get_leadership!(id)
     codes = Functions.list_codes(conn)
     changeset = Leaderships.change_leadership(leadership)
