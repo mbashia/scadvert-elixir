@@ -17,7 +17,7 @@ defmodule Scadvert.Functions do
     user_id = conn.assigns.current_user.id
     Repo.all(from p in Code, where: p.user_id == ^user_id, select: {p.name, p.id})
   end
- 
+
   def get_user_by_id(conn) do
     user_id = conn.assigns.current_user.id
     Repo.one(from u in User, where: u.id == ^user_id, select: %{id: u.id,firstname: u.firstname, lastname: u.lastname, gender: u.gender, picture: u.picture, email: u.email, contact: u.phone_number})

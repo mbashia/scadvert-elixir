@@ -19,6 +19,7 @@ defmodule ScadvertWeb.ImageController do
     codes = Functions.list_codes(conn)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
+    IO.inspect( current_resource(conn))
   end
 
   def create(conn, %{"image" => image_params}) do

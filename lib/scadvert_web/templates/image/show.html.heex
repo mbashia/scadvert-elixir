@@ -13,7 +13,7 @@
                    <%= if @image.picture do %>
               <div style = "height:100%; width:385px ">
              
-                  <%= img_tag Scadvert.ImageImage.url({@image.picture, @feature}, signed: true) %>
+                  <%= img_tag Scadvert.ImageImage.url({@image.picture, @image}, signed: true) %>
               </div> 
               <%=else%>
                 <div class = "h-44 overflow-hidden">

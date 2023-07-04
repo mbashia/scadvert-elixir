@@ -4,6 +4,8 @@ defmodule ScadvertWeb.ClientController do
   alias Scadvert.Accounts
   alias Scadvert.Accounts.User
   alias Scadvert.Users
+
+
   plug :put_layout, "newlayout.html"
 
 
@@ -55,9 +57,9 @@ end
 
 def update_profile(conn,_params)do
   user = Functions.get_user_by_id(conn)
-  changeset = Users.change_user(user)
+  changeset = Users.change_user(%User{},user)
 
-  render(conn, "profile.html", user: user, changeset: changeset)
+  render(conn, "update_profile.html", changeset: changeset)
 
 end
 

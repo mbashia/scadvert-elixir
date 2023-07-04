@@ -116,6 +116,10 @@ defmodule Scadvert.Accounts do
     User.email_changeset(user, attrs)
   end
 
+  def change_user(user, attrs \\ %{}) do
+    User.change_user_changeset(user, attrs)
+  end
+
   @doc """
   Emulates that the email will change without actually changing
   it in the database.

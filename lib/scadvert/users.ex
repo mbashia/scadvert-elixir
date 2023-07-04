@@ -1,15 +1,14 @@
 defmodule Scadvert.Users do
+  import Ecto.Query, warn: false
+  alias Scadvert.Repo
 
 alias Scadvert.Accounts.User
-
 
 
   def change_user(%User{} = user, attrs \\ %{})do
     User.change_user_changeset(user,attrs)
 
   end
-  def change_feature(%Feature{} = feature, attrs \\ %{}) do
-    Feature.changeset(feature, attrs)
-  end
+
 
 end
