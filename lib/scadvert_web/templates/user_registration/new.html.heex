@@ -35,6 +35,11 @@
                         <%= email_input f, :email, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: "email" %>
                         <%= error_tag f, :email %>
                         </div>
+                          <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= select f, :gender,["MALE","FEMALE"], prompt: "gender", class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 text-gray-500" %>
+                        <%= error_tag f, :gender %>
+                        </div>
                         <div class="py-2 text-left">
                         <%= label f, :"" %>
                         <%= password_input f, :password, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
