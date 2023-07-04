@@ -1,10 +1,10 @@
 
-<.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+<%= form_for @changeset, Routes.user_registration_path(@conn, :create), [multipart: true], fn f -> %>
+                <%= if @changeset.action do %>
+                <div class="alert alert-danger">
+                    <p>Oops, something went wrong! Please check the errors below.</p>
+                </div>
+                <% end %>
 
   
       <section class="min-h-screen flex flex-col">
@@ -37,7 +37,7 @@
                         </div>
                           <div class="py-2 text-left">
                         <%= label f, :"" %>
-                        <%= select f, :gender,["MALE","FEMALE"], prompt: "gender", class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 text-gray-500" %>
+                        <%= select f, :gender,["MALE","FEMALE"], prompt: "gender", class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 text-gray-700" %>
                         <%= error_tag f, :gender %>
                         </div>
                         <div class="py-2 text-left">
@@ -45,6 +45,12 @@
                         <%= password_input f, :password, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
                         <%= error_tag f, :password %>
                         </div>
+                        <div class="py-2 text-left">
+                        <%= label f, :"" %>
+                        <%= file_input f, :picture, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
+                        <%= error_tag f, :picture %>
+                        </div>
+
                       
                         <div class="py-2">
                            
@@ -63,6 +69,4 @@
             </div>
         </section>
 
-</.form>
-
-   
+<%end %>

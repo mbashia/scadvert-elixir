@@ -1,5 +1,7 @@
 defmodule Scadvert.Accounts.User do
   use Ecto.Schema
+  use Waffle.Ecto.Schema
+
   import Ecto.Changeset
   alias Scadvert.Codes.Code
   alias Scadvert.Facilitys.Facility
@@ -17,8 +19,9 @@ defmodule Scadvert.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     field :phone_number, :integer
-    field :gender, :boolean, default: true
-    field :status, :string
+    field :gender, :string
+    field :status, :boolean, default: true
+    field :picture, Scadvert.UserImage.Type
 
 
     has_many :codes, Code
@@ -51,7 +54,7 @@ defmodule Scadvert.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :firstname, :lastname,:phone_number, :gender])
+    |> cast(attrs, [:email, :password, :firstname, :lastname,:phone_number, :gender, :status, :picture])
     |> validate_email()
     |> validate_password(opts)
     |>validate_required([:firstname, :lastname, :phone_number])

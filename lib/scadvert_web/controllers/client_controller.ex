@@ -44,6 +44,12 @@ user = Accounts.get_user!(id)
 
 
 end
+def profile(conn,_params) do
+
+  user = Functions.get_user_by_id(conn)
+  IO.inspect(user)
+  render(conn, "profile.html", user: user)
+end
 
 # def delete(conn, %{"id" => id}) do
 #   user = Accounts.get_user!(id)

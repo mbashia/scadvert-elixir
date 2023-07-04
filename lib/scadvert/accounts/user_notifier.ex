@@ -11,7 +11,7 @@ defmodule Scadvert.Accounts.UserNotifier do
       |> from({"Scadvert", "contact@example.com"})
       |> subject(subject)
       |> text_body(body)
-
+      IO.inspect(email)
     with {:ok, _metadata} <- Mailer.deliver(email) do
       {:ok, email}
     end
