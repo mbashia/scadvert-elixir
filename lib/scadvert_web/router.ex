@@ -28,11 +28,10 @@ defmodule ScadvertWeb.Router do
     resources "/leaderships", LeadershipController
     resources "/images", ImageController
     resources "/videos", VideoController
-    # get "/clients", ClientController, :index
     resources "/clients", ClientController
     get "/profile/" , ClientController, :profile
-    get  "/update_profile" , ClientController, :update_profile
-    # get "/", PageController, :index
+    # get  "/edit_profile/:id" , ClientController, :edit
+    # get "/user/:id/edit", ClientController, :edit
   end
 
   # Other scopes may use custom stacks.

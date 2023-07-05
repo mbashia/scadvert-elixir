@@ -4,6 +4,7 @@ defmodule ScadvertWeb.ImageController do
   alias Scadvert.Images
   alias Scadvert.Images.Image
   alias Scadvert.Functions
+  alias Scadvert.User_auth
 
   plug :put_layout, "newlayout.html"
   @default_image :"/images/phoenix.png"
@@ -19,7 +20,8 @@ defmodule ScadvertWeb.ImageController do
     codes = Functions.list_codes(conn)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
-    IO.inspect( current_resource(conn))
+    IO.inspect User_auth.fetch_current_user(conn)
+
   end
 
   def create(conn, %{"image" => image_params}) do

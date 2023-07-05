@@ -1,6 +1,5 @@
 defmodule Scadvert.Users do
   import Ecto.Query, warn: false
-  alias Scadvert.Repo
 
 alias Scadvert.Accounts.User
 

@@ -30,12 +30,13 @@ render(conn, "show.html", user: user)
 end
 
 def edit(conn, %{"id" => id}) do
+
   user = Accounts.get_user!(id)
-  changeset = Accounts.change_user_registration(user)
+  changeset = Users.change_user(user)
   render(conn, "edit.html", user: user, changeset: changeset)
 end
 def update(conn, %{"id" => id, "user" => user_params}) do
-user = Accounts.get_user!(id)
+  user = Accounts.get_user!(id)
 
   case Accounts.update_user(user, user_params) do
     {:ok, user} ->
@@ -48,20 +49,24 @@ user = Accounts.get_user!(id)
 
 
 end
+
 def profile(conn,_params) do
 
   user = Functions.get_user_by_id(conn)
-  IO.inspect(user)
+  IO.inspect(user.id)
   render(conn, "profile.html", user: user)
 end
 
-def update_profile(conn,_params)do
+def update_profile(conn,%{"id"=>id})do
   user = Functions.get_user_by_id(conn)
-  changeset = Users.change_user(%User{},user)
 
-  render(conn, "update_profile.html", changeset: changeset)
+  # changeset = Users.change_user(%User{},user)
+
+  render(conn, "update_profile.html")
 
 end
+
+
 
 
 

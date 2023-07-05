@@ -11,8 +11,8 @@
     <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
           <div class = "h-44 overflow-hidden">
               <div style = "height:100%; width:385px ">
-              
-                <img src="" alt="User image" class="img-class">
+                <%= img_tag Scadvert.UserImage.url({@user.picture, @user}, signed: true), class: "h-[100%] w-[100%]"%>
+
 
               </div>   
      </div>
