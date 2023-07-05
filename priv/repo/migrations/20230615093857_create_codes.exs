@@ -3,7 +3,7 @@ defmodule Scadvert.Repo.Migrations.CreateCodes do
 
   def change do
     create table(:codes) do
-      add :name, :integer
+      add :name, :bigint
       add :description, :text
       add :active, :string
       add :picture, :string
