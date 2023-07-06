@@ -66,6 +66,15 @@ def update_profile(conn,%{"id"=>id})do
 
 end
 
+# def deactivate(conn, %{"id" => id}) do
+#   user = Accounts.get_user!(id)
+#   {:ok, _feature} = Features.delete_feature(feature)
+
+#   conn
+#   |> put_flash(:info, "Feature deleted successfully.")
+#   |> redirect(to: Routes.feature_path(conn, :index))
+# end
+
 
 
 

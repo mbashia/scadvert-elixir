@@ -52,7 +52,8 @@ defmodule Scadvert.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:waffle, "~> 1.1.5"},
       {:waffle_ecto, "~> 0.0.11"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+      {:ex_fontawesome, "~> 0.5.1"}
     ]
   end
 
