@@ -9,7 +9,13 @@
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "Videotest", suffix: " · Phoenix Framework" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/jquery.min.js") }></script>
+
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/jquery.qrcode.js") }></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/qrcode.js") }></script>
+    
+
   </head>
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
         <header>
@@ -140,6 +146,8 @@
                    
                     
                         <%= @inner_content %>
+                        <script type="text/javascript" src={Routes.static_path(@conn, "/assets/script.js") }></script>
+
 
                     
                 </div>
