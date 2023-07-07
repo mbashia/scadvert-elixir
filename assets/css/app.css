@@ -131,3 +131,7 @@
 .checkbox_item{
   @apply h-5 w-5 text-blue-500
 }
+.tableheadings{
+  @apply w-[100%] border
+
+}

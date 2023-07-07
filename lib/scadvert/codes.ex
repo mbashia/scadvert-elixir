@@ -108,4 +108,8 @@ defmodule Scadvert.Codes do
     user_id = conn.assigns.current_user.id
     Repo.all(from c in Code, where: c.user_id == ^user_id)
   end
+
+  def list_codes_by_id(id) do
+    Repo.all(from c in Code, where: c.id == ^id)
+  end
 end
