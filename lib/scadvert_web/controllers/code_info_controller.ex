@@ -12,26 +12,16 @@ defmodule ScadvertWeb.CodeInfoController do
 
 
   def show(conn, %{"id" => id}) do
-    code = Codes.list_codes_by_id(id)
-    |>Repo.preload(:features)
-    |>Repo.preload(:facilitys)
-    |>Repo.preload(:images)
-    |>Repo.preload(:videos)
-    |>Repo.preload(:leaderships)
-    |>Repo.preload(:headers)
+    code = Codes.list_code_by_id(id)
+    IO.inspect(code)
+    
+    # features = Enum.map(code, fn code ->
+    #   code.features
+    # end)
+    features= code.features
+    IO.inspect(code)
+    IO.write("this are codes")
 
-    features = Enum.map(code, fn code ->
-      code.features
-    end)
-
-    IO.inspect(feature)
-
-
-
-
-
-
-
-    render(conn, "show.html", features: features)
+    render(conn, "show.html", features: features, code: code)
   end
 end

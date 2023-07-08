@@ -109,7 +109,13 @@ defmodule Scadvert.Codes do
     Repo.all(from c in Code, where: c.user_id == ^user_id)
   end
 
-  def list_codes_by_id(id) do
-    Repo.all(from c in Code, where: c.id == ^id)
+  def list_code_by_id(id) do
+    Repo.one(from c in Code, where: c.id == ^id)
+    |>Repo.preload(:features)
+    |>Repo.preload(:facilitys)
+    |>Repo.preload(:images)
+    |>Repo.preload(:videos)
+    |>Repo.preload(:leaderships)
+    |>Repo.preload(:headers)
   end
 end

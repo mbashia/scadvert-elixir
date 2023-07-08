@@ -15,6 +15,8 @@ defmodule ScadvertWeb.FacilityController do
 
   def index(conn, _params) do
     facilitys = Facilitys.list_facilitys_by_user_id(conn)
+    IO.write("facilitys start here")
+    IO.inspect (facilitys)
 
     render(conn, "index.html", facilitys: facilitys, default_image: @default_image)
   end

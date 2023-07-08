@@ -95,7 +95,7 @@
 }
 
 .table_data{
-  @apply py-2 px-4 border-b text-left;
+  @apply py-2 px-4 border-b text-left ;
 }
 .img{
   @apply h-10 w-10 overflow-hidden;

@@ -16,19 +16,19 @@
       <table class="items-center bg-transparent w-full border-collapse">
         <thead>
           <tr>
-            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0  overflow-wrap break-word  font-semibold text-left">
                            name
                         </th>
-            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0  overflow-wrap break-word  font-semibold text-left">
                           code
                         </th>
-            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0  overflow-wrap break-word  font-semibold text-left">
                          image
                         </th>
-            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0  overflow-wrap break-word  font-semibold text-left">
                           description
                         </th>
-            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+            <th class="px-6 border-b-2  bg-blueGray-50 text-blueGray-500 align-middle   border-black py-3 text-xs uppercase border-l-0 border-r-0   overflow-wrap break-word font-semibold text-left">
 				status
 			</th>
           </tr>
@@ -39,28 +39,27 @@
 
 
           <tr>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-              <%=feature.name %>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  overflow-wrap break-word  p-4 text-left text-blueGray-700 ">
+              <%=feature.name%>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-              <%=feature.code %>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  overflow-wrap break-word  p-4 ">
+            <%= @code.name %>
             </td>
-            <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-             <%=feature.picture %>
-
+            <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs  overflow-wrap break-word p-4">
+            <%= img_tag Scadvert.FeatureImage.url({feature.picture, feature}, signed: true), class: "h-[42px] w-[60px]"%>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  overflow-wrap break-word  p-4">
               <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
                 <%=feature.description %>
 
             </td>
-             <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+             <td class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs  p-4">
              <%=feature.status %>
 
             </td>
           </tr>
 
-          <%= end %>
+          <%end %>
         </tbody>
 
       </table>
