@@ -5,15 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "Videotest", suffix: " · Phoenix Framework" %>
+    <%= live_title_tag assigns[:page_title] || "Scadvert", suffix: " · Phoenix Framework" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
 
 
 <body class="bg-white font-sans leading-normal tracking-normal mt-12">
+          <div class ="mx-auto shadow">
 
-                       <%= @inner_content %>
+
+
+          <div class = "ml-[110px] flex justify-between w-[80%]">
+
+              <a href="#features" class = " ml-[40px] text-blue-400 hover:underline">Features</a>
+              <a href="#facilitys" class = " ml-[40px] text-blue-400 hover:underline">Facilitys</a>
+              <a href="#headers" class = " ml-[40px] text-blue-400 hover:underline">Headers</a>
+              <a href="#leaderships" class = " ml-[40px] text-blue-400 hover:underline">Leaderships</a>
+              <a href="#images" class = " ml-[40px] text-blue-400 hover:underline">Images</a>
+              <a href="#videos" class = " ml-[40px] text-blue-400 hover:underline">videos</a>
+
+          </div>
+
+                  <%= @inner_content %>
+          </div>
+
 
 
 

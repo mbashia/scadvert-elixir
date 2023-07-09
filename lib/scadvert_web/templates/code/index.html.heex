@@ -69,7 +69,7 @@
             <div class = "flex flex-row   ">
 
       <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
-            <span><%= link "Show", to: Routes.code_path(@conn, :show, code) %></span>
+            <span><%= link "Show", to: Routes.code_info_path(@conn, :show, code), target: "_blank"%></span>
     </div>
        <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
         <span><%= link "Edit", to: Routes.code_path(@conn, :edit, code) %></span>

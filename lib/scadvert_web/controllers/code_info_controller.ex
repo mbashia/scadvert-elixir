@@ -6,22 +6,22 @@ defmodule ScadvertWeb.CodeInfoController do
 
   alias Scadvert.Codes
   alias Scadvert.Repo
-  plug :put_layout, "newlayout.html"
+  plug :put_layout, "show_info.html"
 
 
 
 
   def show(conn, %{"id" => id}) do
     code = Codes.list_code_by_id(id)
-    IO.inspect(code)
-    
-    # features = Enum.map(code, fn code ->
-    #   code.features
-    # end)
     features= code.features
-    IO.inspect(code)
-    IO.write("this are codes")
+    videos = code.videos
+    headers =code.headers
+    leaderships = code.leaderships
+    images = code.images
+    facilitys= code.facilitys
 
-    render(conn, "show.html", features: features, code: code)
+    IO.inspect facilitys
+
+    render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images)
   end
 end
