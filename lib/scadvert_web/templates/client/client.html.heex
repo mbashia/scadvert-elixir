@@ -11,6 +11,8 @@
       <th class = "for_tables">lastname</th>
       <th class = "for_tables">phone number</th>
       <th class = "for_tables">email</th>
+      <th class = "for_tables">image</th>
+
       <th class = "for_tables">status</th>
       <th class = "for_tables">Actions</th>
 
@@ -26,6 +28,8 @@
       <td class = "table_data"><%= user.lastname %></td>
       <td class = "table_data"><%= user.phone_number %></td>
       <td class = "table_data"><%= user.email  %></td>
+       <td class = "table_data"><%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "h-[42px] w-[60px]"%></td>
+
       <td class = "table_data"><%=  if user.status == true do %>
       
        <img src={"/images/tick.png"} alt="image_description" class = "h-4 w-4">
@@ -50,7 +54,7 @@
         <span><%= link "Edit", to: Routes.client_path(@conn, :edit, user) %></span>
         </div>
          <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
-       <span><%= link "Deactivate", to:  Routes.client_path(@conn, :deactivate, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
+       <span><%= link "delete", to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>
       </div>
       

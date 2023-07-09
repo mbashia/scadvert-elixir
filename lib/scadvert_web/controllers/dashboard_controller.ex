@@ -1,7 +1,6 @@
 defmodule ScadvertWeb.DashboardController do
     use ScadvertWeb, :controller
     alias Scadvert.Functions
-    alias Scadvert.Repo
     alias Scadvert.Codes
     alias Scadvert.Facilitys
     alias Scadvert.Headers
