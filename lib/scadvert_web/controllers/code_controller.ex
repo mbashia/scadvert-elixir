@@ -60,6 +60,10 @@ defmodule ScadvertWeb.CodeController do
 
   def delete(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
+    # IO.inspect code.videos
+
+    # if code.videos == [] do
+
     {:ok, _code} = Codes.delete_code(code)
 
     conn

@@ -52,7 +52,9 @@
           
           <div id={"datalink-#{code.name}"} class="datalink" width="100px"></div>
 
-          <h5 style="background: #efe9e9;padding: 10px;border: 2px solid #bdbbbb;">https://gs1kenya.org/01/<%=code.name%></h5>
+          <h5 style="background: #efe9e9;padding: 10px;border: 2px solid #bdbbbb;">
+          <a>localhost:4000/code_information/01/<%=code.name%></a>
+          </h5>
 
 </div>
        
@@ -62,7 +64,7 @@
             <div class = "flex flex-row   ">
 
       <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
-            <span><%= link "Show", to: Routes.code_info_path(@conn, :show, code), target: "_blank"%></span>
+            <span><%= link "Show", to: Routes.code_info_path(@conn, :show, code.name), target: "_blank"%></span>
     </div>
        <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
         <span><%= link "Edit", to: Routes.code_path(@conn, :edit, code) %></span>

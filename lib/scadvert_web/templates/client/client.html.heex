@@ -1,5 +1,6 @@
-<h1 class = "headings" >Listing users</h1>
-
+<div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">LISTING USERS</h3>
+      </div>
 <div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "back", to: Routes.client_path(@conn, :index) %></span>
 </div>
@@ -59,7 +60,7 @@
       </div>
       <%=else %>
       <div class = "p-2 inline-block bg-green-400 rounded mr-2 w-[90px]">       
-       <span><%= link "activate", to:  Routes.client_path(@conn, :delete, user), data: [confirm: "activate user?"] %></span>
+       <span><%= link "activate", to:  Routes.client_path(@conn, :delete, user),  method: :delete,data: [confirm: "activate user?"] %></span>
       </div>
       <%end %>
       </div>

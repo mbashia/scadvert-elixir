@@ -20,6 +20,7 @@
   </head>
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
         <header>
+       
             <!--Nav-->
             <nav class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
 
@@ -73,15 +74,17 @@
             <div class="flex flex-col md:flex-row ">
             
 
-            <div class="bg-gray-800 overflow-auto shadow-xl  h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-52   ">
+            <div class="bg-gray-800 overflow-auto shadow-xl  h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48   ">
                
                     
                     
-                    <div class =" hidden md:contents ">
-                     <div class = "ml-8  h-[100px] w-[100px]"> 
-                        <%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "  sm:object-cover md:h-[100%] md:w-[100%]  rounded-full"%>
-                        
-                        </div>
+                   
+                    <div class=" md:w-48 h-screen content-center md:content-start text-left justify-between overflow-y-auto ">
+                         <div class =" hidden md:contents ">
+                                <div class = "ml-8  h-[100px] w-[100px]"> 
+                                <%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "  sm:object-cover md:h-[100%] md:w-[100%]  rounded-full"%>
+                                
+                                </div>
                 
                         <div >
                             <div class = "flex text-gray-400 pl-[28px]">
@@ -91,12 +94,12 @@
                             </div>
                             <div class = "text-gray-400 pl-[16px]">
                                     <%=user.email %>
-                            </div></div>
-                    
+                            </div>
                         </div>
+                    
+                    </div>
                        
-                        <div class="  md:w-48  h-screen  content-center md:content-start text-left justify-between  ">
-                        <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left overflow-y-auto">
+                            <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left ">
                             <li class="mr-3 flex-1">
                                 <span class=" mt-4 block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                 
@@ -162,15 +165,17 @@
                          </ul> 
                     
                        
-                </div>
+                        </div>
                         
 
 
                 </div>
 
                 <div class="main-content flex-1  bg-white mt-12 md:mt-2 pb-24 md:pb-5">
-                   
-                    
+                   <main class = "container">
+                    <p class="alert alert-info " role="alert"><%= get_flash(@conn, :info) %></p>
+                    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+                    </main>
                         <%= @inner_content %>
                         <script type="text/javascript" src={Routes.static_path(@conn, "/assets/script.js") }></script>
 

@@ -109,8 +109,8 @@ defmodule Scadvert.Codes do
     Repo.all(from c in Code, where: c.user_id == ^user_id)
   end
 
-  def list_code_by_id(id) do
-    Repo.one(from c in Code, where: c.id == ^id)
+  def list_code_by_name(id) do
+    Repo.one(from c in Code, where: c.name == ^id)
     |>Repo.preload(:features)
     |>Repo.preload(:facilitys)
     |>Repo.preload(:images)

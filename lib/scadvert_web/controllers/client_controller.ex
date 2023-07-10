@@ -2,7 +2,7 @@ defmodule ScadvertWeb.ClientController do
   use ScadvertWeb, :controller
   alias Scadvert.Functions
   alias Scadvert.Accounts
-  alias Scadvert.Accounts.User
+  # alias Scadvert.Accounts.User
   alias Scadvert.Users
 
 
@@ -58,14 +58,14 @@ def profile(conn,_params) do
   render(conn, "profile.html", user: user)
 end
 
-def update_profile(conn,%{"id"=>id})do
-  user = Functions.get_user_by_id(conn)
+# def update_profile(conn,%{"id"=>id})do
+#   user = Functions.get_user_by_id(conn)
 
-  # changeset = Users.change_user(%User{},user)
+#   # changeset = Users.change_user(%User{},user)
 
-  render(conn, "update_profile.html")
+#   render(conn, "update_profile.html")
 
-end
+# end
 
   def delete(conn,  %{"id" => id}) do
     user = Accounts.get_user!(id)
@@ -80,10 +80,11 @@ end
         conn
         |> put_flash(:info, "User deactivated successfully")
         |> redirect(to: Routes.client_path(conn, :index))
-        {:error, changeset} ->
+        {:error,changeset} ->
         conn
         |> put_flash(:error, "Failed to deactivate user")
         |> redirect(to: Routes.client_path(conn, :index))
+
 
       end
       user.status == false ->
