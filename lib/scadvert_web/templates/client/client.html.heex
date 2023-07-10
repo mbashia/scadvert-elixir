@@ -53,9 +53,15 @@
          <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
         <span><%= link "Edit", to: Routes.client_path(@conn, :edit, user) %></span>
         </div>
-         <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
-       <span><%= link "delete", to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <%= if user.status == true do %>
+         <div class = "p-2 inline-block bg-red-600 rounded mr-2 w-[90px]">       
+       <span><%= link "deactivate", to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>
+      <%=else %>
+      <div class = "p-2 inline-block bg-green-400 rounded mr-2 w-[90px]">       
+       <span><%= link "activate", to:  Routes.client_path(@conn, :delete, user), data: [confirm: "activate user?"] %></span>
+      </div>
+      <%end %>
       </div>
       
 

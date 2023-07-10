@@ -15,9 +15,8 @@
       <th class = "for_tables">Description</th>
       <th class = "for_tables">status</th>
       <th class = "for_tables">type</th>
-      <th class = "for_tables">picture
-      
-      </th>
+      <th class = "for_tables">qrcode</th>
+
       <th class = "for_tables">Actions</th>
 
 
@@ -41,21 +40,13 @@
       <td class = "table_data"> <%= code.type  %></td>
 
 
-      <td  class = "table_data">
-      
-      <div style ="width: 42px; height: 42px;">
-      <%= if code.picture do %>
-      <%= img_tag Scadvert.CodeImage.url({code.picture, code}, signed: true)%>
-      <%=else %>
-      <img src={@default_image} alt="image_description">
-      <%end %>
-      </div>
-
-      </td>
+     
         
+<td style = "width:150px; height:100px;">
+<div >
 
-<div class="col-md-12">
-        <hr style="border: 1px solid;">
+
+ <hr style="border: 1px solid;">
           <h4>Gs1 Data link</h4>
 
           
@@ -63,7 +54,9 @@
 
           <h5 style="background: #efe9e9;padding: 10px;border: 2px solid #bdbbbb;">https://gs1kenya.org/01/<%=code.name%></h5>
 
-                            </div>
+</div>
+       
+                  </td>          
       
       <td class = "table_data">
             <div class = "flex flex-row   ">

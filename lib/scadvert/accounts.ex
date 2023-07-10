@@ -70,6 +70,12 @@ defmodule Scadvert.Accounts do
     |>User.change_user_changeset(attrs)
     |>Repo.update()
   end
+  def activate_user(user,attrs)do
+    user
+    |>User.change_user_changeset(attrs)
+    |>Repo.update()
+
+  end
 
   @doc """
   Registers a user.

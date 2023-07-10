@@ -62,8 +62,8 @@ defmodule Scadvert.Accounts.User do
 
   def change_user_changeset(user,attrs)do
     user
-    |> cast(attrs, [ :firstname, :lastname,:phone_number,:picture,:email, :gender])
-    |> validate_required([:firstname, :lastname, :phone_number, :picture, :email, :gender])
+    |> cast(attrs, [ :firstname, :lastname,:phone_number,:picture,:email, :gender, :status])
+    |> validate_required([:firstname, :lastname, :phone_number, :picture, :email, :gender, :status])
   end
 
   defp validate_email(changeset) do
