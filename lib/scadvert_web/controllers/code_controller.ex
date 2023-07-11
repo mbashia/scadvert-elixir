@@ -60,14 +60,19 @@ defmodule ScadvertWeb.CodeController do
 
   def delete(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
-    # IO.inspect code.videos
 
-    # if code.videos == [] do
-
+    if code.videos && code.features && code.leaderships && code.headers && code.images && code.facilitys == [] do
     {:ok, _code} = Codes.delete_code(code)
 
     conn
     |> put_flash(:info, "Code deleted successfully.")
     |> redirect(to: Routes.code_path(conn, :index))
+
+    else
+
+      conn
+      |>put_flash(:error, "cannot delete code ")
+      |> redirect(to: Routes.code_path(conn, :index))
+    end
   end
 end

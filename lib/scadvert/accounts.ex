@@ -39,17 +39,26 @@ defmodule Scadvert.Accounts do
       nil
 
   """
+  #  def get_user_by_email_and_password(email, password)
+  #     when is_binary(email) and is_binary(password) do
+  #   user = Repo.get_by(User, email: email)
+  #   if User.valid_password?(user, password), do: user
+  # end
+
   def get_user_by_email_and_password(email, password)
       when is_binary(email) and is_binary(password) do
     user = Repo.get_by(User, email: email)
-
+    
     cond do
-      user && User.valid_password?(user, password) && user.status == true
+      user && User.valid_password?(user, password) && user.status == true ->
+
+
       {:ok, user}
 
       user ->
-        {:error,}
-
+        {:error}
+      true->
+        {:error}
     end
 
   end

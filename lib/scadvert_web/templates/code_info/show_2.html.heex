@@ -516,3 +516,19 @@
 </div>
 
 </section>
+
+def search(conn, %{"search" => search_params}) do
+    query = from(f in Feed, where: fragment("? ILIKE ?", f.author, ^"%#{search_params}%") or fragment("? ILIKE ?", f.title, ^"%#{search_params}%"))
+    feeds = Repo.all(query)
+
+    render(conn, "index.html", feeds: feeds, search: search_params)
+  end
+def search_me(params) do
+  query = from(f in Feed,
+             where: fragment("? LIKE ?", f.author, ^params) or fragment("? LIKE ?", f.title, ^params))
+
+
+  feeds = Repo.all(query)
+
+
+end

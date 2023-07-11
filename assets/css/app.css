@@ -35,7 +35,7 @@
 .invalid-feedback {
   color: #a94442;
   display: block;
-  margin: -1rem 0 2rem;
+  margin: 7px;
 }
 
 /* LiveView specific classes for your customization */
@@ -95,7 +95,7 @@
 }
 
 .table_data{
-  @apply py-2 px-4 border-b text-left ;
+  @apply py-2 px-4 border-b border-white text-left border whitespace-normal break-words ;
 }
 .img{
   @apply h-10 w-10 overflow-hidden;

@@ -37,7 +37,17 @@ defmodule Scadvert.Codes do
       ** (Ecto.NoResultsError)
 
   """
-  def get_code!(id), do: Repo.get!(Code, id)
+  # def get_code!(id), do: Repo.get!(Code, id)
+
+  def get_code!(id) do
+    Repo.get!(Code, id)
+    |> Repo.preload(:features)
+    |>Repo.preload(:facilitys)
+    |>Repo.preload(:images)
+    |>Repo.preload(:videos)
+    |>Repo.preload(:leaderships)
+    |>Repo.preload(:headers)
+  end
 
   @doc """
   Creates a code.

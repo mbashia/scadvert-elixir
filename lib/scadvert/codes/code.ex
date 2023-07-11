@@ -31,8 +31,9 @@ defmodule Scadvert.Codes.Code do
   def changeset(code, attrs) do
     code
     |> cast(attrs, [:active, :description, :name, :picture, :type, :user_id])
-    # |> cast(attrs, [:name, :description, :active])
 
     |> validate_required([:name, :description, :active,  :type, :user_id])
+    |> validate_length(:description,  max: 200, message: "Description must be below 200 characters")
+
   end
 end

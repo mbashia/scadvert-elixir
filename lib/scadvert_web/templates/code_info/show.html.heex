@@ -1,13 +1,13 @@
 
-<div class="m-[40px] shadow-lg">
-            <div class = "m-8 text-2xl font-semibold text-blue-500">CODE:<%= @code.name%></div>
+<div class="  flex flex-col p-6">
+            <div class = " text-2xl font-semibold text-blue-500">CODE:<%= @code.name%></div>
 
 
-            <div class ="m-8  h-[350px] w-[350px%] ">
+            <div class ="  h-[350px] w-[350px] ">
             <h2 class = " mt-6 text-left text-2xl font-semibold text-blue-500">VIDEOS</h2>
 
                 
-                    <div class = "inline-block m-6 ">
+                    <div class = "h-[350px] w-[350px] inline-block  ">
                     <video width = "350" , height = "350" controls >
                         <source src={Scadvert.FileVideo.url({@videos.video, @videos}, signed: true)}
                         alt = "video"
@@ -24,11 +24,11 @@
             </div>
 
 
-            <h2 class = " m-8 text-left text-2xl font-semibold text-blue-500">HEADERS</h2>
+            <h2 class = "   mt-6 text-left text-2xl font-semibold text-blue-500">HEADERS</h2>
 
 
-            <div class=" relative m-8 h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true), class: "h-full w-full"%>
+            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <%= img_tag Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true), class: "h-full object-cover w-full"%>
                     <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
                     <span >NAME: <%= @headers.name %></span>
                     <p>DESCRIPTION:<%= @headers.description %> </p>
@@ -36,11 +36,11 @@
                     </div>
             </div>
 
-            <h2 class = " m-8 text-left text-2xl font-semibold text-blue-500">FEATURES</h2>
+            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">FEATURES</h2>
 
 
-            <div class=" relative m-8 h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@features.picture, @features}, signed: true), class: "h-full w-full"%>
+            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <%= img_tag Scadvert.HeaderImage.url({@features.picture, @features}, signed: true), class: "h-full w-full object-cover"%>
                     <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
                     <span >NAME: <%= @features.name %></span>
                     <p>DESCRIPTION:<%= @features.description %> </p>
@@ -48,11 +48,11 @@
                     </div>
             </div>
 
-            <h2 class = " m-8 text-left text-2xl font-semibold text-blue-500">FACILITIES</h2>
+            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">FACILITIES</h2>
 
 
-            <div class=" relative m-8 h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@facilitys.picture, @facilitys}, signed: true), class: "h-full w-full"%>
+            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <%= img_tag Scadvert.HeaderImage.url({@facilitys.picture, @facilitys}, signed: true), class: "h-full w-full object-cover"%>
                     <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
                     <span >NAME: <%= @facilitys.name %></span>
                     <p>DESCRIPTION:<%= @facilitys.description %> </p>
@@ -60,10 +60,10 @@
                     </div>
             </div>
 
-            <h2 class = " m-8 text-left text-2xl font-semibold text-blue-500">HISTORY</h2>
+            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">HISTORY</h2>
 
-            <div class=" relative m-8 h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true), class: "h-full w-full"%>
+            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <%= img_tag Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true), class: "h-full w-full object-cover"%>
                     <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
                     <span >NAME: <%= @leaderships.name %></span>
                     <p>DESCRIPTION:<%= @leaderships.description %> </p>
@@ -72,10 +72,10 @@
             </div>
 
 
-            <h2 class = " m-8 text-left text-2xl font-semibold text-blue-500">IMAGES</h2>
+            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">IMAGES</h2>
 
-            <div class=" relative m-8 h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@images.picture, @images}, signed: true), class: "h-full w-full"%>
+            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <%= img_tag Scadvert.HeaderImage.url({@images.picture, @images}, signed: true), class: "h-full w-full object-cover"%>
                     <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
                     <span >NAME: <%= @images.name %></span>
                     <p>DESCRIPTION:<%= @images.description %> </p>
