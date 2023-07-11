@@ -30,7 +30,6 @@ defmodule ScadvertWeb.DashboardController do
     videos = Videos.list_videos()
     leaderships = Leaderships.list_leaderships()
     images = Images.list_images()
-    IO.inspect(users)
     render(conn, "dashboard.html", facilitys: facilitys, codes: codes,features: features, headers: headers, images: images, videos: videos, leaderships: leaderships, users: users)
 
     else

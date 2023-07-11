@@ -13,13 +13,12 @@ defmodule ScadvertWeb.CodeInfoController do
 
   def show(conn, %{"id" => id}) do
     code = Codes.list_code_by_name(id)
-    features= code.features
+    features= List.first(code.features)
     videos = List.first(code.videos)
-    IO.inspect(videos)
-    headers =code.headers
-    leaderships = code.leaderships
-    images = code.images
-    facilitys= code.facilitys
+    headers =List.first(code.headers)
+    leaderships = List.first(code.leaderships)
+    images = List.first(code.images)
+    facilitys= List.first(code.facilitys)
 
     IO.inspect facilitys
 

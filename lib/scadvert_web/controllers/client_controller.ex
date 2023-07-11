@@ -80,7 +80,7 @@ end
         conn
         |> put_flash(:info, "User deactivated successfully")
         |> redirect(to: Routes.client_path(conn, :index))
-        {:error,changeset} ->
+        {:error,_changeset} ->
         conn
         |> put_flash(:error, "Failed to deactivate user")
         |> redirect(to: Routes.client_path(conn, :index))
@@ -97,7 +97,7 @@ end
         conn
         |> put_flash(:info, "User activated successfully")
         |> redirect(to: Routes.client_path(conn, :index))
-        {:error, changeset} ->
+        {:error, _changeset} ->
         conn
         |> put_flash(:error, "Failed to activate user:")
         |> redirect(to: Routes.client_path(conn, :index))
