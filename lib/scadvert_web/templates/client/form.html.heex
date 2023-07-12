@@ -35,6 +35,17 @@
                         <%= text_input f, :lastname, required: true, class: "input_item" %>
                         <%= error_tag f, :lastname %>
                         </div>
+                        <%=if @conn.assigns.current_user.email in ["john@gmail.com"] do %>
+                         <div class="md:col-span-3">
+                        <%= label f, :phonenumber, class: "label_item" %>
+                        <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" %>
+                        <%= error_tag f, :phone_number %>
+                        </div>
+                        <div class="md:col-span-3">
+                        <%= label f, :email, class: "label_item" %>
+                        <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed "%>
+                        <%= error_tag f, :email %>
+                        <%else %>
                          <div class="md:col-span-3">
                         <%= label f, :phonenumber, class: "label_item" %>
                         <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" , readonly: true%>
@@ -45,6 +56,7 @@
                         <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed ", readonly: true%>
                         <%= error_tag f, :email %>
                         </div>
+                        <%end %>
                         <div class =" md:col-span-3">
                         <%= label f, :gender %>
                         <%= select f, :gender,["MALE","FEMALE"], prompt: "gender", class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 text-gray-700" %>

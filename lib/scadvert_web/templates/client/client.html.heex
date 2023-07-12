@@ -25,7 +25,7 @@
   <tbody>
 <%= for user <- @users do  %>
     <tr>
-      <td class = "table_data"><%= user.firstname %></td>
+      <td class = "table_data" ><%= user.firstname %></td>
       <td class = "table_data"><%= user.lastname %></td>
       <td class = "table_data"><%= user.phone_number %></td>
       <td class = "table_data"><%= user.email  %></td>
@@ -55,7 +55,7 @@
         <span><%= link "Edit", to: Routes.client_path(@conn, :edit, user) %></span>
         </div>
         <%= if user.status == true do %>
-         <div class = "p-2 inline-block bg-red-600 rounded mr-2 w-[90px]">       
+         <div class = " inline-block bg-red-600 rounded mr-2 w-[90px]">       
        <span><%= link "deactivate", to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>
       <%=else %>

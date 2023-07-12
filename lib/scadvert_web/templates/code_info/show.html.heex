@@ -8,6 +8,7 @@
 
                 
                     <div class = "h-[350px] w-[350px] inline-block  ">
+                    <%= if (@videos) do %>
                     <video width = "350" , height = "350" controls >
                         <source src={Scadvert.FileVideo.url({@videos.video, @videos}, signed: true)}
                         alt = "video"
@@ -15,8 +16,16 @@
                         type="video/mp4"/>
 
                     </video>
-                    
-                    
+                    <%=else %>
+                <div class = "h-[350px] w-[350px] inline-block border-6 ">
+                <div class = "mt-12 ml-12" >
+                <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+
+                <p class = "text-blue-500"> no video attached to this code</p>
+                </div>
+              
+                </div>
+                    <%end %>
                     </div>
 
                     
@@ -26,6 +35,7 @@
 
             <h2 class = "   mt-6 text-left text-2xl font-semibold text-blue-500">HEADERS</h2>
 
+        <%=if @headers do %>
 
             <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <%= img_tag Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true), class: "h-full object-cover w-full"%>
@@ -34,12 +44,27 @@
                     <p>DESCRIPTION:<%= @headers.description %> </p>
                     
                     </div>
+
+                    
             </div>
+                <%= else%>
+                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
+                        <div class = "mt-12 ml-12" >
+                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+
+                        <p class = "text-blue-500"> no header attached to this code</p>
+                        </div>
+              
+                        </div>
+                    <%end %>
+
 
             <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">FEATURES</h2>
+              <%=if @headers do %>
 
 
             <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
                     <%= img_tag Scadvert.HeaderImage.url({@features.picture, @features}, signed: true), class: "h-full w-full object-cover"%>
                     <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
                     <span >NAME: <%= @features.name %></span>
@@ -47,9 +72,20 @@
                     
                     </div>
             </div>
+             <%= else%>
+                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
+                        <div class = "mt-12 ml-12" >
+                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+
+                        <p class = "text-blue-500"> no feature attached to this code</p>
+                        </div>
+              
+                        </div>
+                    <%end %>
 
             <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">FACILITIES</h2>
 
+                      <%=if @facilitys do %>
 
             <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <%= img_tag Scadvert.HeaderImage.url({@facilitys.picture, @facilitys}, signed: true), class: "h-full w-full object-cover"%>
@@ -59,8 +95,19 @@
                     
                     </div>
             </div>
+            <%= else%>
+                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
+                        <div class = "mt-12 ml-12" >
+                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+
+                        <p class = "text-blue-500"> no facility attached to this code</p>
+                        </div>
+              
+                        </div>
+                    <%end %>
 
             <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">HISTORY</h2>
+                      <%=if @leaderships do %>
 
             <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <%= img_tag Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true), class: "h-full w-full object-cover"%>
@@ -70,10 +117,20 @@
                     
                     </div>
             </div>
+             <%= else%>
+                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
+                        <div class = "mt-12 ml-12" >
+                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+
+                        <p class = "text-blue-500"> no facility attached to this code</p>
+                        </div>
+              
+                        </div>
+                    <%end %>
 
 
             <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">IMAGES</h2>
-
+                <%=if @images do%>
             <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <%= img_tag Scadvert.HeaderImage.url({@images.picture, @images}, signed: true), class: "h-full w-full object-cover"%>
                     <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
@@ -82,6 +139,16 @@
                     
                     </div>
             </div>
+             <%= else%>
+                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
+                        <div class = "mt-12 ml-12" >
+                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+
+                        <p class = "text-blue-500"> no facility attached to this code</p>
+                        </div>
+              
+                        </div>
+                    <%end %>
 
 
 </div>
