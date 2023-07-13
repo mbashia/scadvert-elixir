@@ -17,11 +17,10 @@ defmodule Scadvert.Images do
       [%Image{}, ...]
 
   """
-  def list_images do
+  def count_images do
     Repo.all(Image)
     |> Enum.count()
 
-    # |> Repo.preload(:codes)
   end
   def list_all_images do
     Repo.all(Image)

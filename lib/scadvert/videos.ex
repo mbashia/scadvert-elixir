@@ -17,7 +17,7 @@ defmodule Scadvert.Videos do
       [%Video{}, ...]
 
   """
-  def list_videos do
+  def count_videos do
     Repo.all(Video)
     |> Enum.count()
 

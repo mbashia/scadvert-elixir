@@ -17,11 +17,10 @@ defmodule Scadvert.Features do
       [%Feature{}, ...]
 
   """
-  def list_features do
+  def count_features do
     Repo.all(Feature)
     |> Enum.count()
 
-    # |> Repo.preload(:codes)
   end
 
   def list_all_features do

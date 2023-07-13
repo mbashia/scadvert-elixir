@@ -17,11 +17,10 @@ defmodule Scadvert.Leaderships do
       [%Leadership{}, ...]
 
   """
-  def list_leaderships do
+  def count_leaderships do
     Repo.all(Leadership)
     |> Enum.count()
 
-    # |> Repo.preload(:codes)
   end
   def list_all_leaderships do
     Repo.all(Leadership)

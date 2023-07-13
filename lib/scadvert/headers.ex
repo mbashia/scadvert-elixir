@@ -17,11 +17,10 @@ defmodule Scadvert.Headers do
       [%Header{}, ...]
 
   """
-  def list_headers do
+  def count_headers do
     Repo.all(Header)
     |> Enum.count()
 
-    # |> Repo.preload(:codes)
   end
 
   def list_all_headers do

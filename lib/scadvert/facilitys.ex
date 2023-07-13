@@ -17,11 +17,10 @@ defmodule Scadvert.Facilitys do
       [%Facility{}, ...]
 
   """
-  def list_facilitys do
+  def count_facilitys do
     Repo.all(Facility)
     |> Enum.count()
 
-    # |> Repo.preload(:codes)
   end
 
   def list_all_facilitys do
