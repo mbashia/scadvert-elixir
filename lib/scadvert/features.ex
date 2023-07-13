@@ -24,6 +24,12 @@ defmodule Scadvert.Features do
     # |> Repo.preload(:codes)
   end
 
+  def list_all_features do
+    Repo.all(Features)
+    |> Repo.preload(:codes)
+
+  end
+
   @doc """
   Gets a single feature.
 

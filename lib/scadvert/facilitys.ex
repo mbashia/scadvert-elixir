@@ -24,6 +24,12 @@ defmodule Scadvert.Facilitys do
     # |> Repo.preload(:codes)
   end
 
+  def list_all_facilitys do
+    Repo.all(Facility)
+    |> Repo.preload(:codes)
+
+  end
+
   @spec get_facility!(any) :: nil | [%{optional(atom) => any}] | %{optional(atom) => any}
   @doc """
   Gets a single facility.

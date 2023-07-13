@@ -24,6 +24,12 @@ defmodule Scadvert.Headers do
     # |> Repo.preload(:codes)
   end
 
+  def list_all_headers do
+    Repo.all(Header)
+    |> Repo.preload(:codes)
+
+  end
+
   @doc """
   Gets a single header.
 

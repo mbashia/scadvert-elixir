@@ -9,9 +9,17 @@ defmodule ScadvertWeb.CodeController do
 
 
   def index(conn, _params) do
+    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+      codes = Codes.list_all_codes()
+      render(conn, "index.html", codes: codes, default_image: @default_image)
+
+    else
+
     codes = Codes.list_codes_by_user_id(conn)
-    # IO.inspect(codes)
     render(conn, "index.html", codes: codes, default_image: @default_image)
+
+    end
+    # IO.inspect(codes)
   end
 
   def new(conn, _params) do

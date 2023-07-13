@@ -10,8 +10,14 @@ defmodule ScadvertWeb.FeatureController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, _params) do
+    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    features = Features.list_all_features()
+    render(conn, "index.html", features: features, default_image: @default_image )
+    else
+
     features = Features.list_features_by_user_id(conn)
     render(conn, "index.html", features: features, default_image: @default_image )
+    end
   end
 
   def new(conn, _params) do

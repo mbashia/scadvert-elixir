@@ -23,6 +23,11 @@ defmodule Scadvert.Leaderships do
 
     # |> Repo.preload(:codes)
   end
+  def list_all_leaderships do
+    Repo.all(Leadership)
+    |> Repo.preload(:codes)
+
+  end
 
   @doc """
   Gets a single leadership.

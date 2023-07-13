@@ -23,6 +23,11 @@ defmodule Scadvert.Codes do
 
   end
 
+  def list_all_codes do
+    Repo.all(Code)
+  end
+
+
   @doc """
   Gets a single code.
 

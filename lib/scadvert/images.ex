@@ -23,7 +23,11 @@ defmodule Scadvert.Images do
 
     # |> Repo.preload(:codes)
   end
+  def list_all_images do
+    Repo.all(Image)
+    |> Repo.preload(:codes)
 
+  end
   @doc """
   Gets a single image.
 

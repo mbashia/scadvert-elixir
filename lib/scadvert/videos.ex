@@ -23,6 +23,11 @@ defmodule Scadvert.Videos do
 
     # |> Repo.preload(:codes)
   end
+  def list_all_videos do
+    Repo.all(Video)
+    |> Repo.preload(:codes)
+
+  end
 
   @doc """
   Gets a single video.

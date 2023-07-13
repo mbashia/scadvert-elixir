@@ -14,11 +14,14 @@ defmodule ScadvertWeb.FacilityController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, _params) do
+    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+      facilitys = Facilitys.list_all_facilitys()
+      render(conn, "index.html", facilitys: facilitys, default_image: @default_image)
+    else
     facilitys = Facilitys.list_facilitys_by_user_id(conn)
-    IO.write("facilitys start here")
-    IO.inspect (facilitys)
-
     render(conn, "index.html", facilitys: facilitys, default_image: @default_image)
+    end
+
   end
 
   def new(conn, _params) do

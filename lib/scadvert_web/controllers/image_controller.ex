@@ -10,8 +10,13 @@ defmodule ScadvertWeb.ImageController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, _params) do
+    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+      images = Images.list_all_images()
+      render(conn, "index.html", images: images, default_image: @default_image)
+    else
     images = Images.list_images_by_user_id(conn)
     render(conn, "index.html", images: images, default_image: @default_image)
+    end
   end
 
   def new(conn, _params) do

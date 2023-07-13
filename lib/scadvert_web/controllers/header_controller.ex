@@ -10,9 +10,14 @@ defmodule ScadvertWeb.HeaderController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, _params) do
+    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+      headers = Headers.list_all_headers()
+      render(conn, "index.html", headers: headers, default_image: @default_image)
+    else
     headers = Headers.list_headers_by_user_id(conn)
-    default_image = "/images/phoenix.png"
-    render(conn, "index.html", headers: headers, default_image: default_image)
+    render(conn, "index.html", headers: headers, default_image: @default_image)
+    end
+
   end
 
   def new(conn, _params) do
