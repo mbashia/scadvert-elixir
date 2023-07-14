@@ -40,7 +40,7 @@ def update(conn, %{"id" => id, "user" => user_params}) do
   user = Accounts.get_user!(id)
 
   case Accounts.update_user(user, user_params) do
-    {:ok, user} ->
+    {:ok, _user} ->
       conn
       |> put_flash(:info, "User updated successfully")
       |> redirect(to: Routes.client_path(conn, :index))

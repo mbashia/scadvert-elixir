@@ -9,7 +9,7 @@ defmodule ScadvertWeb.LeadershipController do
   @default_image :"/images/phoenix.png"
   def index(conn, _params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-      leaderships = Leadership.list_all_leaderships()
+      leaderships = Leaderships.list_all_leaderships()
       render(conn, "index.html", leaderships: leaderships, default_image: @default_image)
     else
 

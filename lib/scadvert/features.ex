@@ -24,7 +24,7 @@ defmodule Scadvert.Features do
   end
 
   def list_all_features do
-    Repo.all(Features)
+    Repo.all(Feature)
     |> Repo.preload(:codes)
 
   end
