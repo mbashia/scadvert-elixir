@@ -76,7 +76,7 @@ end
         |> Ecto.Changeset.put_change(:status, false)
         IO.inspect(changeset.changes)
         case Accounts.update_user(user, changeset.changes)do
-      {:ok, user} ->
+      {:ok,_user} ->
         conn
         |> put_flash(:info, "User deactivated successfully")
         |> redirect(to: Routes.client_path(conn, :index))

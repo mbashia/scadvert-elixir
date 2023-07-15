@@ -16,9 +16,11 @@ defmodule ScadvertWeb.DashboardController do
   def action(conn, _) do
     apply(__MODULE__, action_name(conn),
     [conn, conn.params, conn.assigns.current_user])
+
   end
 
   def index(conn, _params, current_user) do
+    IO.inspect(current_user)
 
 
     if current_user.email in ["vic@gmail.com","john@gmail.com"] do

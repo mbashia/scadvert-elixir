@@ -22,6 +22,8 @@ defmodule ScadvertWeb.Router do
 
     get "/", DashboardController, :index
     resources "/codes", CodeController
+    post "/codes/search", CodeController, :search
+
     resources "/headers", HeaderController
     resources "/facilitys", FacilityController
     resources "/features", FeatureController
@@ -31,11 +33,12 @@ defmodule ScadvertWeb.Router do
     resources "/clients", ClientController
     get "/profile/" , ClientController, :profile
     get "/code_information/:id", CodeInfoController, :show
-    # delete "/clients/:id", ClientController, :deactivate
 
-    # get  "/edit_profile/:id" , ClientController, :edit
-    # get "/user/:id/edit", ClientController, :edit
+
+
+
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", ScadvertWeb do

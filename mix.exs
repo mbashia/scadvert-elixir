@@ -20,7 +20,7 @@ defmodule Scadvert.MixProject do
   def application do
     [
       mod: {Scadvert.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :scrivener_html]
     ]
   end
 
@@ -33,27 +33,30 @@ defmodule Scadvert.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bcrypt_elixir, "~> 3.0"},
-      {:phoenix, "~> 1.6.0"},
-      {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.6"},
-      {:myxql, ">= 0.0.0"},
-      {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.16.0"},
-      {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.5"},
-      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.3"},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"},
-      {:waffle, "~> 1.1.5"},
-      {:waffle_ecto, "~> 0.0.11"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:ex_fontawesome, "~> 0.5.1"}
+      {:bcrypt_elixir, "~> 3.0", override: true},
+      {:phoenix, "~> 1.6.0", override: true},
+      {:phoenix_ecto, "~> 4.4", override: true},
+      {:ecto_sql, "~> 3.6", override: true},
+      {:myxql, ">= 0.0.0", override: true},
+      {:phoenix_html, "~> 3.0", override: true},
+      {:phoenix_live_reload, "~> 1.2", only: :dev, override: true},
+      {:phoenix_live_view, "~> 0.16.0", override: true},
+      {:floki, ">= 0.30.0", only: :test, override: true},
+      {:phoenix_live_dashboard, "~> 0.5", override: true},
+      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev, override: true},
+      {:swoosh, "~> 1.3", override: true},
+      {:telemetry_metrics, "~> 0.6", override: true},
+      {:telemetry_poller, "~> 1.0", override: true},
+      {:gettext, "~> 0.18", override: true},
+      {:jason, "~> 1.2", override: true},
+      {:plug_cowboy, "~> 2.5", override: true},
+      {:waffle, "~> 1.1.5", override: true},
+      {:waffle_ecto, "~> 0.0.11", override: true},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev, override: true},
+      {:ex_fontawesome, "~> 0.5.1", override: true},
+      {:scrivener_ecto, "~> 2.7", override: true},
+      {:scrivener_html, "~> 1.8.1", override: true}
+
     ]
   end
 

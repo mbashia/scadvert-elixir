@@ -3,20 +3,29 @@ defmodule ScadvertWeb.CodeController do
 
   alias Scadvert.Codes
   alias Scadvert.Codes.Code
+  alias Scadvert.Repo
+
+  import Ecto.Query, warn: false
+
 
   plug :put_layout, "newlayout.html"
   @default_image :"/images/phoenix.png"
 
 
-  def index(conn, _params) do
+  def index(conn, params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-      codes = Codes.list_all_codes()
-      render(conn, "index.html", codes: codes, default_image: @default_image)
+      changeset = Codes.change_code(%Code{})
+      page = Code
+               |>Repo.paginate(params)
+      render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page)
 
     else
+    changeset = Codes.change_code(%Code{})
+    page = Codes.list_codes_by_user_id(conn)
+                                  |>Repo.paginate(params)
 
-    codes = Codes.list_codes_by_user_id(conn)
-    render(conn, "index.html", codes: codes, default_image: @default_image)
+
+    render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page)
 
     end
     # IO.inspect(codes)
@@ -69,7 +78,7 @@ defmodule ScadvertWeb.CodeController do
   def delete(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
 
-    if code.videos && code.features && code.leaderships && code.headers && code.images && code.facilitys == true do
+    if code.videos==[] && code.features==[] && code.leaderships==[] && code.headers==[] && code.images==[] && code.facilitys == [] do
     {:ok, _code} = Codes.delete_code(code)
 
     conn
@@ -77,10 +86,30 @@ defmodule ScadvertWeb.CodeController do
     |> redirect(to: Routes.code_path(conn, :index))
 
     else
-
       conn
       |>put_flash(:error, "cannot delete code ")
       |> redirect(to: Routes.code_path(conn, :index))
     end
   end
+  def search(conn, %{"code" => %{"search" => search_params}}) do
+    # codes = Codes.search(conn,search_params)
+    changeset = Codes.change_code(%Code{})
+    page = Codes.search(conn,search_params)
+                |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "index.html", codes: [], changeset: changeset, page: page)
+  _ ->
+  conn
+
+  |> put_flash(:info, "code searched successfully.")
+
+  |> render( "index.html", codes: page.entries, changeset: changeset, page: page)
+
+  end
+
+  end
+
 end

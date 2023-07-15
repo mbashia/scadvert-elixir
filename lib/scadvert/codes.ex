@@ -121,7 +121,7 @@ defmodule Scadvert.Codes do
 
   def list_codes_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
-    Repo.all(from c in Code, where: c.user_id == ^user_id)
+    query = from(c in Code, where: c.user_id == ^user_id)
   end
 
   def list_code_by_name(id) do
@@ -132,5 +132,13 @@ defmodule Scadvert.Codes do
     |>Repo.preload(:videos)
     |>Repo.preload(:leaderships)
     |>Repo.preload(:headers)
+  end
+  def search(conn,params)do
+    user_id = conn.assigns.current_user.id
+    query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and c.user_id == ^user_id)
+    # codes = Repo.all(query)
+
+
+
   end
 end
