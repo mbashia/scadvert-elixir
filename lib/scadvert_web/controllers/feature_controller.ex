@@ -1,5 +1,7 @@
 defmodule ScadvertWeb.FeatureController do
   use ScadvertWeb, :controller
+  alias Scadvert.Repo
+  import Ecto.Query, warn: false
 
   alias Scadvert.Features
   alias Scadvert.Features.Feature
@@ -9,14 +11,20 @@ defmodule ScadvertWeb.FeatureController do
 
   plug :put_layout, "newlayout.html"
 
-  def index(conn, _params) do
+  def index(conn, params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-    features = Features.list_all_features()
-    render(conn, "index.html", features: features, default_image: @default_image )
-    else
+      changeset = Features.change_feature(%Feature{})
 
-    features = Features.list_features_by_user_id(conn)
-    render(conn, "index.html", features: features, default_image: @default_image )
+    page = Feature
+                |>Repo.paginate(params)
+    render(conn, "index.html", features: page.entries, default_image: @default_image,changeset: changeset ,page: page)
+    else
+      changeset = Features.change_feature(%Feature{})
+
+
+    page = Features.list_features_by_user_id(conn)
+                            |>Repo.paginate(params)
+    render(conn, "index.html", features: page.entries, default_image: @default_image,changeset: changeset ,page: page )
     end
   end
 
@@ -76,5 +84,31 @@ defmodule ScadvertWeb.FeatureController do
     conn
     |> put_flash(:info, "Feature deleted successfully.")
     |> redirect(to: Routes.feature_path(conn, :index))
+  end
+  def search(conn, %{"feature" => %{"search" => search_params}}) do
+    changeset = Features.change_feature(%Feature{})
+    page = search_params(conn,search_params)
+                     |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "index.html", features: [], changeset: changeset, page: page)
+  _ ->
+  conn
+
+  |> put_flash(:info, "facility searched successfully.")
+
+  |> render( "index.html", features: page.entries, changeset: changeset, page: page)
+
+  end
+
+  end
+  defp search_params(conn,params)do
+    user_id = conn.assigns.current_user.id
+    query = from(f in Feature, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+
+
+
   end
 end

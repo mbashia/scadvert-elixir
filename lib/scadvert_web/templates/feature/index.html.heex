@@ -6,6 +6,9 @@
   </div><div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "New Feature", to: Routes.feature_path(@conn, :new) %></span>
 </div>
+ <%= render "search.html", Map.put(assigns, :action, Routes.feature_path(@conn, :search)) %>
+    <%= link "prev page", to: Routes.feature_path(@conn, :index, page: @page.page_number-1) %>
+<%= link "next page", to: Routes.feature_path(@conn, :index, page: @page.page_number+1) %>
 
 <div class = "overflow-x-auto">
 
