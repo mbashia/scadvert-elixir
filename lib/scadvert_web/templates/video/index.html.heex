@@ -8,6 +8,11 @@
 </div>
 <div class = "overflow-x-auto">
 
+ <%= render "search.html", Map.put(assigns, :action, Routes.video_path(@conn, :search)) %>
+
+<%= link "prev page", to: Routes.video_path(@conn, :index, page: @page.page_number-1) %>
+<%= link "next page", to: Routes.video_path(@conn, :index, page: @page.page_number+1) %>
+
 <table class  = "w-full sm:w-auto">
   <thead>
     <tr>

@@ -1,6 +1,7 @@
 defmodule ScadvertWeb.VideoController do
   use ScadvertWeb, :controller
-
+  alias Scadvert.Repo
+  import Ecto.Query, warn: false
   alias Scadvert.Videos
   alias Scadvert.Videos.Video
   alias Scadvert.Functions
@@ -8,13 +9,20 @@ defmodule ScadvertWeb.VideoController do
   plug :put_layout, "newlayout.html"
   @default_image :"/images/phoenix.png"
 
-  def index(conn, _params) do
+  def index(conn, params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-      videos = Videos.list_all_videos()
-      render(conn, "index.html", videos: videos, default_image: @default_image)
+      changeset = Videos.change_video(%Video{})
+
+      page = Videos
+                  |>Repo.paginate(params)
+      render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset)
     else
-    videos = Videos.list_videos_by_user_id(conn)
-    render(conn, "index.html", videos: videos, default_image: @default_image)
+      changeset = Videos.change_video(%Video{})
+
+    page = Videos.list_videos_by_user_id(conn)
+                      |>Repo.paginate(params)
+
+    render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset)
     end
   end
 
@@ -75,4 +83,33 @@ defmodule ScadvertWeb.VideoController do
     |> put_flash(:info, "Video deleted successfully.")
     |> redirect(to: Routes.video_path(conn, :index))
   end
+
+  def search(conn, %{"video" => %{"search" => search_params}}) do
+    changeset = Videos.change_video(%Video{})
+    page = search_params(conn,search_params)
+                     |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "index.html", videos: [], changeset: changeset, page: page)
+  _ ->
+  conn
+
+  |> put_flash(:info, "video searched successfully.")
+
+  |> render( "index.html", videos: page.entries, changeset: changeset, page: page)
+
+  end
+
+  end
+  defp search_params(conn,params)do
+    user_id = conn.assigns.current_user.id
+    query = from(f in Video, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+
+
+
+end
+
+
 end

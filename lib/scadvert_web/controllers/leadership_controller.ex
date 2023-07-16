@@ -85,7 +85,7 @@ defmodule ScadvertWeb.LeadershipController do
     |> redirect(to: Routes.leadership_path(conn, :index))
   end
   def search(conn, %{"leadership" => %{"search" => search_params}}) do
-    changeset = Leaderships.change_image(%Leadership{})
+    changeset = Leaderships.change_leadership(%Leadership{})
     page = search_params(conn,search_params)
                      |>Repo.paginate(conn.params)
   case page.entries do

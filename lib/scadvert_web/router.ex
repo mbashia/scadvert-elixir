@@ -40,6 +40,8 @@ defmodule ScadvertWeb.Router do
     post "/images/search", ImageController, :search
 
     resources "/videos", VideoController
+    post "/videos/search", VideoController, :search
+
     resources "/clients", ClientController
     get "/profile/" , ClientController, :profile
     get "/code_information/:id", CodeInfoController, :show
