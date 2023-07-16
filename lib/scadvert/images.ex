@@ -114,7 +114,9 @@ defmodule Scadvert.Images do
   def list_images_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
 
-    Repo.all(from i in Image, where: i.user_id == ^user_id)
-    |> Repo.preload(:codes)
+    # Repo.all(from i in Image, where: i.user_id == ^user_id)
+    # |> Repo.preload(:codes)
+    query =  from(i in Image, where: i.user_id == ^user_id, preload: [:codes])
+
   end
 end

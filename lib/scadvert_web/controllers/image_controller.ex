@@ -1,6 +1,7 @@
 defmodule ScadvertWeb.ImageController do
   use ScadvertWeb, :controller
-
+  alias Scadvert.Repo
+  import Ecto.Query, warn: false
   alias Scadvert.Images
   alias Scadvert.Images.Image
   alias Scadvert.Functions
@@ -9,13 +10,19 @@ defmodule ScadvertWeb.ImageController do
   plug :put_layout, "newlayout.html"
   @default_image :"/images/phoenix.png"
 
-  def index(conn, _params) do
+  def index(conn, params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-      images = Images.list_all_images()
-      render(conn, "index.html", images: images, default_image: @default_image)
+      changeset = Images.change_image(%Image{})
+
+      page = Images
+                |>Repo.paginate(params)
+      render(conn, "index.html", images: page.entries, default_image: @default_image, page: page, changeset: changeset)
     else
-    images = Images.list_images_by_user_id(conn)
-    render(conn, "index.html", images: images, default_image: @default_image)
+      changeset = Images.change_image(%Image{})
+
+    page = Images.list_images_by_user_id(conn)
+                    |>Repo.paginate(params)
+    render(conn, "index.html", images: page.entries, default_image: @default_image, page: page, changeset: changeset)
     end
   end
 
@@ -80,4 +87,32 @@ defmodule ScadvertWeb.ImageController do
     |> put_flash(:info, "Image deleted successfully.")
     |> redirect(to: Routes.image_path(conn, :index))
   end
+  def search(conn, %{"image" => %{"search" => search_params}}) do
+    changeset = Images.change_image(%Image{})
+    page = search_params(conn,search_params)
+                     |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "index.html", images: [], changeset: changeset, page: page)
+  _ ->
+  conn
+
+  |> put_flash(:info, "image searched successfully.")
+
+  |> render( "index.html", images: page.entries, changeset: changeset, page: page)
+
+  end
+
+  end
+  defp search_params(conn,params)do
+    user_id = conn.assigns.current_user.id
+    query = from(f in Image, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+
+
+
+  end
+
+
 end

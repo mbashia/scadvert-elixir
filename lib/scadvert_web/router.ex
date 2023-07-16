@@ -35,6 +35,8 @@ defmodule ScadvertWeb.Router do
 
     resources "/leaderships", LeadershipController
     resources "/images", ImageController
+    post "/images/search", ImageController, :search
+
     resources "/videos", VideoController
     resources "/clients", ClientController
     get "/profile/" , ClientController, :profile
