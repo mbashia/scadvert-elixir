@@ -116,7 +116,10 @@ defmodule Scadvert.Headers do
   def list_headers_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
 
-    Repo.all(from h in Header, where: h.user_id == ^user_id)
-    |> Repo.preload(:codes)
+    # Repo.all(from h in Header, where: h.user_id == ^user_id)
+    # |> Repo.preload(:codes)
+
+    query = from(h in Header, where: h.user_id == ^user_id,preload: [:codes])
+
   end
 end

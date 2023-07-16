@@ -25,7 +25,11 @@ defmodule ScadvertWeb.Router do
     post "/codes/search", CodeController, :search
 
     resources "/headers", HeaderController
+    post "/headers/search", HeaderController, :search
+
     resources "/facilitys", FacilityController
+    post "/facilitys/search", FacilityController, :search
+
     resources "/features", FeatureController
     resources "/leaderships", LeadershipController
     resources "/images", ImageController

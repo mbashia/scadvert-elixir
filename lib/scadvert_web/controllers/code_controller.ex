@@ -94,7 +94,7 @@ defmodule ScadvertWeb.CodeController do
   def search(conn, %{"code" => %{"search" => search_params}}) do
     # codes = Codes.search(conn,search_params)
     changeset = Codes.change_code(%Code{})
-    page = Codes.search(conn,search_params)
+    page = Codes.search_params(conn,search_params)
                 |>Repo.paginate(conn.params)
   case page.entries do
   [] ->

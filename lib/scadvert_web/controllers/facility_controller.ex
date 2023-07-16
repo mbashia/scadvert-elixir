@@ -1,25 +1,34 @@
 defmodule ScadvertWeb.FacilityController do
   use ScadvertWeb, :controller
-  # use Ecto.Repo
-  require Ecto.Query
-  require Ecto
+
   use Ecto.Schema
-  # alias Scadvert.Repo
+  alias Scadvert.Repo
   alias Scadvert.Facilitys
   alias Scadvert.Facilitys.Facility
   alias Scadvert.Functions
+  import Ecto.Query, warn: false
+
+
 
   @default_image :"/images/phoenix.png"
 
   plug :put_layout, "newlayout.html"
 
-  def index(conn, _params) do
+  def index(conn, params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-      facilitys = Facilitys.list_all_facilitys()
-      render(conn, "index.html", facilitys: facilitys, default_image: @default_image)
+      changeset = Facilitys.change_facility(%Facility{})
+
+      # facilitys = Facilitys.list_all_facilitys()
+      page = Facility
+                |>Repo.paginate(params)
+      render(conn, "index.html", facilitys: page.entries, default_image: @default_image, changeset: changeset, page: page)
     else
-    facilitys = Facilitys.list_facilitys_by_user_id(conn)
-    render(conn, "index.html", facilitys: facilitys, default_image: @default_image)
+      changeset = Facilitys.change_facility(%Facility{})
+      page = Facilitys.list_facilitys_by_user_id(conn)
+
+                    |>Repo.paginate(params)
+
+    render(conn, "index.html", facilitys: page.entries, default_image: @default_image, changeset: changeset, page: page)
     end
 
   end
@@ -80,5 +89,32 @@ defmodule ScadvertWeb.FacilityController do
     conn
     |> put_flash(:info, "Facility deleted successfully.")
     |> redirect(to: Routes.facility_path(conn, :index))
+  end
+  def search(conn, %{"facility" => %{"search" => search_params}}) do
+    changeset = Facilitys.change_facility(%Facility{})
+    page = search_params(conn,search_params)
+                     |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "index.html", facilitys: [], changeset: changeset, page: page)
+  _ ->
+  conn
+
+  |> put_flash(:info, "facility searched successfully.")
+
+  |> render( "index.html", facilitys: page.entries, changeset: changeset, page: page)
+
+  end
+
+  end
+  defp search_params(conn,params)do
+    user_id = conn.assigns.current_user.id
+    query = from(f in Facility, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    # facilitys = Repo.all(query)
+
+
+
   end
 end

@@ -117,7 +117,11 @@ defmodule Scadvert.Facilitys do
   def list_facilitys_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
 
-    Repo.all(from f in Facility, where: f.user_id == ^user_id)
-     |> Repo.preload(:codes)
+
+    # Repo.all(from f in Facility, where: f.user_id == ^user_id)
+    #  |> Repo.preload(:codes)
+    query = from(f in Facility, where: f.user_id == ^user_id,preload: [:codes])
+
+
   end
 end

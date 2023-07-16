@@ -133,7 +133,7 @@ defmodule Scadvert.Codes do
     |>Repo.preload(:leaderships)
     |>Repo.preload(:headers)
   end
-  def search(conn,params)do
+  def search_params(conn,params)do
     user_id = conn.assigns.current_user.id
     query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and c.user_id == ^user_id)
     # codes = Repo.all(query)

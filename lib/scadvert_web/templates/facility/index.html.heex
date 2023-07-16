@@ -6,6 +6,11 @@
   </div><div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "New Facility", to: Routes.facility_path(@conn, :new) %></span>
 </div>
+    <%= render "search.html", Map.put(assigns, :action, Routes.facility_path(@conn, :search)) %>
+    <%= link "prev page", to: Routes.facility_path(@conn, :index, page: @page.page_number-1) %>
+<%= link "next page", to: Routes.facility_path(@conn, :index, page: @page.page_number+1) %>
+
+
 
 <div class = "overflow-x-auto">
 

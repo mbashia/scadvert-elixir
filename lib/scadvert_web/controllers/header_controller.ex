@@ -1,5 +1,8 @@
 defmodule ScadvertWeb.HeaderController do
   use ScadvertWeb, :controller
+  alias Scadvert.Repo
+  import Ecto.Query, warn: false
+
 
   alias Scadvert.Headers
   alias Scadvert.Headers.Header
@@ -9,13 +12,19 @@ defmodule ScadvertWeb.HeaderController do
 
   @default_image :"/images/phoenix.png"
 
-  def index(conn, _params) do
+  def index(conn, params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-      headers = Headers.list_all_headers()
-      render(conn, "index.html", headers: headers, default_image: @default_image)
+      changeset = Headers.change_header(%Header{})
+
+      page = Header
+                    |>Repo.paginate(params)
+      render(conn, "index.html", headers: page.entries, default_image: @default_image, page: page, changeset: changeset)
     else
-    headers = Headers.list_headers_by_user_id(conn)
-    render(conn, "index.html", headers: headers, default_image: @default_image)
+      changeset = Headers.change_header(%Header{})
+
+    page = Headers.list_headers_by_user_id(conn)
+                              |>Repo.paginate(params)
+    render(conn, "index.html", changeset: changeset, headers: page.entries, default_image: @default_image, page: page)
     end
 
   end
@@ -75,5 +84,32 @@ defmodule ScadvertWeb.HeaderController do
     conn
     |> put_flash(:info, "Header deleted successfully.")
     |> redirect(to: Routes.header_path(conn, :index))
+  end
+  def search(conn, %{"header" => %{"search" => search_params}}) do
+    changeset = Headers.change_header(%Header{})
+    page = search_params(conn,search_params)
+                     |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "index.html", headers: [], changeset: changeset, page: page)
+  _ ->
+  conn
+
+  |> put_flash(:info, "Header searched successfully.")
+
+  |> render( "index.html", headers: page.entries, changeset: changeset, page: page)
+
+  end
+
+  end
+  defp search_params(conn,params)do
+    user_id = conn.assigns.current_user.id
+    query = from(f in Header, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    # facilitys = Repo.all(query)
+
+
+
   end
 end
