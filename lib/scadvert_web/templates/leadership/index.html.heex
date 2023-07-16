@@ -9,6 +9,13 @@
 </div>
 <div class = "overflow-x-auto">
 
+ <%= render "search.html", Map.put(assigns, :action, Routes.leadership_path(@conn, :search)) %>
+
+<%= link "prev page", to: Routes.leadership_path(@conn, :index, page: @page.page_number-1) %>
+<%= link "next page", to: Routes.leadership_path(@conn, :index, page: @page.page_number+1) %>
+
+
+
 <table class  = "w-full sm:w-auto">
   <thead>
     <tr>

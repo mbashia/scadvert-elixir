@@ -1,20 +1,27 @@
 defmodule ScadvertWeb.LeadershipController do
   use ScadvertWeb, :controller
-
+  alias Scadvert.Repo
+  import Ecto.Query, warn: false
   alias Scadvert.Leaderships
   alias Scadvert.Leaderships.Leadership
   alias Scadvert.Functions
   plug :put_layout, "newlayout.html"
 
   @default_image :"/images/phoenix.png"
-  def index(conn, _params) do
+  def index(conn, params) do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
-      leaderships = Leaderships.list_all_leaderships()
-      render(conn, "index.html", leaderships: leaderships, default_image: @default_image)
-    else
+      changeset = Leaderships.change_leadership(%Leadership{})
 
-    leaderships = Leaderships.list_leaderships_by_user_id(conn)
-    render(conn, "index.html", leaderships: leaderships, default_image: @default_image)
+      page = Leaderships
+                  |>Repo.paginate(params)
+      render(conn, "index.html", leaderships: page.entries, default_image: @default_image, page: page, changeset: changeset)
+    else
+      changeset = Leaderships.change_leadership(%Leadership{})
+
+
+    page = Leaderships.list_leaderships_by_user_id(conn)
+                     |>Repo.paginate(params)
+    render(conn, "index.html", leaderships: page.entries, default_image: @default_image, page: page, changeset: changeset)
     end
 
   end
@@ -77,4 +84,31 @@ defmodule ScadvertWeb.LeadershipController do
     |> put_flash(:info, "Leadership deleted successfully.")
     |> redirect(to: Routes.leadership_path(conn, :index))
   end
+  def search(conn, %{"leadership" => %{"search" => search_params}}) do
+    changeset = Leaderships.change_image(%Leadership{})
+    page = search_params(conn,search_params)
+                     |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "index.html", leaderships: [], changeset: changeset, page: page)
+  _ ->
+  conn
+
+  |> put_flash(:info, "history searched successfully.")
+
+  |> render( "index.html", leaderships: page.entries, changeset: changeset, page: page)
+
+  end
+
+  end
+  defp search_params(conn,params)do
+    user_id = conn.assigns.current_user.id
+    query = from(f in Leadership, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+
+
+
+  end
+
 end

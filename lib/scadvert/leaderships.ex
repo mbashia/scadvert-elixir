@@ -115,7 +115,10 @@ defmodule Scadvert.Leaderships do
   def list_leaderships_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
 
-    Repo.all(from l in Leadership, where: l.user_id == ^user_id)
-    |> Repo.preload(:codes)
+    # Repo.all(from l in Leadership, where: l.user_id == ^user_id)
+    # |> Repo.preload(:codes)
+
+    query = from(l in Leadership, where: l.user_id == ^user_id, preload: [:codes])
+    #
   end
 end

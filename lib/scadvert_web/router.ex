@@ -34,6 +34,8 @@ defmodule ScadvertWeb.Router do
     post "/features/search", FeatureController, :search
 
     resources "/leaderships", LeadershipController
+    post "/leaderships/search", LeadershipController, :search
+
     resources "/images", ImageController
     post "/images/search", ImageController, :search
 
