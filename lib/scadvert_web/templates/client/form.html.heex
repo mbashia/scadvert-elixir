@@ -13,7 +13,8 @@
                   <%end %>
             </div>
 
-  
+  <%=if @current_user.email in ["john@gmail.com","vic@gmail.com"] do %>
+
 <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
                 <div class="container max-w-screen-lg mx-auto ">
                   <div>
@@ -22,73 +23,130 @@
                       <div class="grid gap-4  text-sm grid-cols-1 lg:grid-cols-3 w-full">
                       
 
-                        <div class="lg:col-span-2">
-                          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                             
-                           <div class="md:col-span-3">
-                        <%= label f, :firstname, class: "label_item"  %>
-                        <%= text_input f, :firstname, required: true, class: "input_item"%>
-                        <%= error_tag f, :firstname %>
-                        </div>
-                         <div class="md:col-span-3">
-                        <%= label f, :lastname, class: "label_item"%>
-                        <%= text_input f, :lastname, required: true, class: "input_item" %>
-                        <%= error_tag f, :lastname %>
-                        </div>
-                        <%=if @conn.assigns.current_user.email in ["john@gmail.com"] do %>
-                         <div class="md:col-span-3">
-                        <%= label f, :phonenumber, class: "label_item" %>
-                        <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" %>
-                        <%= error_tag f, :phone_number %>
-                        </div>
-                        <div class="md:col-span-3">
-                        <%= label f, :email, class: "label_item" %>
-                        <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed "%>
-                        <%= error_tag f, :email %>
-                        <%else %>
-                         <div class="md:col-span-3">
-                        <%= label f, :phonenumber, class: "label_item" %>
-                        <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" , readonly: true%>
-                        <%= error_tag f, :phone_number %>
-                        </div>
-                        <div class="md:col-span-3">
-                        <%= label f, :email, class: "label_item" %>
-                        <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed ", readonly: true%>
-                        <%= error_tag f, :email %>
-                        </div>
-                        <%end %>
-                        <div class =" md:col-span-3">
-                        <%= label f, :gender %>
-                        <%= select f, :gender,["MALE","FEMALE"], prompt: "gender", class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 text-gray-700" %>
-                        <%= error_tag f, :gender %>
-
-
-                        </div>
-                        <div class =" md:col-span-3">
-                        
-                        <%= label f, :profile_picture, class: "label_item" %>
-                        <%= file_input f, :picture, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
-                        <%= error_tag f, :picture %>
-
-                        </div>
-                      
-                        
-                      
-                        <div class="md:col-span-3 text-right">
-                              <div class="inline-flex items-end">
-                              <%= submit "Save",class: "submit_btn" %>       
+                              <div class="lg:col-span-2">
+                                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                                  
+                                <div class="md:col-span-3">
+                              <%= label f, :firstname, class: "label_item"  %>
+                              <%= text_input f, :firstname, required: true, class: "input_item"%>
+                              <%= error_tag f, :firstname %>
                               </div>
-                            </div>
-                          </div>
-                        </div>
+                              <div class="md:col-span-3">
+                              <%= label f, :lastname, class: "label_item"%>
+                              <%= text_input f, :lastname, required: true, class: "input_item" %>
+                              <%= error_tag f, :lastname %>
+                              </div>
+                             
+                              <div class="md:col-span-3">
+                              <%= label f, :phonenumber, class: "label_item" %>
+                              <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" , readonly: true%>
+                              <%= error_tag f, :phone_number %>
+                              </div>
+                              <div class="md:col-span-3">
+                              <%= label f, :email, class: "label_item" %>
+                              <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed ", readonly: true%>
+                              <%= error_tag f, :email %>
+                              </div>
+                              <div class =" md:col-span-3">
+                              <%= label f, :gender %>
+                              <%= select f, :gender,["MALE","FEMALE"], prompt: "gender", class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 text-gray-700" %>
+                              <%= error_tag f, :gender %>
+
+
+                              </div>
+                              <div class =" md:col-span-3">
+                              
+                              <%= label f, :profile_picture, class: "label_item" %>
+                              <%= file_input f, :picture, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
+                              <%= error_tag f, :picture %>
+
+                              </div>
+                            
+                              
+                            
+                              <div class="md:col-span-3 text-right">
+                                    <div class="inline-flex items-end">
+                                    <%= submit "Save",class: "submit_btn" %>       
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                       </div>
+                      
                     </div>
                   </div>
 
                   
                 </div>
                 </div>
-              
+
+                <%= else %>
+                <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+                <div class="container max-w-screen-lg mx-auto ">
+                  <div>
+                    
+                    <div class="bg-white rounded shadow-lg  p-4 px-2 md:p-8 mb-6">
+                      <div class="grid gap-4  text-sm grid-cols-1 lg:grid-cols-3 w-full">
+                      
+
+                              <div class="lg:col-span-2">
+                                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                                  
+                                <div class="md:col-span-3">
+                              <%= label f, :firstname, class: "label_item"  %>
+                              <%= text_input f, :firstname, required: true, class: "input_item"%>
+                              <%= error_tag f, :firstname %>
+                              </div>
+                              <div class="md:col-span-3">
+                              <%= label f, :lastname, class: "label_item"%>
+                              <%= text_input f, :lastname, required: true, class: "input_item" %>
+                              <%= error_tag f, :lastname %>
+                            
+                              <div class="md:col-span-3">
+                              <%= label f, :phonenumber, class: "label_item" %>
+                              <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" , readonly: true%>
+                              <%= error_tag f, :phone_number %>
+                              </div>
+                              <div class="md:col-span-3">
+                              <%= label f, :email, class: "label_item" %>
+                              <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed ", readonly: true%>
+                              <%= error_tag f, :email %>
+                              </div>
+                              <div class =" md:col-span-3">
+                              <%= label f, :gender %>
+                              <%= select f, :gender,["MALE","FEMALE"], prompt: "gender", class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 text-gray-700" %>
+                              <%= error_tag f, :gender %>
+
+
+                              </div>
+                              <div class =" md:col-span-3">
+                              
+                              <%= label f, :profile_picture, class: "label_item" %>
+                              <%= file_input f, :picture, required: true, class: "bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 ", placeholder: " password" %>
+                              <%= error_tag f, :picture %>
+
+                              </div>
+                            
+                              
+                            
+                              <div class="md:col-span-3 text-right">
+                                    <div class="inline-flex items-end">
+                                    <%= submit "Save",class: "submit_btn" %>       
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+
+                  
+                </div>
+                </div>
+            <%end %>
+
+             
 <%end %>
    
 

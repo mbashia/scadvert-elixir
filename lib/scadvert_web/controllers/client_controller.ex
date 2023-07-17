@@ -41,9 +41,16 @@ def update(conn, %{"id" => id, "user" => user_params}) do
 
   case Accounts.update_user(user, user_params) do
     {:ok, _user} ->
+      if conn.assigns.current_user.email in ["john@gmail.com"] do
+        conn
+        |> put_flash(:info, "User updated successfully")
+        |> redirect(to: Routes.client_path(conn, :index))
+
+      else
       conn
       |> put_flash(:info, "User updated successfully")
-      |> redirect(to: Routes.client_path(conn, :index))
+      |> redirect(to: Routes.client_path(conn, :profile))
+      end
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
   end
