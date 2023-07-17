@@ -24,8 +24,9 @@ defmodule Scadvert.Features do
   end
 
   def list_all_features do
-    Repo.all(Feature)
-    |> Repo.preload(:codes)
+    # Repo.all(Feature)
+    # |> Repo.preload(:codes)
+    from(f in Feature, select: f, preload: [:codes])
 
   end
 
@@ -116,6 +117,6 @@ defmodule Scadvert.Features do
   def list_features_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
 
-    query = from(t in Feature, where: t.user_id == ^user_id, preload: [:codes])
+    from(t in Feature, where: t.user_id == ^user_id, preload: [:codes])
   end
 end

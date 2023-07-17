@@ -23,8 +23,9 @@ defmodule Scadvert.Leaderships do
 
   end
   def list_all_leaderships do
-    Repo.all(Leadership)
-    |> Repo.preload(:codes)
+    # Repo.all(Leadership)
+    # |> Repo.preload(:codes)
+    from(l in Leadership, select: l, preload: [:codes])
 
   end
 
@@ -118,7 +119,7 @@ defmodule Scadvert.Leaderships do
     # Repo.all(from l in Leadership, where: l.user_id == ^user_id)
     # |> Repo.preload(:codes)
 
-    query = from(l in Leadership, where: l.user_id == ^user_id, preload: [:codes])
+     from(l in Leadership, where: l.user_id == ^user_id, preload: [:codes])
     #
   end
 end

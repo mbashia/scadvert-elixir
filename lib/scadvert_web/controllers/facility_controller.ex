@@ -19,7 +19,7 @@ defmodule ScadvertWeb.FacilityController do
       changeset = Facilitys.change_facility(%Facility{})
 
       # facilitys = Facilitys.list_all_facilitys()
-      page = Facility
+      page = Facilitys.list_all_facilitys()
                 |>Repo.paginate(params)
       render(conn, "index.html", facilitys: page.entries, default_image: @default_image, changeset: changeset, page: page)
     else
@@ -111,7 +111,7 @@ defmodule ScadvertWeb.FacilityController do
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    query = from(f in Facility, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+     from(f in Facility, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
     # facilitys = Repo.all(query)
 
 

@@ -14,7 +14,7 @@ defmodule ScadvertWeb.ImageController do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
       changeset = Images.change_image(%Image{})
 
-      page = Images
+      page = Images.list_all_images
                 |>Repo.paginate(params)
       render(conn, "index.html", images: page.entries, default_image: @default_image, page: page, changeset: changeset)
     else
@@ -108,7 +108,7 @@ defmodule ScadvertWeb.ImageController do
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    query = from(f in Image, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    from(f in Image, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
 
 
 

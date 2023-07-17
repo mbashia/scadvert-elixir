@@ -12,7 +12,7 @@ defmodule ScadvertWeb.LeadershipController do
     if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
       changeset = Leaderships.change_leadership(%Leadership{})
 
-      page = Leaderships
+      page = Leaderships.list_all_leaderships()
                   |>Repo.paginate(params)
       render(conn, "index.html", leaderships: page.entries, default_image: @default_image, page: page, changeset: changeset)
     else
@@ -105,7 +105,7 @@ defmodule ScadvertWeb.LeadershipController do
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    query = from(f in Leadership, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    from(f in Leadership, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
 
 
 

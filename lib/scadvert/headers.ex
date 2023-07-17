@@ -24,8 +24,9 @@ defmodule Scadvert.Headers do
   end
 
   def list_all_headers do
-    Repo.all(Header)
-    |> Repo.preload(:codes)
+    # Repo.all(Header)
+    # |> Repo.preload(:codes)
+    from(m in Header, select: m, preload: [:codes])
 
   end
 
@@ -119,7 +120,7 @@ defmodule Scadvert.Headers do
     # Repo.all(from h in Header, where: h.user_id == ^user_id)
     # |> Repo.preload(:codes)
 
-    query = from(h in Header, where: h.user_id == ^user_id,preload: [:codes])
+    from(h in Header, where: h.user_id == ^user_id,preload: [:codes])
 
   end
 end

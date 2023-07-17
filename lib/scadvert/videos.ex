@@ -24,8 +24,10 @@ defmodule Scadvert.Videos do
     # |> Repo.preload(:codes)
   end
   def list_all_videos do
-    Repo.all(Video)
-    |> Repo.preload(:codes)
+    # Repo.all(Video)
+    # |> Repo.preload(:codes)
+
+    from(v in Video, select: v, preload: [:codes])
 
   end
 
@@ -118,7 +120,7 @@ defmodule Scadvert.Videos do
 
     # Repo.all(from v in Video, where: v.user_id == ^user_id)
     # |> Repo.preload(:codes)
-   query = from(v in Video, where: v.user_id == ^user_id, preload: [:codes])
+   from(v in Video, where: v.user_id == ^user_id, preload: [:codes])
 
   end
 end

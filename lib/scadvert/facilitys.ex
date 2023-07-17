@@ -24,8 +24,9 @@ defmodule Scadvert.Facilitys do
   end
 
   def list_all_facilitys do
-    Repo.all(Facility)
-    |> Repo.preload(:codes)
+    # Repo.all(Facility)
+    # |> Repo.preload(:codes)
+    from(f in Facility, select: f, preload: [:codes])
 
   end
 
@@ -120,7 +121,7 @@ defmodule Scadvert.Facilitys do
 
     # Repo.all(from f in Facility, where: f.user_id == ^user_id)
     #  |> Repo.preload(:codes)
-    query = from(f in Facility, where: f.user_id == ^user_id,preload: [:codes])
+    from(f in Facility, where: f.user_id == ^user_id,preload: [:codes])
 
 
   end
