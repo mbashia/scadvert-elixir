@@ -41,7 +41,7 @@ def update(conn, %{"id" => id, "user" => user_params}) do
 
   case Accounts.update_user(user, user_params) do
     {:ok, _user} ->
-      if conn.assigns.current_user.email in ["john@gmail.com"] do
+      if conn.assigns.current_user.role == true do
         conn
         |> put_flash(:info, "User updated successfully")
         |> redirect(to: Routes.client_path(conn, :index))

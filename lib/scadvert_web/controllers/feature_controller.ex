@@ -12,7 +12,7 @@ defmodule ScadvertWeb.FeatureController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, params) do
-    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    if conn.assigns.current_user.role == true do
       changeset = Features.change_feature(%Feature{})
 
     page = Features.list_all_features()

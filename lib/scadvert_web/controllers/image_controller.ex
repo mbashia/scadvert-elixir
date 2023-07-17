@@ -11,7 +11,7 @@ defmodule ScadvertWeb.ImageController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, params) do
-    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    if conn.assigns.current_user.role == true do
       changeset = Images.change_image(%Image{})
 
       page = Images.list_all_images

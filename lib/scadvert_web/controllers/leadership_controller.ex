@@ -9,7 +9,7 @@ defmodule ScadvertWeb.LeadershipController do
 
   @default_image :"/images/phoenix.png"
   def index(conn, params) do
-    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    if conn.assigns.current_user.role == true do
       changeset = Leaderships.change_leadership(%Leadership{})
 
       page = Leaderships.list_all_leaderships()

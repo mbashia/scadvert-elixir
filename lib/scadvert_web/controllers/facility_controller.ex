@@ -15,7 +15,7 @@ defmodule ScadvertWeb.FacilityController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, params) do
-    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    if conn.assigns.current_user.role == true do
       changeset = Facilitys.change_facility(%Facility{})
 
       # facilitys = Facilitys.list_all_facilitys()

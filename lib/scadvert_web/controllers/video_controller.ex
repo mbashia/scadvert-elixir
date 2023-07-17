@@ -10,7 +10,7 @@ defmodule ScadvertWeb.VideoController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, params) do
-    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    if conn.assigns.current_user.role == true do
       changeset = Videos.change_video(%Video{})
 
       page = Videos.list_all_videos()

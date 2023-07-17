@@ -13,7 +13,7 @@ defmodule ScadvertWeb.CodeController do
 
 
   def index(conn, params) do
-    if conn.assigns.current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    if conn.assigns.current_user.role == true do
       changeset = Codes.change_code(%Code{})
       page = Code
                |>Repo.paginate(params)

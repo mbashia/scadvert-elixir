@@ -23,7 +23,7 @@ defmodule ScadvertWeb.DashboardController do
     IO.inspect(current_user)
 
 
-    if current_user.email in ["vic@gmail.com","john@gmail.com"] do
+    if current_user.role == true do
     users = Functions.users_count()
     facilitys = Facilitys.count_facilitys()
     codes = Codes.count_codes()
