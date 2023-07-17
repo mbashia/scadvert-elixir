@@ -33,9 +33,9 @@
 
       <td class = "table_data"><%=  if user.status == true do %>
       
-       <img src={"/images/tick.png"} alt="image_description" class = "h-4 w-4">
+    <%= Heroicons.icon("check", type: "solid", class: "h-6 w-6", style: "color: green;" )%>
        <%= else %>
-       <img src={"/images/x.png"} alt="image_description" class = "h-4 w-4">
+    <%= Heroicons.icon("x-mark", type: "outline", class: "h-6 w-6", style: "color: red;" )%>
 
        <%end %>
 

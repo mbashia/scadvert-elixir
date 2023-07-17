@@ -11,7 +11,7 @@ defmodule Scadvert.Repo.Migrations.CreateUsersAuthTables do
       add :gender, :string
       add :picture, :string
       add :status, :boolean, default: true
-      add :role, :boolean, default: true
+      add :role, :string, default: "staff"
       add :confirmed_at, :naive_datetime
       timestamps()
     end

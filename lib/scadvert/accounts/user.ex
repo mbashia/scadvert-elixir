@@ -21,7 +21,7 @@ defmodule Scadvert.Accounts.User do
     field :phone_number, :integer
     field :gender, :string
     field :status, :boolean, default: true
-    field :role, :boolean, default: false
+    field :role, :string, default: "staff"
 
     field :picture, Scadvert.UserImage.Type
 

@@ -12,7 +12,7 @@ defmodule ScadvertWeb.FeatureController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, params) do
-    if conn.assigns.current_user.role == true do
+    if conn.assigns.current_user.role == "admin" do
       changeset = Features.change_feature(%Feature{})
 
     page = Features.list_all_features()
@@ -99,14 +99,19 @@ defmodule ScadvertWeb.FeatureController do
 
   |> put_flash(:info, "facility searched successfully.")
 
-  |> render( "index.html", features: page.entries, changeset: changeset, page: page)
+  |> render( "index.html", features: page.entries, changeset: changeset, page: page, default_image: @default_image)
 
   end
 
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    from(f in Feature, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    from(f in Feature,
+    join: c in assoc(f, :codes),
+
+
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and f.user_id == ^user_id,
+    preload: [:codes])
 
 
 

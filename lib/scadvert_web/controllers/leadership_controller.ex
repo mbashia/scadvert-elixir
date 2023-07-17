@@ -9,7 +9,7 @@ defmodule ScadvertWeb.LeadershipController do
 
   @default_image :"/images/phoenix.png"
   def index(conn, params) do
-    if conn.assigns.current_user.role == true do
+    if conn.assigns.current_user.role == "admin" do
       changeset = Leaderships.change_leadership(%Leadership{})
 
       page = Leaderships.list_all_leaderships()
@@ -98,14 +98,17 @@ defmodule ScadvertWeb.LeadershipController do
 
   |> put_flash(:info, "history searched successfully.")
 
-  |> render( "index.html", leaderships: page.entries, changeset: changeset, page: page)
+  |> render( "index.html", leaderships: page.entries, changeset: changeset, page: page, default_image: @default_image)
 
   end
 
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    from(f in Leadership, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    from(l in Leadership,
+    join: c in assoc(l, :codes),
+     where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and l.user_id == ^user_id,
+     preload: [:codes])
 
 
 

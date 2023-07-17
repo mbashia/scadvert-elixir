@@ -6,14 +6,14 @@
     </div>
   <% end %>
     <div class = "mt-4">
-                <%=if @current_user.role == true do %>
+                <%=if @current_user.role == "admin" do %>
                  <span class = "mt-4"><%= link "Back", to: Routes.client_path(@conn, :index), class: "form_btn" %></span>
                  <%=else %>
                   <span class = "mt-4"><%= link "Back", to: Routes.client_path(@conn, :profile), class: "form_btn" %></span>
                   <%end %>
             </div>
 
-  <%=if @current_user.role == true do %>
+  <%=if @current_user.role == "admin" do %>
 
 <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
                 <div class="container max-w-screen-lg mx-auto ">
@@ -44,12 +44,12 @@
                               </div>
                               <div class="md:col-span-3">
                               <%= label f, :email, class: "label_item" %>
-                              <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed ", readonly: true%>
+                              <%= email_input f, :email, required: true, class: "input_item opacity-0.5 border-gray-300  "%>
                               <%= error_tag f, :email %>
                               </div>
                                 <div class="md:col-span-3">
                               <%= label f, :role, class: "label_item" %>
-                              <%=select f, :role,[ {"Admin", true},{"Staff", false}],required: true, class: "input_item opacity-0.5 border-gray-300 " %>
+                              <%=select f, :role,[ "staff","admin"],required: true, class: "input_item opacity-0.5 border-gray-300 " %>
                               <%= error_tag f, :role %>
                               </div>
                               <div class =" md:col-span-3">
@@ -66,6 +66,7 @@
                               <%= error_tag f, :picture %>
 
                               </div>
+                             
                             
                               
                             
@@ -109,7 +110,7 @@
                             
                               <div class="md:col-span-3">
                               <%= label f, :phonenumber, class: "label_item" %>
-                              <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300 cursor-not-allowed" , readonly: true%>
+                              <%= number_input f, :phone_number, required: true, class: "input_item opacity-0.5 border-gray-300" %>
                               <%= error_tag f, :phone_number %>
                               </div>
                               <div class="md:col-span-3">
@@ -134,7 +135,7 @@
                             
                               
                             
-                              <div class="md:col-span-3 text-right">
+                              <div class="md:col-span-3 text-right mt-2">
                                     <div class="inline-flex items-end">
                                     <%= submit "Save",class: "submit_btn" %>       
                                     </div>

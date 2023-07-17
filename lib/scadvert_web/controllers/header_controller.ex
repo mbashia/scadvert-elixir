@@ -13,7 +13,7 @@ defmodule ScadvertWeb.HeaderController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, params) do
-    if conn.assigns.current_user.role ==  true do
+    if conn.assigns.current_user.role ==  "admin" do
       changeset = Headers.change_header(%Header{})
 
       page = Headers.list_all_headers
@@ -99,15 +99,17 @@ defmodule ScadvertWeb.HeaderController do
 
   |> put_flash(:info, "Header searched successfully.")
 
-  |> render( "index.html", headers: page.entries, changeset: changeset, page: page)
+  |> render( "index.html", headers: page.entries, changeset: changeset, page: page, default_image: @default_image)
 
   end
 
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-   from(f in Header, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
-    # facilitys = Repo.all(query)
+   from(h in Header,
+   join: c in assoc(h, :codes),
+   where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and h.user_id == ^user_id,
+   preload: [:codes])
 
 
 

@@ -10,7 +10,7 @@ defmodule ScadvertWeb.VideoController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, params) do
-    if conn.assigns.current_user.role == true do
+    if conn.assigns.current_user.role == "admin" do
       changeset = Videos.change_video(%Video{})
 
       page = Videos.list_all_videos()
@@ -98,14 +98,17 @@ defmodule ScadvertWeb.VideoController do
 
   |> put_flash(:info, "video searched successfully.")
 
-  |> render( "index.html", videos: page.entries, changeset: changeset, page: page)
+  |> render( "index.html", videos: page.entries, changeset: changeset, page: page, default_image: @default_image)
 
   end
 
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    from(f in Video, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    from(v in Video,
+    join: c in assoc(v, :codes),
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and v.user_id == ^user_id,
+    preload: [:codes])
 
 
 

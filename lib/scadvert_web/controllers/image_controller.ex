@@ -11,7 +11,7 @@ defmodule ScadvertWeb.ImageController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, params) do
-    if conn.assigns.current_user.role == true do
+    if conn.assigns.current_user.role == "admin" do
       changeset = Images.change_image(%Image{})
 
       page = Images.list_all_images
@@ -101,14 +101,17 @@ defmodule ScadvertWeb.ImageController do
 
   |> put_flash(:info, "image searched successfully.")
 
-  |> render( "index.html", images: page.entries, changeset: changeset, page: page)
+  |> render( "index.html", images: page.entries, changeset: changeset, page: page, default_image: @default_image)
 
   end
 
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    from(f in Image, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+    from(i in Image,
+    join: c in assoc(i, :codes),
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and i.user_id == ^user_id,
+    preload: [:codes])
 
 
 

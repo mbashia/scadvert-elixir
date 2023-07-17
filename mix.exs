@@ -55,7 +55,9 @@ defmodule Scadvert.MixProject do
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev, override: true},
       {:ex_fontawesome, "~> 0.5.1", override: true},
       {:scrivener_ecto, "~> 2.7", override: true},
-      {:scrivener_html, "~> 1.8.1", override: true}
+      {:scrivener_html, "~> 1.8.1", override: true},
+      {:ex_heroicons, "~> 2.0.0", override: true}
+
 
     ]
   end

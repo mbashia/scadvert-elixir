@@ -38,10 +38,9 @@ def edit(conn, %{"id" => id}) do
 end
 def update(conn, %{"id" => id, "user" => user_params}) do
   user = Accounts.get_user!(id)
-
   case Accounts.update_user(user, user_params) do
     {:ok, _user} ->
-      if conn.assigns.current_user.role == true do
+      if conn.assigns.current_user.role == "admin" do
         conn
         |> put_flash(:info, "User updated successfully")
         |> redirect(to: Routes.client_path(conn, :index))
@@ -52,7 +51,7 @@ def update(conn, %{"id" => id, "user" => user_params}) do
       |> redirect(to: Routes.client_path(conn, :profile))
       end
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", user: user, changeset: changeset)
+        render(conn, "edit.html", user: user, changeset: changeset )
   end
 
 

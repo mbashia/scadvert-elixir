@@ -15,7 +15,7 @@ defmodule ScadvertWeb.FacilityController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, params) do
-    if conn.assigns.current_user.role == true do
+    if conn.assigns.current_user.role == "admin" do
       changeset = Facilitys.change_facility(%Facility{})
 
       # facilitys = Facilitys.list_all_facilitys()
@@ -104,14 +104,18 @@ defmodule ScadvertWeb.FacilityController do
 
   |> put_flash(:info, "facility searched successfully.")
 
-  |> render( "index.html", facilitys: page.entries, changeset: changeset, page: page)
+  |> render( "index.html", facilitys: page.entries, changeset: changeset, page: page, default_image: @default_image)
 
   end
 
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-     from(f in Facility, where: fragment("? LIKE ?", f.name, ^"%#{params}%")  and f.user_id == ^user_id)
+     from(f in Facility,
+     join: c in assoc(f, :codes),
+
+     where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and f.user_id == ^user_id,
+     preload: [:codes])
     # facilitys = Repo.all(query)
 
 
