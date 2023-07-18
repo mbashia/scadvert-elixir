@@ -1,10 +1,10 @@
 
 <div class=" flex flex-col p-6">
-            <div class = " shadow-xl text-2xl font-semibold text-blue-500">CODE:<%= @code.name%></div>
+            <div class = "  text-2xl font-semibold text-blue-500">CODE:<%= @code.name%></div>
 
 
             <div class ="  h-[350px] w-[350px] ">
-            <h2 class = " mt-6 mb-4 text-left text-2xl font-semibold text-blue-500">VIDEOS</h2>
+            <h2 class = " mt-6 mb-4 text-left text-2xl poppins-bold underline p-2 text-blue-500">VIDEO</h2>
 
                 
                     <div class = "h-[350px] w-[350px] inline-block  ">
@@ -32,46 +32,55 @@
 
             </div>
 
+        <div class = "header" > 
+                <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">HEADER</h2>
 
-            <h2 class = "   mt-6 text-left text-2xl font-semibold text-blue-500">HEADER</h2>
+                                <%=if @headers do %>
 
-        <%=if @headers do %>
+                <div class="  relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
+                          <%= img_tag Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true), class: "h-full object-cover w-full"%>
+                                <div class = "text-white poppins-bold  absolute top-[20px] left-[20px]">
+                                        <span class = "text-2xl  uppercase"><%= @headers.name %></span>
+                                        <p class = "text-sm poppins-light"><%= @headers.description %> </p>
+                                
+                                </div>
 
-            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class=" relative  h-[350px] w-[350px] bg-black/50">
-                    <%= img_tag Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true), class: "h-full object-cover w-full"%>
-                    <div class = "text-white poppins-bold font-bold absolute top-[20px] left-[20px]">
-                    <span class = "text-4xl">NAME: <%= @headers.name %></span>
-                    <p>DESCRIPTION:<%= @headers.description %> </p>
-                    
-                    </div>
-
-                    </div>
-            </div>
-                <%= else%>
-                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
-                        <div class = "mt-12 ml-12" >
-                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
-
-                        <p class = "text-blue-500"> no header attached to this code</p>
                         </div>
-              
-                        </div>
-                    <%end %>
+                </div>
+                        <%= else%>
+                        <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
+                                <div class = "mt-12 ml-12" >
+                                <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
 
-
-            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">FEATURES</h2>
+                                <p class = "text-blue-500"> no header attached to this code</p>
+                                </div>
+                
+                                </div>
+                        <%end %>
+                
+        
+        
+        </div>
+           
+        <div class = "features">
+          <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">FEATURES</h2>
               <%=if @features do %>
 
 
             <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
-                    <%= img_tag Scadvert.HeaderImage.url({@features.picture, @features}, signed: true), class: "h-full w-full object-cover"%>
-                    <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
-                    <span class = "text-4xl">NAME: <%= @features.name %></span>
-                    <p>DESCRIPTION:<%= @features.description %> </p>
+               <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
+                <%= img_tag Scadvert.HeaderImage.url({@features.picture, @features}, signed: true), class: "h-full w-full object-cover"%>
+                    <div class = "text-white poppins-bold  absolute top-[20px] left-[20px]">
+                    <span class = "text-2xl uppercase"> <%= @features.name %></span>
+                    <p class = "text-sm poppins-light"><%= @features.description %> </p>
                     
                     </div>
+               
+               
+               </div>
+
+                   
             </div>
              <%= else%>
                 <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
@@ -83,19 +92,27 @@
               
                         </div>
                     <%end %>
+        
+        
+        
+        </div>
 
-            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">FACILITIES</h2>
+            <div class = "facilitys">
+                 <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">FACILITIES</h2>
 
                       <%=if @facilitys do %>
 
-            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@facilitys.picture, @facilitys}, signed: true), class: "h-full w-full object-cover"%>
-                    <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
-                    <span class = "text-4xl">NAME: <%= @facilitys.name %></span>
-                    <p>DESCRIPTION:<%= @facilitys.description %> </p>
-                    
-                    </div>
-            </div>
+                         <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
+                                        <%= img_tag Scadvert.HeaderImage.url({@facilitys.picture, @facilitys}, signed: true), class: "h-full w-full object-cover"%>
+                                        <div class = "text-white poppins-bold absolute top-[20px] left-[20px]">
+                                                <span class = "text-2xl uppercase"> <%= @facilitys.name %></span>
+                                                <p  class = "text-sm poppins-light" ><%= @facilitys.description %> </p>
+                        
+                                        </div>
+                                </div>
+                               
+                        </div>
             <%= else%>
                 <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
                         <div class = "mt-12 ml-12" >
@@ -107,38 +124,56 @@
                         </div>
                     <%end %>
 
-            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">HISTORY</h2>
-                      <%=if @leaderships do %>
-
-            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true), class: "h-full w-full object-cover"%>
-                    <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
-                    <span class = "text-4xl" >NAME: <%= @leaderships.name %></span>
-                    <p>DESCRIPTION:<%= @leaderships.description %> </p>
-                    
-                    </div>
+            
+            
+            
+            
+            
             </div>
-             <%= else%>
-                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
-                        <div class = "mt-12 ml-12" >
-                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+            <div class = "history">
+                <h2 class = "mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">HISTORY</h2>
+                                <%=if @leaderships do %>
 
-                        <p class = "text-blue-500"> no history attached to this code</p>
+                        <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                              <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
+                                        <%= img_tag Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true), class: "h-full w-full object-cover"%>
+                                        <div class = "text-white poppins-bold absolute top-[20px] left-[20px]">
+                                                <span class = "text-4xl uppercase" > <%= @leaderships.name %></span>
+                                                <p class = "text-sm poppins-light"><%= @leaderships.description %> </p>
+                                                
+                                        </div>
+                                </div>
+
+                               
                         </div>
-              
-                        </div>
-                    <%end %>
+                        <%= else%>
+                                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
+                                        <div class = "mt-12 ml-12" >
+                                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
 
+                                        <p class = "text-blue-500"> no history attached to this code</p>
+                                        </div>
+                        
+                                        </div>
+                                <%end %>
+                </div>
+           
+            
 
-            <h2 class = " mt-6  text-left text-2xl font-semibold text-blue-500">IMAGES</h2>
+        <div class = "images">
+         <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">IMAGES</h2>
                 <%=if @images do%>
             <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <%= img_tag Scadvert.HeaderImage.url({@images.picture, @images}, signed: true), class: "h-full w-full object-cover"%>
-                    <div class = "text-red-500 font-bold absolute top-[20px] left-[20px]">
-                    <span class = "text-4xl">NAME: <%= @images.name %></span>
-                    <p>DESCRIPTION:<%= @images.description %> </p>
-                    
-                    </div>
+                   <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
+                        <%= img_tag Scadvert.HeaderImage.url({@images.picture, @images}, signed: true), class: "h-full w-full object-cover"%>
+                                <div class = "text-white poppins-bold absolute top-[20px] left-[20px]">
+                                <span class = "text-2xl uppercase"> <%= @images.name %></span>
+                                <p class = "text-sm poppins-light"><%= @images.description %> </p>
+                        
+                        </div>
+                   </div>
+
+                   
             </div>
              <%= else%>
                 <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
@@ -151,5 +186,7 @@
                         </div>
                     <%end %>
 
+        </div>
+           
 
 </div>
