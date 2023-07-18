@@ -7,33 +7,7 @@
                         <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-600 uppercase">
                         settings
                         </h1>
-                        <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email">
-                        <%= if @email_changeset.action do %>
-                          <div class="alert alert-danger">
-                            <p>Oops, something went wrong! Please check the errors below.</p>
-                          </div>
-                        <% end %>
-
-                            <%= hidden_input f, :action, name: "action", value: "update_email" %>
-                              <div class="py-2 text-left">
-                            <%= label f, :email, class: "label_item" %>
-                            <%= email_input f, :email, required: true, class: "input_item" %>
-                            <%= error_tag f, :email %>
-                            </div>
-                              <div class="py-2 text-left">
-                              <%= label f, :current_password, for: "current_password_for_email", class: "label_item" %>
-                            <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "input_item" %>
-                            <%= error_tag f, :current_password %>
-                              
-                              
-                              </div>
-                            
-                            <div class="py-2">
-                           
-                            <%= submit "change email", class: "border-2 border-gray-100 focus:outline-none bg-purple-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-purple-700" %>
-                            </div>
-
-                            </.form>
+                      
                             <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password">
                             <%= if @password_changeset.action do %>
                               <div class="alert alert-danger">
@@ -42,6 +16,12 @@
                             <% end %>
 
                             <%= hidden_input f, :action, name: "action", value: "update_password" %>
+                              <div class="py-2 text-left">
+                            
+                            <%= label f, :current_password, for: "current_password_for_password", class: "label_item" %>
+                            <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password", class: "input_item" %>
+                            <%= error_tag f, :current_password %>
+                            </div>
                             <div class="py-2 text-left">
                             <%= label f, :password, "New password", class: "label_item" %>
                             <%= password_input f, :password, required: true , class: "input_item"%>
@@ -54,12 +34,7 @@
                             
                             </div>
                             
-                            <div class="py-2 text-left">
-                            
-                            <%= label f, :current_password, for: "current_password_for_password", class: "label_item" %>
-                            <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password", class: "input_item" %>
-                            <%= error_tag f, :current_password %>
-                            </div>
+                          
                             
 
                               <div>

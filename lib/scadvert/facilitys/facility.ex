@@ -23,7 +23,6 @@ defmodule Scadvert.Facilitys.Facility do
     facility
     |> cast(attrs, [:code_id, :name, :description, :status, :picture, :user_id])
     |> validate_required([:code_id, :name, :description, :status,  :user_id])
-    |> validate_length(:description,  max: 500, message: "Description must be below 500 characters")
 
   end
 end

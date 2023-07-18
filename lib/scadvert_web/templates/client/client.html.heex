@@ -4,6 +4,10 @@
 <div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "back", to: Routes.client_path(@conn, :index) %></span>
 </div>
+
+<%= link "prev page", to: Routes.client_path(@conn, :index, page: @page.page_number-1) %>
+<%= link "next page", to: Routes.client_path(@conn, :index, page: @page.page_number+1) %>
+
 <div class = "overflow-x-auto">
 <table  class  = "w-full sm:w-auto">
   <thead>
@@ -34,7 +38,7 @@
       <td class = "table_data"><%=  if user.status == true do %>
       
     <%= Heroicons.icon("check", type: "solid", class: "h-6 w-6", style: "color: green;" )%>
-       <%= else %>
+       <% else %>
     <%= Heroicons.icon("x-mark", type: "outline", class: "h-6 w-6", style: "color: red;" )%>
 
        <%end %>
@@ -58,7 +62,7 @@
          <div class = " inline-block bg-red-600 rounded mr-2 w-[90px]">       
        <span><%= link "deactivate", to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>
-      <%=else %>
+      <%else %>
       <div class = "p-2 inline-block bg-green-400 rounded mr-2 w-[90px]">       
        <span><%= link "activate", to:  Routes.client_path(@conn, :delete, user),  method: :delete,data: [confirm: "activate user?"] %></span>
       </div>

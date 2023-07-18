@@ -46,7 +46,7 @@
       <td >
       <%= if image.picture do %>
       <%= img_tag Scadvert.ImageImage.url({image.picture, image}, signed: true), class: "h-[42px] w-[60px]"%>
-      <%= else %>
+      <%else %>
        <img src={@default_image} class = "h-[42px] w-[60px] object-scale-down"  alt="image_description">
       <%end %>
       </td>

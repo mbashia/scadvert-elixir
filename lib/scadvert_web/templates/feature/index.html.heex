@@ -47,7 +47,7 @@
       <%= if feature.picture do %>
       
       <%= img_tag Scadvert.FeatureImage.url({feature.picture, feature}, signed: true), class: "h-[42px] w-[60px]"%>
-      <%=else %>
+      <%else %>
        <img src={@default_image} class = "h-[42px] w-[60px] object-scale-down"  alt="image_description">
       <%end %>
       

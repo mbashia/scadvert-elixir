@@ -1,5 +1,5 @@
 
-<div class=" flex flex-col p-6">
+<div class=" flex flex-col  bg-black/05 p-6">
             <div class = "  text-2xl font-semibold text-blue-500">CODE:<%= @code.name%></div>
 
 
@@ -21,7 +21,7 @@
                         type="video/mp4"/>
 
                     </video>
-                    <%=else %>
+                    <%else %>
                 <div class = "h-[350px] w-[350px] inline-block border-6 ">
                 <div class = "mt-12 ml-12" >
                 <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
@@ -49,13 +49,13 @@
                           <%= img_tag Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true), class: "h-full object-cover w-full"%>
                                 <div class = "text-white poppins-bold  absolute top-[20px] left-[20px]">
                                         <span class = "text-2xl  uppercase"><%= @headers.name %></span>
-                                        <p class = "text-sm poppins-light"><%= @headers.description %> </p>
+                                        <p class = "text-sm poppins-light leading-loose"><%= @headers.description %> </p>
                                 
                                 </div>
 
                         </div>
                 </div>
-                        <%= else%>
+                        <%else%>
                         <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
                                 <div class = "mt-12 ml-12" >
                                 <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
@@ -80,7 +80,7 @@
                 <%= img_tag Scadvert.HeaderImage.url({@features.picture, @features}, signed: true), class: "h-full w-full object-cover"%>
                     <div class = "text-white poppins-bold  absolute top-[20px] left-[20px]">
                     <span class = "text-2xl uppercase"> <%= @features.name %></span>
-                    <p class = "text-sm poppins-regular tracking-wide"><%= @features.description %> </p>
+                    <p class = "text-sm poppins-regular tracking-wide leading-loose"><%= @features.description %> </p>
                     
                     </div>
                
@@ -89,7 +89,7 @@
 
                    
             </div>
-             <%= else%>
+             <%else%>
                 <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
                         <div class = "mt-12 ml-12" >
                         <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
@@ -120,7 +120,7 @@
                                 </div>
                                
                         </div>
-            <%= else%>
+            <%else%>
                 <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
                         <div class = "mt-12 ml-12" >
                         <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
@@ -146,14 +146,14 @@
                                         <%= img_tag Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true), class: "h-full w-full object-cover"%>
                                         <div class = "text-white poppins-bold absolute top-[20px] left-[20px]">
                                                 <span class = "text-4xl uppercase" > <%= @leaderships.name %></span>
-                                                <p class = "text-sm poppins-light"><%= @leaderships.description %> </p>
+                                                <p class = "text-sm poppins-light leading-loose"><%= @leaderships.description %> </p>
                                                 
                                         </div>
                                 </div>
 
                                
                         </div>
-                        <%= else%>
+                        <%else%>
                                 <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
                                         <div class = "mt-12 ml-12" >
                                         <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
@@ -182,7 +182,7 @@
 
                    
             </div>
-             <%= else%>
+             <%else%>
                 <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
                         <div class = "mt-12 ml-12" >
                         <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>

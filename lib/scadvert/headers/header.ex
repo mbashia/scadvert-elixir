@@ -23,7 +23,6 @@ defmodule Scadvert.Headers.Header do
     header
     |> cast(attrs, [:name, :description, :code_id, :status, :picture, :user_id])
     |> validate_required([:name, :description, :code_id, :status,  :user_id])
-    |> validate_length(:description,  max: 500, message: "Description must be below 500 characters")
 
   end
 end

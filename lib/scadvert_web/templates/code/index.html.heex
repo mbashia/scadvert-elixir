@@ -1,13 +1,16 @@
-      <div class="bg-gray-800 pt-3">
+ <div class="bg-gray-800 pt-3 mb-[30px]">
             <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white " >
                 <h3 class="font-bold pl-2">LISTING CODES</h3>
             </div>
+        </div>
+        <div class = "ml-[200px]">
+          <%= render "search.html", Map.put(assigns, :action, Routes.code_path(@conn, :search)) %>
+
         </div>
 
       <div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
       <span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
       </div>
-           <%= render "search.html", Map.put(assigns, :action, Routes.code_path(@conn, :search)) %>
 <%= link "prev page", to: Routes.code_path(@conn, :index, page: @page.page_number-1) %>
 <%= link "next page", to: Routes.code_path(@conn, :index, page: @page.page_number+1) %>
 
@@ -31,7 +34,7 @@
         <tbody>
       <%= for code <- @codes do  %>
           <tr>
-            <td class = "table_data"><%= code.name %></td>
+            <td class = "table_data "><%= code.name %></td>
             <td class = "table_data "><%= code.description %></td>
             <td class = "table_data"> <%= if code.active == "true" do %>
                 <div class = "bg-green-400 p-1 rounded">Active</div>
@@ -46,7 +49,7 @@
 
           
               
-      <td style = "width:150px; height:100px;">
+      <td style = "width:100px; height:100px;">
       <div >
 
 
@@ -87,3 +90,4 @@
 
 
 
+     

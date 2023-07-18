@@ -117,11 +117,11 @@
   cursor: pointer;
 }
 .for_tables {
-  @apply py-2 px-4 bg-white w-[200px] text-left text-blue-400;
+  @apply py-2 px-4 bg-white  text-left text-blue-400;
 }
 
 .table_data{
-  @apply py-2 px-4 border-b w-[200px] border-white text-left border whitespace-normal break-words ;
+  @apply py-2 px-4 border-b  border-white text-left border whitespace-normal break-words ;
 }
 .img{
   @apply h-10 w-10 overflow-hidden;

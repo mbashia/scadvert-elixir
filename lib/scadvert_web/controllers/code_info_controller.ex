@@ -1,11 +1,11 @@
 defmodule ScadvertWeb.CodeInfoController do
   use ScadvertWeb, :controller
-  require Ecto
+  # require Ecto
   import Ecto.Query, warn: false
 
 
   alias Scadvert.Codes
-  alias Scadvert.Repo
+  # alias Scadvert.Repo
   plug :put_layout, "show_info.html"
 
 

@@ -15,7 +15,7 @@
              
                   <%= img_tag Scadvert.FacilityImage.url({@facility.picture, @facility}, signed: true, class: "h-auto w-[100%] ")  %>
               </div> 
-              <%=else%>
+              <%else%>
                 <div class = "h-44 overflow-hidden">
                 <img src={@default_image} alt="image_description">
 

@@ -2,6 +2,7 @@ defmodule ScadvertWeb.ClientController do
   use ScadvertWeb, :controller
   alias Scadvert.Functions
   alias Scadvert.Accounts
+  alias Scadvert.Repo
   # alias Scadvert.Accounts.User
   alias Scadvert.Users
 
@@ -17,10 +18,10 @@ defmodule ScadvertWeb.ClientController do
 
 
 
-def index(conn,_params)do
-  users = Accounts.list_users()
-
-  render(conn, "client.html", users: users)
+def index(conn,params)do
+  page = Accounts.list_users()
+                    |>Repo.paginate(params)
+    render(conn, "client.html", users: page.entries, page: page)
 
 end
 @spec show(any, map) :: nil
@@ -99,7 +100,7 @@ end
         |> Ecto.Changeset.put_change(:status, true)
         IO.inspect(changeset.changes)
         case Accounts.update_user(user, %{status: true})do
-      {:ok, user} ->
+      {:ok,_user} ->
         conn
         |> put_flash(:info, "User activated successfully")
         |> redirect(to: Routes.client_path(conn, :index))

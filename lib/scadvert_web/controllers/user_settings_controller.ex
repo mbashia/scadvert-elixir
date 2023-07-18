@@ -37,6 +37,8 @@ defmodule ScadvertWeb.UserSettingsController do
   end
 
   def update(conn, %{"action" => "update_password"} = params) do
+    IO.write("params start here")
+    IO.inspect(params)
     %{"current_password" => password, "user" => user_params} = params
     user = conn.assigns.current_user
 
@@ -74,5 +76,5 @@ defmodule ScadvertWeb.UserSettingsController do
     |> assign(:password_changeset, Accounts.change_user_password(user))
   end
 
- 
+
 end

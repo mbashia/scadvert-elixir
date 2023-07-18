@@ -8,7 +8,7 @@
     <div class = "mt-4">
                 <%=if @current_user.role == "admin" do %>
                  <span class = "mt-4"><%= link "Back", to: Routes.client_path(@conn, :index), class: "form_btn" %></span>
-                 <%=else %>
+                 <%else %>
                   <span class = "mt-4"><%= link "Back", to: Routes.client_path(@conn, :profile), class: "form_btn" %></span>
                   <%end %>
             </div>
@@ -86,7 +86,7 @@
                 </div>
                 </div>
 
-                <%= else %>
+                <%else %>
                 <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
                 <div class="container max-w-screen-lg mx-auto ">
                   <div>

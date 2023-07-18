@@ -33,7 +33,6 @@ defmodule Scadvert.Codes.Code do
     |> cast(attrs, [:active, :description, :name, :picture, :type, :user_id])
 
     |> validate_required([:name, :description, :active,  :type, :user_id])
-    |> validate_length(:description,  max: 500, message: "Description must be below 500 characters")
 
   end
 end

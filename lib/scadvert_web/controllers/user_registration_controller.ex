@@ -3,7 +3,7 @@ defmodule ScadvertWeb.UserRegistrationController do
 
   alias Scadvert.Accounts
   alias Scadvert.Accounts.User
-  alias ScadvertWeb.UserAuth
+  # alias ScadvertWeb.UserAuth
 
   plug :put_layout, "login_registration.html"
 
