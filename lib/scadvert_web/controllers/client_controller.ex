@@ -61,7 +61,6 @@ end
 def profile(conn,_params) do
 
   user = Functions.get_user_by_id(conn)
-  IO.inspect(user.id)
   render(conn, "profile.html", user: user)
 end
 

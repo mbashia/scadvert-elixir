@@ -3,7 +3,7 @@
           
             <div class="flex flex-1 items-center justify-center">
                 <div class=" bg-gray-100 rounded-lg sm:border-2 px-4 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center shadow-2xl">
-                    <form class="text-center">
+
                         <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-600 uppercase">
                         settings
                         </h1>
@@ -16,12 +16,14 @@
                             <% end %>
 
                             <%= hidden_input f, :action, name: "action", value: "update_password" %>
-                              <div class="py-2 text-left">
+
+                               <div class="py-2 text-left">
                             
                             <%= label f, :current_password, for: "current_password_for_password", class: "label_item" %>
                             <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password", class: "input_item" %>
                             <%= error_tag f, :current_password %>
                             </div>
+                             
                             <div class="py-2 text-left">
                             <%= label f, :password, "New password", class: "label_item" %>
                             <%= password_input f, :password, required: true , class: "input_item"%>
@@ -33,6 +35,7 @@
                             <%= error_tag f, :password_confirmation %>
                             
                             </div>
+                          
                             
                           
                             
@@ -44,7 +47,6 @@
 
 
 
-                    </form>
             
                     
                 </div>

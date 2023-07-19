@@ -48,6 +48,7 @@ defmodule ScadvertWeb.UserSettingsController do
         |> put_flash(:info, "Password updated successfully.")
         |> put_session(:user_return_to, Routes.user_settings_path(conn, :edit))
         |> UserAuth.log_in_user(user)
+        |>redirect(to: Routes.client_path(conn, :profile))
 
       {:error, changeset} ->
         render(conn, "edit.html", password_changeset: changeset)
