@@ -46,6 +46,9 @@ defmodule ScadvertWeb.Router do
     get "/profile/" , ClientController, :profile
     get "/code_information/:id", CodeInfoController, :show
 
+    get "confirm", PageController, :confirm
+
+
 
 
 

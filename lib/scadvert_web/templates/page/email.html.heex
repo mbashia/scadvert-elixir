@@ -1,0 +1,24 @@
+<div class="confirm-bg h-[100vh] bg-cover bg-no-repeat">
+  <div class="h-[100vh] bg-white flex justify-center items-center w-[100%]">
+    <div class="w-[800px] h-[700px] flex flex-col justify-center items-center bg-white">
+      <img
+        src={Routes.static_path(@conn, "/images/scadvert_logo.png")}
+        alt="scadvert logo"
+        class=" w-[150px]  object-cover"
+      />
+      <img
+        src={Routes.static_path(@conn, "/images/robot.png")}
+        alt="robot image"
+        class=" h-[300px] w-[200px]   object-cover"
+      />
+      <p class="text-2xl font-bold w-[70%] mx-auto text-center">
+        A confirmation link has been sent to your email address. Please follow
+        the link to activate your account.
+      </p>
+
+      <%= link to: "/dev/mailbox", class: "text-2xl bg-[#31AB2D] text-white  w-[200px] py-2 my-4 hover:scale-105 transition-all duration-500 ease-in-out text-whote mx-auto text-center" do %>
+        Mailbox
+      <% end %>
+    </div>
+  </div>
+</div>

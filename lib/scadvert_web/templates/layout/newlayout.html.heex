@@ -52,7 +52,6 @@
                             <li class="flex-1 md:flex-none md:mr-3">
                                 <div class="relative inline-block">
                                     <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: " text-white focus:outline-none mr-2" %></li>
-                                      <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
 
                                     <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
                                         <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.." id="myInput" onkeyup="filterDD('myDropdown','myInput')">

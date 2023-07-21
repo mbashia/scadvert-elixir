@@ -50,7 +50,7 @@ defmodule Scadvert.Accounts do
     user = Repo.get_by(User, email: email)
 
     cond do
-      user && User.valid_password?(user, password) && user.status == true ->
+      user && User.valid_password?(user, password) && user.status &&  (not is_nil(user.confirmed_at) ) == true ->
 
 
       {:ok, user}

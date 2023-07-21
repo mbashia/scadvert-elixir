@@ -2,7 +2,7 @@ defmodule ScadvertWeb.UserConfirmationController do
   use ScadvertWeb, :controller
 
   alias Scadvert.Accounts
-  
+
   plug :put_layout, "login_registration.html"
 
   def new(conn, _params) do
@@ -37,7 +37,7 @@ defmodule ScadvertWeb.UserConfirmationController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "User confirmed successfully.")
-        |> redirect(to: "/")
+        |> redirect(to: Routes.user_session_path(conn, :new))
 
       :error ->
         # If there is a current user and the account was already confirmed,
@@ -51,7 +51,7 @@ defmodule ScadvertWeb.UserConfirmationController do
           %{} ->
             conn
             |> put_flash(:error, "User confirmation link is invalid or it has expired.")
-            |> redirect(to: "/")
+            |> redirect(to :Routes.user_registration_path(conn, :new))
         end
     end
   end

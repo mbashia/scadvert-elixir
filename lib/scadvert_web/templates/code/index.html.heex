@@ -3,16 +3,34 @@
                 <h3 class="font-bold pl-2">LISTING CODES</h3>
             </div>
         </div>
-        <div class = "ml-[200px]">
+            
+        <div class = "   flex items-center ">
+         <div class  = " bg-green-400 rounded-lg p-2 inline-block mx-4">  
+      <span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
+
+      
+      </div>
+      
+      <div class = "inline-block ml-[200px]">
           <%= render "search.html", Map.put(assigns, :action, Routes.code_path(@conn, :search)) %>
 
         </div>
 
-      <div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
-      <span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
+       <div class = "ml-[200px]">
+      <span> <%= link "reset ", to: Routes.code_path(@conn, :index) %></span>
+
+      
+       
+       </div> 
+
+      
+        </div>
+        <div>
+      <%= link "prev page", to: Routes.code_path(@conn, :index, page: @page.page_number-1) %>
+      <%= link "next page", to: Routes.code_path(@conn, :index, page: @page.page_number+1) %>
+
       </div>
-<%= link "prev page", to: Routes.code_path(@conn, :index, page: @page.page_number-1) %>
-<%= link "next page", to: Routes.code_path(@conn, :index, page: @page.page_number+1) %>
+   
 
         <div class = "overflow-x-auto">
       <table  class  = "w-full sm:w-auto">

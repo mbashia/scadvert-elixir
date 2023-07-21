@@ -56,6 +56,8 @@ defmodule Scadvert.MixProject do
       {:ex_fontawesome, "~> 0.5.1", override: true},
       {:scrivener_ecto, "~> 2.7", override: true},
       {:scrivener_html, "~> 1.8.1", override: true},
+      {:finch, "~> 0.8"},
+
       {:ex_heroicons, "~> 2.0.0", override: true}
 
 

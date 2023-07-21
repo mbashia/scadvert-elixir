@@ -3,7 +3,7 @@ defmodule ScadvertWeb.UserRegistrationController do
 
   alias Scadvert.Accounts
   alias Scadvert.Accounts.User
-  # alias ScadvertWeb.UserAuth
+  alias ScadvertWeb.UserAuth
 
   plug :put_layout, "login_registration.html"
 
@@ -22,10 +22,10 @@ defmodule ScadvertWeb.UserRegistrationController do
           )
 
         conn
-        |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.user_session_path(conn, :new))
+        |> put_flash(:info, "confirmation link sent to your account.")
+        # |> redirect(to: Routes.user_session_path(conn, :new))
 
-        # |> UserAuth.log_in_user(user)
+        |> UserAuth. new_user_login(user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

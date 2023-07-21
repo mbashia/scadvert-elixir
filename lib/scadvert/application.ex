@@ -15,7 +15,9 @@ defmodule Scadvert.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Scadvert.PubSub},
       # Start the Endpoint (http/https)
-      ScadvertWeb.Endpoint
+      ScadvertWeb.Endpoint,
+      {Finch, name: Swoosh.Finch}
+
       # Start a worker by calling: Scadvert.Worker.start_link(arg)
       # {Scadvert.Worker, arg}
     ]
