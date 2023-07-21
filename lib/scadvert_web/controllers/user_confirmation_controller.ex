@@ -51,7 +51,7 @@ defmodule ScadvertWeb.UserConfirmationController do
           %{} ->
             conn
             |> put_flash(:error, "User confirmation link is invalid or it has expired.")
-            |> redirect(to :Routes.user_registration_path(conn, :new))
+            |> redirect(to: Routes.user_registration_path(conn, :new))
         end
     end
   end
