@@ -4,12 +4,13 @@
 <div class  = " bg-green-400 rounded-lg p-2 inline-block m-4">  
 <span><%= link "back", to: Routes.client_path(@conn, :index) %></span>
 </div>
+          <%= render "search.html", Map.put(assigns, :action, Routes.video_path(@conn, :search)) %>
 
 <%= link "prev page", to: Routes.client_path(@conn, :index, page: @page.page_number-1) %>
 <%= link "next page", to: Routes.client_path(@conn, :index, page: @page.page_number+1) %>
 
 <div class = "overflow-x-auto">
-<table  class  = "w-full sm:w-auto">
+<table  class  = "w-full sm:w-auto" style = "width:100%;">
   <thead>
     <tr>
       <th class = "for_tables">Firstname</th>
@@ -17,6 +18,10 @@
       <th class = "for_tables">phone number</th>
       <th class = "for_tables">email</th>
       <th class = "for_tables">image</th>
+      <th class = "for_tables">gender</th>
+       <th class = "for_tables">role</th>
+
+
 
       <th class = "for_tables">status</th>
       <th class = "for_tables">Actions</th>
@@ -34,6 +39,9 @@
       <td class = "table_data"><%= user.phone_number %></td>
       <td class = "table_data"><%= user.email  %></td>
        <td class = "table_data"><%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "h-[42px] w-[60px]"%></td>
+      <td class = "table_data"><%= user.gender  %></td>
+       <td class = "table_data"><%= user.role  %></td>
+
 
       <td class = "table_data"><%=  if user.status == true do %>
       

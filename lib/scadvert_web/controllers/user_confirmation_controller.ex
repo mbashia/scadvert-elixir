@@ -37,6 +37,7 @@ defmodule ScadvertWeb.UserConfirmationController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "User confirmed successfully.")
+        # check the redirect below later
         |> redirect(to: Routes.user_session_path(conn, :new))
 
       :error ->

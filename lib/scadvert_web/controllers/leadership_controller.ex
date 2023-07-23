@@ -14,14 +14,14 @@ defmodule ScadvertWeb.LeadershipController do
 
       page = Leaderships.list_all_leaderships()
                   |>Repo.paginate(params)
-      render(conn, "index.html", leaderships: page.entries, default_image: @default_image, page: page, changeset: changeset)
+      render(conn, "index.html", leaderships: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
     else
       changeset = Leaderships.change_leadership(%Leadership{})
 
 
     page = Leaderships.list_leaderships_by_user_id(conn)
                      |>Repo.paginate(params)
-    render(conn, "index.html", leaderships: page.entries, default_image: @default_image, page: page, changeset: changeset)
+    render(conn, "index.html", leaderships: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
     end
 
   end
@@ -92,13 +92,13 @@ defmodule ScadvertWeb.LeadershipController do
   [] ->
   conn
   |> put_flash(:error, "no results")
-  |> render( "index.html", leaderships: [], changeset: changeset, page: page)
+  |> render( "index.html", leaderships: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
   conn
 
   |> put_flash(:info, "history searched successfully.")
 
-  |> render( "index.html", leaderships: page.entries, changeset: changeset, page: page, default_image: @default_image)
+  |> render( "index.html", leaderships: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
 
   end
 

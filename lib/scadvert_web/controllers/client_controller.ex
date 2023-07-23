@@ -3,7 +3,7 @@ defmodule ScadvertWeb.ClientController do
   alias Scadvert.Functions
   alias Scadvert.Accounts
   alias Scadvert.Repo
-  # alias Scadvert.Accounts.User
+   alias Scadvert.Accounts.User
   alias Scadvert.Users
 
 
@@ -21,7 +21,9 @@ defmodule ScadvertWeb.ClientController do
 def index(conn,params)do
   page = Accounts.list_users()
                     |>Repo.paginate(params)
-    render(conn, "client.html", users: page.entries, page: page)
+   changeset = Users.change_user(%User{})
+
+    render(conn, "client.html", users: page.entries, page: page, changeset: changeset)
 
 end
 @spec show(any, map) :: nil

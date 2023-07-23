@@ -18,13 +18,13 @@ defmodule ScadvertWeb.HeaderController do
 
       page = Headers.list_all_headers
                     |>Repo.paginate(params)
-      render(conn, "index.html", headers: page.entries, default_image: @default_image, page: page, changeset: changeset)
+      render(conn, "index.html", headers: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
     else
       changeset = Headers.change_header(%Header{})
 
     page = Headers.list_headers_by_user_id(conn)
                               |>Repo.paginate(params)
-    render(conn, "index.html", changeset: changeset, headers: page.entries, default_image: @default_image, page: page)
+    render(conn, "index.html", changeset: changeset, headers: page.entries, default_image: @default_image, page: page, total_pages: page.total_pages)
     end
 
   end
@@ -93,13 +93,13 @@ defmodule ScadvertWeb.HeaderController do
   [] ->
   conn
   |> put_flash(:error, "no results")
-  |> render( "index.html", headers: [], changeset: changeset, page: page)
+  |> render( "index.html", headers: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
   conn
 
   |> put_flash(:info, "Header searched successfully.")
 
-  |> render( "index.html", headers: page.entries, changeset: changeset, page: page, default_image: @default_image)
+  |> render( "index.html", headers: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
 
   end
 

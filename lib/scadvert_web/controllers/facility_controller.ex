@@ -21,14 +21,14 @@ defmodule ScadvertWeb.FacilityController do
       # facilitys = Facilitys.list_all_facilitys()
       page = Facilitys.list_all_facilitys()
                 |>Repo.paginate(params)
-      render(conn, "index.html", facilitys: page.entries, default_image: @default_image, changeset: changeset, page: page)
+      render(conn, "index.html", facilitys: page.entries, default_image: @default_image, changeset: changeset, page: page, total_pages: page.total_pages)
     else
       changeset = Facilitys.change_facility(%Facility{})
       page = Facilitys.list_facilitys_by_user_id(conn)
 
                     |>Repo.paginate(params)
 
-    render(conn, "index.html", facilitys: page.entries, default_image: @default_image, changeset: changeset, page: page)
+    render(conn, "index.html", facilitys: page.entries, default_image: @default_image, changeset: changeset, page: page, total_pages: page.total_pages)
     end
 
   end
@@ -98,13 +98,13 @@ defmodule ScadvertWeb.FacilityController do
   [] ->
   conn
   |> put_flash(:error, "no results")
-  |> render( "index.html", facilitys: [], changeset: changeset, page: page)
+  |> render( "index.html", facilitys: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
   conn
 
   |> put_flash(:info, "facility searched successfully.")
 
-  |> render( "index.html", facilitys: page.entries, changeset: changeset, page: page, default_image: @default_image)
+  |> render( "index.html", facilitys: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
 
   end
 

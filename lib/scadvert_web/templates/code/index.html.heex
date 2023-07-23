@@ -17,7 +17,11 @@
         </div>
 
        <div class = "ml-[200px]">
-      <span> <%= link "reset ", to: Routes.code_path(@conn, :index) %></span>
+       <div > 
+        <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
+             <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.code_path(@conn, :index), style: "color: #173673;" %></span>
+
+       </div>
 
       
        
@@ -25,15 +29,40 @@
 
       
         </div>
-        <div>
-      <%= link "prev page", to: Routes.code_path(@conn, :index, page: @page.page_number-1) %>
-      <%= link "next page", to: Routes.code_path(@conn, :index, page: @page.page_number+1) %>
+        <div class = "my-8 ml-6">
+        <%= for a_page <- 1..@total_pages do %>
+       <%= link to: Routes.code_path(@conn, :index, page: a_page) do %>
+
+        <div class = "h-8 w-8 bg-blue-400 inline-block text-white py-1 pl-2 ml-2">
+        <%= a_page %>
+
+        </div>
+       <% end %>
+
+        <%end %>
+        
+        </div>
+        
+        <div class = "my-8 ml-6 text-blue poppins-regular-blue">
+         <%= if @page.page_number>1 do %>
+
+        <div class = "inline-block  hover:underline">
+        <%= link "prev page", to: Routes.code_path(@conn, :index, page: @page.page_number-1) %>
+
+        </div>
+        <%end %>
+        <%= if @page.page_number< @page.total_pages do %>
+        <div class = "inline-block hover:underline">
+        <%= link "next page", to: Routes.code_path(@conn, :index, page: @page.page_number+1) %>
+
+        </div>
+        <%end %>
 
       </div>
    
 
         <div class = "overflow-x-auto">
-      <table  class  = "w-full sm:w-auto">
+      <table  class  = "w-full sm:w-auto" style = "width:100%;">
         <thead>
           <tr>
             <th class = "for_tables">Code name</th>
@@ -52,7 +81,7 @@
         <tbody>
       <%= for code <- @codes do  %>
           <tr>
-            <td class = "table_data "><%= code.name %></td>
+            <td class = "table_data"><%= code.name %></td>
             <td class = "table_data "><%= code.description %></td>
             <td class = "table_data"> <%= if code.active == "true" do %>
                 <div class = "bg-green-400 p-1 rounded">Active</div>

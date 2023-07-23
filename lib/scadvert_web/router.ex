@@ -44,6 +44,8 @@ defmodule ScadvertWeb.Router do
 
     resources "/clients", ClientController
     get "/profile/" , ClientController, :profile
+    post "/clients/search", ClientController, :search
+
     get "/code_information/:id", CodeInfoController, :show
 
     get "confirm", PageController, :confirm

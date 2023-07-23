@@ -17,7 +17,7 @@ defmodule ScadvertWeb.CodeController do
       changeset = Codes.change_code(%Code{})
       page = Code
                |>Repo.paginate(params)
-      render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page)
+      render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page, total_pages: page.total_pages)
 
     else
     changeset = Codes.change_code(%Code{})
@@ -25,7 +25,7 @@ defmodule ScadvertWeb.CodeController do
                                   |>Repo.paginate(params)
 
 
-    render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page)
+    render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page, total_pages: page.total_pages)
 
     end
     # IO.inspect(codes)
@@ -100,13 +100,13 @@ defmodule ScadvertWeb.CodeController do
   [] ->
   conn
   |> put_flash(:error, "no results")
-  |> render( "index.html", codes: [], changeset: changeset, page: page)
+  |> render( "index.html", codes: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
   conn
 
   |> put_flash(:info, "code searched successfully.")
 
-  |> render( "index.html", codes: page.entries, changeset: changeset, page: page)
+  |> render( "index.html", codes: page.entries, changeset: changeset, page: page, total_pages: page.total_pages)
 
   end
 

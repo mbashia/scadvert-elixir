@@ -15,14 +15,14 @@ defmodule ScadvertWeb.VideoController do
 
       page = Videos.list_all_videos()
                   |>Repo.paginate(params)
-      render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset)
+      render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
     else
       changeset = Videos.change_video(%Video{})
 
     page = Videos.list_videos_by_user_id(conn)
                       |>Repo.paginate(params)
 
-    render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset)
+    render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
     end
   end
 
@@ -92,13 +92,13 @@ defmodule ScadvertWeb.VideoController do
   [] ->
   conn
   |> put_flash(:error, "no results")
-  |> render( "index.html", videos: [], changeset: changeset, page: page)
+  |> render( "index.html", videos: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
   conn
 
   |> put_flash(:info, "video searched successfully.")
 
-  |> render( "index.html", videos: page.entries, changeset: changeset, page: page, default_image: @default_image)
+  |> render( "index.html", videos: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
 
   end
 
