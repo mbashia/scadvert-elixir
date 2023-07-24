@@ -1,4 +1,6 @@
-<h1 class = "headings ml-6">Edit Header</h1>
+      <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800  p-4 shadow text-2xl text-white">
 
+<h3 class = "headings  font-bold ml-6"style= "color:white;">Edit Header</h3>
+</div>
 <%= render "form.html", Map.put(assigns, :action, Routes.header_path(@conn, :update, @header)) %>
 

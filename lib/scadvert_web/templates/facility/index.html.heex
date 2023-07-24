@@ -80,7 +80,11 @@
     <tr>
       <td  class = "table_data"><%= facility.codes.name %></td>
       <td  class = "table_data"><%= facility.name %></td>
-      <td  class = "table_data"><%= facility.description %></td>
+      <%= if String.length(facility.description) > 200 do%>
+      <td  class = "table_data"><%=  String.slice(facility.description , 0, 200)<> "..."%></td>
+      <%else %>
+      <td class = "table_data"> <%=facility.description %></td>
+      <%end %>      
        <td class = "table_data"> <%= if facility.status == "true" do %>
           <div class = "bg-green-400 p-1 rounded">Active</div>
       <%else %>

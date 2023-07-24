@@ -5,6 +5,7 @@ defmodule ScadvertWeb.CodeController do
   alias Scadvert.Codes.Code
   alias Scadvert.Repo
 
+
   import Ecto.Query, warn: false
 
 
@@ -17,6 +18,8 @@ defmodule ScadvertWeb.CodeController do
       changeset = Codes.change_code(%Code{})
       page = Code
                |>Repo.paginate(params)
+               IO.inspect(page)
+
       render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page, total_pages: page.total_pages)
 
     else
