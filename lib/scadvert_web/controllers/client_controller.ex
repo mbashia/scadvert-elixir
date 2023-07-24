@@ -5,6 +5,8 @@ defmodule ScadvertWeb.ClientController do
   alias Scadvert.Repo
    alias Scadvert.Accounts.User
   alias Scadvert.Users
+  import Ecto.Query, warn: false
+
 
 
   plug :put_layout, "newlayout.html"
@@ -23,7 +25,7 @@ def index(conn,params)do
                     |>Repo.paginate(params)
    changeset = Users.change_user(%User{})
 
-    render(conn, "client.html", users: page.entries, page: page, changeset: changeset)
+    render(conn, "client.html", users: page.entries, page: page, changeset: changeset, total_pages: page.total_pages)
 
 end
 @spec show(any, map) :: nil
@@ -79,11 +81,8 @@ end
     user = Accounts.get_user!(id)
     cond do
       user.status == true ->
-        changeset = user
-        |> Ecto.Changeset.change()
-        |> Ecto.Changeset.put_change(:status, false)
-        IO.inspect(changeset.changes)
-        case Accounts.update_user(user, changeset.changes)do
+
+        case Accounts.update_user(user, %{status: false})do
       {:ok,_user} ->
         conn
         |> put_flash(:info, "User deactivated successfully")
@@ -96,10 +95,7 @@ end
 
       end
       user.status == false ->
-        changeset = user
-        |> Ecto.Changeset.change()
-        |> Ecto.Changeset.put_change(:status, true)
-        IO.inspect(changeset.changes)
+
         case Accounts.update_user(user, %{status: true})do
       {:ok,_user} ->
         conn
@@ -118,22 +114,69 @@ end
   end
 
 
+  end
+  def search(conn, %{"user" => %{"search" => search_params}}) do
+    changeset = Users.change_user(%User{})
+    page = search_params(search_params)
+                     |>Repo.paginate(conn.params)
+  case page.entries do
+  [] ->
+  conn
+  |> put_flash(:error, "no results")
+  |> render( "client.html", users: [], changeset: changeset, page: page, total_pages: page.total_pages)
+  _ ->
+  conn
 
-    # user_params = %{firstname: firstname,lastname: lastname,email: email,phone_number: phone_number,status: status,gender: gender,picture: picture} = user
+  |> put_flash(:info, "user searched successfully.")
 
-    # IO.write("params start here")
-    # IO.inspect(user_params)
-    # IO.inspect(firstname)
-    # changeset = %{changeset | status: false}
-
-
-
-
-
-
-
-
-
+  |> render( "client.html", users: page.entries, changeset: changeset, page: page,  total_pages: page.total_pages)
 
   end
+
+  end
+  defp search_params(params)do
+   query = from(u in User,
+
+     where: fragment("? LIKE ?", u.firstname, ^"%#{params}%") or fragment("? LIKE ?", u.lastname, ^"%#{params}%") or fragment("? LIKE ?", u.email, ^"%#{params}%")   )
+
+    query
+
+  end
+
+
 end
+
+
+# user.status == true ->
+#   changeset = user
+#   |> Ecto.Changeset.change()
+#   |> Ecto.Changeset.put_change(:status, false)
+#   IO.inspect(changeset.changes)
+#   case Accounts.update_user(user, changeset.changes)do
+# {:ok,_user} ->
+#   conn
+#   |> put_flash(:info, "User deactivated successfully")
+#   |> redirect(to: Routes.client_path(conn, :index))
+#   {:error,_changeset} ->
+#   conn
+#   |> put_flash(:error, "Failed to deactivate user")
+#   |> redirect(to: Routes.client_path(conn, :index))
+
+
+# end
+# user.status == false ->
+#   changeset = user
+#   |> Ecto.Changeset.change()
+#   |> Ecto.Changeset.put_change(:status, true)
+#   IO.inspect(changeset.changes)
+#   case Accounts.update_user(user, %{status: true})do
+# {:ok,_user} ->
+#   conn
+#   |> put_flash(:info, "User activated successfully")
+#   |> redirect(to: Routes.client_path(conn, :index))
+#   {:error, _changeset} ->
+#   conn
+#   |> put_flash(:error, "Failed to activate user:")
+#   |> redirect(to: Routes.client_path(conn, :index))
+
+# end
