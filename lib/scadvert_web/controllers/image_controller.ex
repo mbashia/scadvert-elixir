@@ -107,13 +107,20 @@ defmodule ScadvertWeb.ImageController do
 
   end
   defp search_params(conn,params)do
+
     user_id = conn.assigns.current_user.id
+    if conn.assigns.current_user.role == "admin" do
+      from(i in Image,
+    join: c in assoc(i, :codes),
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", i.name, ^"%#{params}%") or fragment("? LIKE ?", i.description, ^"%#{params}%") or fragment("? LIKE ?", i.status, ^"%#{params}%") ,
+    preload: [:codes])
+    else
     from(i in Image,
     join: c in assoc(i, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and i.user_id == ^user_id,
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", i.name, ^"%#{params}%") or fragment("? LIKE ?", i.description, ^"%#{params}%") or fragment("? LIKE ?", i.status, ^"%#{params}%"), where: i.user_id == ^user_id,
     preload: [:codes])
 
-
+    end
 
   end
 

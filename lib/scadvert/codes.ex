@@ -135,8 +135,13 @@ defmodule Scadvert.Codes do
   end
   def search_params(conn,params)do
     user_id = conn.assigns.current_user.id
-    query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and c.user_id == ^user_id)
-    # codes = Repo.all(query)
+    if conn.assigns.current_user.role == "admin" do
+      query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%"))
+      query
+    else
+    query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%") and c.user_id == ^user_id)
+    query
+    end
 
 
 

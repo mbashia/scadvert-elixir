@@ -106,13 +106,17 @@ defmodule ScadvertWeb.FeatureController do
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
+    if conn.assigns.current_user.role == "admin" do
+      from(f in Feature,
+    join: c in assoc(f, :codes),
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%"),
+    preload: [:codes])
+    else
     from(f in Feature,
     join: c in assoc(f, :codes),
-
-
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and f.user_id == ^user_id,
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%"),  where: f.user_id == ^user_id,
     preload: [:codes])
-
+    end
 
 
   end

@@ -85,6 +85,7 @@ defmodule ScadvertWeb.VideoController do
   end
 
   def search(conn, %{"video" => %{"search" => search_params}}) do
+    IO.inspect(search_params)
     changeset = Videos.change_video(%Video{})
     page = search_params(conn,search_params)
                      |>Repo.paginate(conn.params)
