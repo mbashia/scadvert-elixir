@@ -5,7 +5,7 @@
           <h3 class="font-bold pl-2">LISTING IMAGES</h3>
       </div>
   </div>
- <div class = "   flex items-center ">
+ <div class = "  mb-[40px] flex items-center ">
          <div class  = " bg-green-400 rounded-lg p-2 inline-block mx-4">  
       <span><%= link "New image", to: Routes.image_path(@conn, :new) %></span>
 
@@ -17,7 +17,7 @@
 
         </div>
 
-       <div class = "ml-[200px]">
+       <div class = "ml-[30px]">
        <div > 
         <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
              <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.image_path(@conn, :index), style: "color: #173673;" %></span>
@@ -30,7 +30,72 @@
 
       
         </div>
-        <div class = "my-8 ml-6">
+       
+
+<div class = "overflow-x-auto">
+  
+
+<table class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee;">
+  <thead>
+    <tr>
+      <th class = "for_tables">picture </th>
+      <th class = "for_tables">Code</th>
+      <th class = "for_tables">Name</th>
+      <th class = "for_tables">Description</th>
+      <th class = "for_tables">Status</th>
+          
+       <th class = "for_tables">Actions</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for image <- @images do %>
+    <tr>
+    <td >
+      <%= if image.picture do %>
+      <%= img_tag Scadvert.ImageImage.url({image.picture, image}, signed: true), class: "h-[42px] w-[60px]"%>
+      <%else %>
+       <img src={@default_image} class = "h-[42px] w-[60px] object-scale-down"  alt="image_description">
+      <%end %>
+      </td>
+      <td  class = "table_data"><%= image.codes.name %></td>
+      <td  class = "table_data"><%= image.name %></td>
+      <%= if String.length(image.description) > 200 do%>
+      <td  class = "table_data"><%=  String.slice(image.description , 0, 200)<> "..."%></td>
+      <%else %>
+      <td class = "table_data"> <%=image.description %></td>
+      <%end %>      
+      <td class = "table_data"> <%= if image.status == "true" do %>
+          <div class = "bg-green-400 p-1 rounded">Active</div>
+      <%else %>
+      <div class = "bg-red-600 p-1 rounded ">Inactive</div> 
+      <%end %>     
+      
+      
+      </td>
+
+
+      
+      <td class = "table_data">
+        <div class = "flex flex-row   ">
+
+         <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
+        <span><%= link "Show", to: Routes.image_path(@conn, :show, image) %></span>
+        </div>
+        <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
+        <span><%= link "Edit", to: Routes.image_path(@conn, :edit, image) %></span>
+        </div>
+         <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
+       <span><%= link "Delete", to:  Routes.image_path(@conn, :delete, image), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </div>
+      </div>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+ <div class = "my-8 ml-6">
         <%= for a_page <- 1..@total_pages do %>
        <%= link to: Routes.image_path(@conn, :index, page: a_page) do %>
 
@@ -59,68 +124,5 @@
 
 
       </div>
-
-<div class = "overflow-x-auto">
-  
-
-<table class  = "w-full sm:w-auto" style = "width:100%;">
-  <thead>
-    <tr>
-      <th class = "for_tables">Code</th>
-      <th class = "for_tables">Name</th>
-      <th class = "for_tables">Description</th>
-      <th class = "for_tables">Status</th>
-      <th class = "for_tables">picture </th>    
-       <th class = "for_tables">Actions</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for image <- @images do %>
-    <tr>
-      <td  class = "table_data"><%= image.codes.name %></td>
-      <td  class = "table_data"><%= image.name %></td>
-      <%= if String.length(image.description) > 200 do%>
-      <td  class = "table_data"><%=  String.slice(image.description , 0, 200)<> "..."%></td>
-      <%else %>
-      <td class = "table_data"> <%=image.description %></td>
-      <%end %>      
-      <td class = "table_data"> <%= if image.status == "true" do %>
-          <div class = "bg-green-400 p-1 rounded">Active</div>
-      <%else %>
-      <div class = "bg-red-600 p-1 rounded ">Inactive</div> 
-      <%end %>     
-      
-      
-      </td>
-
-
-      <td >
-      <%= if image.picture do %>
-      <%= img_tag Scadvert.ImageImage.url({image.picture, image}, signed: true), class: "h-[42px] w-[60px]"%>
-      <%else %>
-       <img src={@default_image} class = "h-[42px] w-[60px] object-scale-down"  alt="image_description">
-      <%end %>
-      </td>
-      <td class = "table_data">
-        <div class = "flex flex-row   ">
-
-         <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
-        <span><%= link "Show", to: Routes.image_path(@conn, :show, image) %></span>
-        </div>
-        <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
-        <span><%= link "Edit", to: Routes.image_path(@conn, :edit, image) %></span>
-        </div>
-         <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
-       <span><%= link "Delete", to:  Routes.image_path(@conn, :delete, image), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </div>
-      </div>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
 </div>
 

@@ -4,7 +4,7 @@
             </div>
         </div>
             
-        <div class = "   flex items-center ">
+        <div class = " mb-[40px]  flex items-center ">
          <div class  = " bg-green-400 rounded-lg p-2 inline-block mx-4">  
       <span><%= link "New code", to: Routes.code_path(@conn, :new) %></span>
 
@@ -16,7 +16,7 @@
 
         </div>
 
-       <div class = "ml-[200px]">
+       <div class = "ml-[30px]">
        <div > 
         <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
              <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.code_path(@conn, :index), style: "color: #173673;" %></span>
@@ -29,39 +29,9 @@
 
       
         </div>
-        <div class = "my-8 ml-6">
-        <%= for a_page <- 1..@total_pages do %>
-       <%= link to: Routes.code_path(@conn, :index, page: a_page) do %>
+          
 
-        <div class = "h-8 w-8 bg-blue-400 inline-block text-white py-1 pl-2 ml-2">
-        <%= a_page %>
-
-        </div>
-       <% end %>
-
-        <%end %>
-        
-        </div>
-        
-        <div class = "my-8 ml-6 text-blue poppins-regular-blue">
-         <%= if @page.page_number>1 do %>
-
-        <div class = "inline-block  hover:underline">
-        <%= link "prev page", to: Routes.code_path(@conn, :index, page: @page.page_number-1) %>
-
-        </div>
-        <%end %>
-        <%= if @page.page_number< @page.total_pages do %>
-        <div class = "inline-block hover:underline">
-        <%= link "next page", to: Routes.code_path(@conn, :index, page: @page.page_number+1) %>
-
-        </div>
-        <%end %>
-
-      </div>
-   
-
-        <div class = "overflow-x-auto">
+        <div class = "overflow-x-auto ">
       <table  class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee;">
         <thead>
           <tr>
@@ -137,6 +107,37 @@
       <% end %>
         </tbody>
       </table>
+       <div class = "my-8 ml-6">
+        <%= for a_page <- 1..@total_pages do %>
+       <%= link to: Routes.code_path(@conn, :index, page: a_page) do %>
+
+        <div class = "h-8 w-8 bg-blue-400 inline-block text-white py-1 pl-2 ml-2">
+        <%= a_page %>
+
+        </div>
+       <% end %>
+
+        <%end %>
+        
+        </div>
+        
+        <div class = "my-8 ml-6 text-blue poppins-regular-blue">
+         <%= if @page.page_number>1 do %>
+
+        <div class = "inline-block  hover:underline">
+        <%= link "prev page", to: Routes.code_path(@conn, :index, page: @page.page_number-1) %>
+
+        </div>
+        <%end %>
+        <%= if @page.page_number< @page.total_pages do %>
+        <div class = "inline-block hover:underline">
+        <%= link "next page", to: Routes.code_path(@conn, :index, page: @page.page_number+1) %>
+
+        </div>
+        <%end %>
+
+      </div>
+
       </div>
 
 

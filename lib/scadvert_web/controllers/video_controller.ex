@@ -106,11 +106,19 @@ defmodule ScadvertWeb.VideoController do
   end
   defp search_params(conn,params)do
     user_id = conn.assigns.current_user.id
+    if conn.assigns.current_user.role =="admin"  do
+
+
     from(v in Video,
     join: c in assoc(v, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  and v.user_id == ^user_id,
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", v.name, ^"%#{params}%") or fragment("? LIKE ?", v.description, ^"%#{params}%") or fragment("? LIKE ?", v.status, ^"%#{params}%"),
     preload: [:codes])
-
+    else
+      from(v in Video,
+    join: c in assoc(v, :codes),
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", v.name, ^"%#{params}%") or fragment("? LIKE ?", v.description, ^"%#{params}%") or fragment("? LIKE ?", v.status, ^"%#{params}%"),where: v.user_id ==^user_id,
+    preload: [:codes])
+    end
 
 
 end

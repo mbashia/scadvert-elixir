@@ -2,7 +2,7 @@
 <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">LISTING USERS</h3>
       </div>
- <div class = "  mt-[30px] flex items-center ">
+ <div class = "  mt-[30px] mb-[40px] flex items-center ">
          <div class  = " bg-green-400 rounded-lg p-2 inline-block mx-4">  
       <span><%= link "back", to: Routes.client_path(@conn, :index) %></span>
 
@@ -14,7 +14,7 @@
 
         </div>
 
-       <div class = "ml-[200px]">
+       <div class = "ml-[30px]">
        <div > 
         <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
              <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.client_path(@conn, :index), style: "color: #173673;" %></span>
@@ -27,48 +27,19 @@
 
       
         </div>
-        <div class = "my-8 ml-6">
-        <%= for a_page <- 1..@total_pages do %>
-       <%= link to: Routes.client_path(@conn, :index, page: a_page) do %>
-
-        <div class = "h-8 w-8 bg-blue-400 inline-block text-white py-1 pl-2 ml-2">
-        <%= a_page %>
-
-        </div>
-       <% end %>
-
-        <%end %>
         
-        </div>
-        
-        <div class = "my-8 ml-6 text-blue poppins-regular-blue">
-         <%= if @page.page_number>1 do %>
-
-        <div class = "inline-block  hover:underline">
-        <%= link "prev page", to: Routes.client_path(@conn, :index, page: @page.page_number-1) %>
-
-        </div>
-        <%end %>
-        <%= if @page.page_number< @page.total_pages do %>
-        <div class = "inline-block hover:underline">
-        <%= link "next page", to: Routes.client_path(@conn, :index, page: @page.page_number+1) %>
-
-        </div>
-        <%end %>
-
-      </div>
 
 
           
 <div class = "overflow-x-auto">
-<table  class  = "w-full sm:w-auto" style = "width:100%;">
+<table  class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee;">
   <thead>
     <tr>
+      <th class = "for_tables">picture</th>
       <th class = "for_tables">Firstname</th>
       <th class = "for_tables">lastname</th>
       <th class = "for_tables">phone number</th>
       <th class = "for_tables">email</th>
-      <th class = "for_tables">image</th>
       <th class = "for_tables">gender</th>
        <th class = "for_tables">role</th>
 
@@ -85,20 +56,20 @@
   <tbody>
 <%= for user <- @users do  %>
     <tr>
+      <td class = "table_data"><%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "h-[42px] w-[60px]"%></td>
       <td class = "table_data" ><%= user.firstname %></td>
       <td class = "table_data"><%= user.lastname %></td>
       <td class = "table_data"><%= user.phone_number %></td>
       <td class = "table_data"><%= user.email  %></td>
-       <td class = "table_data"><%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "h-[42px] w-[60px]"%></td>
       <td class = "table_data"><%= user.gender  %></td>
        <td class = "table_data"><%= user.role  %></td>
 
 
       <td class = "table_data"><%=  if user.status == true do %>
       
-    <%= Heroicons.icon("check", type: "solid", class: "h-6 w-6", style: "color: green;" )%>
+    <%= Heroicons.icon("check", type: "solid", class: "h-6 w-6 text-green-600" )%>
        <% else %>
-    <%= Heroicons.icon("x-mark", type: "outline", class: "h-6 w-6", style: "color: red;" )%>
+    <%= Heroicons.icon("x-mark", type: "outline", class: "h-6 w-6 text-red-500" )%>
 
        <%end %>
 
@@ -134,6 +105,36 @@
 <% end %>
   </tbody>
 </table>
+<div class = "my-8 ml-6">
+        <%= for a_page <- 1..@total_pages do %>
+       <%= link to: Routes.client_path(@conn, :index, page: a_page) do %>
+
+        <div class = "h-8 w-8 bg-blue-400 inline-block text-white py-1 pl-2 ml-2">
+        <%= a_page %>
+
+        </div>
+       <% end %>
+
+        <%end %>
+        
+        </div>
+        
+        <div class = "my-8 ml-6 text-blue poppins-regular-blue">
+         <%= if @page.page_number>1 do %>
+
+        <div class = "inline-block  hover:underline">
+        <%= link "prev page", to: Routes.client_path(@conn, :index, page: @page.page_number-1) %>
+
+        </div>
+        <%end %>
+        <%= if @page.page_number< @page.total_pages do %>
+        <div class = "inline-block hover:underline">
+        <%= link "next page", to: Routes.client_path(@conn, :index, page: @page.page_number+1) %>
+
+        </div>
+        <%end %>
+
+      </div>
 </div>
 
 
