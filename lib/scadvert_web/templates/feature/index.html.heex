@@ -81,10 +81,10 @@
       <td class = "table_data">
         <div class = "flex flex-row   ">
 
-         <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
+         <div class = "p-2 inline-block bg-green-500 rounded mr-2"> 
         <span title = "view feature"><%= link Heroicons.icon("eye", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.feature_path(@conn, :show, feature) %></span>
         </div>
-        <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
+        <div class = "p-2 inline-block bg-sky-500 rounded mr-2">       
         <span title = "edit feature"><%= link Heroicons.icon("pencil", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.feature_path(@conn, :edit, feature) %></span>
         </div>
          <div class = "p-2 inline-block bg-red-600 rounded mr-2">       

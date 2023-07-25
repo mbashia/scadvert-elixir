@@ -536,8 +536,197 @@ def search_me(params) do
     }
 }
 end
- <td class = "table_data"> <%= if code.active == "true" do %>
+ <!-- <td class = "table_data"> <%= if code.active == "true" do %>
                 <div class = "bg-green-400 p-1 rounded">Active</div>
             <%else %>
             <div class = "bg-red-600 p-1 rounded ">Inactive</div> 
-            <%end %> 
+            <%end %>  -->
+
+
+<!-- 
+            <%= if @current_user do %>
+<%user = @current_user%> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "Scadvert", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/jquery.min.js") }></script>
+
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/jquery.qrcode.js") }></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/qrcode.js") }></script>
+    
+
+  </head>
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+        <header>
+       
+            
+            <nav class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
+
+                <div class="h-auto md:h-[60px] flex flex-wrap items-center">
+                    <div class="  ml-10 flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
+                        
+                            <span class="text-xl pl-2"><%= Heroicons.icon("face-smile", type: "solid", class: "h-12 w-12  text-yellow-400" )%></span>
+                        
+                    </div>
+
+                    <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
+
+                    </div>
+
+                    <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
+                        <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                            <li class="flex-1 md:flex-none md:mr-3">
+                                <a class="inline-block py-2 px-4 text-white no-underline" href="#">Active</a>
+                            </li>
+                            <li class="flex-1 md:flex-none md:mr-3">
+                                <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">link</a>
+                            </li>
+                            <li class="flex-1 md:flex-none md:mr-3">
+                                <div class="relative inline-block">
+                                    <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: " text-white focus:outline-none mr-2" %></li>
+
+                                    <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
+                                        <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.." id="myInput" onkeyup="filterDD('myDropdown','myInput')">
+                                        <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-user fa-fw"></i> Profile</a>
+                                        <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-cog fa-fw"></i> Settings</a>
+                                        <div class="border border-gray-800"></div>
+                                        <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+        
+        
+
+            <div class="flex flex-col md:flex-row ">
+            
+
+            <div class="bg-gray-800 overflow-auto shadow-xl  h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48   ">
+               
+                    
+                    
+                   
+                    <div class=" sidebar md:w-48 md:fixed   pb-[100px] h-screen content-center md:content-start text-left justify-between overflow-y-auto ">
+                         <div class =" hidden md:contents ">
+                            <div class = "ml-8  h-[100px] w-[100px]"> 
+                                <%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "  sm:object-cover md:h-[100%] md:w-[100%]  rounded-full"%>
+                                
+                                </div>
+                
+                                <div >
+                                    <div class = "flex text-gray-400 pl-[28px]">
+                                        <div class = "mr-2"><%=user.firstname  %></div>
+                                        <div ><%=user.lastname %></div>
+                                    
+                                    </div>
+                                    <div class = "text-gray-400 pl-[16px]">
+                                            <%=user.email %>
+                                    </div>
+                                </div>
+                    
+                          </div>
+                       
+                            <ul class="list-reset flex m-0 flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left ">
+                            <li class="mr-3 flex-1">
+                                <span class=" block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                
+                                <i class=" pr-0 md:pr-3"></i> <span ><%= link "Dashboard", to: Routes.dashboard_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 "%></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+                                    <i class="pr-0 md:pr-3"></i><span ><%= link "codes", to: Routes.code_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800  " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-teal-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "headers", to: Routes.header_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                            <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-800">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "Facilities", to: Routes.facility_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "Features", to: Routes.feature_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-orange-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "History", to: Routes.leadership_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-lime-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "images", to: Routes.image_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-800">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "videos", to: Routes.video_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                             <%= if @current_user.role == "admin" do%>
+
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-950">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "system Users", to: Routes.client_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                                
+                            </li>
+                            
+                            
+                  
+                            <%else %>
+                              <li class="mr-3 flex-1">
+                             
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-950">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "my profile", to: Routes.client_path(@conn, :profile) , class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <%end %>
+                             
+                
+                         </ul> 
+                    
+                       
+                        </div>
+                        
+
+
+                </div>
+
+                <div class="main-content flex-1  bg-white mt-12 md:mt-2 pb-24 md:pb-5">
+                   <main class = "container">
+                    <p class="alert alert-info " role="alert"><%= get_flash(@conn, :info) %></p>
+                    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+                    </main>
+                        <%= @inner_content %>
+                        <script type="text/javascript" src={Routes.static_path(@conn, "/assets/script.js") }></script>
+                       
+
+                    
+                </div>
+            </div>
+            
+    </body>
+</html>
+<% else %>
+<li><%= link "sign up", to: Routes.user_registration_path(@conn, :new) %></li>
+<li><%= link "sign in", to: Routes.user_session_path(@conn, :new) %></li>
+<% end %> -->
