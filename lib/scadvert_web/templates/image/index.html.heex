@@ -32,7 +32,7 @@
         </div>
        
 
-<div class = "overflow-x-auto">
+<div class = "overflow-x-auto p-[20px]">
   
 
 <table class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee;">
@@ -81,13 +81,13 @@
         <div class = "flex flex-row   ">
 
          <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
-        <span><%= link "Show", to: Routes.image_path(@conn, :show, image) %></span>
+        <span title = "view image"><%= link Heroicons.icon("eye", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.image_path(@conn, :show, image) %></span>
         </div>
         <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
-        <span><%= link "Edit", to: Routes.image_path(@conn, :edit, image) %></span>
+        <span title = "edit image"><%= link Heroicons.icon("pencil", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.image_path(@conn, :edit, image) %></span>
         </div>
          <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
-       <span><%= link "Delete", to:  Routes.image_path(@conn, :delete, image), method: :delete, data: [confirm: "Are you sure?"] %></span>
+       <span title = "delete image"><%= link Heroicons.icon("trash", type: "solid", class: "h-4 w-4 text-white" ), to:  Routes.image_path(@conn, :delete, image), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>
       </div>
       </td>

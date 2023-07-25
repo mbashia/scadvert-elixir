@@ -31,7 +31,7 @@
         </div>
         
  
-<div class = "overflow-x-auto">
+<div class = "overflow-x-auto p-[20px]">
     
 <table class  = "w-full sm:w-auto " style = "width:100%; background-color:#efeeee;">
   <thead>
@@ -82,13 +82,13 @@
             <div class = "flex flex-row   ">
 
          <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
-        <span><%= link "Show", to: Routes.header_path(@conn, :show, header) %></span>
+        <span title = "view header"><%= link Heroicons.icon("eye", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.header_path(@conn, :show, header) %></span>
         </div>
         <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
-        <span><%= link "Edit", to: Routes.header_path(@conn, :edit, header) %></span>
+        <span title = "edit header"><%= link Heroicons.icon("pencil", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.header_path(@conn, :edit, header) %></span>
         </div>
          <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
-       <span><%= link "Delete", to:  Routes.header_path(@conn, :delete, header), method: :delete, data: [confirm: "Are you sure?"] %></span>
+       <span title = "delete header"><%= link Heroicons.icon("trash", type: "solid", class: "h-4 w-4 text-white" ), to:  Routes.header_path(@conn, :delete, header), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>
       </div>
       </td>
