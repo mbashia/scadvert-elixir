@@ -31,8 +31,8 @@
         </div>
           
 
-        <div class = "overflow-x-auto ">
-      <table  class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee;">
+        <div class = "overflow-x-auto p-[20px] ">
+      <table  class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee; ">
         <thead>
           <tr>
             <th class = "for_tables">Code name</th>
@@ -58,9 +58,10 @@
             <td class = "table_data"> <%=code.description %></td>
             <%end %>            
            <td class = "table_data"> <%= if code.active == "true" do %>
-                <div class = "bg-green-400 p-1 rounded">Active</div>
+            <%= Heroicons.icon("check", type: "solid", class: "h-6 w-6 text-green-600" )%>
             <%else %>
-            <div class = "bg-red-600 p-1 rounded ">Inactive</div> 
+                <%= Heroicons.icon("x-mark", type: "solid", class: "h-6 w-6 text-red-500" )%>
+
             <%end %>     
             
             
@@ -92,13 +93,13 @@
                   <div class = "flex flex-row   ">
 
             <div class = "p-2 inline-block bg-sky-500 rounded mr-2"> 
-                  <span><%= link "Show", to: Routes.code_info_path(@conn, :show, code.name), target: "_blank"%></span>
+                  <span title = "view code"><%= link Heroicons.icon("eye", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.code_info_path(@conn, :show, code.name), target: "_blank"%></span>
           </div>
             <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
-              <span><%= link "Edit", to: Routes.code_path(@conn, :edit, code) %></span>
+              <span title =  "edit code"><%= link      Heroicons.icon("pencil", type: "solid", class: "h-4 w-4 text-white " ), to: Routes.code_path(@conn, :edit, code) %></span>
               </div>
             <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
-            <span><%= link "Delete", to:  Routes.code_path(@conn, :delete, code), method: :delete, data: [confirm: "Are you sure?"] %></span>
+            <span title = "delete code"><%= link Heroicons.icon("trash", type: "solid", class: "h-4 w-4 text-white" ), to:  Routes.code_path(@conn, :delete, code), method: :delete, data: [confirm: "Are you sure?"] %></span>
             </div>
             </div>
 
