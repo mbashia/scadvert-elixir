@@ -730,3 +730,234 @@ end
 <li><%= link "sign up", to: Routes.user_registration_path(@conn, :new) %></li>
 <li><%= link "sign in", to: Routes.user_session_path(@conn, :new) %></li>
 <% end %> -->
+
+
+<%= if @current_user do %>
+<%user = @current_user%> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "Scadvert", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/jquery.min.js") }></script>
+
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/jquery.qrcode.js") }></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/qrcode.js") }></script>
+    
+
+  </head>
+<body class="bg-gray-800 font-sans leading-normal tracking-normal  mt-12">
+        <header>
+       
+            <!--Nav-->
+            <nav class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0  h-[120px] fixed w-full z-20 top-0">
+
+                <div class="h-auto md:h-[60px] flex flex-wrap items-center">
+                    <div class=" ml-2 mt-2 flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
+                        <div class = "hidden md:contents">
+                         <img src="/images/scadvert_logo.png" alt="scadvert logo" class = "object-scale-down h-28 w-32 float-left "  >
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
+
+                    </div>
+
+                    <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
+                        <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                            
+                             <div class =" hidden md:contents  ">
+                            <div class = "ml-8  h-[100px] w-[100px]"> 
+                                <%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: "  sm:object-cover md:h-[100%] md:w-[100%]  rounded-full"%>
+                                
+                                </div>
+                
+                                <div onclick="toggleDD('myDropdown')" class="drop-button hover:cursor-pointer">
+                                    <div class = "flex text-white pl-[28px]">
+                                        <div class = "mr-2"><%=user.firstname  %></div>
+                                        <div ><%=user.lastname %></div>
+                                    
+                                    </div>
+                                    <div class = "text-white inline-block pl-[16px]">
+
+                                            <%=user.email %><%=Heroicons.icon("chevron-down", type: "solid", class: "h-4 w-4 text-white inline-block" ) %>
+                                    </div>
+                                </div>
+                    
+                          </div>
+                            
+                            <li class="flex-1 md:flex-none md:mr-3">
+                                <div class="relative  inline-block">
+                                
+                           
+
+                                    <div id="myDropdown" class="dropdownlist absolute bg-gray-800 w-[200px] text-white  right-0 mt-3 p-3 overflow-auto z-30 invisible">
+                                    <%= link  to: Routes.client_path(@conn, :profile) do%>
+
+                                    <div class = "flex p-2 text-sm">
+                                    <div>
+                                    <%=Heroicons.icon("user", type: "solid", class: "h-4 w-4 text-white inline-block " )%>
+                                    </div> 
+                                    <div>
+                                    <span class = "ml-2">profile</span>
+                                    </div>
+                               
+                                
+                                </div>
+                                 <%end %>
+                                    <%= link  to: Routes.user_session_path(@conn, :delete), method: :delete do%>
+
+                                    <div class = "flex p-2 text-sm">
+                                    <div>
+                                    <%=Heroicons.icon("power", type: "solid", class: "h-4 w-4 text-white inline-block " )%>
+                                    </div> 
+                                    <div>
+                                    <span class = "ml-2">log out</span>
+                                    </div>
+                                
+                                    
+                                    </div>
+                                 <%end %>
+                            </div>
+                        </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+        
+        
+
+            <div class="flex flex-col md:flex-row ">
+            
+
+            <div class="bg-gray-800 overflow-auto shadow-xl  h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48   ">
+               
+                    
+                    
+                   
+                    <div class=" sidebar md:w-48 md:fixed  pt-[30px] pb-[70px] h-screen content-center md:content-start text-left justify-between overflow-y-auto ">
+                        
+                            <ul class="list-reset flex m-0 flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left ">
+                            <li class="mr-3 flex-1">
+                                <span class=" block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                
+                                <i class=" pr-0 md:pr-3"></i> <span ><%= link "Dashboard", to: Routes.dashboard_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 "%></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+                                    <i class="pr-0 md:pr-3"></i><span ><%= link "codes", to: Routes.code_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800  " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-teal-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "headers", to: Routes.header_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                            <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-800">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "Facilities", to: Routes.facility_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "Features", to: Routes.feature_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-orange-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "History", to: Routes.leadership_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-lime-500">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "images", to: Routes.image_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-800">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "videos", to: Routes.video_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                             <%= if @current_user.role == "admin" do%>
+
+                            <li class="mr-3 flex-1">
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-950">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "system Users", to: Routes.client_path(@conn, :index), class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                                
+                            </li>
+                            
+                            
+                  
+                            <%else %>
+                              <li class="mr-3 flex-1">
+                             
+                                <span class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-950">
+                                <i class="pr-0 md:pr-3"></i><span ><%= link "my profile", to: Routes.client_path(@conn, :profile) , class: "pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block ml-2  w-full border-b-2 border-gray-800 " %></span>
+                                </span>
+                            </li>
+                            <%end %>
+                             
+                
+                         </ul> 
+                    
+                       
+                        </div>
+                        
+
+
+                </div>
+
+                <div class="main-content flex-1  bg-white mt-12 md:mt-2 pt-[50px] pb-24 md:pb-5">
+                   <main class = " container">
+                    <p class=" 	 alert alert-info " role="alert" id = "info-message"><%= get_flash(@conn, :info) %></p>
+                    <p class="alert alert-danger" role="alert " id = "error-message"><%= get_flash(@conn, :error) %></p>
+                    </main>
+                        <%= @inner_content %>
+                        <script type="text/javascript" src={Routes.static_path(@conn, "/assets/script.js") }></script>
+                       
+
+                    
+                </div>
+            </div>
+                    <script type="text/javascript">window.setTimeout("document.getElementById('info-message').style.display='none';", 7000); </script>
+                    <script type="text/javascript">window.setTimeout("document.getElementById('error-message').style.display='none';", 7000); </script>
+
+    <script>
+        function toggleDD(myDropMenu) {
+            document.getElementById(myDropMenu).classList.toggle("invisible");
+        }
+       
+        document.addEventListener("click", function(event) {
+                var dropdown = document.querySelector(".dropdownlist");
+                var dropButton = document.querySelector(".drop-button");
+
+                if (dropdown && !dropdown.contains(event.target) && !dropButton.contains(event.target)) {
+                        if (!dropdown.classList.contains('invisible')) {
+                        dropdown.classList.add('invisible');
+            }
+    }
+});
+    
+    
+    </script>
+            
+    </body>
+</html>
+<% else %>
+<li><%= link "sign up", to: Routes.user_registration_path(@conn, :new) %></li>
+<li><%= link "sign in", to: Routes.user_session_path(@conn, :new) %></li>
+<% end %>
+

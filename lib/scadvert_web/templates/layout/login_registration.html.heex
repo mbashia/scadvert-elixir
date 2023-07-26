@@ -12,13 +12,15 @@
 
 <body class="bg-white font-sans leading-normal tracking-normal mt-12">
 <main class = "container">
-                    <p class="alert alert-info " role="alert"><%= get_flash(@conn, :info) %></p>
-                    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+                    <p class="alert alert-info " role="alert" id = "info-message"><%= get_flash(@conn, :info) %></p>
+                    <p class="alert alert-danger" role="alert" id = "error-message"><%= get_flash(@conn, :error) %></p>
                     </main>
                        <%= @inner_content %>
 
 
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+ <script type="text/javascript">window.setTimeout("document.getElementById('info-message').style.display='none';", 7000); </script>
+     <script type="text/javascript">window.setTimeout("document.getElementById('error-message').style.display='none';", 7000); </script>
 
 
 </body>
