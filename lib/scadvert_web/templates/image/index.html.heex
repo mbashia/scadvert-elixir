@@ -64,7 +64,7 @@
       <%= if String.length(image.description) > 200 do%>
       <td  class = "table_data"><%=  String.slice(image.description , 0, 200)<> "..."%></td>
       <%else %>
-      <td class = "table_data"> <%=image.description %></td>
+      <td class = "table_data" > <%=image.description %></td>
       <%end %>      
       <td class = "table_data"> <%= if image.status == "true" do %>
           <%= Heroicons.icon("check", type: "solid", class: "h-6 w-6 text-green-600" )%>
