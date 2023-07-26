@@ -35,6 +35,7 @@
   top: 0;
 
   left: 50%;
+
   transform: translateX(-50%);
 
   border: 1px solid transparent;
@@ -48,6 +49,7 @@
   color: #31708f;
   background-color: #d9edf7;
   border-color: #bce8f1;
+ 
 }
 .alert-warning {
   color: #8a6d3b;

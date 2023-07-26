@@ -99,11 +99,17 @@
  <div class = "my-8 ml-6">
         <%= for a_page <- 1..@total_pages do %>
        <%= link to: Routes.header_path(@conn, :index, page: a_page) do %>
+       <%=if a_page== @page.page_number do %>
+        <div class = "h-8 w-8 bg-blue-800 inline-block text-white py-1 pl-2 ml-2">
+        <%= a_page %>
 
+        </div>
+        <%else %>
         <div class = "h-8 w-8 bg-blue-400 inline-block text-white py-1 pl-2 ml-2">
         <%= a_page %>
 
         </div>
+        <%end %>
        <% end %>
 
         <%end %>
