@@ -1,199 +1,458 @@
+<div id="page-wrapper">
 
-<div class=" flex flex-col  bg-black/05 p-6">
-            <div class = "  text-2xl font-semibold text-blue-500">CODE:<%= @code.name%></div>
+				
+					<div id="wrapper">
 
+							<section class="panel banner right">
+								<div class="content color0 span-3-75 ">
+                                      
+                                                                     <video width = "350" , height = "350" controls >
+                                                                        <source src={Scadvert.FileVideo.url({@videos.video, @videos}, signed: true)}
+                                                                        alt = "video"
 
-            <div class =" mt-2 p-2 h-[350px] w-[370px] bg-white">
-            <div>
-            
-               <h2 class = " mt-6 mb-4 text-left text-2xl poppins-bold underline p-2 text-blue-500">VIDEO</h2>
+                                                                        type="video/mp4"/>
 
-            </div>
-
-                <div>
-                
-                <div class = "h-[350px] w-[350px] inline-block  ">
-                    <%= if (@videos) do %>
-                    <video width = "350" , height = "350" controls >
-                        <source src={Scadvert.FileVideo.url({@videos.video, @videos}, signed: true)}
-                        alt = "video"
-
-                        type="video/mp4"/>
-
-                    </video>
-                    <%else %>
-                <div class = "h-[350px] w-[350px] inline-block border-6 ">
-                <div class = "mt-12 ml-12" >
-                <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
-
-                <p class = "text-blue-500"> no video attached to this code</p>
-                </div>
-              
-                </div>
-                    <%end %>
-                    </div>
-
-                </div>
-                    
-                    
-
-            </div>
-
-        <div class = "header" > 
-                <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500"></h2>
-
-                                <%=if @headers do %>
-
-                <div class="  relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
-                          <%= img_tag Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true), class: "h-full object-cover w-full"%>
-                                <div class = "text-white poppins-bold  absolute top-[20px] left-[20px]">
-                                        <span class = "text-2xl  uppercase"><%= @headers.name %></span>
-                                        <p class = "text-sm poppins-light leading-loose"><%= @headers.description %> </p>
-                                
-                                </div>
-
-                        </div>
-                </div>
-                        <%else%>
-                        <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
-                                <div class = "mt-12 ml-12" >
-                                <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
-
-                                <p class = "text-blue-500"> no header attached to this code</p>
-                                </div>
-                
-                                </div>
-                        <%end %>
-                
-        
-        
-        </div>
-           
-        <div class = "features">
-          <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">FEATURES</h2>
-              <%=if @features do %>
+                                                                </video>                                      
+								</div>
+								<div class="image filtered span-1-75" data-position="25% 25%" style ="position:relative;">
+                                                                <div style = "display:inline-block; margin-top:30px; margin-left:20px; position:absolute; z-index:1000; ">
+                                                                        <h2 class =  "major" style = "font-weight:bold; "> Video</h2>
+                                                                        <p><%=@videos.description%></p>
 
 
-            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-               <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
-                <%= img_tag Scadvert.HeaderImage.url({@features.picture, @features}, signed: true), class: "h-full w-full object-cover"%>
-                    <div class = "text-white poppins-bold  absolute top-[20px] left-[20px]">
-                    <span class = "text-2xl uppercase"> <%= @features.name %></span>
-                    <p class = "text-sm poppins-regular tracking-wide leading-loose"><%= @features.description %> </p>
-                    
-                    </div>
-               
-               
-               </div>
+                                                                
+                                                                </div>
+								</div>
+							</section>
 
-                   
-            </div>
-             <%else%>
-                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
-                        <div class = "mt-12 ml-12" >
-                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+							<section class="panel spotlight medium right" id="first">
+							<%=if @headers do %>
+								<div class="content span-7">
+									<h2 class="major"><%=@headers.name%></h2>
+									<p><%=@headers.description%></p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src={ Scadvert.HeaderImage.url({@headers.picture, @headers}, signed: true)} alt="" />
+								</div>
+								<%else %>
+								<div class="content span-7">
+									<h2 class="major"></h2>
+									<p>No Header attached to this code</p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="/images/pic02.jpg" alt="" />
+								</div>
+								
+								<%end %>
+							</section>
 
-                        <p class = "text-blue-500"> no features attached to this code</p>
-                        </div>
-              
-                        </div>
-                    <%end %>
-        
-        
-        
-        </div>
+							<section class="panel color1">
+								<div class="intro joined">
+									<h2 class="major">Amet lorem</h2>
+									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
+								</div>
+								<div class="inner">
+									<ul class="grid-icons three connected">
+										<li><span class="icon fa-gem"><span class="label">Lorem</span></span></li>
+										<li><span class="icon solid fa-camera-retro"><span class="label">Ipsum</span></span></li>
+										<li><span class="icon solid fa-cog"><span class="label">Dolor</span></span></li>
+										<li><span class="icon solid fa-paper-plane"><span class="label">Sit</span></span></li>
+										<li><span class="icon solid fa-chart-bar"><span class="label">Amet</span></span></li>
+										<li><span class="icon solid fa-code"><span class="label">Nullam</span></span></li>
+									</ul>
+								</div>
+							</section>
 
-            <div class = "facilitys">
-                 <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">FACILITIES</h2>
+							<section class="panel spotlight large left">
+							<%=if @features do %>
+								<div class="content span-5">
+								
+									<h2 class="major"><%=@features.name%></h2>
+									<p><%=@features.description%></p>
+								</div>
+								<div class="image filtered tinted" data-position="top right">
+									<img src={Scadvert.HeaderImage.url({@features.picture, @features}, signed: true)} alt="" />
+								</div>
+								<%else %>
+								<div class="content span-7">
+									<h2 class="major"></h2>
+									<p>No feature attached to this code</p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="/images/pic03.jpg.jpg" alt="" />
+								</div>
+								<%end %>
+							</section>
+							<section class="panel spotlight large left">
+							<%=if @facilitys do %>
+								<div class="content span-5">
+									<h2 class="major"><%=@facilitys.name%></h2>
+									<p><%=@facilitys.description%></p>
+								</div>
+								<div class="image filtered tinted" data-position="top right">
+									<img src={Scadvert.HeaderImage.url({@facilitys.picture, @facilitys}, signed: true)} alt="" />
+								</div>
+								<%else %>
+								<div class="content span-7">
+									<h2 class="major"></h2>
+									<p>No facility attached to this code</p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="/images/pic02.jpg.jpg" alt="" />
+								</div>
+								
+								<%end %>
+							</section>
+							
+							
 
-                      <%=if @facilitys do %>
+							<section class="panel">
+							<%=if @images do %>
+								<div class="intro color2">
+									<h2 class="major">Images</h2>
+									<p>image gallery</p>
+								</div>
+								<div class="gallery">
+									
+                                        <%= for image<-@images do %>
+									<a href="images/gallery/fulls/04.jpg" class="image filtered span-2-5" data-position="top"><img src={Scadvert.HeaderImage.url({image.picture, image}, signed: true)} alt="" /></a>
+                                         <%end %>
+									</div>
+									<%end %>
+									
+							</section>
+							<section class="panel spotlight large left">
+							<%=if @leaderships do %>
+								<div class="content span-5">
+									<h2 class="major"><%=@leaderships.name%></h2>
+									<p><%=@leaderships.description%></p>
+								</div>
+								<div class="image filtered tinted" data-position="top right">
+									<img src={Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true)} alt="" />
+								</div>
+								<%else %>
+								<div class="content span-7">
+									<h2 class="major"></h2>
+									<p>No facility attached to this code</p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="/images/pic03.jpg.jpg" alt="" />
+								</div>
+								
 
-                         <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
-                                        <%= img_tag Scadvert.HeaderImage.url({@facilitys.picture, @facilitys}, signed: true), class: "h-full w-full object-cover"%>
-                                        <div class = "text-white poppins-bold absolute top-[20px] left-[20px]">
-                                                <span class = "text-2xl uppercase"> <%= @facilitys.name %></span>
-                                                <p  class = "text-sm poppins-light" ><%= @facilitys.description %> </p>
-                        
-                                        </div>
-                                </div>
-                               
-                        </div>
-            <%else%>
-                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
-                        <div class = "mt-12 ml-12" >
-                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+								<%end %>
+							</section>
 
-                        <p class = "text-blue-500"> no facilities attached to this code</p>
-                        </div>
-              
-                        </div>
-                    <%end %>
+							<section class="panel color4-alt">
+								<div class="intro color4">
+									<h2 class="major">Contact</h2>
+									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
+								</div>
+								<div class="inner columns divided">
+									<div class="span-3-25">
+										<form method="post" action="#">
+											<div class="fields">
+												<div class="field half">
+													<label for="name">Name</label>
+													<input type="text" name="name" id="name" />
+												</div>
+												<div class="field half">
+													<label for="email">Email</label>
+													<input type="email" name="email" id="email" />
+												</div>
+												<div class="field">
+													<label for="message">Message</label>
+													<textarea name="message" id="message" rows="4"></textarea>
+												</div>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" value="Send Message" class="button primary" /></li>
+											</ul>
+										</form>
+									</div>
+									<div class="span-1-5">
+										<ul class="contact-icons color1">
+											<li class="icon brands fa-twitter"><a href="#">@untitled-tld</a></li>
+											<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled</a></li>
+											<li class="icon brands fa-snapchat-ghost"><a href="#">@untitled-tld</a></li>
+											<li class="icon brands fa-instagram"><a href="#">@untitled-tld</a></li>
+											<li class="icon brands fa-medium-m"><a href="#">medium.com/untitled</a></li>
+										</ul>
+									</div>
+								</div>
+							</section>
 
-            
-            
-            
-            
-            
-            </div>
-            <div class = "history">
-                <h2 class = "mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">HISTORY</h2>
-                                <%=if @leaderships do %>
+							<section class="panel color2-alt">
+								<div class="intro color2">
+									<h2 class="major">Elements</h2>
+									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam. </p>
+								</div>
+								<div class="inner columns aligned">
+									<div class="span-2-75">
 
-                        <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                              <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
-                                        <%= img_tag Scadvert.HeaderImage.url({@leaderships.picture, @leaderships}, signed: true), class: "h-full w-full object-cover"%>
-                                        <div class = "text-white poppins-bold absolute top-[20px] left-[20px]">
-                                                <span class = "text-4xl uppercase" > <%= @leaderships.name %></span>
-                                                <p class = "text-sm poppins-light leading-loose"><%= @leaderships.description %> </p>
-                                                
-                                        </div>
-                                </div>
+										<h3 class="major">Text</h3>
+										<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+										This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+										This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
 
-                               
-                        </div>
-                        <%else%>
-                                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
-                                        <div class = "mt-12 ml-12" >
-                                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+										<h1>Heading Level 1</h1>
+										<h2>Heading Level 2</h2>
+										<h3>Heading Level 3</h3>
+										<h4>Heading Level 4</h4>
+										<h5>Heading Level 5</h5>
+										<h6>Heading Level 6</h6>
 
-                                        <p class = "text-blue-500"> no history attached to this code</p>
-                                        </div>
-                        
-                                        </div>
-                                <%end %>
-                </div>
-           
-            
+									</div>
+									<div class="span-3">
 
-        <div class = "images">
-         <h2 class = " mb-4 mt-6 text-left text-2xl poppins-bold text-blue-500">IMAGES</h2>
-                <%=if @images do%>
-            <div class=" relative  h-[350px] w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                   <div class=" relative  h-[350px] w-[350px] bg-black/50 ">
-                        <%= img_tag Scadvert.HeaderImage.url({@images.picture, @images}, signed: true), class: "h-full w-full object-cover"%>
-                                <div class = "text-white poppins-bold absolute top-[20px] left-[20px]">
-                                <span class = "text-2xl uppercase"> <%= @images.name %></span>
-                                <p class = "text-sm poppins-light"><%= @images.description %> </p>
-                        
-                        </div>
-                   </div>
+										<h4>Blockquote</h4>
+										<blockquote>Lorem ipsum dolor sit amet. Felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in vestibulum. Blandit adipiscing eu iaculis volutpat ac adipiscing volutpat ac adipiscing faucibus.</blockquote>
 
-                   
-            </div>
-             <%else%>
-                <div class = "h-[350px] w-[350px] inline-block border-6 border-gray-100 bg-white">
-                        <div class = "mt-12 ml-12" >
-                        <%= FontAwesome.icon("folder-open", type: "regular", class: "h-16 w-16") %>
+										<h4>Preformatted</h4>
+										<pre><code>i = 0;
 
-                        <p class = "text-blue-500"> no image attached to this code</p>
-                        </div>
-              
-                        </div>
-                    <%end %>
+while (!deck.isInOrder()) {
+    print 'Iteration ' + (i++);
+    deck.shuffle();
+}
 
-        </div>
-           
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
-</div>
+									</div>
+									<div class="span-1-25">
+
+										<h3 class="major">Lists</h3>
+
+										<h4>Unordered</h4>
+										<ul>
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+										</ul>
+
+										<h4>Alternate</h4>
+										<ul class="alt">
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+											<li>Felis enim feugiat.</li>
+										</ul>
+
+									</div>
+									<div class="span-1-5">
+
+										<h4>Ordered</h4>
+										<ol>
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+											<li>Felis enim feugiat.</li>
+											<li>Etiam vel felis lorem.</li>
+										</ol>
+
+										<h4>Actions</h4>
+										<ul class="actions">
+											<li><a href="#" class="button primary color2">Default</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+										<ul class="actions stacked">
+											<li><a href="#" class="button primary color2">Default</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+
+									</div>
+									<div class="span-1-25">
+
+										<h4>Icons</h4>
+										<ul class="icons">
+											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+											<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+										</ul>
+
+										<h4>Contact Icons</h4>
+										<ul class="contact-icons color2">
+											<li class="icon brands fa-twitter"><a href="#">Twitter</a></li>
+											<li class="icon brands fa-facebook-f"><a href="#">Facebook</a></li>
+											<li class="icon brands fa-instagram"><a href="#">Instagram</a></li>
+											<li class="icon brands fa-github"><a href="#">GitHub</a></li>
+											<li class="icon brands fa-medium-m"><a href="#">Medium</a></li>
+										</ul>
+
+									</div>
+									<div class="span-3">
+										<h3 class="major">Table</h3>
+										<h4>Default</h4>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Item One</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Two</td>
+														<td>Vis ac commodo adipiscing arcu aliquet.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Three</td>
+														<td> Morbi faucibus arcu accumsan lorem.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Four</td>
+														<td>Vitae integer tempus condimentum.</td>
+														<td>19.99</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td>100.00</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="span-3">
+										<h4>Alternate</h4>
+										<div class="table-wrapper">
+											<table class="alt">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Item One</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Two</td>
+														<td>Vis ac commodo adipiscing arcu aliquet.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Three</td>
+														<td> Morbi faucibus arcu accumsan lorem.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Four</td>
+														<td>Vitae integer tempus condimentum.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Five</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td>100.00</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="span-2-25">
+										<h3 class="major">Buttons</h3>
+										<ul class="actions">
+											<li><a href="#" class="button primary color2">Primary</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+										<ul class="actions">
+											<li><a href="#" class="button">Default</a></li>
+											<li><a href="#" class="button large">Large</a></li>
+											<li><a href="#" class="button small">Small</a></li>
+										</ul>
+										<ul class="actions">
+											<li><a href="#" class="button primary color2 icon solid fa-cog">Icon</a></li>
+											<li><a href="#" class="button icon fa-gem">Icon</a></li>
+										</ul>
+										<ul class="actions">
+											<li><span class="button primary color2 disabled">Disabled</span></li>
+											<li><span class="button disabled">Disabled</span></li>
+										</ul>
+										<ul class="actions">
+											<li><a href="#" class="button primary color2 circle icon solid fa-cog">Icon</a></li>
+											<li><a href="#" class="button circle icon fa-gem">Icon</a></li>
+										</ul>
+									</div>
+									<div class="span-4-5">
+										<h3 class="major">Form</h3>
+										<form method="post" action="#">
+											<div class="fields">
+												<div class="field third">
+													<label for="demo-name">Name</label>
+													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+												</div>
+												<div class="field third">
+													<label for="demo-email">Email</label>
+													<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+												</div>
+												<div class="field third">
+													<label for="demo-category">Category</label>
+													<div class="select-wrapper">
+														<select name="demo-category" id="demo-category">
+															<option value="">-</option>
+															<option value="1">Manufacturing</option>
+															<option value="1">Shipping</option>
+															<option value="1">Administration</option>
+															<option value="1">Human Resources</option>
+														</select>
+													</div>
+												</div>
+												<div class="field quarter">
+													<input type="radio" id="demo-priority-low" name="demo-priority" class="color2" checked />
+													<label for="demo-priority-low">Low Priority</label>
+												</div>
+												<div class="field quarter">
+													<input type="radio" id="demo-priority-high" name="demo-priority" class="color2" />
+													<label for="demo-priority-high">High Priority</label>
+												</div>
+												<div class="field quarter">
+													<input type="checkbox" id="demo-copy" name="demo-copy" class="color2" />
+													<label for="demo-copy">Email a copy</label>
+												</div>
+												<div class="field quarter">
+													<input type="checkbox" id="demo-human" name="demo-human" class="color2" checked />
+													<label for="demo-human">Not a robot</label>
+												</div>
+												<div class="field">
+													<label for="demo-message">Message</label>
+													<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="2"></textarea>
+												</div>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" value="Send Message" class="primary color2" /></li>
+												<li><input type="reset" value="Reset" /></li>
+											</ul>
+										</form>
+									</div>
+								</div>
+							</section>
+
+							<div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
+
+					</div>
+
+			</div>
+

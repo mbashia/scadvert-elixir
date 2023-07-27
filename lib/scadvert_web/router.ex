@@ -46,13 +46,17 @@ defmodule ScadvertWeb.Router do
     get "/profile/" , ClientController, :profile
     post "/clients/search", ClientController, :search
 
-    get "/code_information/:id", CodeInfoController, :show
 
     get "confirm", PageController, :confirm
 
 
 
 
+
+  end
+  scope "/", ScadvertWeb do
+    pipe_through [:browser]
+    get "/code_information/:id", CodeInfoController, :show
 
   end
 

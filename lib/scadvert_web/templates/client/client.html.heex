@@ -5,24 +5,24 @@
                   </div>
            </div>
 
- <div class = "  mt-[30px] mb-[40px] flex items-center ">
-         <div class  = " bg-green-400 rounded-lg p-2 inline-block mx-4">  
-      <span><%= link "back", to: Routes.client_path(@conn, :index) %></span>
+ <div class = "  mt-[30px] mb-[40px] flex flex-col gap-2 md:flex-row md:items-center ">
+         <div class  = "  bg-green-400 rounded-lg md:p-2 inline-block md:mx-4">  
+      <span  ><%= link "back", to: Routes.client_path(@conn, :index) %></span>
 
       
       </div>
       
-      <div class = "inline-block ml-[200px]">
+      <div class = "flex gap-2  md:ml-[200px]">
           <%= render "search.html", Map.put(assigns, :action, Routes.client_path(@conn, :search)) %>
-
-        </div>
-
-       <div class = "ml-[30px]">
-       <div > 
+          <div class = "align-top" > 
         <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
              <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.client_path(@conn, :index), style: "color: #173673;" %></span>
 
        </div>
+        </div>
+
+       <div class = "ml-[30px]">
+       
 
       
        
@@ -85,19 +85,19 @@
       <td class = "table_data">
       <div class = "flex flex-row   ">
       
-        <div class = "p-2 inline-block bg-sky-500 rounded  mr-2"> 
-            <span><%= link "Show", to: Routes.client_path(@conn, :show, user) %></span>
+        <div class = "p-2 inline-block bg-green-500 rounded  mr-2"> 
+            <span  title="view user"><%= link  Heroicons.icon("eye", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.client_path(@conn, :show, user) %></span>
         </div>
          <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
-        <span><%= link "Edit", to: Routes.client_path(@conn, :edit, user) %></span>
+        <span title="edit user"><%= link Heroicons.icon("pencil", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.client_path(@conn, :edit, user) %></span>
         </div>
         <%= if user.status == true do %>
-         <div class = " inline-block bg-red-600 rounded mr-2 w-[90px]">       
-       <span><%= link "deactivate", to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
+         <div class = " inline-block bg-red-600 rounded mr-2 p-2 ">       
+       <span title="deactivate user"><%= link  Heroicons.icon("lock-closed", type: "solid", class: "h-4 w-4 text-white" ), to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>
       <%else %>
-      <div class = "p-2 inline-block bg-green-400 rounded mr-2 w-[90px]">       
-       <span><%= link "activate", to:  Routes.client_path(@conn, :delete, user),  method: :delete,data: [confirm: "activate user?"] %></span>
+      <div class = "p-2 inline-block bg-green-400 rounded mr-2 ">       
+       <span title="activate user"><%= link  Heroicons.icon("lock-open", type: "solid", class: "h-4 w-4 text-white" ), to:  Routes.client_path(@conn, :delete, user),  method: :delete,data: [confirm: "activate user?"] %></span>
       </div>
       <%end %>
       </div>

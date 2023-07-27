@@ -17,10 +17,10 @@ defmodule ScadvertWeb.CodeInfoController do
     videos = List.first(code.videos)
     headers =List.first(code.headers)
     leaderships = List.first(code.leaderships)
-    images = List.first(code.images)
+    images = code.images
     facilitys= List.first(code.facilitys)
 
-    IO.inspect (features)
+    IO.inspect(length(images))
 
     render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images)
   end
