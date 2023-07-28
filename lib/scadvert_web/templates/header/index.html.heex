@@ -11,22 +11,14 @@
       
       </div>
       
-      <div class = "inline-block md:ml-[200px]">
+      <div class = "flex gap-2  md:ml-[200px]">
           <%= render "search.html", Map.put(assigns, :action, Routes.header_path(@conn, :search)) %>
-
-        </div>
-
-       <div class = "ml-[30px]">
-       <div > 
+          <div class = "align-top" > 
         <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
              <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.header_path(@conn, :index), style: "color: #173673;" %></span>
 
        </div>
-
-      
-       
-       </div> 
-
+        </div>
       
         </div>
         

@@ -1,3 +1,9 @@
+ <div class = "bg-gray-800 pt-3 mb-[30px]">
+             <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800  p-4 shadow text-2xl text-white">
+
+                  <h3 class = "font-bold pl-2 uppercase" >showing Facility</h3>
+                  </div>
+           </div>
 
 <div class = "block mb-6">
       <div class = "mt-8 inline-block z-40 ml-6">
@@ -7,7 +13,7 @@
           <span><%= link "Back", to: Routes.facility_path(@conn, :index),class: "form_back_btn" %></span>
       </div>
 </div>
-<div class = " sm:h-auto sm:w-auto sm:ml-[50px] mt-6  md:absolute md:top-[200px] md:left-[400px] h-96 overflow-y-auto">
+<div class = "rounded-lg h-auto w-auto ml-[20px] mt-6  md:absolute md:top-[200px] md:left-[400px] md:h-96  overflow-y-auto">
     <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
           <div class = "h-44 overflow-hidden">
               <%= if @facility.picture do %>
@@ -29,7 +35,16 @@
         </li>
         <li class  = "text-lg text-white font-sans m-2">NAME: <%= @facility.name %>
         </li>
-        <li class  = "text-lg text-white font-sans m-2">STATUS:<%=  @facility.status  %>
+        <li class  = "text-lg text-white font-sans m-2">STATUS:
+        <%= if @facility.status == "true" do  %>
+        <div class = " inline-block py-0 bg-green-500 rounded p-1 w-[50px]">       
+       <span class = "text-sm"> active</span>
+      </div>
+      <%else %>
+      <div class = " inline-block py-0 bg-red-500 rounded p-1 w-[55px]">       
+       <span class = "text-sm">inactive</span>
+      </div>
+      <%end %>
         </li>
         <li class  = "text-lg text-white font-sans m-2">DESCRIPTION:</li>
         </ul>

@@ -12,28 +12,22 @@
           
           </div>
           
-          <div class = "inline-block md:ml-[200px]">
-              <%= render "search.html", Map.put(assigns, :action, Routes.code_path(@conn, :search)) %>
-
-            </div>
-
-          <div class = "ml-[30px]">
-          <div > 
+        <div class = "flex gap-2  md:ml-[200px]">
+          <%= render "search.html", Map.put(assigns, :action, Routes.code_path(@conn, :search)) %>
+          <div class = "align-top" > 
             <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
                 <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.code_path(@conn, :index), style: "color: #173673;" %></span>
 
           </div>
+        </div>
 
-          
-          
-          </div> 
 
           
             </div>
               
 
             <div class = "overflow-x-auto p-[20px] ">
-          <table  class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee; ">
+          <table  class  = "w-full sm:w-auto" style = "width:auto%; background-color:#efeeee; ">
             <thead>
               <tr>
                 <th class = "for_tables">Code name</th>
