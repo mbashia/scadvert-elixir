@@ -15,6 +15,7 @@ defmodule ScadvertWeb.FacilityController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, params) do
+    IO.inspect(conn)
     if conn.assigns.current_user.role == "admin" do
       changeset = Facilitys.change_facility(%Facility{})
 
@@ -110,8 +111,17 @@ defmodule ScadvertWeb.FacilityController do
 
   end
   defp search_params(conn,params)do
-    user_id = conn.assigns.current_user.id
-    if conn.assigns.current_user.role == "admin" do
+    user = conn.assigns.current_user
+    params = cond do
+      params=="active" ->
+      "true"
+      params =="inactive" ->
+        "false"
+      true ->
+        params
+
+      end
+    if user.role == "admin" do
       from(f in Facility,
      join: c in assoc(f, :codes),
 
@@ -122,7 +132,7 @@ defmodule ScadvertWeb.FacilityController do
      from(f in Facility,
      join: c in assoc(f, :codes),
 
-     where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%") ,where: f.user_id == ^user_id,
+     where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%") ,where: f.user_id == ^user.id,
      preload: [:codes])
     # facilitys = Repo.all(query)
 

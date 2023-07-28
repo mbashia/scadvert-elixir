@@ -16,9 +16,26 @@
     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/qrcode.js") }></script>
    
     
+<script language="javascript" type="text/javascript">
+  function timeMsg(){
 
+      window.setTimeout("clearMsg()",5000);//10secs
+
+    }
+
+    //
+
+    function clearMsg(){
+
+      document.getElementById("hideMsg").innerHTML = "";
+
+    }
+    
+  </script>
   </head>
-<body class="bg-gray-800 font-sans leading-normal tracking-normal  mt-12">
+  
+
+<body   onLoad = "timeMsg()" class="bg-gray-800 font-sans leading-normal tracking-normal  mt-12">
         <header>
        
             <!--Nav-->
@@ -41,9 +58,9 @@
                         <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
                             
                              <div class =" contents ">
-                            <div class = "mt-2 h-[60px] w-[60px] md:ml-8 relative md:h-[100px] md:w-[100px] "> 
+                            <div class = "mt-2 h-[60px] w-[60px] md:ml-8 relative md:h-[60px] md:w-[60px] "> 
                                 <%= img_tag Scadvert.UserImage.url({user.picture, user}, signed: true), alt: "profile picture", class: " object-cover md:h-[100%] md:w-[100%]  rounded-full"%>
-                                <div class = "invisible md:visible w-[10px] h-[10px] absolute bg-green-300 bottom-[15px] right-[6px] border border-white rounded-full"></div>
+                                <div class = "invisible md:visible w-[10px] h-[10px] absolute bg-green-500 bottom-[12px] right-[0px] border border-white rounded-full"></div>
                                 </div>
                 
                                 <div onclick="toggleDD('myDropdown')" class="drop-button hover:cursor-pointer">
@@ -187,8 +204,8 @@
 
                 </div>
 
-               <div class="main-content flex-1  bg-white mt-12 md:mt-2 md:pt-[60px] pb-24 md:pb-5">
-                   <main class = " container">
+               <div class=" main-content flex-1  bg-white mt-12 md:mt-2 md:pt-[60px] pb-24 md:pb-5">
+                   <main class = " container" id = "hideMsg">
                     <p class=" 	 alert alert-info " role="alert" id = "info-message"><%= get_flash(@conn, :info) %></p>
                     <p class="alert alert-danger" role="alert " id = "error-message"><%= get_flash(@conn, :error) %></p>
                     </main>
@@ -199,10 +216,7 @@
                     
                 </div>
             </div>
-                    <script type="text/javascript">window.setTimeout("document.getElementById('info-message').style.display='none';", 7000); </script>
-                    <script type="text/javascript">window.setTimeout("document.getElementById('error-message').style.display='none';", 7000); </script>
-
-   
+                   
 
     <script>
         /*Toggle dropdown list*/

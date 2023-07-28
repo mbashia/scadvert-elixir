@@ -105,8 +105,17 @@ defmodule ScadvertWeb.HeaderController do
 
   end
   defp search_params(conn,params)do
-    user_id = conn.assigns.current_user.id
-    if conn.assigns.current_user.role == "admin" do
+    params = cond do
+      params=="active" ->
+      "true"
+      params =="inactive" ->
+        "false"
+      true ->
+        params
+
+      end
+    user = conn.assigns.current_user
+    if user.role == "admin" do
       from(h in Header,
       join: c in assoc(h, :codes),
       where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", h.name, ^"%#{params}%") or fragment("? LIKE ?", h.description, ^"%#{params}%") or fragment("? LIKE ?", h.status, ^"%#{params}%"),
@@ -114,7 +123,7 @@ defmodule ScadvertWeb.HeaderController do
     else
    from(h in Header,
    join: c in assoc(h, :codes),
-   where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", h.name, ^"%#{params}%") or fragment("? LIKE ?", h.description, ^"%#{params}%") or fragment("? LIKE ?", h.status, ^"%#{params}%"), where: h.user_id == ^user_id,
+   where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", h.name, ^"%#{params}%") or fragment("? LIKE ?", h.description, ^"%#{params}%") or fragment("? LIKE ?", h.status, ^"%#{params}%"), where: h.user_id == ^user.id,
    preload: [:codes])
 
     end

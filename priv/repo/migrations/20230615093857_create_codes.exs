@@ -14,5 +14,6 @@ defmodule Scadvert.Repo.Migrations.CreateCodes do
     end
 
     create index(:codes, [:user_id])
+    create unique_index(:codes, [:name])
   end
 end

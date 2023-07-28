@@ -104,8 +104,17 @@ defmodule ScadvertWeb.LeadershipController do
 
   end
   defp search_params(conn,params)do
-    user_id = conn.assigns.current_user.id
-    if conn.assigns.current_user.role == "admin" do
+    params = cond do
+      params=="active" ->
+      "true"
+      params =="inactive" ->
+        "false"
+      true ->
+        params
+
+      end
+    user = conn.assigns.current_user
+    if user.role == "admin" do
       from(l in Leadership,
       join: c in assoc(l, :codes),
        where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", l.name, ^"%#{params}%") or fragment("? LIKE ?", l.description, ^"%#{params}%") or fragment("? LIKE ?", l.status, ^"%#{params}%") ,
@@ -113,7 +122,7 @@ defmodule ScadvertWeb.LeadershipController do
     else
     from(l in Leadership,
     join: c in assoc(l, :codes),
-     where: fragment("? LIKE ?", c.name, ^"%#{params}%")or fragment("? LIKE ?", l.name, ^"%#{params}%") or fragment("? LIKE ?", l.description, ^"%#{params}%") or fragment("? LIKE ?", l.status, ^"%#{params}%") , where: l.user_id == ^user_id,
+     where: fragment("? LIKE ?", c.name, ^"%#{params}%")or fragment("? LIKE ?", l.name, ^"%#{params}%") or fragment("? LIKE ?", l.description, ^"%#{params}%") or fragment("? LIKE ?", l.status, ^"%#{params}%") , where: l.user_id == ^user.id,
      preload: [:codes])
     end
 

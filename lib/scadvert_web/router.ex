@@ -47,7 +47,7 @@ defmodule ScadvertWeb.Router do
     post "/clients/search", ClientController, :search
 
 
-    get "confirm", PageController, :confirm
+    get "/confirm", PageController, :confirm
 
 
 

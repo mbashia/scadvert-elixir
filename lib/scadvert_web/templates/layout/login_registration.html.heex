@@ -7,11 +7,27 @@
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "Scadvert", suffix: " · Phoenix Framework" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script language="javascript" type="text/javascript">
+  function timeMsg(){
+
+      window.setTimeout("clearMsg()",5000);//10secs
+
+    }
+
+    //
+
+    function clearMsg(){
+
+      document.getElementById("hideMsg").innerHTML = "";
+
+    }
+    
+  </script>
   </head>
 
 
-<body class="bg-white font-sans leading-normal tracking-normal mt-12">
-<main class = "container">
+<body onLoad= "timeMsg()" class="bg-white font-sans leading-normal tracking-normal mt-12">
+<main class = "container"  id = "hideMsg">
                     <p class="alert alert-info " role="alert" id = "info-message"><%= get_flash(@conn, :info) %></p>
                     <p class="alert alert-danger" role="alert" id = "error-message"><%= get_flash(@conn, :error) %></p>
                     </main>

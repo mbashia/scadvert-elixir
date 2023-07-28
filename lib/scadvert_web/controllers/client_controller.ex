@@ -135,9 +135,19 @@ end
 
   end
   defp search_params(params)do
+
+    params = cond do
+      params=="active" ->
+      "true"
+      params =="inactive" ->
+        "false"
+      true ->
+        params
+
+      end
    query = from(u in User,
 
-     where: fragment("? LIKE ?", u.firstname, ^"%#{params}%") or fragment("? LIKE ?", u.lastname, ^"%#{params}%") or fragment("? LIKE ?", u.email, ^"%#{params}%")  or fragment("? LIKE ?", u.phone_number, ^"%#{params}%") or fragment("? LIKE ?", u.gender, ^"%#{params}%")or fragment("? LIKE ?", u.role, ^"%#{params}%")   )
+     where: fragment("? LIKE ?", u.firstname, ^"%#{params}%") or fragment("? LIKE ?", u.lastname, ^"%#{params}%") or fragment("? LIKE ?", u.email, ^"%#{params}%")  or fragment("? LIKE ?", u.phone_number, ^"%#{params}%") or fragment("? LIKE ?", u.gender, ^"%#{params}%")or fragment("? LIKE ?", u.role, ^"%#{params}%")or fragment("? LIKE ?", u.status, ^"%#{params}%")   )
 
     query
 

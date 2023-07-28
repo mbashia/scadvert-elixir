@@ -107,9 +107,18 @@ defmodule ScadvertWeb.ImageController do
 
   end
   defp search_params(conn,params)do
+    params = cond do
+      params=="active" ->
+      "true"
+      params =="inactive" ->
+        "false"
+      true ->
+        params
 
-    user_id = conn.assigns.current_user.id
-    if conn.assigns.current_user.role == "admin" do
+      end
+
+    user= conn.assigns.current_user
+    if user.role == "admin" do
       from(i in Image,
     join: c in assoc(i, :codes),
     where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", i.name, ^"%#{params}%") or fragment("? LIKE ?", i.description, ^"%#{params}%") or fragment("? LIKE ?", i.status, ^"%#{params}%") ,
@@ -117,7 +126,7 @@ defmodule ScadvertWeb.ImageController do
     else
     from(i in Image,
     join: c in assoc(i, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", i.name, ^"%#{params}%") or fragment("? LIKE ?", i.description, ^"%#{params}%") or fragment("? LIKE ?", i.status, ^"%#{params}%"), where: i.user_id == ^user_id,
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", i.name, ^"%#{params}%") or fragment("? LIKE ?", i.description, ^"%#{params}%") or fragment("? LIKE ?", i.status, ^"%#{params}%"), where: i.user_id == ^user.id,
     preload: [:codes])
 
     end

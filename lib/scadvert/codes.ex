@@ -134,12 +134,24 @@ defmodule Scadvert.Codes do
     |>Repo.preload(:headers)
   end
   def search_params(conn,params)do
-    user_id = conn.assigns.current_user.id
-    if conn.assigns.current_user.role == "admin" do
-      query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%"))
+    IO.inspect(params)
+    user = conn.assigns.current_user
+
+    params = cond do
+      params=="active" ->
+      "true"
+      params =="inactive" ->
+        "false"
+      true ->
+        params
+
+      end
+
+    if user.role == "admin" do
+      query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%")or fragment("? LIKE ?", c.active, ^"%#{params}%"))
       query
     else
-    query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%") and c.user_id == ^user_id)
+    query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%")or fragment("? LIKE ?", c.active, ^"%#{params}%") and c.user_id == ^user.id)
     query
     end
 

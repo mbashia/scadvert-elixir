@@ -105,8 +105,17 @@ defmodule ScadvertWeb.FeatureController do
 
   end
   defp search_params(conn,params)do
-    user_id = conn.assigns.current_user.id
-    if conn.assigns.current_user.role == "admin" do
+    user = conn.assigns.current_user
+    params = cond do
+      params=="active" ->
+      "true"
+      params =="inactive" ->
+        "false"
+      true ->
+        params
+
+      end
+    if user.role == "admin" do
       from(f in Feature,
     join: c in assoc(f, :codes),
     where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%"),
@@ -114,7 +123,7 @@ defmodule ScadvertWeb.FeatureController do
     else
     from(f in Feature,
     join: c in assoc(f, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%"),  where: f.user_id == ^user_id,
+    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%"),  where: f.user_id == ^user.id,
     preload: [:codes])
     end
 

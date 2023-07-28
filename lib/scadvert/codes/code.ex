@@ -33,6 +33,6 @@ defmodule Scadvert.Codes.Code do
     |> cast(attrs, [:active, :description, :name, :picture, :type, :user_id])
 
     |> validate_required([:name, :description, :active,  :type, :user_id])
-
+    |> unique_constraint(:name, message: "This code already exists")
   end
 end
