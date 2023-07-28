@@ -28,14 +28,17 @@ defmodule ScadvertWeb.VideoController do
 
   def new(conn, _params) do
     changeset = Videos.change_video(%Video{})
-    codes = Functions.list_codes(conn)
+    user_id = conn.assigns.current_user.id
+    codes = Functions.list_codes(user_id)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
   end
 
   def create(conn, %{"video" => video_params}) do
-    video_params = Map.put(video_params, "user_id", conn.assigns.current_user.id)
-    codes = Functions.list_codes(conn)
+    user_id = conn.assigns.current_user.id
+
+    video_params = Map.put(video_params, "user_id", user_id)
+    codes = Functions.list_codes(user_id)
 
     case Videos.create_video(video_params) do
       {:ok, video} ->
@@ -55,7 +58,8 @@ defmodule ScadvertWeb.VideoController do
 
   def edit(conn, %{"id" => id}) do
     video = Videos.get_video!(id)
-    codes = Functions.list_codes(conn)
+    user_id =  video.user_id
+    codes = Functions.list_codes(user_id)
 
     changeset = Videos.change_video(video)
     render(conn, "edit.html", video: video, changeset: changeset, codes: codes)
@@ -134,4 +138,3 @@ end
 
 
 end
-

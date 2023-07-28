@@ -125,7 +125,7 @@ defmodule Scadvert.Codes do
   end
 
   def list_code_by_name(id) do
-    Repo.one(from c in Code, where: c.name == ^id, limit: 1 )
+    Repo.one(from c in Code, where: c.name == ^id )
     |>Repo.preload(:features)
     |>Repo.preload(:facilitys)
     |>Repo.preload(:images)

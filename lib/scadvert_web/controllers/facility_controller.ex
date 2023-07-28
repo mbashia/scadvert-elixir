@@ -15,7 +15,6 @@ defmodule ScadvertWeb.FacilityController do
   plug :put_layout, "newlayout.html"
 
   def index(conn, params) do
-    IO.inspect(conn)
     if conn.assigns.current_user.role == "admin" do
       changeset = Facilitys.change_facility(%Facility{})
 
@@ -35,15 +34,20 @@ defmodule ScadvertWeb.FacilityController do
   end
 
   def new(conn, _params) do
+    user_id = conn.assigns.current_user.id
+
     changeset = Facilitys.change_facility(%Facility{})
-    codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(user_id)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
   end
 
   def create(conn, %{"facility" => facility_params}) do
-    facility_params = Map.put(facility_params, "user_id", conn.assigns.current_user.id)
-    codes = Functions.list_codes(conn)
+    user_id = conn.assigns.current_user.id
+
+    facility_params = Map.put(facility_params, "user_id", user_id)
+    codes = Functions.list_codes(user_id)
+
     case Facilitys.create_facility(facility_params) do
       {:ok, facility} ->
         conn
@@ -57,14 +61,16 @@ defmodule ScadvertWeb.FacilityController do
 
   def show(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
-    codes = Functions.list_codes(conn)
-    render(conn, "show.html", facility: facility, codes: codes, default_image: @default_image)
+    render(conn, "show.html", facility: facility,  default_image: @default_image)
   end
 
   def edit(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
+
+    user_id = facility.user_id
+
     changeset = Facilitys.change_facility(facility)
-    codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(user_id)
 
     render(conn, "edit.html", facility: facility, changeset: changeset, codes: codes)
   end

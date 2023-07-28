@@ -27,19 +27,21 @@ defmodule ScadvertWeb.ImageController do
   end
 
   def new(conn, _params) do
+    user_id = conn.assigns.current_user.id
     changeset = Images.change_image(%Image{})
 
-    codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(user_id)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
-    IO.inspect User_auth.fetch_current_user(conn)
 
   end
 
   def create(conn, %{"image" => image_params}) do
-    image_params = Map.put(image_params, "user_id", conn.assigns.current_user.id)
+    user_id = conn.assigns.current_user.id
 
-    codes = Functions.list_codes(conn)
+    image_params = Map.put(image_params, "user_id", user_id)
+
+    codes = Functions.list_codes(user_id)
 
     case Images.create_image(image_params) do
       {:ok, image} ->
@@ -59,8 +61,9 @@ defmodule ScadvertWeb.ImageController do
 
   def edit(conn, %{"id" => id}) do
     image = Images.get_image!(id)
+    user_id = image.user_id
     changeset = Images.change_image(image)
-    codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(user_id)
 
     render(conn, "edit.html", image: image, changeset: changeset, codes: codes)
   end

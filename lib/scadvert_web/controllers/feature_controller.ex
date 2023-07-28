@@ -29,15 +29,18 @@ defmodule ScadvertWeb.FeatureController do
   end
 
   def new(conn, _params) do
+    user_id = conn.assigns.current_user.id
     changeset = Features.change_feature(%Feature{})
-    codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(user_id)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
   end
 
   def create(conn, %{"feature" => feature_params}) do
-    feature_params = Map.put(feature_params, "user_id", conn.assigns.current_user.id)
-    codes = Functions.list_codes(conn)
+    user_id = conn.assigns.current_user.id
+
+    feature_params = Map.put(feature_params, "user_id", user_id)
+    codes = Functions.list_codes(user_id)
 
     case Features.create_feature(feature_params) do
       {:ok, feature} ->
@@ -57,7 +60,8 @@ defmodule ScadvertWeb.FeatureController do
 
   def edit(conn, %{"id" => id}) do
     feature = Features.get_feature!(id)
-    codes = Functions.list_codes(conn)
+    user_id = feature.user_id
+    codes = Functions.list_codes(user_id)
 
     changeset = Features.change_feature(feature)
     render(conn, "edit.html", feature: feature, changeset: changeset, codes: codes)

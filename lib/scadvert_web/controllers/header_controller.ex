@@ -30,15 +30,18 @@ defmodule ScadvertWeb.HeaderController do
   end
 
   def new(conn, _params) do
+    user_id = conn.assigns.current_user.id
     changeset = Headers.change_header(%Header{})
-    codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(user_id)
 
     render(conn, "new.html", changeset: changeset, codes: codes, default_image: @default_image)
   end
 
   def create(conn, %{"header" => header_params}) do
-    header_params = Map.put(header_params, "user_id", conn.assigns.current_user.id)
-    codes = Functions.list_codes(conn)
+    user_id = conn.assigns.current_user.id
+
+    header_params = Map.put(header_params, "user_id",user_id)
+    codes = Functions.list_codes(user_id)
 
     case Headers.create_header(header_params) do
       {:ok, header} ->
@@ -58,8 +61,9 @@ defmodule ScadvertWeb.HeaderController do
 
   def edit(conn, %{"id" => id}) do
     header = Headers.get_header!(id)
+    user_id = header.user_id
     changeset = Headers.change_header(header)
-    codes = Functions.list_codes(conn)
+    codes = Functions.list_codes(user_id)
     render(conn, "edit.html", header: header, changeset: changeset, codes: codes)
   end
 
