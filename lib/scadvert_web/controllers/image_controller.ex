@@ -100,12 +100,18 @@ defmodule ScadvertWeb.ImageController do
   |> put_flash(:error, "no results")
   |> render( "index.html", images: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
+    if Enum.count(page.entries)==1 do
   conn
 
   |> put_flash(:info, "image searched successfully.")
 
   |> render( "index.html", images: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
+    else
+    conn
+  |> put_flash(:info, "images searched successfully.")
 
+  |> render( "index.html", images: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
+    end
   end
 
   end

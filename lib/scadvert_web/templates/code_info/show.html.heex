@@ -5,24 +5,37 @@
 
 							<section class="panel banner right">
 								<div class="content color0 span-3-75 ">
+								<%= if @videos do %>
                                       
-                                                                     <video width = "350" , height = "350" controls >
-                                                                        <source src={Scadvert.FileVideo.url({@videos.video, @videos}, signed: true)}
-                                                                        alt = "video"
+											<video width = "350" , height = "350" controls >
+											<source src={Scadvert.FileVideo.url({@videos.video, @videos}, signed: true)}
+											alt = "video"
 
-                                                                        type="video/mp4"/>
+											type="video/mp4"/>
 
-                                                                </video>                                      
+									</video>                                      
 								</div>
 								<div class="image filtered span-1-75" data-position="25% 25%" style ="position:relative;">
-                                                                <div style = "display:inline-block; margin-top:30px; margin-left:20px; position:absolute; z-index:1000; ">
-                                                                        <h2 class =  "major" style = "font-weight:bold; "> Video</h2>
-                                                                        <p><%=@videos.description%></p>
+									<div style = "display:inline-block; margin-top:30px; margin-left:20px; position:absolute; z-index:1000; ">
+											<h2 class =  "major" style = "font-weight:bold; "> Video</h2>
+											<p><%=@videos.description%></p>
 
 
-                                                                
-                                                                </div>
+									
+									</div>
+									<%else %>
+								<div class="content span-7">
+									<h2 class="major"></h2>
+									<p>No video attached to this code</p>
 								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="/images/pic01.jpg" alt="" />
+								</div>
+								
+								<%end %>
+								</div>
+								
+								
 							</section>
 
 							<section class="panel spotlight medium right" id="first">

@@ -43,7 +43,7 @@ defmodule ScadvertWeb.Router do
     post "/videos/search", VideoController, :search
 
     resources "/clients", ClientController
-    get "/profile/" , ClientController, :profile
+    get "/profile/:id" , ClientController, :profile
     post "/clients/search", ClientController, :search
 
 
@@ -56,7 +56,7 @@ defmodule ScadvertWeb.Router do
   end
   scope "/", ScadvertWeb do
     pipe_through [:browser]
-    get "/code_information/:id", CodeInfoController, :show
+    get "/code_information/:name/:user_id", CodeInfoController, :show
 
   end
 

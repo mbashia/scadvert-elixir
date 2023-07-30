@@ -29,7 +29,7 @@
 
 
           
-<div class = "overflow-x-auto">
+<div class = "overflow-x-auto p-[20px]">
 <table  class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee;">
   <thead>
     <tr>
@@ -63,7 +63,7 @@
        <td class = "table_data"><%= user.role  %></td>
 
 
-      <td class = "table_data"><%=  if user.status == true do %>
+      <td class = "table_data"><%=  if user.status == "true" do %>
       
     <%= Heroicons.icon("check", type: "solid", class: "h-6 w-6 text-green-600" )%>
        <% else %>
@@ -86,7 +86,7 @@
          <div class = "p-2 inline-block bg-sky-700 rounded mr-2">       
         <span title="edit user"><%= link Heroicons.icon("pencil", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.client_path(@conn, :edit, user) %></span>
         </div>
-        <%= if user.status == true do %>
+        <%= if user.status == "true" do %>
          <div class = " inline-block bg-red-600 rounded mr-2 p-2 ">       
        <span title="deactivate user"><%= link  Heroicons.icon("lock-closed", type: "solid", class: "h-4 w-4 text-white" ), to:  Routes.client_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </div>

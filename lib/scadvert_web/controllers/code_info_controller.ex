@@ -5,23 +5,24 @@ defmodule ScadvertWeb.CodeInfoController do
 
 
   alias Scadvert.Codes
+  alias Scadvert.Accounts
   # alias Scadvert.Repo
   plug :put_layout, "show_info.html"
 
 
 
 
-  def show(conn, %{"id" => id}) do
-    code = Codes.list_code_by_name(id)
+  def show(conn, %{"name" => name,"user_id" => user_id}) do
+    code = Codes.list_code_by_name(name)
     features= List.first(code.features)
     videos = List.first(code.videos)
     headers =List.first(code.headers)
     leaderships = List.first(code.leaderships)
     images = code.images
     facilitys= List.first(code.facilitys)
+    user  = Accounts.get_user!(user_id)
+  IO.inspect(user.more_details)
 
-    IO.inspect(length(images))
-
-    render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images)
+    render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images,user: user)
   end
 end

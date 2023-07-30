@@ -1,0 +1,27 @@
+
+
+   <.form let={f} for={@changeset} action={@action}>
+
+ <%= if @changeset.action do %>
+
+ <div class="alert alert-danger">
+ <p>Oops, something went wrong! Please check the errors below.</p>
+ </div>
+ <% end %>
+ 
+  <%= label f, :"add more details",class: "text-lg text-semibold text-blue-500" %> 
+   <%= textarea f, :more_details,class: "invisible", id: "more_details",style: "height:300px; width:200px;" %>
+     <%= error_tag f, :more_details %>
+ 
+ 
+ <%= submit  "submit",class: "mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#more_details' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+ 
+ 
+</.form>

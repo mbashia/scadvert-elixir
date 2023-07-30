@@ -40,6 +40,7 @@ defmodule ScadvertWeb.UserConfirmationController do
         # check the redirect below later
         |> redirect(to: Routes.user_session_path(conn, :new))
 
+
       :error ->
         # If there is a current user and the account was already confirmed,
         # then odds are that the confirmation link was already visited, either
@@ -53,6 +54,8 @@ defmodule ScadvertWeb.UserConfirmationController do
             conn
             |> put_flash(:error, "User confirmation link is invalid or it has expired.")
             |> redirect(to: Routes.user_registration_path(conn, :new))
+            
+            IO.inspect(conn)
         end
     end
   end

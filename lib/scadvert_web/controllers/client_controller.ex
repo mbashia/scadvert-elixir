@@ -44,7 +44,7 @@ end
 def update(conn, %{"id" => id, "user" => user_params}) do
   user = Accounts.get_user!(id)
   case Accounts.update_user(user, user_params) do
-    {:ok, _user} ->
+    {:ok, user} ->
       if conn.assigns.current_user.role == "admin" do
         conn
         |> put_flash(:info, "User updated successfully")
@@ -53,7 +53,7 @@ def update(conn, %{"id" => id, "user" => user_params}) do
       else
       conn
       |> put_flash(:info, "User updated successfully")
-      |> redirect(to: Routes.client_path(conn, :profile))
+      |> redirect(to: Routes.client_path(conn, :profile,user))
       end
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset )
@@ -62,10 +62,13 @@ def update(conn, %{"id" => id, "user" => user_params}) do
 
 end
 
-def profile(conn,_params) do
+def profile(conn,%{"id" => id}) do
 
-  user = Functions.get_user_by_id(conn)
-  render(conn, "profile.html", user: user)
+  user = Accounts.get_user!(id)
+  IO.inspect(user)
+  changeset = Users.change_user(user)
+
+  render(conn, "profile.html", user: user, changeset: changeset)
 end
 
 # def update_profile(conn,%{"id"=>id})do
@@ -125,11 +128,20 @@ end
   |> put_flash(:error, "no results")
   |> render( "client.html", users: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
-  conn
+    if Enum.count(page.entries) ==1 do
+      IO.inspect(page.entries)
+    conn
 
-  |> put_flash(:info, "user searched successfully.")
+    |> put_flash(:info, "user searched successfully.")
+    |> render( "client.html", users: page.entries, changeset: changeset, page: page,  total_pages: page.total_pages)
 
-  |> render( "client.html", users: page.entries, changeset: changeset, page: page,  total_pages: page.total_pages)
+    else
+      conn
+      |> put_flash(:info, "users searched successfully.")
+      |> render( "client.html", users: page.entries, changeset: changeset, page: page,  total_pages: page.total_pages)
+
+    end
+
 
   end
 

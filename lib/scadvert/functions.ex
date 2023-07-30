@@ -16,8 +16,7 @@ defmodule Scadvert.Functions do
   def list_codes(user_id) do
     Repo.all(from p in Code, where: p.user_id == ^user_id, select: {p.name, p.id})
   end
-  def listCodes() do
-end
+
 
   def get_user_by_id(conn) do
     user_id = conn.assigns.current_user.id

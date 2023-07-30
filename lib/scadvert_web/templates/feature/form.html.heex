@@ -5,22 +5,22 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-              <div class = "mt-4 mb-[30px]">
+              <div class = "mt-4 ">
                   <span class = "mt-4">
                   <%= link "Back", to: Routes.feature_path(@conn, :index), class: "form_btn" %>
                   </span>
             </div>
 
-              <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+              <div class="min-h-screen p-6 bg-white flex items-center justify-center">
                 <div class="container max-w-screen-lg mx-auto ">
                   <div>
                     
-                    <div class="bg-white rounded shadow-lg  p-4 px-2 md:p-8 mb-6">
-                      <div class="grid gap-4  text-sm grid-cols-1 lg:grid-cols-3 w-full">
+                    <div class="bg-[#efeeee] rounded shadow-lg  p-4 px-2 md:p-8 mb-6">
+                      <div class="grid gap-4  text-sm grid-cols-1 lg:grid-cols-3 w-full p-4">
                       
 
                         <div class="lg:col-span-2">
-                          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 ">
                             <div class="md:col-span-3">
                                 <%= label f, :code, class: "label_item" %>
                                 <%= select f, :code_id, @codes, prompt: "Select a code", class: "input_item"%>
@@ -57,7 +57,7 @@
                           </div>
                       
                         
-                            <div class="md:col-span-3 text-right">
+                            <div class="md:col-span-3 text-right mt-4">
                               <div class="inline-flex items-end">
                               <%= submit "Save",class: "submit_btn" %>       
                               </div>

@@ -5,7 +5,7 @@
   </div>
 
 
-<div class="bg-white p-3 shadow-sm rounded-sm">
+<div class="bg-white p-3 shadow-sm rounded-sm ">
                     <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                         <span clas="text-green-500">
                             <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -16,7 +16,7 @@
                         </span>
                         <span class="tracking-wide">About</span>
                     </div>
-                    <div class="text-gray-700 flex flex-justify-between">
+                    <div class="text-gray-700 m-[20px] rounded-2xl shadow-xl  bg-[#efeeee] flex flex-justify-between">
 
                     <div  class = " h-[250px] w-[250px] px-6 pt-8 ">
                             <%= img_tag Scadvert.UserImage.url({@user.picture, @user}, signed: true), class: "h-[120px] w-[120px] rounded-full ml-8"%>
@@ -52,7 +52,7 @@
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Contact No.</div>
-                                <div class="px-4 py-2"><%=@user.contact %></div>
+                                <div class="px-4 py-2"><%=@user.phone_number %></div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Current Address</div>
@@ -68,7 +68,7 @@
                                     <a class="text-blue-800" href=""><%=@user.email %></a>
                                 </div>
                             </div>
-                              <div class="grid grid-cols-2">
+                              <div class="grid grid-cols-2 ml-6">
                                
                                         
                                         <%= link "Change my password", to: Routes.user_settings_path(@conn, :edit), class: "block w-full text-blue-800 text-sm font-semibold rounded-lg  focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs  "%>
@@ -82,9 +82,11 @@
                     </div>
                     
                     <div class = "block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4 ">
-                                      <a>  <%= link "Update my profile", to: Routes.client_path(@conn, :edit, @user.id), class: "md:pl-[450px]"%></a>
+                                      <a>  <%= link "Update my profile", to: Routes.client_path(@conn, :edit, @user.id), class: "pl-[220px] md:pl-[450px]"%></a>
 
                     </div>
+                    <%= render "more_details.html", Map.put(assigns, :action, Routes.client_path(@conn, :update, @user)) %>
+
                         
                 </div>
                 <!-- End of about section -->

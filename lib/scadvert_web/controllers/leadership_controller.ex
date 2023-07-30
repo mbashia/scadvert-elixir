@@ -97,11 +97,18 @@ defmodule ScadvertWeb.LeadershipController do
   |> put_flash(:error, "no results")
   |> render( "index.html", leaderships: [], changeset: changeset, page: page, total_pages: page.total_pages)
   _ ->
+    if Enum.count(page.entries) ==1 do
   conn
 
   |> put_flash(:info, "history searched successfully.")
 
   |> render( "index.html", leaderships: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
+    else
+      conn
+      |> put_flash(:info, "history searched successfully.")
+
+      |> render( "index.html", leaderships: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
+    end
 
   end
 

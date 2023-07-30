@@ -58,7 +58,8 @@ defmodule Scadvert.MixProject do
       {:scrivener_html, "~> 1.8.1", override: true},
       {:finch, "~> 0.8"},
 
-      {:ex_heroicons, "~> 2.0.0", override: true}
+      {:ex_heroicons, "~> 2.0.0", override: true},
+
 
 
     ]
