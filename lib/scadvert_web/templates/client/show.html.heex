@@ -5,24 +5,24 @@
                   </div>
            </div>
 
-<div class = "block mb-6">
-      <div class = "mt-8 inline-block z-40 ml-6">
+<div class = "md:ml-[350px] block mb-4">
+      <div class = "mt-2 inline-block z-40 ml-6">
            <span><%= link "Edit", to: Routes.client_path(@conn, :edit, @user),class: "form_btn " %></span> |
       </div>
       <div class = " inline-block">
           <span><%= link "Back", to: Routes.client_path(@conn, :index),class: "form_back_btn" %></span>
       </div>
 </div>
-<div class = " rounded-lg h-auto w-auto ml-[20px] mt-6  md:absolute md:top-[200px] md:left-[400px] md:h-96  overflow-y-auto">
-    <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+<div class = " shadow-2xl rounded-xl  h-auto w-auto mx-[10px]   md:absolute md:top-[250px]  md:left-[200px]  md:h-96 md:w-[650px]  overflow-y-auto">
+    <div class="   bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
           <div class = "h-44 overflow-hidden">
-              <div style = "height:100%; width:385px ">
-                <%= img_tag Scadvert.UserImage.url({@user.picture, @user}, signed: true), class: "h-[100%] w-[100%]"%>
+              <div style = "height:100%; width:100% ">
+                <%= img_tag Scadvert.UserImage.url({@user.picture, @user}, signed: true), class: "h-full w-full object-cover"%>
 
 
               </div>   
      </div>
-     <div class="p-2">
+     <div class="p-2 poppins-light">
         <ul>
         <li class  = "text-lg text-white font-sans tracking-tight m-2">FIRSTNAME: <%= @user.firstname%>
         </li>
@@ -32,7 +32,7 @@
 
         </li>
         <li class  = "text-lg text-white font-sans m-2">STATUS:
-        <%= if @user.status == true do  %>
+        <%= if @user.status == "true" do  %>
         <div class = " inline-block py-0 bg-green-500 rounded p-1 w-[50px]">       
        <span class = "text-sm"> active</span>
       </div>

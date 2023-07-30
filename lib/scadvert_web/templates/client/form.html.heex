@@ -9,7 +9,7 @@
                 <%=if @current_user.role == "admin" do %>
                  <span class = "mt-4"><%= link "Back", to: Routes.client_path(@conn, :index), class: "form_btn" %></span>
                  <%else %>
-                  <span class = "mt-4"><%= link "Back", to: Routes.client_path(@conn, :profile), class: "form_btn" %></span>
+                  <span class = "mt-4"><%= link "Back", to: Routes.client_path(@conn, :profile,@user), class: "form_btn" %></span>
                   <%end %>
             </div>
 

@@ -6,7 +6,7 @@
                   </div>
            </div>
 
-<div class = "ml-[350px] block mb-4">
+<div class = "ml:ml-[350px] block mb-4">
       <div class = "mt-2 inline-block z-40 ml-6">
            <span><%= link "Edit", to: Routes.code_path(@conn, :edit, @code),class: "form_btn" %></span> |
       </div>
@@ -14,7 +14,7 @@
           <span><%= link "Back", to: Routes.code_path(@conn, :index),class: "form_back_btn" %></span>
       </div>
 </div>
-<div class = " shadow-2xl rounded-xl  h-auto w-auto ml-[20px]   md:absolute md:top-[250px]  md:left-[200px]  md:h-96 md:w-[650px]  overflow-y-auto">
+<div class = " shadow-2xl rounded-xl  h-auto w-auto mx-[10px]   md:absolute md:top-[250px]  md:left-[200px]  md:h-96 md:w-[650px]  overflow-y-auto">
     <div class="   bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
           <div class = "h-44 overflow-hidden">
            <%= if @code.picture do %>

@@ -6,21 +6,21 @@
            </div>
 
 
-<div class = "block mb-6">
-      <div class = "mt-8 inline-block z-40 ml-6">
+<div class = "md:ml-[350px] block mb-4">
+      <div class = "mt-2 inline-block z-40 ml-6">
            <span><%= link "Edit", to: Routes.leadership_path(@conn, :edit, @leadership),class: "form_btn " %></span> |
       </div>
       <div class = " inline-block">
           <span><%= link "Back", to: Routes.leadership_path(@conn, :index),class: "form_back_btn" %></span>
       </div>
 </div>
-<div class = "rounded-lg h-auto w-auto ml-[20px] mt-6  md:absolute md:top-[200px] md:left-[400px] md:h-96  overflow-y-auto">
-    <div class="  max-w-sm bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+<div class = "shadow-2xl rounded-xl  h-auto w-auto mx-[10px]   md:absolute md:top-[250px]  md:left-[200px]  md:h-96 md:w-[650px]  overflow-y-auto">
+    <div class="   bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
           <div class = "h-44 overflow-hidden">
                    <%= if @leadership.picture do %>
-              <div style = "height:100%; width:385px ">
+              <div style = "height:100%; width:100% ">
              
-                  <%= img_tag Scadvert.LeadershipImage.url({@leadership.picture, @leadership}, signed: true) %>
+                  <%= img_tag Scadvert.LeadershipImage.url({@leadership.picture, @leadership}, signed: true),class: "h-full w-full object-cover" %>
               </div> 
               <%else%>
                 <div class = "h-44 overflow-hidden">
@@ -49,7 +49,7 @@
         </li>
         <li class  = "text-lg text-white font-sans m-2">DESCRIPTION:</li>
         </ul>
-        <p class="m-2 font-normal text-gray-700 dark:text-gray-400"> <%= @leadership.description %></p>
+        <p class="m-2 font-normal text-gray-700 dark:text-gray-400 whitespace-normal break-words"> <%= @leadership.description %></p>
      </div>
     </div>
 </div>

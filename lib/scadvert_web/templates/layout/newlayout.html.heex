@@ -14,7 +14,7 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/jquery.qrcode.js") }></script>
     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/qrcode.js") }></script>
-    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/ckeditor/ckeditor.js") }></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/assets/ckeditor5-build-classic/ckeditor.js") }></script>
     
 <script language="javascript" type="text/javascript">
   function timeMsg(){
@@ -64,12 +64,12 @@
                                 </div>
                 
                                 <div onclick="toggleDD('myDropdown')" class="drop-button hover:cursor-pointer">
-                                    <div class = "flex text-white pl-[28px]">
+                                    <div class = "flex text-white poppins-light pl-[28px]">
                                         <div class = "mr-2"><%=user.firstname  %></div>
                                         <div ><%=user.lastname %></div>
                                     
                                     </div>
-                                    <div class = "text-white inline-block pl-[16px]">
+                                    <div class = "poppins-light text-white inline-block pl-[16px]">
 
                                             <%=user.email %><%=Heroicons.icon("chevron-down", type: "solid", class: "h-4 w-4 text-white inline-block" ) %>
                                     </div>

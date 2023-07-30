@@ -21,8 +21,14 @@ defmodule ScadvertWeb.CodeInfoController do
     images = code.images
     facilitys= List.first(code.facilitys)
     user  = Accounts.get_user!(user_id)
-  IO.inspect(user.more_details)
 
-    render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images,user: user)
+
+    details = String.replace( user.more_details,"</p>","")
+    new_details=String.replace(details, "<p>","|")
+    details_pro = String.split(new_details, "|", trim: true)
+
+IO.inspect(details_pro)
+
+    render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images,user: user, details: details_pro )
   end
 end
