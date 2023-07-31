@@ -29,6 +29,6 @@ defmodule ScadvertWeb.CodeInfoController do
 
 IO.inspect(details_pro)
 
-    render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images,user: user, details: details_pro )
+    render(conn, "show.html", features: features, code: code, videos: videos,headers: headers, leaderships: leaderships, facilitys: facilitys, images: images,user: user, details: details_pro, user_details: user.more_details )
   end
 end

@@ -961,3 +961,9 @@ end
 <li><%= link "sign in", to: Routes.user_session_path(@conn, :new) %></li>
 <% end %>
 
+$(document).ready(function() { var element = this.el.dataset.desc
+  var gtin = document.getElementById("decodedhtml");
+  gtin.innerHTML = element;
+} );
+
+<div class="flex mt-4 items-center gap-4" id ="decodedhtml" phx-update ="ignore" phx-hook="htmlentities" data-desc={@ev.description}> Loading description..</div>

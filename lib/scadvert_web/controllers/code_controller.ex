@@ -55,7 +55,14 @@ defmodule ScadvertWeb.CodeController do
 
   def show(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
+    user_id = code.user_id
+    if conn.assigns.current_user.role =="admin" do
     render(conn, "show.html", code: code, default_image: @default_image)
+    else
+      render(conn, "show.html", code: code, default_image: @default_image,user_id: user_id)
+
+    end
+
   end
 
   def edit(conn, %{"id" => id}) do

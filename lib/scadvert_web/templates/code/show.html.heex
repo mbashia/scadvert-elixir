@@ -1,4 +1,4 @@
-
+<%=if @current_user.id == @user_id do %> 
  <div class = "bg-gray-800 pt-3 mb-[30px]">
              <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800  p-4 shadow text-2xl text-white">
 
@@ -6,7 +6,7 @@
                   </div>
            </div>
 
-<div class = "ml:ml-[350px] block mb-4">
+<div class = "md:ml-[350px] block mb-4">
       <div class = "mt-2 inline-block z-40 ml-6">
            <span><%= link "Edit", to: Routes.code_path(@conn, :edit, @code),class: "form_btn" %></span> |
       </div>
@@ -54,3 +54,10 @@
      </div>
     </div>
 </div>
+<%else %>
+<div  class = "w-[100%] h-[100%] flex justify-center  text-white bg-gray-800">
+<p class = "m-[200px] poppins-bold text-2xl text-gray-400 uppercase" >  not authorised to view this page!!</p>
+
+
+</div>
+<%end %>
