@@ -61,7 +61,9 @@ defmodule ScadvertWeb.FacilityController do
 
   def show(conn, %{"id" => id}) do
     facility = Facilitys.get_facility!(id)
-    render(conn, "show.html", facility: facility,  default_image: @default_image)
+    user_id = facility.user_id
+
+    render(conn, "show.html", facility: facility,  default_image: @default_image,user_id: user_id)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -72,7 +74,7 @@ defmodule ScadvertWeb.FacilityController do
     changeset = Facilitys.change_facility(facility)
     codes = Functions.list_codes(user_id)
 
-    render(conn, "edit.html", facility: facility, changeset: changeset, codes: codes)
+    render(conn, "edit.html", facility: facility, changeset: changeset, codes: codes, user_id: user_id)
   end
 
   def update(conn, %{"id" => id, "facility" => facility_params}) do

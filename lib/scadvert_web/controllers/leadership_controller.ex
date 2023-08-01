@@ -53,7 +53,9 @@ defmodule ScadvertWeb.LeadershipController do
 
   def show(conn, %{"id" => id}) do
     leadership = Leaderships.get_leadership!(id)
-    render(conn, "show.html", leadership: leadership, default_image: @default_image)
+    user_id = leadership.user_id
+
+    render(conn, "show.html", leadership: leadership, default_image: @default_image, user_id: user_id)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -62,7 +64,7 @@ defmodule ScadvertWeb.LeadershipController do
     user_id = leadership.user_id
     codes = Functions.list_codes(user_id)
     changeset = Leaderships.change_leadership(leadership)
-    render(conn, "edit.html", leadership: leadership, changeset: changeset, codes: codes)
+    render(conn, "edit.html", leadership: leadership, changeset: changeset, codes: codes, user_id: user_id)
   end
 
   def update(conn, %{"id" => id, "leadership" => leadership_params}) do

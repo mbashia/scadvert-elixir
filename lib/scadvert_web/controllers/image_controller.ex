@@ -56,7 +56,8 @@ defmodule ScadvertWeb.ImageController do
 
   def show(conn, %{"id" => id}) do
     image = Images.get_image!(id)
-    render(conn, "show.html", image: image, default_image: @default_image)
+    user_id = image.user_id
+    render(conn, "show.html", image: image, default_image: @default_image, user_id: user_id)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -65,7 +66,7 @@ defmodule ScadvertWeb.ImageController do
     changeset = Images.change_image(image)
     codes = Functions.list_codes(user_id)
 
-    render(conn, "edit.html", image: image, changeset: changeset, codes: codes)
+    render(conn, "edit.html", image: image, changeset: changeset, codes: codes, user_id: user_id)
   end
 
   def update(conn, %{"id" => id, "image" => image_params}) do

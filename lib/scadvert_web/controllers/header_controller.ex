@@ -56,7 +56,8 @@ defmodule ScadvertWeb.HeaderController do
 
   def show(conn, %{"id" => id}) do
     header = Headers.get_header!(id)
-    render(conn, "show.html", header: header, default_image: @default_image)
+    user_id = header.user_id
+    render(conn, "show.html", header: header, default_image: @default_image, user_id: user_id)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -64,7 +65,7 @@ defmodule ScadvertWeb.HeaderController do
     user_id = header.user_id
     changeset = Headers.change_header(header)
     codes = Functions.list_codes(user_id)
-    render(conn, "edit.html", header: header, changeset: changeset, codes: codes)
+    render(conn, "edit.html", header: header, changeset: changeset, codes: codes, user_id: user_id)
   end
 
   def update(conn, %{"id" => id, "header" => header_params}) do

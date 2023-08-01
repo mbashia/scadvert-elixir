@@ -1,4 +1,11 @@
-      <div class = "bg-gray-800 pt-3 mb-[30px]">
+  <%=if @current_user.id != @user_id && @current_user.role != "admin"  do %> 
+<div  class = "w-[100%] h-[100%] flex justify-center  text-white bg-gray-800">
+<p class = "m-[200px] poppins-bold text-2xl text-gray-400 uppercase" >  you cannot view this page!!</p>
+
+
+</div>
+<%else %>
+    <div class = "bg-gray-800 pt-3 mb-[30px]">
              <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800  p-4 shadow text-2xl text-white">
 
                   <h3 class = "font-bold pl-2  uppercase" >Edit header</h3>
@@ -6,3 +13,4 @@
            </div>
 <%= render "form.html", Map.put(assigns, :action, Routes.header_path(@conn, :update, @header)) %>
 
+<%end %>

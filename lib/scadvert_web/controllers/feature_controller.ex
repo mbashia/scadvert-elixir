@@ -55,7 +55,8 @@ defmodule ScadvertWeb.FeatureController do
 
   def show(conn, %{"id" => id}) do
     feature = Features.get_feature!(id)
-    render(conn, "show.html", feature: feature, default_image: @default_image)
+    user_id = feature.user_id
+    render(conn, "show.html", feature: feature, default_image: @default_image, user_id: user_id)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -64,7 +65,7 @@ defmodule ScadvertWeb.FeatureController do
     codes = Functions.list_codes(user_id)
 
     changeset = Features.change_feature(feature)
-    render(conn, "edit.html", feature: feature, changeset: changeset, codes: codes)
+    render(conn, "edit.html", feature: feature, changeset: changeset, codes: codes, user_id: user_id)
   end
 
   def update(conn, %{"id" => id, "feature" => feature_params}) do

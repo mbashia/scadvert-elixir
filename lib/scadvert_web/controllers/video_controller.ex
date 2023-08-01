@@ -53,7 +53,8 @@ defmodule ScadvertWeb.VideoController do
 
   def show(conn, %{"id" => id}) do
     video = Videos.get_video!(id)
-    render(conn, "show.html", video: video, default_image: @default_image)
+    user_id = video.user_id
+    render(conn, "show.html", video: video, default_image: @default_image, user_id: user_id)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -62,7 +63,7 @@ defmodule ScadvertWeb.VideoController do
     codes = Functions.list_codes(user_id)
 
     changeset = Videos.change_video(video)
-    render(conn, "edit.html", video: video, changeset: changeset, codes: codes)
+    render(conn, "edit.html", video: video, changeset: changeset, codes: codes, user_id: user_id)
   end
 
   def update(conn, %{"id" => id, "video" => video_params}) do
