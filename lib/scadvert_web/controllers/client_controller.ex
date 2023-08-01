@@ -31,6 +31,8 @@ end
 @spec show(any, map) :: nil
 def show(conn, %{"id" => id}) do
 user = Accounts.get_user!(id)
+
+
 render(conn, "show.html", user: user)
 end
 
@@ -65,7 +67,7 @@ end
 def profile(conn,%{"id" => id}) do
 
   user = Accounts.get_user!(id)
-  IO.inspect(user)
+
   changeset = Users.change_user(user)
 
   render(conn, "profile.html", user: user, changeset: changeset)

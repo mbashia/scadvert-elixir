@@ -56,7 +56,7 @@ defmodule ScadvertWeb.Router do
   end
   scope "/", ScadvertWeb do
     pipe_through [:browser]
-    get "/code_information/:name/:user_id", CodeInfoController, :show
+    get "/code_information/:name", CodeInfoController, :show
 
   end
 

@@ -12,8 +12,10 @@ defmodule ScadvertWeb.CodeInfoController do
 
 
 
-  def show(conn, %{"name" => name,"user_id" => user_id}) do
+  def show(conn, %{"name" => name}) do
     code = Codes.list_code_by_name(name)
+    user_id = code.user_id
+    IO.inspect(code.user_id)
     features= List.first(code.features)
     videos = List.first(code.videos)
     headers =List.first(code.headers)
