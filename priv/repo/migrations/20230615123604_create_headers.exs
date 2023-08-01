@@ -11,7 +11,7 @@ defmodule Scadvert.Repo.Migrations.CreateHeaders do
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()
-    end
+  end
 
     create index(:headers, [:user_id])
   end
