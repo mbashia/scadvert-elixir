@@ -6,8 +6,7 @@ defmodule ScadvertWeb.FeatureController do
   alias Scadvert.Features
   alias Scadvert.Features.Feature
   alias Scadvert.Functions
-  @default_image  :"/images/phoenix.png"
-
+  @default_image :"/images/phoenix.png"
 
   plug :put_layout, "newlayout.html"
 
@@ -15,16 +14,31 @@ defmodule ScadvertWeb.FeatureController do
     if conn.assigns.current_user.role == "admin" do
       changeset = Features.change_feature(%Feature{})
 
-    page = Features.list_all_features()
-                |>Repo.paginate(params)
-    render(conn, "index.html", features: page.entries, default_image: @default_image,changeset: changeset ,page: page , total_pages: page.total_pages)
+      page =
+        Features.list_all_features()
+        |> Repo.paginate(params)
+
+      render(conn, "index.html",
+        features: page.entries,
+        default_image: @default_image,
+        changeset: changeset,
+        page: page,
+        total_pages: page.total_pages
+      )
     else
       changeset = Features.change_feature(%Feature{})
 
+      page =
+        Features.list_features_by_user_id(conn)
+        |> Repo.paginate(params)
 
-    page = Features.list_features_by_user_id(conn)
-                            |>Repo.paginate(params)
-    render(conn, "index.html", features: page.entries, default_image: @default_image,changeset: changeset ,page: page , total_pages: page.total_pages )
+      render(conn, "index.html",
+        features: page.entries,
+        default_image: @default_image,
+        changeset: changeset,
+        page: page,
+        total_pages: page.total_pages
+      )
     end
   end
 
@@ -49,7 +63,7 @@ defmodule ScadvertWeb.FeatureController do
         |> redirect(to: Routes.feature_path(conn, :show, feature))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset,codes: codes)
+        render(conn, "new.html", changeset: changeset, codes: codes)
     end
   end
 
@@ -65,7 +79,13 @@ defmodule ScadvertWeb.FeatureController do
     codes = Functions.list_codes(user_id)
 
     changeset = Features.change_feature(feature)
-    render(conn, "edit.html", feature: feature, changeset: changeset, codes: codes, user_id: user_id)
+
+    render(conn, "edit.html",
+      feature: feature,
+      changeset: changeset,
+      codes: codes,
+      user_id: user_id
+    )
   end
 
   def update(conn, %{"id" => id, "feature" => feature_params}) do
@@ -90,56 +110,86 @@ defmodule ScadvertWeb.FeatureController do
     |> put_flash(:info, "Feature deleted successfully.")
     |> redirect(to: Routes.feature_path(conn, :index))
   end
+
   def search(conn, %{"feature" => %{"search" => search_params}}) do
     changeset = Features.change_feature(%Feature{})
-    page = search_params(conn,search_params)
-                     |>Repo.paginate(conn.params)
-  case page.entries do
-  [] ->
-  conn
-  |> put_flash(:error, "no results")
-  |> render( "index.html", features: [], changeset: changeset, page: page , total_pages: page.total_pages)
-  _ ->
-    if Enum.count(page.entries) ==1 do
-  conn
 
-  |> put_flash(:info, "feature searched successfully.")
+    page =
+      search_params(conn, search_params)
+      |> Repo.paginate(conn.params)
 
-  |> render( "index.html", features: page.entries, changeset: changeset, page: page, default_image: @default_image , total_pages: page.total_pages)
-    else
-      conn
-      |> put_flash(:info, "features searched successfully.")
+    case page.entries do
+      [] ->
+        conn
+        |> put_flash(:error, "no results")
+        |> render("index.html",
+          features: [],
+          changeset: changeset,
+          page: page,
+          total_pages: page.total_pages
+        )
 
-      |> render( "index.html", features: page.entries, changeset: changeset, page: page, default_image: @default_image , total_pages: page.total_pages)
+      _ ->
+        if Enum.count(page.entries) == 1 do
+          conn
+          |> put_flash(:info, "feature searched successfully.")
+          |> render("index.html",
+            features: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        else
+          conn
+          |> put_flash(:info, "features searched successfully.")
+          |> render("index.html",
+            features: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        end
     end
-
-
   end
 
-  end
-  defp search_params(conn,params)do
+  defp search_params(conn, params) do
     user = conn.assigns.current_user
-    params = cond do
-      params=="active" ->
-      "true"
-      params =="inactive" ->
-        "false"
-      true ->
-        params
 
+    params =
+      cond do
+        params == "active" ->
+          "true"
+
+        params == "inactive" ->
+          "false"
+
+        true ->
+          params
       end
+
     if user.role == "admin" do
       from(f in Feature,
-    join: c in assoc(f, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%"),
-    preload: [:codes])
+        join: c in assoc(f, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", f.name, ^"%#{params}%") or
+            fragment("? LIKE ?", f.description, ^"%#{params}%") or
+            fragment("? LIKE ?", f.status, ^"%#{params}%"),
+        preload: [:codes]
+      )
     else
-    from(f in Feature,
-    join: c in assoc(f, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", f.name, ^"%#{params}%") or fragment("? LIKE ?", f.description, ^"%#{params}%") or fragment("? LIKE ?", f.status, ^"%#{params}%"),  where: f.user_id == ^user.id,
-    preload: [:codes])
+      from(f in Feature,
+        join: c in assoc(f, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", f.name, ^"%#{params}%") or
+            fragment("? LIKE ?", f.description, ^"%#{params}%") or
+            fragment("? LIKE ?", f.status, ^"%#{params}%"),
+        where: f.user_id == ^user.id,
+        preload: [:codes]
+      )
     end
-
-
   end
 end

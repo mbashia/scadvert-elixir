@@ -3,7 +3,6 @@ defmodule ScadvertWeb.HeaderController do
   alias Scadvert.Repo
   import Ecto.Query, warn: false
 
-
   alias Scadvert.Headers
   alias Scadvert.Headers.Header
   alias Scadvert.Functions
@@ -13,20 +12,35 @@ defmodule ScadvertWeb.HeaderController do
   @default_image :"/images/phoenix.png"
 
   def index(conn, params) do
-    if conn.assigns.current_user.role ==  "admin" do
+    if conn.assigns.current_user.role == "admin" do
       changeset = Headers.change_header(%Header{})
 
-      page = Headers.list_all_headers
-                    |>Repo.paginate(params)
-      render(conn, "index.html", headers: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
+      page =
+        Headers.list_all_headers()
+        |> Repo.paginate(params)
+
+      render(conn, "index.html",
+        headers: page.entries,
+        default_image: @default_image,
+        page: page,
+        changeset: changeset,
+        total_pages: page.total_pages
+      )
     else
       changeset = Headers.change_header(%Header{})
 
-    page = Headers.list_headers_by_user_id(conn)
-                              |>Repo.paginate(params)
-    render(conn, "index.html", changeset: changeset, headers: page.entries, default_image: @default_image, page: page, total_pages: page.total_pages)
-    end
+      page =
+        Headers.list_headers_by_user_id(conn)
+        |> Repo.paginate(params)
 
+      render(conn, "index.html",
+        changeset: changeset,
+        headers: page.entries,
+        default_image: @default_image,
+        page: page,
+        total_pages: page.total_pages
+      )
+    end
   end
 
   def new(conn, _params) do
@@ -40,7 +54,7 @@ defmodule ScadvertWeb.HeaderController do
   def create(conn, %{"header" => header_params}) do
     user_id = conn.assigns.current_user.id
 
-    header_params = Map.put(header_params, "user_id",user_id)
+    header_params = Map.put(header_params, "user_id", user_id)
     codes = Functions.list_codes(user_id)
 
     case Headers.create_header(header_params) do
@@ -65,6 +79,7 @@ defmodule ScadvertWeb.HeaderController do
     user_id = header.user_id
     changeset = Headers.change_header(header)
     codes = Functions.list_codes(user_id)
+
     render(conn, "edit.html", header: header, changeset: changeset, codes: codes, user_id: user_id)
   end
 
@@ -90,55 +105,86 @@ defmodule ScadvertWeb.HeaderController do
     |> put_flash(:info, "Header deleted successfully.")
     |> redirect(to: Routes.header_path(conn, :index))
   end
+
   def search(conn, %{"header" => %{"search" => search_params}}) do
     changeset = Headers.change_header(%Header{})
-    page = search_params(conn,search_params)
-                     |>Repo.paginate(conn.params)
-  case page.entries do
-  [] ->
-  conn
-  |> put_flash(:error, "no results")
-  |> render( "index.html", headers: [], changeset: changeset, page: page, total_pages: page.total_pages)
-  _ ->
-    if Enum.count(page.entries) == 1 do
-  conn
 
-  |> put_flash(:info, "Header searched successfully.")
+    page =
+      search_params(conn, search_params)
+      |> Repo.paginate(conn.params)
 
-  |> render( "index.html", headers: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
-    else
-      conn
-      |> put_flash(:info, "Headers searched successfully.")
+    case page.entries do
+      [] ->
+        conn
+        |> put_flash(:error, "no results")
+        |> render("index.html",
+          headers: [],
+          changeset: changeset,
+          page: page,
+          total_pages: page.total_pages
+        )
 
-      |> render( "index.html", headers: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
+      _ ->
+        if Enum.count(page.entries) == 1 do
+          conn
+          |> put_flash(:info, "Header searched successfully.")
+          |> render("index.html",
+            headers: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        else
+          conn
+          |> put_flash(:info, "Headers searched successfully.")
+          |> render("index.html",
+            headers: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        end
     end
-
   end
 
-  end
-  defp search_params(conn,params)do
-    params = cond do
-      params=="active" ->
-      "true"
-      params =="inactive" ->
-        "false"
-      true ->
-        params
+  defp search_params(conn, params) do
+    params =
+      cond do
+        params == "active" ->
+          "true"
 
+        params == "inactive" ->
+          "false"
+
+        true ->
+          params
       end
+
     user = conn.assigns.current_user
+
     if user.role == "admin" do
       from(h in Header,
-      join: c in assoc(h, :codes),
-      where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", h.name, ^"%#{params}%") or fragment("? LIKE ?", h.description, ^"%#{params}%") or fragment("? LIKE ?", h.status, ^"%#{params}%"),
-      preload: [:codes])
+        join: c in assoc(h, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", h.name, ^"%#{params}%") or
+            fragment("? LIKE ?", h.description, ^"%#{params}%") or
+            fragment("? LIKE ?", h.status, ^"%#{params}%"),
+        preload: [:codes]
+      )
     else
-   from(h in Header,
-   join: c in assoc(h, :codes),
-   where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", h.name, ^"%#{params}%") or fragment("? LIKE ?", h.description, ^"%#{params}%") or fragment("? LIKE ?", h.status, ^"%#{params}%"), where: h.user_id == ^user.id,
-   preload: [:codes])
-
+      from(h in Header,
+        join: c in assoc(h, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", h.name, ^"%#{params}%") or
+            fragment("? LIKE ?", h.description, ^"%#{params}%") or
+            fragment("? LIKE ?", h.status, ^"%#{params}%"),
+        where: h.user_id == ^user.id,
+        preload: [:codes]
+      )
     end
-
   end
 end

@@ -6,7 +6,6 @@ defmodule ScadvertWeb.UserSessionController do
 
   plug :put_layout, "login_registration.html"
 
-
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)
   end
@@ -24,7 +23,6 @@ defmodule ScadvertWeb.UserSessionController do
         render(conn, "new.html", error_message: "Invalid email or password/suspended account")
     end
   end
-
 
   def delete(conn, _params) do
     conn

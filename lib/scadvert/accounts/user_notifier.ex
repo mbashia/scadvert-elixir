@@ -8,10 +8,12 @@ defmodule Scadvert.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"Scadvert","v.mbashia@gs1kenya.org"})
+      |> from({"Scadvert", "v.mbashia@gs1kenya.org"})
       |> subject(subject)
       |> text_body(body)
-      IO.inspect(email)
+
+    IO.inspect(email)
+
     with {:ok, _metadata} <- Mailer.deliver(email) do
       {:ok, email}
     end
@@ -41,20 +43,22 @@ defmodule Scadvert.Accounts.UserNotifier do
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-    IO.inspect(deliver(user.email, "Reset password instructions", """
+    IO.inspect(
+      deliver(user.email, "Reset password instructions", """
 
-    ==============================
+      ==============================
 
-    Hi #{user.email},
+      Hi #{user.email},
 
-    You can reset your password by visiting the URL below:
+      You can reset your password by visiting the URL below:
 
-    #{url}
+      #{url}
 
-    If you didn't request this change, please ignore this.
+      If you didn't request this change, please ignore this.
 
-    ==============================
-    """))
+      ==============================
+      """)
+    )
   end
 
   @doc """

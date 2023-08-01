@@ -13,35 +13,36 @@
           <span><%= link "Back", to: Routes.client_path(@conn, :index),class: "form_back_btn" %></span>
       </div>
 </div>
-<div class = " shadow-2xl rounded-xl  h-auto w-auto mx-[10px]   md:absolute md:top-[250px]  md:left-[200px]  md:h-96 md:w-[650px]  overflow-y-auto">
-    <div class="   bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
-          <div class = "h-44 overflow-hidden">
-              <div style = "height:100%; width:100% ">
+<div class = " shadow-2xl rounded-xl  h-auto w-auto mx-[10px]   md:absolute md:top-[250px]  md:left-[0px]  md:h-96 md:w-[98%]  overflow-y-auto">
+    <div class=" flex flex-row  bg-white h-full border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+          <div class = " overflow-hidden  w-[40%]">
+            <div style = "height:100%; width:100% ">
                 <%= img_tag Scadvert.UserImage.url({@user.picture, @user}, signed: true), class: "h-full w-full object-cover"%>
 
 
-              </div>   
-     </div>
-     <div class="p-2 poppins-light">
+              </div>  
+                
+
+            </div>     
+     <div class="p-4 poppins-regular w-[60%] bg-white">
         <ul>
-        <li class  = "text-lg text-white font-sans tracking-tight m-2">FIRSTNAME: <%= @user.firstname%>
+        <li class  = "text-lg text-gray-700 font-sans tracking-tight m-2">FIRSTNAME: <%= @user.firstname %>
         </li>
-        <li class  = "text-lg text-white font-sans m-2">SECOND NAME: <%= @user.lastname %>
+        <li class  = "text-lg text-gray-700 font-sans m-2">SECONDNAME: <%= @user.lastname %>
         </li>
-        <li class  = "text-lg text-white font-sans m-2">PHONENUMBER:<%=  @user.phone_number  %>
+        <li class  = "text-lg text-gray-700 font-sans m-2">PHONENUMBER:<%=  @user.phone_number  %>
 
         </li>
-        <li class  = "text-lg text-white font-sans m-2">STATUS:
+        <li class  = "text-lg text-gray-700 font-sans m-2">STATUS:
         <%= if @user.status == "true" do  %>
         <div class = " inline-block py-0 bg-green-500 rounded p-1 w-[50px]">       
-       <span class = "text-sm"> active</span>
+       <span class = "text-sm text-white"> active</span>
       </div>
       <%else %>
       <div class = " inline-block py-0 bg-red-500 rounded p-1 w-[55px]">       
-       <span class = "text-sm">inactive</span>
+       <span class = "text-sm text-white">inactive</span>
       </div>
       <%end %>
-        
         </li>
         </ul>
      </div>

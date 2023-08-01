@@ -20,14 +20,12 @@ defmodule Scadvert.Facilitys do
   def count_facilitys do
     Repo.all(Facility)
     |> Enum.count()
-
   end
 
   def list_all_facilitys do
     # Repo.all(Facility)
     # |> Repo.preload(:codes)
     from(f in Facility, select: f, preload: [:codes])
-
   end
 
   @spec get_facility!(any) :: nil | [%{optional(atom) => any}] | %{optional(atom) => any}
@@ -118,11 +116,8 @@ defmodule Scadvert.Facilitys do
   def list_facilitys_by_user_id(conn) do
     user_id = conn.assigns.current_user.id
 
-
     # Repo.all(from f in Facility, where: f.user_id == ^user_id)
     #  |> Repo.preload(:codes)
-    from(f in Facility, where: f.user_id == ^user_id,preload: [:codes])
-
-
+    from(f in Facility, where: f.user_id == ^user_id, preload: [:codes])
   end
 end

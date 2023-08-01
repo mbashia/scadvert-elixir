@@ -20,13 +20,14 @@ defmodule Scadvert.Images do
   def count_images do
     Repo.all(Image)
     |> Enum.count()
-
   end
+
   def list_all_images do
     # Repo.all(Image)
     # |> Repo.preload(:codes)
-     from(i in Image, select: i, preload: [:codes])
+    from(i in Image, select: i, preload: [:codes])
   end
+
   @doc """
   Gets a single image.
 
@@ -117,6 +118,5 @@ defmodule Scadvert.Images do
     # Repo.all(from i in Image, where: i.user_id == ^user_id)
     # |> Repo.preload(:codes)
     from(i in Image, where: i.user_id == ^user_id, preload: [:codes])
-
   end
 end

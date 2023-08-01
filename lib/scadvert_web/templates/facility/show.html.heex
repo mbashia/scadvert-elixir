@@ -20,42 +20,43 @@
           <span><%= link "Back", to: Routes.facility_path(@conn, :index),class: "form_back_btn" %></span>
       </div>
 </div>
-<div class = "shadow-2xl rounded-xl  h-auto w-auto mx-[10px]  md:absolute md:top-[250px]  md:left-[200px]  md:h-96 md:w-[650px]  overflow-y-auto">
-    <div class="   bg-white  border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
-          <div class = "h-44 overflow-hidden">
-              <%= if @facility.picture do %>
-              <div style = "height:100%;width:100%  ">
+<div class = " shadow-2xl rounded-xl  h-auto w-auto mx-[10px]   md:absolute md:top-[250px]  md:left-[0px]  md:h-96 md:w-[98%]  overflow-y-auto">
+    <div class=" flex flex-row  bg-white h-full border-gray-200 rounded-lg shadow-2xl dark:bg-gray-800 dark:border-gray-700 ">
+          <div class = " overflow-hidden  w-[40%]">
+           <%= if @facility.picture do %>
+              <div style = " height:100%; width:100% ">
              
-                  <%= img_tag Scadvert.FacilityImage.url({@facility.picture, @facility}, signed: true, class: "h-full w-full object-cover")  %>
+                  <%= img_tag Scadvert.FacilityImage.url({@facility.picture, @facility}, signed: true), class: "  h-full w-full object-cover" %>
               </div> 
               <%else%>
-                <div class = "h-44 overflow-hidden">
-                <img src={@default_image} alt="image_description">
+                <div class = "w-[40%] overflow-hidden">
+                <img src={@default_image} alt="image_description"class= "  h-full w-full object-cover">
 
-                
                 </div>
-                <%end %>  
-     </div>
-     <div class="p-2 poppins-light">
+                <%end %>
+                
+
+            </div>     
+     <div class="p-4 poppins-regular w-[60%] bg-white">
         <ul>
-        <li class  = "text-lg text-white font-sans tracking-tight m-2">CODE: <%= @facility.codes.name%>
+        <li class  = "text-lg text-gray-700 font-sans tracking-tight m-2">CODE: <%= @facility.codes.name %>
         </li>
-        <li class  = "text-lg text-white font-sans m-2">NAME: <%= @facility.name %>
+        <li class  = "text-lg text-gray-700 font-sans m-2">NAME: <%= @facility.name %>
         </li>
-        <li class  = "text-lg text-white font-sans m-2">STATUS:
+        <li class  = "text-lg text-gray-700 font-sans m-2">STATUS:
         <%= if @facility.status == "true" do  %>
         <div class = " inline-block py-0 bg-green-500 rounded p-1 w-[50px]">       
-       <span class = "text-sm"> active</span>
+       <span class = "text-sm text-white"> active</span>
       </div>
       <%else %>
       <div class = " inline-block py-0 bg-red-500 rounded p-1 w-[55px]">       
-       <span class = "text-sm">inactive</span>
+       <span class = "text-sm text-white">inactive</span>
       </div>
       <%end %>
         </li>
-        <li class  = "text-lg text-white font-sans m-2">DESCRIPTION:</li>
+        <li class  = "text-lg text-gray-700 font-sans m-2">DESCRIPTION:</li>
         </ul>
-        <p class="m-2 font-normal text-gray-700 dark:text-gray-400 whitespace-normal break-words"> <%= @facility.description %></p>
+        <p class="m-2 font-normal text-gray-700 whitespace-normal break-words"> <%= @facility.description %></p>
      </div>
     </div>
 </div>

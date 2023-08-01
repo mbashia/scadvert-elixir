@@ -37,7 +37,6 @@ defmodule ScadvertWeb.UserSettingsController do
   end
 
   def update(conn, %{"action" => "update_password"} = params) do
-   
     %{"current_password" => password, "user" => user_params} = params
     user = conn.assigns.current_user
 
@@ -47,7 +46,7 @@ defmodule ScadvertWeb.UserSettingsController do
         |> put_flash(:info, "Password updated successfully.")
         |> put_session(:user_return_to, Routes.user_settings_path(conn, :edit))
         |> UserAuth.log_in_user(user)
-        |>redirect(to: Routes.client_path(conn, :profile))
+        |> redirect(to: Routes.client_path(conn, :profile))
 
       {:error, changeset} ->
         render(conn, "edit.html", password_changeset: changeset)
@@ -75,6 +74,4 @@ defmodule ScadvertWeb.UserSettingsController do
     |> assign(:email_changeset, Accounts.change_user_email(user))
     |> assign(:password_changeset, Accounts.change_user_password(user))
   end
-
-
 end

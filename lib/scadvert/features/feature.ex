@@ -22,7 +22,6 @@ defmodule Scadvert.Features.Feature do
   def changeset(feature, attrs) do
     feature
     |> cast(attrs, [:name, :description, :code_id, :status, :picture, :user_id])
-    |> validate_required([:name, :description, :code_id, :status,  :user_id])
-
+    |> validate_required([:name, :description, :code_id, :status, :user_id])
   end
 end

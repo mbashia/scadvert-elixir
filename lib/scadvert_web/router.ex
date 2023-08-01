@@ -43,23 +43,16 @@ defmodule ScadvertWeb.Router do
     post "/videos/search", VideoController, :search
 
     resources "/clients", ClientController
-    get "/profile/:id" , ClientController, :profile
+    get "/profile/:id", ClientController, :profile
     post "/clients/search", ClientController, :search
 
-
     get "/confirm", PageController, :confirm
-
-
-
-
-
   end
+
   scope "/", ScadvertWeb do
     pipe_through [:browser]
     get "/code_information/:name", CodeInfoController, :show
-
   end
-
 
   # Other scopes may use custom stacks.
   # scope "/api", ScadvertWeb do
@@ -101,8 +94,7 @@ defmodule ScadvertWeb.Router do
 
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
-    get "/users/log_in", UserSessionController, :new
-    post "/users/log_in", UserSessionController, :create
+
     get "/users/reset_password", UserResetPasswordController, :new
     post "/users/reset_password", UserResetPasswordController, :create
     get "/users/reset_password/:token", UserResetPasswordController, :edit
@@ -119,6 +111,9 @@ defmodule ScadvertWeb.Router do
 
   scope "/", ScadvertWeb do
     pipe_through [:browser]
+
+    get "/users/log_in", UserSessionController, :new
+    post "/users/log_in", UserSessionController, :create
 
     delete "/users/log_out", UserSessionController, :delete
     get "/users/confirm", UserConfirmationController, :new

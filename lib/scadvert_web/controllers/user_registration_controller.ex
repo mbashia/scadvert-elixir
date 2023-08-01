@@ -25,7 +25,7 @@ defmodule ScadvertWeb.UserRegistrationController do
         |> put_flash(:info, "confirmation link sent to your account.")
         # |> redirect(to: Routes.user_session_path(conn, :new))
 
-        |> UserAuth. new_user_login(user)
+        |> UserAuth.new_user_login(user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

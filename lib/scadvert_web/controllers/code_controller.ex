@@ -5,32 +5,44 @@ defmodule ScadvertWeb.CodeController do
   alias Scadvert.Codes.Code
   alias Scadvert.Repo
 
-
   import Ecto.Query, warn: false
-
 
   plug :put_layout, "newlayout.html"
   @default_image :"/images/phoenix.png"
 
-
   def index(conn, params) do
     if conn.assigns.current_user.role == "admin" do
       changeset = Codes.change_code(%Code{})
-      page = Code
-               |>Repo.paginate(params)
-               IO.inspect(page)
 
-      render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page, total_pages: page.total_pages)
+      page =
+        Code
+        |> Repo.paginate(params)
 
+      IO.inspect(page)
+
+      render(conn, "index.html",
+        codes: page.entries,
+        default_image: @default_image,
+        changeset: changeset,
+        page: page,
+        total_pages: page.total_pages
+      )
     else
-    changeset = Codes.change_code(%Code{})
-    page = Codes.list_codes_by_user_id(conn)
-                                  |>Repo.paginate(params)
+      changeset = Codes.change_code(%Code{})
 
+      page =
+        Codes.list_codes_by_user_id(conn)
+        |> Repo.paginate(params)
 
-    render(conn, "index.html", codes: page.entries, default_image: @default_image, changeset: changeset, page: page, total_pages: page.total_pages)
-
+      render(conn, "index.html",
+        codes: page.entries,
+        default_image: @default_image,
+        changeset: changeset,
+        page: page,
+        total_pages: page.total_pages
+      )
     end
+
     # IO.inspect(codes)
   end
 
@@ -56,11 +68,8 @@ defmodule ScadvertWeb.CodeController do
   def show(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
     user_id = code.user_id
-    
 
     render(conn, "show.html", code: code, default_image: @default_image, user_id: user_id)
-
-
   end
 
   def edit(conn, %{"id" => id}) do
@@ -88,47 +97,59 @@ defmodule ScadvertWeb.CodeController do
   def delete(conn, %{"id" => id}) do
     code = Codes.get_code!(id)
 
-    if code.videos==[] && code.features==[] && code.leaderships==[] && code.headers==[] && code.images==[] && code.facilitys == [] do
-    {:ok, _code} = Codes.delete_code(code)
+    if code.videos == [] && code.features == [] && code.leaderships == [] && code.headers == [] &&
+         code.images == [] && code.facilitys == [] do
+      {:ok, _code} = Codes.delete_code(code)
 
-    conn
-    |> put_flash(:info, "Code deleted successfully.")
-    |> redirect(to: Routes.code_path(conn, :index))
-
+      conn
+      |> put_flash(:info, "Code deleted successfully.")
+      |> redirect(to: Routes.code_path(conn, :index))
     else
       conn
-      |>put_flash(:error, "cannot delete code ")
+      |> put_flash(:error, "cannot delete code ")
       |> redirect(to: Routes.code_path(conn, :index))
     end
   end
+
   def search(conn, %{"code" => %{"search" => search_params}}) do
     # codes = Codes.search(conn,search_params)
     changeset = Codes.change_code(%Code{})
-    page = Codes.search_params(conn,search_params)
-                |>Repo.paginate(conn.params)
-  case page.entries do
-  [] ->
-  conn
-  |> put_flash(:error, "no results")
-  |> render( "index.html", codes: [], changeset: changeset, page: page, total_pages: page.total_pages)
-  _ ->
-    if Enum.count(page.entries) ==1 do
 
-  conn
+    page =
+      Codes.search_params(conn, search_params)
+      |> Repo.paginate(conn.params)
 
-  |> put_flash(:info, "code searched successfully.")
+    case page.entries do
+      [] ->
+        conn
+        |> put_flash(:error, "no results")
+        |> render("index.html",
+          codes: [],
+          changeset: changeset,
+          page: page,
+          total_pages: page.total_pages
+        )
 
-  |> render( "index.html", codes: page.entries, changeset: changeset, page: page, total_pages: page.total_pages)
-    else
-      conn
-
-  |> put_flash(:info, "codes searched successfully.")
-
-  |> render( "index.html", codes: page.entries, changeset: changeset, page: page, total_pages: page.total_pages)
+      _ ->
+        if Enum.count(page.entries) == 1 do
+          conn
+          |> put_flash(:info, "code searched successfully.")
+          |> render("index.html",
+            codes: page.entries,
+            changeset: changeset,
+            page: page,
+            total_pages: page.total_pages
+          )
+        else
+          conn
+          |> put_flash(:info, "codes searched successfully.")
+          |> render("index.html",
+            codes: page.entries,
+            changeset: changeset,
+            page: page,
+            total_pages: page.total_pages
+          )
+        end
     end
-
   end
-
-  end
-
 end

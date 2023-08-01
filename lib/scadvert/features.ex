@@ -20,14 +20,12 @@ defmodule Scadvert.Features do
   def count_features do
     Repo.all(Feature)
     |> Enum.count()
-
   end
 
   def list_all_features do
     # Repo.all(Feature)
     # |> Repo.preload(:codes)
     from(f in Feature, select: f, preload: [:codes])
-
   end
 
   @doc """

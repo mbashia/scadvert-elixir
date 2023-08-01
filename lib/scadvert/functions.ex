@@ -12,44 +12,58 @@ defmodule Scadvert.Functions do
   alias Scadvert.Videos.Video
   alias Scadvert.Accounts.User
 
-
   def list_codes(user_id) do
     Repo.all(from p in Code, where: p.user_id == ^user_id, select: {p.name, p.id})
   end
 
-
   def get_user_by_id(conn) do
     user_id = conn.assigns.current_user.id
-    Repo.one(from u in User, where: u.id == ^user_id, select: %{id: u.id,firstname: u.firstname, lastname: u.lastname, gender: u.gender, picture: u.picture, email: u.email, contact: u.phone_number, status: u.status})
-  end
-  def facilitys_count(current_user)do
-    Repo.one(from(f in Facility, where: f.user_id == ^current_user.id , select: count(f.id) ))
 
+    Repo.one(
+      from u in User,
+        where: u.id == ^user_id,
+        select: %{
+          id: u.id,
+          firstname: u.firstname,
+          lastname: u.lastname,
+          gender: u.gender,
+          picture: u.picture,
+          email: u.email,
+          contact: u.phone_number,
+          status: u.status
+        }
+    )
   end
-  def codes_count(current_user)do
-    Repo.one(from(c in Code, where: c.user_id == ^current_user.id , select: count(c.id) ))
 
+  def facilitys_count(current_user) do
+    Repo.one(from(f in Facility, where: f.user_id == ^current_user.id, select: count(f.id)))
   end
-  def headers_count(current_user)do
-    Repo.one(from(h in Header, where: h.user_id == ^current_user.id, select: count(h.id) ))
+
+  def codes_count(current_user) do
+    Repo.one(from(c in Code, where: c.user_id == ^current_user.id, select: count(c.id)))
   end
-  def features_count(current_user)do
-    Repo.one(from(f in Feature, where: f.user_id == ^current_user.id, select: count(f.id) ))
+
+  def headers_count(current_user) do
+    Repo.one(from(h in Header, where: h.user_id == ^current_user.id, select: count(h.id)))
   end
-  def images_count(current_user)do
-    Repo.one(from(i in Image, where: i.user_id == ^current_user.id, select: count(i.id) ))
+
+  def features_count(current_user) do
+    Repo.one(from(f in Feature, where: f.user_id == ^current_user.id, select: count(f.id)))
   end
-  def leaderships_count(current_user)do
-    Repo.one(from(l in Leadership, where: l.user_id == ^current_user.id, select: count(l.id) ))
+
+  def images_count(current_user) do
+    Repo.one(from(i in Image, where: i.user_id == ^current_user.id, select: count(i.id)))
   end
-  def videos_count(current_user)do
-    Repo.one(from(v in Video, where: v.user_id == ^current_user.id, select: count(v.id) ))
+
+  def leaderships_count(current_user) do
+    Repo.one(from(l in Leadership, where: l.user_id == ^current_user.id, select: count(l.id)))
   end
-  def users_count()do
+
+  def videos_count(current_user) do
+    Repo.one(from(v in Video, where: v.user_id == ^current_user.id, select: count(v.id)))
+  end
+
+  def users_count() do
     Repo.one(from(u in User, select: count(u.id)))
   end
-
-
-
-
 end

@@ -14,15 +14,31 @@ defmodule ScadvertWeb.ImageController do
     if conn.assigns.current_user.role == "admin" do
       changeset = Images.change_image(%Image{})
 
-      page = Images.list_all_images
-                |>Repo.paginate(params)
-      render(conn, "index.html", images: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
+      page =
+        Images.list_all_images()
+        |> Repo.paginate(params)
+
+      render(conn, "index.html",
+        images: page.entries,
+        default_image: @default_image,
+        page: page,
+        changeset: changeset,
+        total_pages: page.total_pages
+      )
     else
       changeset = Images.change_image(%Image{})
 
-    page = Images.list_images_by_user_id(conn)
-                    |>Repo.paginate(params)
-    render(conn, "index.html", images: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
+      page =
+        Images.list_images_by_user_id(conn)
+        |> Repo.paginate(params)
+
+      render(conn, "index.html",
+        images: page.entries,
+        default_image: @default_image,
+        page: page,
+        changeset: changeset,
+        total_pages: page.total_pages
+      )
     end
   end
 
@@ -33,7 +49,6 @@ defmodule ScadvertWeb.ImageController do
     codes = Functions.list_codes(user_id)
 
     render(conn, "new.html", changeset: changeset, codes: codes)
-
   end
 
   def create(conn, %{"image" => image_params}) do
@@ -91,57 +106,86 @@ defmodule ScadvertWeb.ImageController do
     |> put_flash(:info, "Image deleted successfully.")
     |> redirect(to: Routes.image_path(conn, :index))
   end
+
   def search(conn, %{"image" => %{"search" => search_params}}) do
     changeset = Images.change_image(%Image{})
-    page = search_params(conn,search_params)
-                     |>Repo.paginate(conn.params)
-  case page.entries do
-  [] ->
-  conn
-  |> put_flash(:error, "no results")
-  |> render( "index.html", images: [], changeset: changeset, page: page, total_pages: page.total_pages)
-  _ ->
-    if Enum.count(page.entries)==1 do
-  conn
 
-  |> put_flash(:info, "image searched successfully.")
+    page =
+      search_params(conn, search_params)
+      |> Repo.paginate(conn.params)
 
-  |> render( "index.html", images: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
-    else
-    conn
-  |> put_flash(:info, "images searched successfully.")
+    case page.entries do
+      [] ->
+        conn
+        |> put_flash(:error, "no results")
+        |> render("index.html",
+          images: [],
+          changeset: changeset,
+          page: page,
+          total_pages: page.total_pages
+        )
 
-  |> render( "index.html", images: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
+      _ ->
+        if Enum.count(page.entries) == 1 do
+          conn
+          |> put_flash(:info, "image searched successfully.")
+          |> render("index.html",
+            images: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        else
+          conn
+          |> put_flash(:info, "images searched successfully.")
+          |> render("index.html",
+            images: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        end
     end
   end
 
-  end
-  defp search_params(conn,params)do
-    params = cond do
-      params=="active" ->
-      "true"
-      params =="inactive" ->
-        "false"
-      true ->
-        params
+  defp search_params(conn, params) do
+    params =
+      cond do
+        params == "active" ->
+          "true"
 
+        params == "inactive" ->
+          "false"
+
+        true ->
+          params
       end
 
-    user= conn.assigns.current_user
+    user = conn.assigns.current_user
+
     if user.role == "admin" do
       from(i in Image,
-    join: c in assoc(i, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", i.name, ^"%#{params}%") or fragment("? LIKE ?", i.description, ^"%#{params}%") or fragment("? LIKE ?", i.status, ^"%#{params}%") ,
-    preload: [:codes])
+        join: c in assoc(i, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", i.name, ^"%#{params}%") or
+            fragment("? LIKE ?", i.description, ^"%#{params}%") or
+            fragment("? LIKE ?", i.status, ^"%#{params}%"),
+        preload: [:codes]
+      )
     else
-    from(i in Image,
-    join: c in assoc(i, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", i.name, ^"%#{params}%") or fragment("? LIKE ?", i.description, ^"%#{params}%") or fragment("? LIKE ?", i.status, ^"%#{params}%"), where: i.user_id == ^user.id,
-    preload: [:codes])
-
+      from(i in Image,
+        join: c in assoc(i, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", i.name, ^"%#{params}%") or
+            fragment("? LIKE ?", i.description, ^"%#{params}%") or
+            fragment("? LIKE ?", i.status, ^"%#{params}%"),
+        where: i.user_id == ^user.id,
+        preload: [:codes]
+      )
     end
-
   end
-
-
 end

@@ -3,7 +3,7 @@ defmodule Scadvert.Repo.Migrations.CreateLeaderships do
 
   def change do
     create table(:leaderships) do
-      add :name, :string 
+      add :name, :string
       add :description, :text
       add :code_id, :integer
       add :status, :string

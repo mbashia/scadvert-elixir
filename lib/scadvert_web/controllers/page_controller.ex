@@ -3,11 +3,11 @@ defmodule ScadvertWeb.PageController do
 
   plug :put_layout, "login_registration.html"
 
-
   def index(conn, _params) do
     render(conn, "index.html")
   end
-  def confirm(conn,_params)do
+
+  def confirm(conn, _params) do
     render(conn, "email.html")
-   end
+  end
 end

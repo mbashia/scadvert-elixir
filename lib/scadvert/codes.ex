@@ -17,16 +17,14 @@ defmodule Scadvert.Codes do
       [%Code{}, ...]
 
   """
-  def  count_codes do
+  def count_codes do
     Repo.all(Code)
     |> Enum.count()
-
   end
 
   def list_all_codes do
     Repo.all(Code)
   end
-
 
   @doc """
   Gets a single code.
@@ -42,16 +40,17 @@ defmodule Scadvert.Codes do
       ** (Ecto.NoResultsError)
 
   """
+
   # def get_code!(id), do: Repo.get!(Code, id)
 
   def get_code!(id) do
     Repo.get!(Code, id)
     |> Repo.preload(:features)
-    |>Repo.preload(:facilitys)
-    |>Repo.preload(:images)
-    |>Repo.preload(:videos)
-    |>Repo.preload(:leaderships)
-    |>Repo.preload(:headers)
+    |> Repo.preload(:facilitys)
+    |> Repo.preload(:images)
+    |> Repo.preload(:videos)
+    |> Repo.preload(:leaderships)
+    |> Repo.preload(:headers)
   end
 
   @doc """
@@ -125,37 +124,51 @@ defmodule Scadvert.Codes do
   end
 
   def list_code_by_name(id) do
-    Repo.one(from c in Code, where: c.name == ^id )
-    |>Repo.preload(:features)
-    |>Repo.preload(:facilitys)
-    |>Repo.preload(:images)
-    |>Repo.preload(:videos)
-    |>Repo.preload(:leaderships)
-    |>Repo.preload(:headers)
+    Repo.one(from c in Code, where: c.name == ^id)
+    |> Repo.preload(:features)
+    |> Repo.preload(:facilitys)
+    |> Repo.preload(:images)
+    |> Repo.preload(:videos)
+    |> Repo.preload(:leaderships)
+    |> Repo.preload(:headers)
   end
-  def search_params(conn,params)do
+
+  def search_params(conn, params) do
     IO.inspect(params)
     user = conn.assigns.current_user
 
-    params = cond do
-      params=="active" ->
-      "true"
-      params =="inactive" ->
-        "false"
-      true ->
-        params
+    params =
+      cond do
+        params == "active" ->
+          "true"
 
+        params == "inactive" ->
+          "false"
+
+        true ->
+          params
       end
 
     if user.role == "admin" do
-      query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%")or fragment("? LIKE ?", c.active, ^"%#{params}%"))
+      query =
+        from(c in Code,
+          where:
+            fragment("? LIKE ?", c.name, ^"%#{params}%") or
+              fragment("? LIKE ?", c.description, ^"%#{params}%") or
+              fragment("? LIKE ?", c.active, ^"%#{params}%")
+        )
+
       query
     else
-    query = from(c in Code, where: fragment("? LIKE ?", c.name, ^"%#{params}%") or fragment("? LIKE ?", c.description, ^"%#{params}%")or fragment("? LIKE ?", c.active, ^"%#{params}%") and c.user_id == ^user.id)
-    query
+      query =
+        from(c in Code,
+          where:
+            fragment("? LIKE ?", c.name, ^"%#{params}%") or
+              fragment("? LIKE ?", c.description, ^"%#{params}%") or
+              (fragment("? LIKE ?", c.active, ^"%#{params}%") and c.user_id == ^user.id)
+        )
+
+      query
     end
-
-
-
   end
 end

@@ -8,7 +8,6 @@ defmodule Scadvert.Accounts do
 
   alias Scadvert.Accounts.{User, UserToken, UserNotifier}
 
-
   ## Database getters
 
   @doc """
@@ -39,6 +38,7 @@ defmodule Scadvert.Accounts do
       nil
 
   """
+
   #  def get_user_by_email_and_password(email, password)
   #     when is_binary(email) and is_binary(password) do
   #   user = Repo.get_by(User, email: email)
@@ -50,17 +50,16 @@ defmodule Scadvert.Accounts do
     user = Repo.get_by(User, email: email)
 
     cond do
-      user && User.valid_password?(user, password) && user.status &&  (not is_nil(user.confirmed_at) ) == true ->
-
-
-      {:ok, user}
+      user && User.valid_password?(user, password) && user.status &&
+          not is_nil(user.confirmed_at) == true ->
+        {:ok, user}
 
       user ->
         {:error}
-      true->
+
+      true ->
         {:error}
     end
-
   end
 
   @doc """
@@ -85,16 +84,17 @@ defmodule Scadvert.Accounts do
     query = from(u in User, select: u)
     query
   end
-  def update_user(%User{}= user,attrs)do
-    user
-    |>User.change_user_changeset(attrs)
-    |>Repo.update()
-  end
-  def activate_user(user,attrs)do
-    user
-    |>User.change_user_changeset(attrs)
-    |>Repo.update()
 
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.change_user_changeset(attrs)
+    |> Repo.update()
+  end
+
+  def activate_user(user, attrs) do
+    user
+    |> User.change_user_changeset(attrs)
+    |> Repo.update()
   end
 
   @doc """

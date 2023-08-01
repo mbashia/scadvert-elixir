@@ -13,16 +13,31 @@ defmodule ScadvertWeb.VideoController do
     if conn.assigns.current_user.role == "admin" do
       changeset = Videos.change_video(%Video{})
 
-      page = Videos.list_all_videos()
-                  |>Repo.paginate(params)
-      render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
+      page =
+        Videos.list_all_videos()
+        |> Repo.paginate(params)
+
+      render(conn, "index.html",
+        videos: page.entries,
+        default_image: @default_image,
+        page: page,
+        changeset: changeset,
+        total_pages: page.total_pages
+      )
     else
       changeset = Videos.change_video(%Video{})
 
-    page = Videos.list_videos_by_user_id(conn)
-                      |>Repo.paginate(params)
+      page =
+        Videos.list_videos_by_user_id(conn)
+        |> Repo.paginate(params)
 
-    render(conn, "index.html", videos: page.entries, default_image: @default_image, page: page, changeset: changeset, total_pages: page.total_pages)
+      render(conn, "index.html",
+        videos: page.entries,
+        default_image: @default_image,
+        page: page,
+        changeset: changeset,
+        total_pages: page.total_pages
+      )
     end
   end
 
@@ -59,7 +74,7 @@ defmodule ScadvertWeb.VideoController do
 
   def edit(conn, %{"id" => id}) do
     video = Videos.get_video!(id)
-    user_id =  video.user_id
+    user_id = video.user_id
     codes = Functions.list_codes(user_id)
 
     changeset = Videos.change_video(video)
@@ -92,57 +107,83 @@ defmodule ScadvertWeb.VideoController do
   def search(conn, %{"video" => %{"search" => search_params}}) do
     IO.inspect(search_params)
     changeset = Videos.change_video(%Video{})
-    page = search_params(conn,search_params)
-                     |>Repo.paginate(conn.params)
-  case page.entries do
-  [] ->
-  conn
-  |> put_flash(:error, "no results")
-  |> render( "index.html", videos: [], changeset: changeset, page: page, total_pages: page.total_pages)
-  _ ->
-    if Enum.count(page.entries) == 1 do
-  conn
 
-  |> put_flash(:info, "video searched successfully.")
+    page =
+      search_params(conn, search_params)
+      |> Repo.paginate(conn.params)
 
-  |> render( "index.html", videos: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
-    else
-      conn
-      |> put_flash(:info, "videos searched successfully.")
+    case page.entries do
+      [] ->
+        conn
+        |> put_flash(:error, "no results")
+        |> render("index.html",
+          videos: [],
+          changeset: changeset,
+          page: page,
+          total_pages: page.total_pages
+        )
 
-      |> render( "index.html", videos: page.entries, changeset: changeset, page: page, default_image: @default_image, total_pages: page.total_pages)
-
+      _ ->
+        if Enum.count(page.entries) == 1 do
+          conn
+          |> put_flash(:info, "video searched successfully.")
+          |> render("index.html",
+            videos: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        else
+          conn
+          |> put_flash(:info, "videos searched successfully.")
+          |> render("index.html",
+            videos: page.entries,
+            changeset: changeset,
+            page: page,
+            default_image: @default_image,
+            total_pages: page.total_pages
+          )
+        end
     end
   end
 
-  end
-  defp search_params(conn,params)do
-    params = cond do
-      params=="active" ->
-      "true"
-      params =="inactive" ->
-        "false"
-      true ->
-        params
+  defp search_params(conn, params) do
+    params =
+      cond do
+        params == "active" ->
+          "true"
 
+        params == "inactive" ->
+          "false"
+
+        true ->
+          params
       end
+
     user = conn.assigns.current_user
-    if user.role =="admin"  do
 
-
-    from(v in Video,
-    join: c in assoc(v, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", v.name, ^"%#{params}%") or fragment("? LIKE ?", v.description, ^"%#{params}%") or fragment("? LIKE ?", v.status, ^"%#{params}%"),
-    preload: [:codes])
+    if user.role == "admin" do
+      from(v in Video,
+        join: c in assoc(v, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", v.name, ^"%#{params}%") or
+            fragment("? LIKE ?", v.description, ^"%#{params}%") or
+            fragment("? LIKE ?", v.status, ^"%#{params}%"),
+        preload: [:codes]
+      )
     else
       from(v in Video,
-    join: c in assoc(v, :codes),
-    where: fragment("? LIKE ?", c.name, ^"%#{params}%")  or fragment("? LIKE ?", v.name, ^"%#{params}%") or fragment("? LIKE ?", v.description, ^"%#{params}%") or fragment("? LIKE ?", v.status, ^"%#{params}%"),where: v.user_id ==^user.id,
-    preload: [:codes])
+        join: c in assoc(v, :codes),
+        where:
+          fragment("? LIKE ?", c.name, ^"%#{params}%") or
+            fragment("? LIKE ?", v.name, ^"%#{params}%") or
+            fragment("? LIKE ?", v.description, ^"%#{params}%") or
+            fragment("? LIKE ?", v.status, ^"%#{params}%"),
+        where: v.user_id == ^user.id,
+        preload: [:codes]
+      )
     end
-
-
-end
-
-
+  end
 end

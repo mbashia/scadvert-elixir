@@ -20,13 +20,12 @@ defmodule Scadvert.Leaderships do
   def count_leaderships do
     Repo.all(Leadership)
     |> Enum.count()
-
   end
+
   def list_all_leaderships do
     # Repo.all(Leadership)
     # |> Repo.preload(:codes)
     from(l in Leadership, select: l, preload: [:codes])
-
   end
 
   @doc """
@@ -119,7 +118,7 @@ defmodule Scadvert.Leaderships do
     # Repo.all(from l in Leadership, where: l.user_id == ^user_id)
     # |> Repo.preload(:codes)
 
-     from(l in Leadership, where: l.user_id == ^user_id, preload: [:codes])
+    from(l in Leadership, where: l.user_id == ^user_id, preload: [:codes])
     #
   end
 end

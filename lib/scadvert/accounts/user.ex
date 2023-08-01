@@ -26,8 +26,6 @@ defmodule Scadvert.Accounts.User do
 
     field :picture, Scadvert.UserImage.Type
 
-
-
     has_many :codes, Code
     has_many :facilitys, Facility
     has_many :features, Feature
@@ -58,16 +56,44 @@ defmodule Scadvert.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :firstname, :lastname,:phone_number, :gender, :status, :picture])
+    |> cast(attrs, [
+      :email,
+      :password,
+      :firstname,
+      :lastname,
+      :phone_number,
+      :gender,
+      :status,
+      :picture
+    ])
     |> validate_email()
     |> validate_password(opts)
-    |>validate_required([:firstname, :lastname, :phone_number])
+    |> validate_required([:firstname, :lastname, :phone_number])
   end
 
-  def change_user_changeset(user,attrs)do
+  def change_user_changeset(user, attrs) do
     user
-    |> cast(attrs, [ :firstname, :lastname,:phone_number,:picture,:email, :gender, :status, :role, :more_details])
-    |> validate_required([:firstname, :lastname, :phone_number, :picture, :email, :gender, :status, :role])
+    |> cast(attrs, [
+      :firstname,
+      :lastname,
+      :phone_number,
+      :picture,
+      :email,
+      :gender,
+      :status,
+      :role,
+      :more_details
+    ])
+    |> validate_required([
+      :firstname,
+      :lastname,
+      :phone_number,
+      :picture,
+      :email,
+      :gender,
+      :status,
+      :role
+    ])
   end
 
   defp validate_email(changeset) do

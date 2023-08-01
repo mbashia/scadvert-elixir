@@ -23,6 +23,5 @@ defmodule Scadvert.Images.Image do
     image
     |> cast(attrs, [:name, :description, :code_id, :status, :picture, :user_id])
     |> validate_required([:name, :description, :code_id, :status, :picture, :user_id])
-
   end
 end
