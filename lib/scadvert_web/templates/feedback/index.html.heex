@@ -1,0 +1,75 @@
+
+<div class="bg-gray-800 pt-3 mb-[30px]">
+      <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">SHOWING USER FEEDBACK</h3>
+      </div>
+  </div>
+  <div class = " mb-[40px]  flex items-center ">
+         <div class  = " bg-green-400 rounded-lg p-2 inline-block mx-4">  
+      <span></span>
+
+      
+      </div>
+      
+      <div class = "flex gap-2  md:ml-[200px]">
+            <%= render "search.html", Map.put(assigns, :action, Routes.feedback_path(@conn, :search)) %>
+
+          <div class = "align-top" > 
+        <%= Heroicons.icon("arrow-path", type: "solid", class: "h-4 w-6 inline-block align-middle" , style: "color:#2659bf;")%>
+             <span class = "inline-block poppins-regular align-top"> <%= link "reload ", to: Routes.feedback_path(@conn, :index), style: "color: #173673;" %></span>
+
+       </div>
+        </div>
+
+
+      
+        </div>
+        
+
+
+<div class = "overflow-x-auto p-[20px]">
+
+<table  class  = "w-full sm:w-auto" style = "width:100%; background-color:#efeeee;">
+  <thead>
+    <tr>
+           <th class = "for_tables">code </th>    
+       <th class = "for_tables">name </th>    
+      <th class = "for_tables">message</th>
+      <th class = "for_tables">email</th>
+        <th class = "for_tables">actions</th>
+
+      
+
+    </tr>
+  </thead>
+  <tbody>
+<%= for feedback <- @feedbacks do %>
+    <tr>
+   
+      <td  class = "table_data"><%= feedback.code.name %></td>
+      <td  class = "table_data"><%= feedback.name %></td>
+     
+      <td class = "table_data"> <%=feedback.message %></td>
+      <td class = "table_data"> <%=feedback.email %></td>
+
+    
+
+      
+     
+      
+      <td class = "table_data">
+            
+         <div class = "p-2 inline-block bg-red-600 rounded mr-2">       
+        <span title = "delete feedback"><%=  link Heroicons.icon("trash", type: "solid", class: "h-4 w-4 text-white" ), to: Routes.feedback_path(@conn, :delete, feedback), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </div>
+      
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+</div>
+
+
+

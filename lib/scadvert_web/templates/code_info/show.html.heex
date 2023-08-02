@@ -149,25 +149,56 @@
 								</div>
 								<div class="inner columns divided">
 									<div class="span-3-25">
-										<form method="post" action="#">
+										<.form let={f} for={@changeset} action={Routes.code_info_path(@conn, :create)}>
+											<%= if @changeset.action do %>
+												<div class="alert alert-danger">
+												<p>Oops, something went wrong! Please check the errors below.</p>
+												</div>
+											<% end %>											
 											<div class="fields">
 												<div class="field half">
-													<label for="name">Name</label>
-													<input type="text" name="name" id="name" />
+													<%= label f, :name %>
+														<%= text_input f, :name, id: :name%>
+														<%= error_tag f, :name %>
 												</div>
 												<div class="field half">
-													<label for="email">Email</label>
-													<input type="email" name="email" id="email" />
+													<%= label f, :email %>
+													<%= text_input f, :email ,id: :email, class: "validate-email" %>
+													<%= error_tag f, :email %>
 												</div>
+												 <p id="email-error-message" style ="margin-left:20px;"></p>
 												<div class="field">
-													<label for="message">Message</label>
-													<textarea name="message" id="message" rows="4"></textarea>
+													<%= label f, :message %>
+													<%= textarea f, :message, id: :message %>
+													<%= error_tag f, :message %>												
+													</div>
+
+												<div class = "field half">
+												<%= text_input f, :code_id, type: "hidden", value: @code.id ,class: "form-control" %>
+
+												
+												
 												</div>
 											</div>
 											<ul class="actions">
-												<li><input type="submit" value="Send Message" class="button primary" /></li>
+												<li><%= submit "send message" , class: "button primary" ,id: :submitbutton%></li>
 											</ul>
-										</form>
+										</.form>
+											
+
+											
+
+											
+
+											
+											
+											
+
+
+
+											
+											
+
 									</div>
 									<div class="span-1-5">
 										<ul class="contact-icons color1">

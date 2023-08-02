@@ -5,6 +5,8 @@ defmodule ScadvertWeb.CodeInfoController do
 
   alias Scadvert.Codes
   alias Scadvert.Accounts
+  alias Scadvert.Feedbacks
+  alias Scadvert.Feedbacks.Feedback
   # alias Scadvert.Repo
   plug :put_layout, "show_info.html"
 
@@ -19,6 +21,8 @@ defmodule ScadvertWeb.CodeInfoController do
     images = code.images
     facilitys = List.first(code.facilitys)
     user = Accounts.get_user!(user_id)
+    changeset = Feedbacks.change_feedback(%Feedback{})
+
 
     # details = String.replace( user.more_details,"</p>","")
     # new_details=String.replace(details, "<p>","|")
@@ -35,7 +39,23 @@ defmodule ScadvertWeb.CodeInfoController do
       facilitys: facilitys,
       images: images,
       user: user,
-      user_details: user.more_details
+      user_details: user.more_details,
+      changeset: changeset
     )
+  end
+  def create(conn, %{"feedback" => feedback_params}) do
+    IO.inspect(feedback_params)
+    code_id = feedback_params["code_id"]
+    code = Codes.get_code!(code_id)
+    case Feedbacks.create_feedback(feedback_params) do
+      {:ok, _feedback} ->
+        conn
+        |> put_flash(:info, "Feedback created successfully.")
+        |> redirect(to: Routes.code_info_path(conn, :show, code.name))
+
+      {:error, %Ecto.Changeset{} = _changeset} ->
+        conn
+        |> redirect(to: Routes.code_info_path(conn, :show, code.name))
+    end
   end
 end

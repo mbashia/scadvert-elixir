@@ -29,6 +29,32 @@ function decode() { var element =document.getElementById("decoded_html").dataset
   description.innerHTML = element;
 } ;
 			</script>
+      <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const emailInput = document.querySelector(".validate-email");
+    const submitButton = document.querySelector("#submitbutton");
+    const errorMessage = document.querySelector("#email-error-message");
+
+    emailInput.addEventListener("input", function () {
+      const emailValue = emailInput.value;
+
+      if (!emailValue.includes("@") || emailValue.includes(" ") || emailValue.length > 160) {
+        if (!emailValue.includes("@")) {
+          errorMessage.textContent = "Email must contain '@' sign.";
+        } else if (emailValue.includes(" ")) {
+          errorMessage.textContent = "Email cannot contain spaces.";
+        } else if (emailValue.length > 160) {
+          errorMessage.textContent = "Email must be 160 characters or less.";
+        }
+        submitButton.disabled = true;
+      } else {
+        errorMessage.textContent = "";
+        submitButton.disabled = false;
+      }
+    });
+  });
+</script>
+
 
     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/js/jquery.min.js") }></script>
     <script type="text/javascript" src={Routes.static_path(@conn, "/assets/js/browser.min.js") }></script>
