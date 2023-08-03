@@ -18,8 +18,9 @@ defmodule Scadvert.Feedbacks do
 
   """
   def list_feedbacks do
-    Repo.all(Feedback)
-    |>Repo.preload(:code)
+    # Repo.all(Feedback)
+    # |>Repo.preload(:code)
+    from(f in Feedback, select: f, preload: [:code])
   end
 
   @spec get_feedback!(any) :: any

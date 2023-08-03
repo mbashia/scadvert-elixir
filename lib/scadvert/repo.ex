@@ -3,5 +3,5 @@ defmodule Scadvert.Repo do
     otp_app: :scadvert,
     adapter: Ecto.Adapters.MyXQL
 
-  use Scrivener, page_size: 10
+  use Scrivener, page_size: 1
 end

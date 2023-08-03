@@ -5,8 +5,9 @@
       </div>
   </div>
   <div class = " mb-[40px]  flex items-center ">
-         <div class  = " bg-green-400 rounded-lg p-2 inline-block mx-4">  
-      <span></span>
+         <div class  = "  rounded-lg p-2 inline-block mx-4">  
+      <span><%= Heroicons.icon("chat-bubble-oval-left-ellipsis", type: "outline", class: "h-6 w-6 inline-block align-middlen text-blue-500" )%>
+</span>
 
       
       </div>
@@ -68,8 +69,44 @@
 <% end %>
   </tbody>
 </table>
+<div class = "my-8 ml-6">
+        <%= for a_page <- 1..@total_pages do %>
+       <%= link to: Routes.feedback_path(@conn, :index, page: a_page) do %>
+       <%=if a_page== @page.page_number do %>
+        <div class = "h-8 w-8 bg-blue-800 inline-block text-white py-1 pl-2 ml-2">
+        <%= a_page %>
 
+        </div>
+        <%else %>
+        <div class = "h-8 w-8 bg-blue-400 inline-block text-white py-1 pl-2 ml-2">
+        <%= a_page %>
+
+        </div>
+        <%end %>
+       <% end %>
+
+        <%end %>
+        
+        </div>
+        
+        <div class = "my-8 ml-6 text-blue poppins-regular-blue">
+        <%= if @page.page_number>1 do %>
+
+        <div class = "inline-block  hover:underline">
+        <%= link "prev page", to: Routes.feedback_path(@conn, :index, page: @page.page_number-1) %>
+        </div>
+        <%end %>
+        <%= if @page.page_number< @page.total_pages do %>
+        <div class = "inline-block hover:underline">
+        <%= link "next page", to: Routes.feedback_path(@conn, :index, page: @page.page_number+1) %>
+        </div>
+        <%end %>
+
+
+      </div>
 </div>
+
+
 
 
 

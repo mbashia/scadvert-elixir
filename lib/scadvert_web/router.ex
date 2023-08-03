@@ -46,7 +46,7 @@ defmodule ScadvertWeb.Router do
     get "/profile/:id", ClientController, :profile
     post "/clients/search", ClientController, :search
 
-    resources "/feedbacks", FeedbackController
+    resources "/feedbacks", FeedbackController,only: [:index,  :create,  :delete]
     post "/feedbacks/search", FeedbackController, :search
 
 

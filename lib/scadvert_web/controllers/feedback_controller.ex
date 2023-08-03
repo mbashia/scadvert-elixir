@@ -8,12 +8,14 @@ defmodule ScadvertWeb.FeedbackController do
   alias Scadvert.Feedbacks.Feedback
   plug :put_layout, "newlayout.html"
 
-  def index(conn, _params) do
-    feedbacks = Feedbacks.list_feedbacks()
+  def index(conn, params) do
     changeset = Feedbacks.change_feedback(%Feedback{})
+    page = Feedbacks.list_feedbacks()
+    |>Repo.paginate(params)
 
 
-    render(conn, "index.html", feedbacks: feedbacks, changeset: changeset)
+
+    render(conn, "index.html", feedbacks: page.entries, changeset: changeset, page: page, total_pages: page.total_pages)
   end
 
   def new(conn, _params) do
