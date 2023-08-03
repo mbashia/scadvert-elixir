@@ -18,7 +18,6 @@ defmodule ScadvertWeb.CodeController do
         Code
         |> Repo.paginate(params)
 
-      IO.inspect(page)
 
       render(conn, "index.html",
         codes: page.entries,
@@ -43,7 +42,6 @@ defmodule ScadvertWeb.CodeController do
       )
     end
 
-    # IO.inspect(codes)
   end
 
   def new(conn, _params) do

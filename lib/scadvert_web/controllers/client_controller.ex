@@ -39,7 +39,6 @@ defmodule ScadvertWeb.ClientController do
   def edit(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
     changeset = Users.change_user(user)
-    IO.inspect(changeset)
     render(conn, "edit.html", user: user, changeset: changeset)
   end
 
@@ -137,7 +136,6 @@ defmodule ScadvertWeb.ClientController do
 
       _ ->
         if Enum.count(page.entries) == 1 do
-          IO.inspect(page.entries)
 
           conn
           |> put_flash(:info, "user searched successfully.")

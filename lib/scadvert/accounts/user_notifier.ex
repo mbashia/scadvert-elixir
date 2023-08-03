@@ -12,7 +12,6 @@ defmodule Scadvert.Accounts.UserNotifier do
       |> subject(subject)
       |> text_body(body)
 
-    IO.inspect(email)
 
     with {:ok, _metadata} <- Mailer.deliver(email) do
       {:ok, email}
@@ -43,7 +42,6 @@ defmodule Scadvert.Accounts.UserNotifier do
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-    IO.inspect(
       deliver(user.email, "Reset password instructions", """
 
       ==============================
@@ -58,7 +56,7 @@ defmodule Scadvert.Accounts.UserNotifier do
 
       ==============================
       """)
-    )
+
   end
 
   @doc """

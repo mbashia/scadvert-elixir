@@ -13,7 +13,6 @@ defmodule ScadvertWeb.CodeInfoController do
   def show(conn, %{"name" => name}) do
     code = Codes.list_code_by_name(name)
     user_id = code.user_id
-    IO.inspect(code.user_id)
     features = List.first(code.features)
     videos = List.first(code.videos)
     headers = List.first(code.headers)
@@ -28,7 +27,6 @@ defmodule ScadvertWeb.CodeInfoController do
     # new_details=String.replace(details, "<p>","|")
     # details_pro = String.split(new_details, "|", trim: true)
 
-    # IO.inspect(details_pro)
 
     render(conn, "show.html",
       features: features,
@@ -44,7 +42,6 @@ defmodule ScadvertWeb.CodeInfoController do
     )
   end
   def create(conn, %{"feedback" => feedback_params}) do
-    IO.inspect(feedback_params)
     code_id = feedback_params["code_id"]
     code = Codes.get_code!(code_id)
     case Feedbacks.create_feedback(feedback_params) do

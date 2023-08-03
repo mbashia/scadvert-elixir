@@ -22,6 +22,11 @@ defmodule Scadvert.Feedbacks do
     # |>Repo.preload(:code)
     from(f in Feedback, select: f, preload: [:code])
   end
+  def count_feebacks do
+    Repo.all(Feedback)
+    |> Enum.count()
+  end
+
 
   @spec get_feedback!(any) :: any
   @doc """

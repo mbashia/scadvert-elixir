@@ -8,6 +8,7 @@ defmodule ScadvertWeb.DashboardController do
   alias Scadvert.Images
   alias Scadvert.Leaderships
   alias Scadvert.Videos
+  alias Scadvert.Feedbacks
 
   plug :put_layout, "newlayout.html"
 
@@ -16,7 +17,6 @@ defmodule ScadvertWeb.DashboardController do
   end
 
   def index(conn, _params, current_user) do
-    IO.inspect(current_user)
 
     if current_user.role == "admin" do
       users = Functions.users_count()
@@ -27,6 +27,7 @@ defmodule ScadvertWeb.DashboardController do
       videos = Videos.count_videos()
       leaderships = Leaderships.count_leaderships()
       images = Images.count_images()
+      feedbacks = Feedbacks.count_feebacks()
 
       render(conn, "dashboard.html",
         facilitys: facilitys,
@@ -36,7 +37,8 @@ defmodule ScadvertWeb.DashboardController do
         images: images,
         videos: videos,
         leaderships: leaderships,
-        users: users
+        users: users,
+        feedbacks: feedbacks
       )
     else
       facilitys = Functions.facilitys_count(current_user)

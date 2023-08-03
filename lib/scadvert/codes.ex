@@ -134,7 +134,6 @@ defmodule Scadvert.Codes do
   end
 
   def search_params(conn, params) do
-    IO.inspect(params)
     user = conn.assigns.current_user
 
     params =

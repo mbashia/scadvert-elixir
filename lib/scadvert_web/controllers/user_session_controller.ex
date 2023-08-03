@@ -15,7 +15,6 @@ defmodule ScadvertWeb.UserSessionController do
 
     case Accounts.get_user_by_email_and_password(email, password) do
       {:ok, user} ->
-        IO.inspect(user.confirmed_at)
         UserAuth.log_in_user(conn, user, user_params)
 
       _ ->
