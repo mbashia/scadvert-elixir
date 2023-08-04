@@ -17,7 +17,6 @@ defmodule ScadvertWeb.DashboardController do
   end
 
   def index(conn, _params, current_user) do
-
     if current_user.role == "admin" do
       users = Functions.users_count()
       facilitys = Facilitys.count_facilitys()

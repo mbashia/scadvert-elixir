@@ -35,7 +35,12 @@ defmodule Scadvert.FeedbacksTest do
 
     test "update_feedback/2 with valid data updates the feedback" do
       feedback = feedback_fixture()
-      update_attrs = %{email: "some updated email", message: "some updated message", name: "some updated name"}
+
+      update_attrs = %{
+        email: "some updated email",
+        message: "some updated message",
+        name: "some updated name"
+      }
 
       assert {:ok, %Feedback{} = feedback} = Feedbacks.update_feedback(feedback, update_attrs)
       assert feedback.email == "some updated email"

@@ -10,6 +10,7 @@ defmodule Scadvert.Repo.Migrations.CreateFeedbacks do
 
       timestamps()
     end
+
     create index(:feedbacks, [:code_id])
   end
 end

@@ -22,11 +22,9 @@ defmodule ScadvertWeb.CodeInfoController do
     user = Accounts.get_user!(user_id)
     changeset = Feedbacks.change_feedback(%Feedback{})
 
-
     # details = String.replace( user.more_details,"</p>","")
     # new_details=String.replace(details, "<p>","|")
     # details_pro = String.split(new_details, "|", trim: true)
-
 
     render(conn, "show.html",
       features: features,
@@ -41,9 +39,11 @@ defmodule ScadvertWeb.CodeInfoController do
       changeset: changeset
     )
   end
+
   def create(conn, %{"feedback" => feedback_params}) do
     code_id = feedback_params["code_id"]
     code = Codes.get_code!(code_id)
+
     case Feedbacks.create_feedback(feedback_params) do
       {:ok, _feedback} ->
         conn

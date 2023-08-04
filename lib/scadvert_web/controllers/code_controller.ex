@@ -18,7 +18,6 @@ defmodule ScadvertWeb.CodeController do
         Code
         |> Repo.paginate(params)
 
-
       render(conn, "index.html",
         codes: page.entries,
         default_image: @default_image,
@@ -41,7 +40,6 @@ defmodule ScadvertWeb.CodeController do
         total_pages: page.total_pages
       )
     end
-
   end
 
   def new(conn, _params) do

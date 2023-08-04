@@ -136,7 +136,6 @@ defmodule ScadvertWeb.ClientController do
 
       _ ->
         if Enum.count(page.entries) == 1 do
-
           conn
           |> put_flash(:info, "user searched successfully.")
           |> render("client.html",

@@ -26,5 +26,4 @@ defmodule Scadvert.Feedbacks.Feedback do
     |> cast(attrs, [:name, :message, :email, :code_id])
     |> validate_required([:name, :message, :email, :code_id])
   end
-
 end

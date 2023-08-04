@@ -12,7 +12,6 @@ defmodule Scadvert.Accounts.UserNotifier do
       |> subject(subject)
       |> text_body(body)
 
-
     with {:ok, _metadata} <- Mailer.deliver(email) do
       {:ok, email}
     end
@@ -42,21 +41,20 @@ defmodule Scadvert.Accounts.UserNotifier do
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-      deliver(user.email, "Reset password instructions", """
+    deliver(user.email, "Reset password instructions", """
 
-      ==============================
+    ==============================
 
-      Hi #{user.email},
+    Hi #{user.email},
 
-      You can reset your password by visiting the URL below:
+    You can reset your password by visiting the URL below:
 
-      #{url}
+    #{url}
 
-      If you didn't request this change, please ignore this.
+    If you didn't request this change, please ignore this.
 
-      ==============================
-      """)
-
+    ==============================
+    """)
   end
 
   @doc """

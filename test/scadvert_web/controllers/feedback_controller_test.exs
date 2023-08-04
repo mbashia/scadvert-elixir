@@ -4,7 +4,11 @@ defmodule ScadvertWeb.FeedbackControllerTest do
   import Scadvert.FeedbacksFixtures
 
   @create_attrs %{email: "some email", message: "some message", name: "some name"}
-  @update_attrs %{email: "some updated email", message: "some updated message", name: "some updated name"}
+  @update_attrs %{
+    email: "some updated email",
+    message: "some updated message",
+    name: "some updated name"
+  }
   @invalid_attrs %{email: nil, message: nil, name: nil}
 
   describe "index" do
